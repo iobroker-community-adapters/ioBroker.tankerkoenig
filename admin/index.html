@@ -1,0 +1,290 @@
+<html>
+
+<!-- these 4 files always have to be included -->
+<link rel="stylesheet" type="text/css" href="../../lib/css/themes/jquery-ui/redmond/jquery-ui.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.multiselect-1.13.css"/>
+
+<!-- für die Tabelle 
+<link rel="stylesheet" type="text/css" href="../../lib/css/jqGrid/ui.jqgrid-4.5.4.css"/>
+-->
+<script type="text/javascript" src="../../lib/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
+
+<!-- Die nächsten beiden für die Tabelle 
+<script type="text/javascript" src="../../lib/js/jqGrid/jquery.jqGrid-4.5.4.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jqGrid/grid.locale-all.js"></script>
+-->
+<!-- these two file always have to be included -->
+<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+<script type="text/javascript" src="../../js/translate.js"></script>
+<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+
+<style>
+    #config {
+        font-size: smaller;	
+    }
+    th {
+        text-align: left;
+    }
+   .input {
+        font-family: 'courier';
+    }
+    img.settings_logo {
+        width: 100px;
+        height: 100px;
+    }
+    .headline {
+    	padding-top: 20px;
+    	padding-left: 10px;
+    }
+    .table_header {
+        background-color: blue;
+        color: white;
+    }
+    .ip {
+        width: 150px;
+        text-align: right;
+    }
+    .api_label {
+        font-size: 120%;
+    }
+    .api_key_style {
+        font-size: 180%;
+    }
+    .station_desc {
+        font-weight: bold;
+        margin-top: 1em;
+    }
+    .station_name {
+        font-size: 120%;
+    }
+    .station_id {
+        font-size: 150%;
+    }
+    
+</style>
+<!-- you have to define 2 functions in the global scope: -->
+<script type="text/javascript">
+	systemDictionary = {
+            "tankerkoenig Adapter settings": {
+                "en": "tankerkoenig Adapter settings",
+                "de": "tankerkoenig Adapter Einstellungen",
+                "ru": "Настройки tankerkoenig Adapter"
+            },
+            "tankerkoenig API": {
+                "en": "tankerkoenig api key (36 digits):",
+                "de": "tankerkoenig API-Schlüssel (36 Zeichen):",
+                "ru": "tankerkoenig API-Key:"
+            },
+            "API-Key": {
+                "en": "api key",
+                "de": "API-Schlüssel",
+                "ru": "API-Key"
+            },
+            "Tankstellen":       	{
+                "en": "Gas Stations",
+                "de": "Tankstellen",
+                "ru": "Tankstellen"
+            },
+            "Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.": {
+                "en": "ID of gas station",
+                "de": "Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.",
+                "ru": "ID of gas station"
+            },
+            "Sie erhalten den API Schl&uuml;ssel auf der Internetseite tankerkoenig.de": {
+                "en": "Input the 36digit API-Key from <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
+                "de": "Sie erhalten den API Schl&uuml;ssel auf der Seite <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
+                "ru": "Input the 36digit API-Key from <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>"
+            },
+            "ID Tankstelle": {
+                "en": "Station ID (36 digits)",
+                "de": "ID Tankstelle (36 Zeichen)",
+                "ru": "ID Tankstelle (36 digits)"
+            },
+            "Name Tankstelle": {
+                "en": "Custom station name",
+                "de": "Eigener Name für Tankstelle (z.B. ARAL Bahnhofsplatz)",
+                "ru": "Custom station name"
+            },
+            "Nummer": {
+                "en": "No.",
+                "de": "Nr.",
+                "ru": "#"
+            }
+	};
+    
+    
+    
+    
+    function load(settings, onChange) {
+        $('#apikey').val(settings.apikey).change(onChange);
+        
+        $('#station0').val(settings.station0).change(onChange);
+        $('#stationname0').val(settings.stationname0).change(onChange);
+        
+        $('#station1').val(settings.station1).change(onChange);
+        $('#stationname1').val(settings.stationname1).change(onChange);
+        
+        $('#station2').val(settings.station2).change(onChange);
+        $('#stationname2').val(settings.stationname2).change(onChange);
+        
+        $('#station3').val(settings.station3).change(onChange);
+        $('#stationname3').val(settings.stationname3).change(onChange);
+        
+        $('#station4').val(settings.station4).change(onChange);
+        $('#stationname4').val(settings.stationname4).change(onChange);
+        
+        $('#station5').val(settings.station5).change(onChange);
+        $('#stationname5').val(settings.stationname5).change(onChange);
+        
+        $('#station6').val(settings.station6).change(onChange);
+        $('#stationname6').val(settings.stationname6).change(onChange);
+        
+        $('#station7').val(settings.station7).change(onChange);
+        $('#stationname7').val(settings.stationname7).change(onChange);
+        
+        $('#station8').val(settings.station8).change(onChange);
+        $('#stationname8').val(settings.stationname8).change(onChange);
+        
+        $('#station9').val(settings.station9).change(onChange);
+        $('#stationname9').val(settings.stationname9).change(onChange);
+        
+        onChange(false);
+    }
+      
+    function save(callback) {
+        var array = [];
+        array [0] = [$('#station0').val().trim() , $('#stationname0').val().trim()];
+        array [1] = [$('#station1').val().trim() , $('#stationname1').val().trim()];
+        array [2] = [$('#station2').val().trim() , $('#stationname2').val().trim()];
+        array [3] = [$('#station3').val().trim() , $('#stationname3').val().trim()];
+        array [4] = [$('#station4').val().trim() , $('#stationname4').val().trim()];
+        array [5] = [$('#station5').val().trim() , $('#stationname5').val().trim()];
+        array [6] = [$('#station6').val().trim() , $('#stationname6').val().trim()];
+        array [7] = [$('#station7').val().trim() , $('#stationname7').val().trim()];
+        array [8] = [$('#station8').val().trim() , $('#stationname8').val().trim()];
+        array [9] = [$('#station9').val().trim() , $('#stationname9').val().trim()];
+        
+        
+        callback({
+            apikey: $('#apikey').val(),
+            
+            station0: $('#station0').val().trim(),
+            stationname0: $('#stationname0').val().trim(),
+            
+            station1: $('#station1').val().trim(),
+            stationname1: $('#stationname1').val().trim(),
+            
+            station2: $('#station2').val().trim(),
+            stationname2: $('#stationname2').val().trim(),
+            
+            station3: $('#station3').val().trim(),
+            stationname3: $('#stationname3').val().trim(),
+            
+            station4: $('#station4').val().trim(),
+            stationname4: $('#stationname4').val().trim(),
+            
+            station5: $('#station5').val().trim(),
+            stationname5: $('#stationname5').val().trim(),
+            
+            station6: $('#station6').val().trim(),
+            stationname6: $('#stationname6').val().trim(),
+            
+            station7: $('#station7').val().trim(),
+            stationname7: $('#stationname7').val().trim(),
+            
+            station8: $('#station8').val().trim(),
+            stationname8: $('#stationname8').val().trim(),
+            
+            station9: $('#station9').val().trim(),
+            stationname9: $('#stationname9').val().trim(),
+            
+            stationsarray: array
+        });
+    }
+
+    
+</script>
+
+<div id="adapter-container">
+    <table style="width: 100%">
+    	<tr>
+            <td><img class="settings_logo" src="tankerkoenig.png"></td>
+            <td class="headline"><h3 class="translate">tankerkoenig Adapter settings</h3></td>
+        </tr>
+    </table>
+    <h4 class="translate" style="width: calc(100% - 10px)">API-Key</h4>
+    <p class="translate">Sie erhalten den API Schl&uuml;ssel auf der Seite tankerkoenig.de</p>
+    <table id="config" style="width: calc(100% - 5px)">
+        <tr>
+            <td class="translate api_label">tankerkoenig API</td>
+        </tr>
+        <tr>
+            <td><input type="text" id="apikey" class="value api_key_style" size="36"/></td>
+        </tr>
+        
+    </table>
+    <h4 class="translate" style="margin-top: 20px; width: calc(100% - 10px)">Tankstellen</h4>
+    <p class="translate">Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.</p>
+    <table id="config" style="width: calc(100% - 5px)">
+        <tr>
+            <th class="translate">Nummer</th>
+            <th class="translate">ID Tankstelle</th>
+            <th class="translate">Name Tankstelle</th>
+        </tr>
+        <tr>
+            <td class="station_desc">1</td>
+            <td><input type="text" id="station0" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname0" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">2</td>
+            <td><input type="text" id="station1" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname1" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">3</td>
+            <td><input type="text" id="station2" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname2" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">4</td>
+            <td><input type="text" id="station3" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname3" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">5</td>
+            <td><input type="text" id="station4" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname4" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">6</td>
+            <td><input type="text" id="station5" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname5" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">7</td>
+            <td><input type="text" id="station6" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname6" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">8</td>
+            <td><input type="text" id="station7" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname7" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">9</td>
+            <td><input type="text" id="station8" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname8" class="value station_name" size="36"/></td>
+        </tr>
+        <tr>
+            <td class="station_desc">10</td>
+            <td><input type="text" id="station9" class="value station_id" size="36"/></td>
+            <td><input type="text" id="stationname9" class="value station_name" size="36"/></td>
+        </tr>
+        
+    </table>
+    
+</div>
+</html>

@@ -1,0 +1,1853 @@
+{
+    "common": {
+        "name":                     "tankerkoenig",
+        "title":                    "Tankerkoenig Spritpreise",
+        "desc": {                   "en": "Tankerkoenig Spritpreise",
+                                    "de": "Tankerkoenig Spritpreise",
+                                    "ru": "Tankerkoenig Spritpreise - translate to russian, please"},
+        "version":                  "0.0.1",
+        "mode":                     "schedule",
+        "schedule":                 "*/5 * * * *",
+        "platform":                 "javascript/Node.js",
+        "loglevel":                 "info",
+        "keywords":                 ["fuel", "gas", "tankerkoenig", "Tankerkönig", "Sprit", "Spritpreis", "Tankstelle", "Diesel", "Benzin"],
+        "main":                     "main.js",
+        "authors":                  ["Pix"],
+        "license":                  "MIT",
+        "readme":                   "https://github.com/Pix---/ioBroker.tankerkoenig/blob/master/README.md",
+        "icon":                     "tankerkoenig.png",
+        "extIcon":                  "https://raw.githubusercontent.com/Pix---/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
+	    "allowInit":                true,
+        "type":                     "schedule",
+        "config": {
+            "width": 850,
+            "height": 650,
+            "minWidth": 650,
+            "minHeight": 400
+        }
+    },
+    "native": {},
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id":  "stations",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstellen"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "json",
+            "type": "state",
+            "common": {
+                "name":  "tankerkoenig JSON",
+                "desc":  "JSON return from tankerkoenig.de with all prices for all stations",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 1"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 1 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 1 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10  feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel  feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 2 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 2 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 3 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 3 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 4 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 4 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 5 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 5 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 6 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 6 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 7 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 7 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 8 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 8 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 9 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 9 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E5"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status Tankstelle 10 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name Tankstelle 10 tankerkoenig.de feed",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "e5 feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "e5 short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e5 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "E10"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "e10 feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "e10 short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "e10 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Diesel"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "diesel feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "diesel short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "diesel 3rd",
+                "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        }
+    ]
+}
