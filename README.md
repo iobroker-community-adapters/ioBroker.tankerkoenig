@@ -1,10 +1,10 @@
 ![Logo](admin/tankerkoenig.png)
-# ioBroker.tvspielfim
+# ioBroker.tankerkoenig
 =================
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
-[![Tests](https://travis-ci.org/ioBroker/ioBroker.tankerkoenig.svg?branch=master)](https://travis-ci.org/ioBroker/ioBroker.tankerkoenig)
+
 
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
