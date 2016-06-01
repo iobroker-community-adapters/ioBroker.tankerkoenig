@@ -36,6 +36,12 @@ Ausserdem werden noch zwei Datenpunkte gespeichert
 * status (Station geöffnet?)
 * name (vom Nutzer vergebener Name der Tankstelle)
 
+## VIS Nutzung
+Der Datenpunkt combined lässt sich in VIS mit diesem Widget darstellen
+```
+[{"tpl":"tplHtml","data":{"visibility-cond":"==","visibility-val":1,"refreshInterval":"0","gestures-offsetX":0,"gestures-offsetY":0,"signals-cond-0":"==","signals-val-0":true,"signals-icon-0":"/vis/signals/lowbattery.png","signals-icon-size-0":0,"signals-blink-0":false,"signals-horz-0":0,"signals-vert-0":0,"signals-hide-edit-0":false,"signals-cond-1":"==","signals-val-1":true,"signals-icon-1":"/vis/signals/lowbattery.png","signals-icon-size-1":0,"signals-blink-1":false,"signals-horz-1":0,"signals-vert-1":0,"signals-hide-edit-1":false,"signals-cond-2":"==","signals-val-2":true,"signals-icon-2":"/vis/signals/lowbattery.png","signals-icon-size-2":0,"signals-blink-2":false,"signals-horz-2":0,"signals-vert-2":0,"signals-hide-edit-2":false,"html":"{tankerkoenig.0.stations.0.diesel.combined}"},"style":{"left":"82px","top":"51px","z-index":"20","width":"233px","height":"36px"},"widgetSet":"basic"}]
+```
+
 ## Changelog
 ### 0.0.2 (2016-06-01)
 * (pix) Datapoint "combined"
