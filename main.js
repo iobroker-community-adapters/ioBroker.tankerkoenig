@@ -160,7 +160,7 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.e5.feed',  {ack: true, val: parseFloat(result.prices[stationid].e5)});
                                     adapter.setState('stations.' + i + '.e5.short', {ack: true, val: cutPrice(result.prices[stationid].e5).priceshort});// zweistellig
                                     adapter.setState('stations.' + i + '.e5.3rd',   {ack: true, val: cutPrice(result.prices[stationid].e5).price3rd});// dritte stelle
-                                    adapter.setState('stations.' + i + '.e5.combined', adapter.getState('stations.' + i + '.e5.short').val + '<sup style="font-size: 50%">' + adapter.getState('stations.' + i + '.e5.3rd').val + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
+                                    adapter.setState('stations.' + i + '.e5.combined', cutPrice(result.prices[stationid].e5).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].e5).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
                                 }
                                 
                                 if (!result.prices[stationid].e10) {
@@ -170,7 +170,7 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.e10.feed', {ack: true, val: parseFloat(result.prices[stationid].e10)});
                                     adapter.setState('stations.' + i + '.e10.short', {ack: true, val: cutPrice(result.prices[stationid].e10).priceshort});
                                     adapter.setState('stations.' + i + '.e10.3rd', {ack: true, val: cutPrice(result.prices[stationid].e10).price3rd});
-                                    adapter.setState('stations.' + i + '.e10.combined', adapter.getState('stations.' + i + '.e10.short').val + '<sup style="font-size: 50%">' + adapter.getState('stations.' + i + '.e10.3rd').val + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
+                                    adapter.setState('stations.' + i + '.e10.combined', cutPrice(result.prices[stationid].e10).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].e10).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
                                 }
                                 
                                 if (!result.prices[stationid].diesel) {
@@ -180,7 +180,7 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.diesel.feed', {ack: true, val: parseFloat(result.prices[stationid].diesel)});
                                     adapter.setState('stations.' + i + '.diesel.short', {ack: true, val: cutPrice(result.prices[stationid].diesel).priceshort});
                                     adapter.setState('stations.' + i + '.diesel.3rd', {ack: true, val: cutPrice(result.prices[stationid].diesel).price3rd});
-                                    adapter.setState('stations.' + i + '.diesel.combined', adapter.getState('stations.' + i + '.diesel.short').val + '<sup style="font-size: 50%">' + adapter.getState('stations.' + i + '.diesel.3rd').val + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
+                                    adapter.setState('stations.' + i + '.diesel.combined', cutPrice(result.prices[stationid].diesel).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].diesel).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
                                     
                                     
                                     
