@@ -14,7 +14,7 @@ Der Adapter verwendet die Seite prices.php, welche beim Quellserver von tankerko
 
 ## Einstellungen / Configuration
 ### API-Key
-Der API Schlüssel ist auf der Seite on Tankerkönig erhältlich. Die 16stellige Zeichenkette muss hier eingetragen werden.
+Der API Schlüssel ist auf der [Seite von Tankerkönig](https://creativecommons.tankerkoenig.de/#about) erhältlich. Die 16stellige Zeichenkette muss hier eingetragen werden.
 
 ### Tankstellen
 Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tankstellen ID nötig. Die ID für jede Tankstelle erhält man auf tankerkoenig.de
