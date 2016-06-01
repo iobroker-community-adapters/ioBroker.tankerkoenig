@@ -56,7 +56,10 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
-### 0.0.2 (2016-06-01)
+### 0.0.3 (2016-06-01)
+* (pix) Datapoint "combined" with CSS class for status
+ 
+* ### 0.0.2 (2016-06-01)
 * (pix) Datapoint "combined"
 
 ### 0.0.1 (2016-05-31)
