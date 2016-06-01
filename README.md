@@ -30,6 +30,7 @@ Jeder der zehn Kanäle des Feeds produziert für jede der drei Spritsorten E5, E
 * short (Preis mit zwei Deziamlstellen (ungerundet))
 * 3rd (dritte Dezimalstelle des Preises zur Darstellung der Hochzahl in VIS)
 * combined (fertig HTML formatiert mit Preis und hochgestellter dritter Dezimalstelle oder ggf. Öffnungsstatus ["closed"/"not found"] zur einfachen Darstellung mit VIS HTML Widget)
+
 Ausserdem werden noch zwei Datenpunkte gespeichert
 * status (Station geöffnet?)
 * name (vom Nutzer vergebener Name der Tankstelle)
