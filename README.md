@@ -19,7 +19,7 @@ Der API Schlüssel ist auf der [Seite von Tankerkönig](https://creativecommons.
 ### Tankstellen
 Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tankstellen ID nötig. Die ID für jede Tankstelle erhält man auf tankerkoenig.de
 Zusätzlich kann ein eigener Name für die Station hinterlegt werden.
-![alt text](img/tankerkoenigSettingScreenshot.jpg "Screenshot Settings")
+![alt text](img/tankerkoenigSettingsScreenshot.jpg "Screenshot Settings")
 
 ## Aktivierung / Schedule
 Der Adapter startet alle 5min. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert.
@@ -30,6 +30,7 @@ Jeder der zehn Kanäle des Feeds produziert für jede der drei Spritsorten E5, E
 * short (Preis mit zwei Deziamlstellen (ungerundet))
 * 3rd (dritte Dezimalstelle des Preises zur Darstellung der Hochzahl in VIS)
 * combined (fertig HTML formatiert mit Preis und hochgestellter dritter Dezimalstelle oder ggf. Öffnungsstatus ["closed"/"not found"] zur einfachen Darstellung mit VIS HTML Widget)
+![alt text](img/tankerkoenigDP.jpg "Datenpunkte")
 
 Ausserdem werden noch zwei Datenpunkte gespeichert
 * status (Station geöffnet?)
