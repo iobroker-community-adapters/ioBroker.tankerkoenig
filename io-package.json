@@ -1,7 +1,7 @@
 {
     "common": {
         "name":                     "tankerkoenig",
-        "title":                    "Tankerkoenig Spritpreise",
+        "title":                    "Tankerkönig Spritpreise",
         "desc": {                   "en": "Tankerkoenig Spritpreise",
                                     "de": "Tankerkoenig Spritpreise",
                                     "ru": "Tankerkoenig Spritpreise - translate to russian, please"},
@@ -18,7 +18,7 @@
         "icon":                     "tankerkoenig.png",
         "extIcon":                  "https://raw.githubusercontent.com/Pix---/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
 	    "allowInit":                true,
-        "type":                     "schedule",
+        "type":                     "common adapters",
         "config": {
             "width": 850,
             "height": 650,
