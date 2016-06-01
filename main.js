@@ -125,12 +125,15 @@ function readData(url) {
                         adapter.setState('stations.' + i + '.e5.feed',      0);
                         adapter.setState('stations.' + i + '.e5.short',     0);
                         adapter.setState('stations.' + i + '.e5.3rd',       0);
+                        adapter.setState('stations.' + i + '.e5.combined', "");
                         adapter.setState('stations.' + i + '.e10.feed',     0);
                         adapter.setState('stations.' + i + '.e10.short',    0);
                         adapter.setState('stations.' + i + '.e10.3rd',      0);
+                        adapter.setState('stations.' + i + '.e10.combined', "");
                         adapter.setState('stations.' + i + '.diesel.feed',  0);
                         adapter.setState('stations.' + i + '.diesel.short', 0);
                         adapter.setState('stations.' + i + '.diesel.3rd',   0);
+                        adapter.setState('stations.' + i + '.diesel.combined', "");
                         
                         if (stationid.length == 36) { // wenn StationID bekannt, also Settings-Feld gefüllt
                             adapter.log.debug('Station ' + stationid + ' ' + stationname + ' wird bearbeitet ...');
@@ -138,8 +141,15 @@ function readData(url) {
                             var status = result.prices[stationid].status;
                             if (status.indexOf("not found") != -1) {
                                 adapter.log.warn('Station ' + stationid + ' nicht gefunden');
+                                adapter.setState('stations.' + i + '.e5.combined',     "nicht gefunden");
+                                adapter.setState('stations.' + i + '.e10.combined',    "nicht gefunden");
+                                adapter.setState('stations.' + i + '.diesel.combined', "nicht gefunden");
                             } else if (status.indexOf("closed") != -1) {
                                 adapter.log.warn('Station ' + stationid + ' ' + stationname + ' geschlossen');
+                                adapter.setState('stations.' + i + '.e5.combined',     "geschlossen");
+                                adapter.setState('stations.' + i + '.e10.combined',    "geschlossen");
+                                adapter.setState('stations.' + i + '.diesel.combined', "geschlossen");
+                                
                             } else if (status.indexOf("open") != -1) {
                                 
                                 // wenn false im Preis für e5 steht, ... 0 bleibt stehen
@@ -150,6 +160,7 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.e5.feed',  {ack: true, val: parseFloat(result.prices[stationid].e5)});
                                     adapter.setState('stations.' + i + '.e5.short', {ack: true, val: cutPrice(result.prices[stationid].e5).priceshort});// zweistellig
                                     adapter.setState('stations.' + i + '.e5.3rd',   {ack: true, val: cutPrice(result.prices[stationid].e5).price3rd});// dritte stelle
+                                    adapter.setState('stations.' + i + '.e5.combined', adapter.getState('stations.' + i + '.e5.short') + '<sup style="font-size: 50%">' + adapter.getState('stations.' + i + '.e5.3rd') + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
                                 }
                                 
                                 if (!result.prices[stationid].e10) {
@@ -159,6 +170,7 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.e10.feed', {ack: true, val: parseFloat(result.prices[stationid].e10)});
                                     adapter.setState('stations.' + i + '.e10.short', {ack: true, val: cutPrice(result.prices[stationid].e10).priceshort});
                                     adapter.setState('stations.' + i + '.e10.3rd', {ack: true, val: cutPrice(result.prices[stationid].e10).price3rd});
+                                    adapter.setState('stations.' + i + '.e10.combined', adapter.getState('stations.' + i + '.e10.short') + '<sup style="font-size: 50%">' + adapter.getState('stations.' + i + '.e10.3rd') + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
                                 }
                                 
                                 if (!result.prices[stationid].diesel) {
@@ -168,6 +180,10 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.diesel.feed', {ack: true, val: parseFloat(result.prices[stationid].diesel)});
                                     adapter.setState('stations.' + i + '.diesel.short', {ack: true, val: cutPrice(result.prices[stationid].diesel).priceshort});
                                     adapter.setState('stations.' + i + '.diesel.3rd', {ack: true, val: cutPrice(result.prices[stationid].diesel).price3rd});
+                                    adapter.setState('stations.' + i + '.diesel.combined', adapter.getState('stations.' + i + '.diesel.short') + '<sup style="font-size: 50%">' + adapter.getState('stations.' + i + '.diesel.3rd') + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span>');
+                                    
+                                    
+                                    
                                 }
                             }
                             adapter.setState('stations.' + i + '.name', {ack: true, val: stationname});
