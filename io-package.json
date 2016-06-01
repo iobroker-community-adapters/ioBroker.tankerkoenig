@@ -5,7 +5,7 @@
         "desc": {                   "en": "Tankerkoenig Spritpreise",
                                     "de": "Tankerkoenig Spritpreise",
                                     "ru": "Tankerkoenig Spritpreise - translate to russian, please"},
-        "version":                  "0.0.1",
+        "version":                  "0.0.2",
         "mode":                     "schedule",
         "schedule":                 "*/5 * * * *",
         "platform":                 "javascript/Node.js",
@@ -137,6 +137,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.0.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.0.e10",
             "type": "channel",
             "common": {
@@ -188,6 +201,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.0.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.0.diesel",
             "type": "channel",
             "common": {
@@ -232,6 +258,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.0.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -316,6 +355,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.1.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.1.e10",
             "type": "channel",
             "common": {
@@ -367,6 +419,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.1.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.1.diesel",
             "type": "channel",
             "common": {
@@ -411,6 +476,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.1.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -495,6 +573,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.2.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.2.e10",
             "type": "channel",
             "common": {
@@ -546,6 +637,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.2.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.2.diesel",
             "type": "channel",
             "common": {
@@ -590,6 +694,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -674,6 +791,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.3.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.3.e10",
             "type": "channel",
             "common": {
@@ -725,6 +855,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.3.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.3.diesel",
             "type": "channel",
             "common": {
@@ -769,6 +912,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.3.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -853,6 +1009,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.4.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.4.e10",
             "type": "channel",
             "common": {
@@ -904,6 +1073,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.4.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.4.diesel",
             "type": "channel",
             "common": {
@@ -948,6 +1130,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1032,6 +1227,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.5.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.5.e10",
             "type": "channel",
             "common": {
@@ -1083,6 +1291,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.5.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.5.diesel",
             "type": "channel",
             "common": {
@@ -1127,6 +1348,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.5.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1211,6 +1445,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.6.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.6.e10",
             "type": "channel",
             "common": {
@@ -1262,6 +1509,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.6.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.6.diesel",
             "type": "channel",
             "common": {
@@ -1306,6 +1566,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1390,6 +1663,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.7.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.7.e10",
             "type": "channel",
             "common": {
@@ -1441,6 +1727,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.7.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.7.diesel",
             "type": "channel",
             "common": {
@@ -1485,6 +1784,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.7.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1569,6 +1881,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.8.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.8.e10",
             "type": "channel",
             "common": {
@@ -1620,6 +1945,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.0.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.8.diesel",
             "type": "channel",
             "common": {
@@ -1664,6 +2002,19 @@
                 "desc":  "Preis Diesel (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.8.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1748,6 +2099,19 @@
             "native": {}
         },
         {
+            "_id":  "stations.9.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "e5 combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.9.e10",
             "type": "channel",
             "common": {
@@ -1792,6 +2156,19 @@
                 "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
                 "type":  "number",
                 "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "e10 combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1848,6 +2225,19 @@
                 "write": false
             },
             "native": {}
-        }
+        },
+        {
+            "_id":  "stations.9.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
     ]
 }
