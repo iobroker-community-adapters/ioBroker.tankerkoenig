@@ -173,7 +173,7 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.e10.feed', {ack: true, val: parseFloat(result.prices[stationid].e10)});
                                     adapter.setState('stations.' + i + '.e10.short', {ack: true, val: cutPrice(result.prices[stationid].e10).priceshort});
                                     adapter.setState('stations.' + i + '.e10.3rd', {ack: true, val: cutPrice(result.prices[stationid].e10).price3rd});
-                                    adapter.setState('stations.' + i + '.e10.combined', <span class="station_open">' + cutPrice(result.prices[stationid].e10).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].e10).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
+                                    adapter.setState('stations.' + i + '.e10.combined', '<span class="station_open">' + cutPrice(result.prices[stationid].e10).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].e10).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
                                 }
                                 
                                 if (!result.prices[stationid].diesel) {
@@ -183,7 +183,7 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.diesel.feed', {ack: true, val: parseFloat(result.prices[stationid].diesel)});
                                     adapter.setState('stations.' + i + '.diesel.short', {ack: true, val: cutPrice(result.prices[stationid].diesel).priceshort});
                                     adapter.setState('stations.' + i + '.diesel.3rd', {ack: true, val: cutPrice(result.prices[stationid].diesel).price3rd});
-                                    adapter.setState('stations.' + i + '.diesel.combined', <span class="station_open">' + cutPrice(result.prices[stationid].diesel).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].diesel).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
+                                    adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_open">' + cutPrice(result.prices[stationid].diesel).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].diesel).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
                                     
                                     
                                     
