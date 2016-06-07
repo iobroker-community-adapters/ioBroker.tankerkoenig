@@ -47,15 +47,24 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
     color: blue; 
 }
 .station_closed {
-    color: red !important; <!-- !important kann ggf. weggelassen werden -->
+    color: red !important; /* !important kann ggf. weggelassen werden */
 }
 .station_notfound {
-    color: yellow !important; <!-- !important kann ggf. weggelassen werden -->
+    color: yellow !important; /* !important kann ggf. weggelassen werden */
 }
 ```
 
 
 ## Changelog
+### 0.0.5 (2016-06-08)
+* (pix) Channels added for stations 2 to 10
+* (pix) Readme corrected (CSS code example)
+* (pix) no more log.warn if station is closed
+* (pix) scheduled starting improved
+
+### 0.0.4 (2016-06-01)
+* (pix) HTML Code in Datapoint "combined" corrected
+
 ### 0.0.3 (2016-06-01)
 * (pix) Datapoint "combined" with CSS class for status
  

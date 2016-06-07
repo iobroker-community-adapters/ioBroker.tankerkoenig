@@ -5,7 +5,7 @@
         "desc": {                   "en": "Tankerkoenig Spritpreise",
                                     "de": "Tankerkönig Spritpreise",
                                     "ru": "Tankerkoenig Spritpreise - translate to russian, please"},
-        "version":                  "0.0.4",
+        "version":                  "0.0.5",
         "mode":                     "schedule",
         "schedule":                 "*/5 * * * *",
         "platform":                 "javascript/Node.js",
@@ -278,6 +278,15 @@
             "native": {}
         },
         {
+            "_id":  "stations.1",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 2"
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.1.e5",
             "type": "channel",
             "common": {
@@ -492,6 +501,15 @@
                 "role" : "value",
                 "read":  true,
                 "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.2",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 3"
             },
             "native": {}
         },
@@ -714,6 +732,15 @@
             "native": {}
         },
         {
+            "_id":  "stations.3",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 4"
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.3.e5",
             "type": "channel",
             "common": {
@@ -928,6 +955,15 @@
                 "role" : "value",
                 "read":  true,
                 "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.4",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 5"
             },
             "native": {}
         },
@@ -1150,6 +1186,15 @@
             "native": {}
         },
         {
+            "_id":  "stations.5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 6"
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.5.e5",
             "type": "channel",
             "common": {
@@ -1364,6 +1409,15 @@
                 "role" : "value",
                 "read":  true,
                 "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.6",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 7"
             },
             "native": {}
         },
@@ -1586,6 +1640,15 @@
             "native": {}
         },
         {
+            "_id":  "stations.7",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstele 8"
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.7.e5",
             "type": "channel",
             "common": {
@@ -1804,6 +1867,15 @@
             "native": {}
         },
         {
+            "_id":  "stations.8",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 9"
+            },
+            "native": {}
+        },
+        {
             "_id":  "stations.8.e5",
             "type": "channel",
             "common": {
@@ -2018,6 +2090,15 @@
                 "role" : "value",
                 "read":  true,
                 "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.9",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "Tankstelle 10"
             },
             "native": {}
         },

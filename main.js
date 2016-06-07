@@ -13,10 +13,10 @@ var adapter = utils.adapter({
 });
 
 adapter.on('ready', function () {
-    adapter.getForeignObject('system.config', function (err, data) {
-        if (data && data.common) {
-            lang  = data.common.language;
-        }
+    //adapter.getForeignObject('system.config', function (err, data) {
+        //if (data && data.common) {
+        //    lang  = data.common.language;
+        //}
 
         adapter.log.debug('initializing objects');
         main();
@@ -27,79 +27,21 @@ adapter.on('ready', function () {
             adapter.stop();
         }, 60000);
 
-    });
+    //});
 });
-
-function readSettings() {
-    //APIKEY
-    adapter.log.debug('API Key Länge: ' + adapter.config.apikey.length + ' Zeichen');
-   if (adapter.config.apikey === undefined) {
-        adapter.log.warn('No API-Key found.');
-        return; // abbruch
-    } else if (adapter.config.apikey.length < 36) {
-        adapter.log.warn('API-Key too short, should be 36 digits.');
-        return; // abbruch
-    } else if (adapter.config.apikey.length > 36) {
-        adapter.log.warn('API-Key too long, should be 36 digits.');
-        return; // abbruch
-    } else { 
-        buildQuery();
-    } 
-}
-
-function buildQuery() { // Abfrage erstellen (max 10 Tankstellen ID)
-    /* String muss so aussehenen: "ididididididid","idididididid"
-       dabei werden Häkchen und Komma URLencoded dargestellt, also %2C für Komma und %22 für Häkchen
-       die folgenden Zeilen fügen die Felder mit den ID der Stationen zusammen, unabhänggig, ob Felder 
-       freigeblieben sind. Vor dem ersten und nach dem letzten Feld kommt natürlich kein Komma.
-    */
-    var stations = (adapter.config.station0.length > 0) ? '%22' + adapter.config.station0 + '%22' : '';
-    adapter.log.debug('Stations 1: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station1.length > 0) ? stations + '%2C%22' + adapter.config.station1 + '%22' : stations;
-    else stations = (adapter.config.station1.length > 0) ? stations + '%22' + adapter.config.station1 + '%22' : stations;
-    adapter.log.debug('Stations 2: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station2.length > 0) ? stations + '%2C%22' + adapter.config.station2 + '%22' : stations;
-    else stations = (adapter.config.station2.length > 0) ? stations + '%22' + adapter.config.station2 + '%22' : stations;
-    adapter.log.debug('Stations 3: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station3.length > 0) ? stations + '%2C%22' + adapter.config.station3 + '%22' : stations;
-    else stations = (adapter.config.station3.length > 0) ? stations + '%22' + adapter.config.station3 + '%22' : stations;
-    adapter.log.debug('Stations 4: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station4.length > 0) ? stations + '%2C%22' + adapter.config.station4 + '%22' : stations;
-    else stations = (adapter.config.station4.length > 0) ? stations + '%22' + adapter.config.station4 + '%22' : stations;
-    adapter.log.debug('Stations 5: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station5.length > 0) ? stations + '%2C%22' + adapter.config.station5 + '%22' : stations;
-    else stations = (adapter.config.station5.length > 0) ? stations + '%22' + adapter.config.station5 + '%22' : stations;
-    adapter.log.debug('Stations 6: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station6.length > 0) ? stations + '%2C%22' + adapter.config.station6 + '%22' : stations;
-    else stations = (adapter.config.station6.length > 0) ? stations + '%22' + adapter.config.station6 + '%22' : stations;
-    adapter.log.debug('Stations 7: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station7.length > 0) ? stations + '%2C%22' + adapter.config.station7 + '%22' : stations;
-    else stations = (adapter.config.station7.length > 0) ? stations + '%22' + adapter.config.station7 + '%22' : stations;
-    adapter.log.debug('Stations 8: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station8.length > 0) ? stations + '%2C%22' + adapter.config.station8 + '%22' : stations;
-    else stations = (adapter.config.station8.length > 0) ? stations + '%22' + adapter.config.station8 + '%22' : stations;    
-    adapter.log.debug('Stations 9: ' + stations);
-    if (stations.length > 0) stations = (adapter.config.station9.length > 0) ? stations + '%2C%22' + adapter.config.station9 + '%22' : stations;
-    else stations = (adapter.config.station9.length > 0) ? stations + '%22' + adapter.config.station9 + '%22' : stations;    
-    adapter.log.debug('Stations 10: ' + stations);
-    
-    // String in URL einbetten (in eckigen Klammern) und mit APIKey
-    var url = 'https://creativecommons.tankerkoenig.de/json/prices.php?ids=%5B' + stations + '%5D&apikey=' + adapter.config.apikey; 
-    readData(url);    
-}
 
 // Dezimalstellen des Preises ermitteln
 function cutPrice(preis) {
     preis = parseFloat(preis);
-    var rechenwert = preis * 100;   // 100facher Preis jetzt mit einer Nachkommastelle
-    var rechenwert2 = preis * 1000; // 1000facher Preis ohne Nachkommastelle
-    rechenwert = Math.floor(rechenwert);  // Nachkommastelle (.x) wird abgeschnitten
-    rechenwert = rechenwert/100;          // es bleiben zwei Nachkommastellen
-    var ohne_dritte_stelle = rechenwert.toFixed(2); // Preis mit 2 Nachkommastellen ausgeben (abgeschnitten)
-    var dritte_stelle = Math.ceil(rechenwert2 - (rechenwert * 1000)); // Dritte Nachommastelle einzeln ermitteln
+    var temp = preis * 100;   // 100facher Preis jetzt mit einer Nachkommastelle
+    var temp2 = preis * 1000; // 1000facher Preis ohne Nachkommastelle
+    temp = Math.floor(temp);  // Nachkommastelle (.x) wird abgeschnitten
+    temp = temp/100;          // es bleiben zwei Nachkommastellen
+    var price_short = temp.toFixed(2); // Preis mit 2 Nachkommastellen ausgeben (abgeschnitten)
+    var price_3rd_digit = Math.ceil(temp2 - (temp * 1000)); // Dritte Nachommastelle einzeln ermitteln
     return {
-        'priceshort': parseFloat(ohne_dritte_stelle),
-        'price3rd': parseInt(dritte_stelle,10)
+        'priceshort': parseFloat(price_short),
+        'price3rd': parseInt(price_3rd_digit,10)
     }; 
 }
 
@@ -148,7 +90,7 @@ function readData(url) {
                                 adapter.setState('stations.' + i + '.e10.combined',    '<span class="station_notfound">nicht gefunden</span>');
                                 adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_notfound">nicht gefunden</span>');
                             } else if (status.indexOf("closed") != -1) {
-                                adapter.log.warn('Station ' + stationid + ' ' + stationname + ' geschlossen');
+                                adapter.log.debug('Station ' + stationid + ' ' + stationname + ' geschlossen');
                                 adapter.setState('stations.' + i + '.e5.combined',     '<span class="station_closed">geschlossen</span>');
                                 adapter.setState('stations.' + i + '.e10.combined',    '<span class="station_closed">geschlossen</span>');
                                 adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_closed">geschlossen</span>');
@@ -203,9 +145,66 @@ function readData(url) {
     });   // Ende request 
 }
 
+function buildQuery() { // Abfrage erstellen (max 10 Tankstellen ID)
+    /* String muss so aussehenen: "ididididididid","idididididid"
+       dabei werden Häkchen und Komma URLencoded dargestellt, also %2C für Komma und %22 für Häkchen
+       die folgenden Zeilen fügen die Felder mit den ID der Stationen zusammen, unabhänggig, ob Felder 
+       freigeblieben sind. Vor dem ersten und nach dem letzten Feld kommt natürlich kein Komma.
+    */
+    var stations = (adapter.config.station0.length > 0) ? '%22' + adapter.config.station0 + '%22' : '';
+    //adapter.log.debug('Stations 1: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station1.length > 0) ? stations + '%2C%22' + adapter.config.station1 + '%22' : stations;
+    else stations = (adapter.config.station1.length > 0) ? stations + '%22' + adapter.config.station1 + '%22' : stations;
+    //adapter.log.debug('Stations 2: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station2.length > 0) ? stations + '%2C%22' + adapter.config.station2 + '%22' : stations;
+    else stations = (adapter.config.station2.length > 0) ? stations + '%22' + adapter.config.station2 + '%22' : stations;
+    //adapter.log.debug('Stations 3: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station3.length > 0) ? stations + '%2C%22' + adapter.config.station3 + '%22' : stations;
+    else stations = (adapter.config.station3.length > 0) ? stations + '%22' + adapter.config.station3 + '%22' : stations;
+    //adapter.log.debug('Stations 4: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station4.length > 0) ? stations + '%2C%22' + adapter.config.station4 + '%22' : stations;
+    else stations = (adapter.config.station4.length > 0) ? stations + '%22' + adapter.config.station4 + '%22' : stations;
+    //adapter.log.debug('Stations 5: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station5.length > 0) ? stations + '%2C%22' + adapter.config.station5 + '%22' : stations;
+    else stations = (adapter.config.station5.length > 0) ? stations + '%22' + adapter.config.station5 + '%22' : stations;
+    //adapter.log.debug('Stations 6: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station6.length > 0) ? stations + '%2C%22' + adapter.config.station6 + '%22' : stations;
+    else stations = (adapter.config.station6.length > 0) ? stations + '%22' + adapter.config.station6 + '%22' : stations;
+    //adapter.log.debug('Stations 7: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station7.length > 0) ? stations + '%2C%22' + adapter.config.station7 + '%22' : stations;
+    else stations = (adapter.config.station7.length > 0) ? stations + '%22' + adapter.config.station7 + '%22' : stations;
+    //adapter.log.debug('Stations 8: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station8.length > 0) ? stations + '%2C%22' + adapter.config.station8 + '%22' : stations;
+    else stations = (adapter.config.station8.length > 0) ? stations + '%22' + adapter.config.station8 + '%22' : stations;    
+    //adapter.log.debug('Stations 9: ' + stations);
+    if (stations.length > 0) stations = (adapter.config.station9.length > 0) ? stations + '%2C%22' + adapter.config.station9 + '%22' : stations;
+    else stations = (adapter.config.station9.length > 0) ? stations + '%22' + adapter.config.station9 + '%22' : stations;    
+    //adapter.log.debug('Stations 10: ' + stations);
+    
+    // String in URL einbetten (in eckigen Klammern) und mit APIKey
+    var url = 'https://creativecommons.tankerkoenig.de/json/prices.php?ids=%5B' + stations + '%5D&apikey=' + adapter.config.apikey; 
+    readData(url);    
+}
+
+function readSettings() {
+    //APIKEY
+    adapter.log.debug('API Key Länge: ' + adapter.config.apikey.length + ' Zeichen');
+    if (adapter.config.apikey === undefined) {
+        adapter.log.warn('No API-Key found.');
+        return; // abbruch
+    } else if (adapter.config.apikey.length < 36) {
+        adapter.log.warn('API-Key too short, should be 36 digits.');
+        return; // abbruch
+    } else if (adapter.config.apikey.length > 36) {
+        adapter.log.warn('API-Key too long, should be 36 digits.');
+        return; // abbruch
+    } else { 
+        buildQuery();
+    } 
+}
 
 
 function main() {
     readSettings();
-    adapter.stop();
+    //adapter.stop();
 }
