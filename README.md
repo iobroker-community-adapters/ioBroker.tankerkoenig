@@ -26,8 +26,8 @@ Der Adapter startet alle 5min. Die Daten des Quellfeeds werden vom Server bei ta
 
 ##  Datenpunkte / Datapoints
 Jeder der zehn Kanäle des Feeds produziert für jede der drei Spritsorten E5, E10 und Diesel jeweils drei Datenpunkte:
-* feed (Preis mit drei Dezimalstellen)
-* short (Preis mit zwei Deziamlstellen (ungerundet))
+* feed (Preis mit drei Dezimalstellen als Number)
+* short (Preis mit zwei Dezimalstellen (ungerundet) als String)
 * 3rd (dritte Dezimalstelle des Preises zur Darstellung der Hochzahl in VIS)
 * combined (fertig HTML formatiert mit Preis und hochgestellter dritter Dezimalstelle oder ggf. Öffnungsstatus ["closed"/"not found"] zur einfachen Darstellung mit VIS HTML Widget)
 ![alt text](img/tankerkoenigDP.jpg "Datenpunkte")
