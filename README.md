@@ -56,6 +56,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 0.0.6 (2016-06-08)
+* (pix) Short prices now string
+
 ### 0.0.5 (2016-06-08)
 * (pix) Channels added for stations 2 to 10
 * (pix) Readme corrected (CSS code example)

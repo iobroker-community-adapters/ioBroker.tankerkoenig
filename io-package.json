@@ -5,7 +5,7 @@
         "desc": {                   "en": "Tankerkoenig Spritpreise",
                                     "de": "Tankerkönig Spritpreise",
                                     "ru": "Tankerkoenig Spritpreise - translate to russian, please"},
-        "version":                  "0.0.5",
+        "version":                  "0.0.6",
         "mode":                     "schedule",
         "schedule":                 "*/5 * * * *",
         "platform":                 "javascript/Node.js",
@@ -114,8 +114,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -178,8 +177,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -242,8 +240,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -341,8 +338,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -405,8 +401,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -469,8 +464,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -568,8 +562,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -632,8 +625,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -696,8 +688,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -795,8 +786,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -859,8 +849,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -923,8 +912,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1022,8 +1010,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1086,8 +1073,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1150,8 +1136,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1249,8 +1234,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1313,8 +1297,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1377,8 +1360,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1476,8 +1458,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1540,8 +1521,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1604,8 +1584,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1703,8 +1682,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1767,8 +1745,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1831,8 +1808,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1930,8 +1906,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -1994,8 +1969,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -2058,8 +2032,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -2157,8 +2130,7 @@
             "common": {
                 "name":  "e5 short",
                 "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -2221,8 +2193,7 @@
             "common": {
                 "name":  "e10 short",
                 "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false
@@ -2285,8 +2256,7 @@
             "common": {
                 "name":  "diesel short",
                 "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
-                "type":  "number",
-                "unit" : "€",
+                "type":  "string",
                 "role" : "value",
                 "read":  true,
                 "write": false

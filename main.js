@@ -40,7 +40,7 @@ function cutPrice(preis) {
     var price_short = temp.toFixed(2); // Preis mit 2 Nachkommastellen ausgeben (abgeschnitten)
     var price_3rd_digit = Math.ceil(temp2 - (temp * 1000)); // Dritte Nachommastelle einzeln ermitteln
     return {
-        'priceshort': parseFloat(price_short),
+        'priceshort': price_short, // als String wg. Nullen zB 1.10 statt 1.1
         'price3rd': parseInt(price_3rd_digit,10)
     }; 
 }
@@ -206,5 +206,5 @@ function readSettings() {
 
 function main() {
     readSettings();
-    //adapter.stop();
+    adapter.stop();
 }
