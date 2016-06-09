@@ -40,7 +40,7 @@ Zusätzlich werden noch den die günstigsten Tankstellen aus der Liste in die Ka
 * cheapest.E5
 * chepest.E10
 * cheapest.diesel
-Innerhalb dieser Kanäle ist die jeweils günstigste Tankestelle für die genannte Spritsorte angelegt. Bieten mehrere Tankstellen eine Spritsorte zum gleichen Preis an, wird die Station ausgegeben, die in den Einstellungen zu zuerst/ganz oben eingetragen wurde.
+Innerhalb dieser Kanäle ist die jeweils günstigste Tankstelle für die genannte Spritsorte angelegt. Bieten mehrere Tankstellen einen Treibstoff zum gleichen Preis an, wird die Station ausgegeben, die in den Einstellungen zu zuerst/ganz oben eingetragen wurde.
 
 ## VIS Nutzung
 Der Datenpunkt combined lässt sich in VIS mit diesem Widget darstellen
