@@ -20,7 +20,6 @@ adapter.on('ready', function () {
 
         adapter.log.debug('initializing objects');
         main();
-        adapter.log.info('objects written');
 
         setTimeout(function () {
             adapter.log.info('force terminating adapter after 1 minute');
@@ -312,5 +311,6 @@ function readSettings() {
 
 function main() {
     readSettings();
-    adapter.stop();
+    adapter.log.info('objects written');
+    
 }
