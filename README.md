@@ -10,7 +10,7 @@
 
 ## Beschreibung / Description
 :de: Dieser Adapter liefert die Spritpreise für 10 festgelegte Tankstellen über den JSON Feed der Internetseite [tankerkoenig.de](https://creativecommons.tankerkoenig.de/#about). Die Daten werden in Objekte gespeichert, um in [ioBroker.vis](https://github.com/ioBroker/ioBroker.vis) verarbeitet zu werden.
-Der Adapter verwendet die Seite prices.php, welche beim Quellserver von tankerkoenig.de durch die gleichzeitige Abfrage viele Stationen und die Rückgabe von nur wenigen Daten insgesamt sehr viel weniger Datenverkehr verursacht, als die Abfrage über list.php (Umkreissuche) oder detail.php (Einzelabfrage einer Tankstelle). Auf die beiden anderen Formen der Abfrage wurde bewusst verzichtet. Somit ist keine Umkreissuche (zB sortiert nach Preis) und keine Lieferung genauerer Daten (Straße, Marke, Hausnummer, etc.) möglich.
+Der Adapter verwendet die Seite prices.php, welche beim Quellserver von tankerkoenig.de durch die gleichzeitige Abfrage viele Stationen und die Rückgabe von nur wenigen Daten insgesamt sehr viel weniger Datenverkehr verursacht, als die Abfrage über list.php (Umkreissuche) oder detail.php (Einzelabfrage einer Tankstelle). Auf die beiden anderen Formen der Abfrage wurde bewusst verzichtet. Somit ist keine Umkreissuche (zB sortiert nach Preis) und keine Lieferung genauerer Daten (Straße, Marke, Hausnummer, etc.) möglich. Die jeweils günstigste Tankstelle für die drei Spritsorten E5, E10 und Diesel werden in einem separaten Kanal gespeichert.
 
 ## Einstellungen / Configuration
 ### API-Key
@@ -36,6 +36,12 @@ Ausserdem werden noch zwei Datenpunkte gespeichert
 * status (Station geöffnet?)
 * name (vom Nutzer vergebener Name der Tankstelle)
 
+Zusätzlich werden noch den die günstigsten Tankstellen aus der Liste in die Kanäle ermittelt
+* cheapest.E5
+* chepest.E10
+* cheapest.diesel
+Innerhalb dieser Kanäle ist die jeweils günstigste Tankestelle für die genannte Spritsorte angelegt.
+
 ## VIS Nutzung
 Der Datenpunkt combined lässt sich in VIS mit diesem Widget darstellen
 ```
@@ -56,6 +62,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 0.0.7 (2016-06-09)
+* (pix) New channels and values for cheapest station created
+
 ### 0.0.6 (2016-06-08)
 * (pix) Short prices now string
 
@@ -71,7 +80,7 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 ### 0.0.3 (2016-06-01)
 * (pix) Datapoint "combined" with CSS class for status
  
-* ### 0.0.2 (2016-06-01)
+### 0.0.2 (2016-06-01)
 * (pix) Datapoint "combined"
 
 ### 0.0.1 (2016-05-31)

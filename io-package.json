@@ -5,7 +5,7 @@
         "desc": {                   "en": "Tankerkoenig Spritpreise",
                                     "de": "Tankerkönig Spritpreise",
                                     "ru": "Tankerkoenig Spritpreise - translate to russian, please"},
-        "version":                  "0.0.6",
+        "version":                  "0.0.7",
         "mode":                     "schedule",
         "schedule":                 "*/5 * * * *",
         "platform":                 "javascript/Node.js",
@@ -2282,6 +2282,282 @@
             "type": "state",
             "common": {
                 "name":  "diesel combined",
+                "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "günstigste Tankstellen"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e5",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "günstigste E5 Tankstellen"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e5.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status günstigste E5 Tankstelle",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e5.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name günstigste E5 Tankstelle",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e5.feed",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E5 Tankstelle feed",
+                "desc":  "Preis E5 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e5.short",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E5 Tankstelle short",
+                "desc":  "Preis E5 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e5.3rd",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E5 Tankstelle 3rd",
+                "desc":  "Preis E5  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e5.combined",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E5 Tankstelle combined",
+                "desc":  "Preis E5 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e10",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "günstigste E10 Tankstellen"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e10.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status günstigste E10 Tankstelle",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e10.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name günstigste E10 Tankstelle",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e10.feed",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E10 Tankstelle feed",
+                "desc":  "Preis E10 (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e10.short",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E10 Tankstelle short",
+                "desc":  "Preis E10 (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e10.3rd",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E10 Tankstelle 3rd",
+                "desc":  "Preis E10  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.e10.combined",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste E10 Tankstelle combined",
+                "desc":  "Preis E10 mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.diesel",
+            "type": "channel",
+            "common": {
+                "role": "",
+                "name": "günstigste Diesel Tankstelle"
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.diesel.status",
+            "type": "state",
+            "common": {
+                "name":  "Status",
+                "desc":  "Status günstigste Diesel Tankstelle",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.diesel.name",
+            "type": "state",
+            "common": {
+                "name":  "Name",
+                "desc":  "Eigener Name günstigste Diesel Tankstelle",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.diesel.feed",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste Diesel Tankstelle feed",
+                "desc":  "Preis Diesel (e.eee) wie im Feed",
+                "type":  "number",
+                "unit" : "€",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.diesel.short",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste Diesel Tankstelle short",
+                "desc":  "Preis Diesel (e.ee) zwei Dezimalstellen (nicht gerundet)",
+                "type":  "string",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.diesel.3rd",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste Diesel Tankstelle 3rd",
+                "desc":  "Preis Diesel  (_.__e) nur dritte Dezimalstelle",
+                "type":  "number",
+                "unit" : "",
+                "role" : "value",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "stations.cheapest.diesel.combined",
+            "type": "state",
+            "common": {
+                "name":  "Günstigste Diesel Tankstelle combined",
                 "desc":  "Preis Diesel mit hochgestellter dritter Dezimalstelle oder Öffnungsstatus im HTML-Format",
                 "type":  "string",
                 "role" : "value",

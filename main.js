@@ -49,7 +49,7 @@ function readData(url) {
     request(url, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var result;
-            adapter.log.debug('Typ Body: ' + typeof body + ' --- Body Inhalt: ' + body); // fertiges JSON als String
+            adapter.log.debug('Typ Body: ' + typeof body + ' >>> Body Inhalt: ' + body); // fertiges JSON als String
             try{
                 result = JSON.parse(body); // String zu Objekt
                 
@@ -59,6 +59,60 @@ function readData(url) {
                     adapter.log.debug('JSON ok');
                     //adapter.log.debug(result); //	[object Object]
                     adapter.setState('json', {ack: true, val: body}); // nur String (also body) speichern
+                    
+                    //VARIABLEN NIEDRIGSTER PREIS definieren
+                    var cheapest_e5;           // wird mal 0 bis 9
+                    var cheapest_e5_stationid; // passende ID der Tankstelle
+                    var cheapest_e10;
+                    var cheapest_e10_stationid;
+                    var cheapest_diesel;
+                    var cheapest_diesel_stationid;
+                    // Ermitteln, wo der erste Eintrag in der Liste / Einstellungen steht (durch Runterzählen)
+                    for (var j = 9; j >= 0; j--) {
+                        var stationid   = adapter.config.stationsarray[j][0]; // sowas "a7cdd9cf-b467-4aac-8eab-d662f082511e"
+                        if (!adapter.config.stationsarray[j][0]) adapter.log.debug('Einstellung/Eintrag Nr. ' + j + ' ist leer');
+                        else {
+                            if (result.prices[stationid].e5 > 0) {
+                                cheapest_e5 = j;
+                                cheapest_e5_stationid = adapter.config.stationsarray[j][0];
+                            }
+                            if (result.prices[stationid].e10 > 0) {
+                                cheapest_e10 = j;
+                                cheapest_e10_stationid = adapter.config.stationsarray[j][0];
+                            }
+                            if (result.prices[stationid].diesel > 0) {
+                                cheapest_diesel = j;
+                                cheapest_diesel_stationid = adapter.config.stationsarray[j][0];
+                            }
+                        } // die letzten gefundenen Einträge beim Runterzählen, 
+                          // also die ersten in der Liste sind jetzt der Maßstab für den Vergleich, ob billiger oder nicht
+                    }
+                    // Reset
+                    // billigstes E5
+                    adapter.setState('stations.cheapest.e5.feed',  0);
+                    adapter.setState('stations.cheapest.e5.short', '');
+                    adapter.setState('stations.cheapest.e5.3rd',   0);// dritte stelle
+                    adapter.setState('stations.cheapest.e5.combined', 'keine Daten');
+                    adapter.setState('stations.cheapest.e5.name', '');
+                    adapter.setState('stations.cheapest.e5.status', '');
+                    
+                    // billigstes E10
+                    adapter.setState('stations.cheapest.e10.feed',  0);
+                    adapter.setState('stations.cheapest.e10.short', '0');
+                    adapter.setState('stations.cheapest.e10.3rd',   0);
+                    adapter.setState('stations.cheapest.e10.combined', 'keine Daten');
+                    adapter.setState('stations.cheapest.e10.name', '');
+                    adapter.setState('stations.cheapest.e10.status', '');                    
+                    
+                    // billigster Diesel
+                    adapter.setState('stations.cheapest.diesel.feed',  0);
+                    adapter.setState('stations.cheapest.diesel.short', '0');// zweistellig
+                    adapter.setState('stations.cheapest.diesel.3rd',   0);// dritte stelle
+                    adapter.setState('stations.cheapest.diesel.combined', 'keine Daten');
+                    adapter.setState('stations.cheapest.diesel.name', '');
+                    adapter.setState('stations.cheapest.diesel.status', ''); 
+                    
+                    
                     
                     // alle Stationen durchgehen
                     for (var i = 0; i < 10; i++) {
@@ -82,8 +136,11 @@ function readData(url) {
                         
                         if (stationid.length == 36) { // wenn StationID bekannt, also Settings-Feld gefüllt
                             adapter.log.debug('Station ' + stationid + ' ' + stationname + ' wird bearbeitet ...');
-                            // status checken
                             var status = result.prices[stationid].status;
+                            // Namen und Status in jedem Fall schreiben
+                            adapter.setState('stations.' + i + '.name', {ack: true, val: stationname});
+                            adapter.setState('stations.' + i + '.status', {ack: true, val: status});
+                            // status checken
                             if (status.indexOf("not found") != -1) {
                                 adapter.log.warn('Station ' + stationid + ' nicht gefunden');
                                 adapter.setState('stations.' + i + '.e5.combined',     '<span class="station_notfound">nicht gefunden</span>');
@@ -106,6 +163,14 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.e5.short', {ack: true, val: cutPrice(result.prices[stationid].e5).priceshort});// zweistellig
                                     adapter.setState('stations.' + i + '.e5.3rd',   {ack: true, val: cutPrice(result.prices[stationid].e5).price3rd});// dritte stelle
                                     adapter.setState('stations.' + i + '.e5.combined', '<span class="station_open">' + cutPrice(result.prices[stationid].e5).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].e5).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
+                                    
+                                    // Niedrigsten Preis E5 ermitteln
+                                    adapter.log.debug('E5-Preis-Feld ' +  i + ' gefüllt');
+                                    if ( parseFloat(result.prices[stationid].e5) < parseFloat(result.prices[cheapest_e5_stationid].e5) ) {
+                                        cheapest_e5 = i;
+                                        cheapest_e5_stationid = adapter.config.stationsarray[i][0];
+                                        adapter.log.debug('Billigster E5 bisher: ' + cheapest_e5 + '. Tankstelle' );
+                                    } else adapter.log.debug('E5: Station ' + i + ' teurer als bisher billigste Station ' + cheapest_e5);
                                 }
                                 
                                 if (!result.prices[stationid].e10) {
@@ -116,6 +181,14 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.e10.short', {ack: true, val: cutPrice(result.prices[stationid].e10).priceshort});
                                     adapter.setState('stations.' + i + '.e10.3rd', {ack: true, val: cutPrice(result.prices[stationid].e10).price3rd});
                                     adapter.setState('stations.' + i + '.e10.combined', '<span class="station_open">' + cutPrice(result.prices[stationid].e10).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].e10).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
+                                
+                                    /// Niedrigsten Preis E10 ermitteln
+                                    adapter.log.debug('E10-Preis-Feld ' +  i + ' gefüllt');
+                                    if ( parseFloat(result.prices[stationid].e10) < parseFloat(result.prices[cheapest_e10_stationid].e10) ) {
+                                        cheapest_e10 = i;
+                                        cheapest_e10_stationid = adapter.config.stationsarray[i][0];
+                                        adapter.log.debug('Billigster E10 bisher: ' + cheapest_e10 + '. Tankstelle' );
+                                    } else adapter.log.debug('E10: Station ' + i + ' teurer als bisher billigste Station ' + cheapest_e10);
                                 }
                                 
                                 if (!result.prices[stationid].diesel) {
@@ -126,15 +199,48 @@ function readData(url) {
                                     adapter.setState('stations.' + i + '.diesel.short', {ack: true, val: cutPrice(result.prices[stationid].diesel).priceshort});
                                     adapter.setState('stations.' + i + '.diesel.3rd', {ack: true, val: cutPrice(result.prices[stationid].diesel).price3rd});
                                     adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_open">' + cutPrice(result.prices[stationid].diesel).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[stationid].diesel).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
-                                    
-                                    
-                                    
+                                
+                                    // Niedrigsten Preis Diesel ermitteln
+                                    adapter.log.debug('Diesel-Preis-Feld ' +  i + ' gefüllt');
+                                    if ( parseFloat(result.prices[stationid].diesel) < parseFloat(result.prices[cheapest_diesel_stationid].diesel) ) {
+                                        cheapest_diesel = i;
+                                        cheapest_diesel_stationid = adapter.config.stationsarray[i][0];
+                                        adapter.log.debug('Billigster Diesel bisher: ' + cheapest_diesel + '. Tankstelle' );
+                                    } else adapter.log.debug('Diesel: Station ' + i + ' teurer als bisher billigste Station ' + cheapest_diesel);
                                 }
-                            }
-                            adapter.setState('stations.' + i + '.name', {ack: true, val: stationname});
-                            adapter.setState('stations.' + i + '.status', {ack: true, val: status});
+                            } // Ende Status "open"
                         } // Ende Station
                     } // Ende Schleife
+                    
+                    // AUSGABE NIEDRIGSTER PREIS
+                    // billigstes E5
+                    adapter.log.debug('Billigster E5: ' + cheapest_e5 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e5][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e5_stationid].e5) );
+                    adapter.setState('stations.cheapest.e5.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e5_stationid].e5)});
+                    adapter.setState('stations.cheapest.e5.short', {ack: true, val: cutPrice(result.prices[cheapest_e5_stationid].e5).priceshort});// zweistellig
+                    adapter.setState('stations.cheapest.e5.3rd',   {ack: true, val: cutPrice(result.prices[cheapest_e5_stationid].e5).price3rd});// dritte stelle
+                    adapter.setState('stations.cheapest.e5.combined', '<span class="station_open">' + cutPrice(result.prices[cheapest_e5_stationid].e5).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[cheapest_e5_stationid].e5).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
+                    adapter.setState('stations.cheapest.e5.name', {ack: true, val: adapter.config.stationsarray[cheapest_e5][1]});
+                    adapter.setState('stations.cheapest.e5.status', {ack: true, val: result.prices[cheapest_e5_stationid].status});
+                    
+                    // billigstes E10
+                    adapter.log.debug('Billigster E10: ' + cheapest_e10 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e10][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e10_stationid].e10) );
+                    adapter.setState('stations.cheapest.e10.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e10_stationid].e10)});
+                    adapter.setState('stations.cheapest.e10.short', {ack: true, val: cutPrice(result.prices[cheapest_e10_stationid].e10).priceshort});// zweistellig
+                    adapter.setState('stations.cheapest.e10.3rd',   {ack: true, val: cutPrice(result.prices[cheapest_e10_stationid].e10).price3rd});// dritte stelle
+                    adapter.setState('stations.cheapest.e10.combined', '<span class="station_open">' + cutPrice(result.prices[cheapest_e10_stationid].e10).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[cheapest_e10_stationid].e10).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
+                    adapter.setState('stations.cheapest.e10.name', {ack: true, val: adapter.config.stationsarray[cheapest_e10][1]});
+                    adapter.setState('stations.cheapest.e10.status', {ack: true, val: result.prices[cheapest_e10_stationid].status});                    
+                    
+                    // billigster Diesel
+                    adapter.log.debug('Billigster Diesel: ' + cheapest_diesel + '. Tankstelle ' + adapter.config.stationsarray[cheapest_diesel][1] + ', Preis: ' + parseFloat(result.prices[cheapest_diesel_stationid].diesel) );
+                    adapter.setState('stations.cheapest.diesel.feed',  {ack: true, val: parseFloat(result.prices[cheapest_diesel_stationid].diesel)});
+                    adapter.setState('stations.cheapest.diesel.short', {ack: true, val: cutPrice(result.prices[cheapest_diesel_stationid].diesel).priceshort});// zweistellig
+                    adapter.setState('stations.cheapest.diesel.3rd',   {ack: true, val: cutPrice(result.prices[cheapest_diesel_stationid].diesel).price3rd});// dritte stelle
+                    adapter.setState('stations.cheapest.diesel.combined', '<span class="station_open">' + cutPrice(result.prices[cheapest_diesel_stationid].diesel).priceshort + '<sup style="font-size: 50%">' + cutPrice(result.prices[cheapest_diesel_stationid].diesel).price3rd + '</sup>  <span style="font-family: Times; font-size: 80%;">€</span></span>');
+                    adapter.setState('stations.cheapest.diesel.name', {ack: true, val: adapter.config.stationsarray[cheapest_diesel][1]});
+                    adapter.setState('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});      
+                    // ENDE AUSGABE NIEDRIGSTER PREIS
+                    
                 } else {
                     adapter.log.warn('JSON returns error - Station ID or API-Key probably not correct');
                 }
