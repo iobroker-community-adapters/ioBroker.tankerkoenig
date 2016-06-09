@@ -65,6 +65,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 0.0.8 (2016-06-09)
+* (pix) Adapter.stop() fixed
+
 ### 0.0.7 (2016-06-09)
 * (pix) New channels and values for cheapest station created
 

@@ -5,7 +5,7 @@
         "desc": {                   "en": "Tankerkoenig Spritpreise",
                                     "de": "Tankerkönig Spritpreise",
                                     "ru": "Tankerkoenig Spritpreise - translate to russian, please"},
-        "version":                  "0.0.7",
+        "version":                  "0.0.8",
         "mode":                     "schedule",
         "schedule":                 "*/5 * * * *",
         "platform":                 "javascript/Node.js",
