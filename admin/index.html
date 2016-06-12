@@ -24,12 +24,6 @@
     #config {
         font-size: smaller;	
     }
-    th {
-        text-align: left;
-    }
-   .input {
-        font-family: 'courier';
-    }
     img.settings_logo {
         width: 100px;
         height: 100px;
@@ -42,6 +36,9 @@
         background-color: blue;
         color: white;
     }
+    th {
+        text-align: left;
+    }
     .ip {
         width: 150px;
         text-align: right;
@@ -51,15 +48,19 @@
     }
     .api_key_style {
         font-size: 180%;
+        font-family: 'Courier';
+        font-weight: bold;
     }
     .station_desc {
         font-weight: bold;
         margin-top: 1em;
     }
-    .station_name {
-        font-size: 120%;
-    }
     .station_id {
+        font-size: 150%;
+        font-family: 'Courier';
+        font-weight: bold;
+    }
+    .station_name {
         font-size: 150%;
     }
     
@@ -89,11 +90,11 @@
             },
             "Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.": {
                 "en": "ID of gas station",
-                "de": "Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.",
+                "de": "Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.<br>Sie erhalten die ID der Tankstellen durch Eingabe Ihrer Geo-Koordinaten bei der Umkreissuche auf tankerkoenig.de",
                 "ru": "ID of gas station"
             },
             "Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de": {
-                "en": "Input the 36digit API-Key from <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
+                "en": "Input your personal 36digit API-Key from <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
                 "de": "Sie erhalten den API Schl&uuml;ssel auf der Seite <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
                 "ru": "Input the 36digit API-Key from <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>"
             },
@@ -218,7 +219,7 @@
     <p class="translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</p>
     <table id="config" style="width: calc(100% - 5px)">
         <tr>
-            <td class="translate api_label">tankerkoenig API</td>
+            <th class="translate">tankerkoenig API</th>
         </tr>
         <tr>
             <td><input type="text" id="apikey" class="value api_key_style" size="36"/></td>
@@ -234,52 +235,52 @@
             <th class="translate">Name Tankstelle</th>
         </tr>
         <tr>
-            <td class="station_desc">1</td>
+            <td class="station_desc">0</td>
             <td><input type="text" id="station0" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname0" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">2</td>
+            <td class="station_desc">1</td>
             <td><input type="text" id="station1" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname1" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">3</td>
+            <td class="station_desc">2</td>
             <td><input type="text" id="station2" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname2" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">4</td>
+            <td class="station_desc">3</td>
             <td><input type="text" id="station3" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname3" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">5</td>
+            <td class="station_desc">4</td>
             <td><input type="text" id="station4" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname4" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">6</td>
+            <td class="station_desc">5</td>
             <td><input type="text" id="station5" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname5" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">7</td>
+            <td class="station_desc">6</td>
             <td><input type="text" id="station6" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname6" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">8</td>
+            <td class="station_desc">7</td>
             <td><input type="text" id="station7" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname7" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">9</td>
+            <td class="station_desc">8</td>
             <td><input type="text" id="station8" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname8" class="value station_name" size="36"/></td>
         </tr>
         <tr>
-            <td class="station_desc">10</td>
+            <td class="station_desc">9</td>
             <td><input type="text" id="station9" class="value station_id" size="36"/></td>
             <td><input type="text" id="stationname9" class="value station_name" size="36"/></td>
         </tr>

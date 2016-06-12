@@ -308,9 +308,7 @@ function readSettings() {
     } 
 }
 
-
 function main() {
     readSettings();
     adapter.log.info('objects written');
-    
 }

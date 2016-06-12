@@ -65,6 +65,10 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 0.1.0 (2016-06-12)
+* (pix) first version for npm
+* (pix) settings window
+
 ### 0.0.8 (2016-06-09)
 * (pix) Adapter.stop() fixed
 
@@ -94,7 +98,8 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 ## Roadmap
 * State HTML Table 
-* State JSON Table for VIS JSON widget
+* State JSON Table for VIS JSON table widget
+* optional price trend through CSS class
 
 
 ## License
