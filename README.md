@@ -71,8 +71,11 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 0.1.2 (2016-07-05)
+* (pix,jens-maus) whitespaces between price and € sign 
+
 ### 0.1.1 (2016-07-05)
-* (pix) € appearnce in datapoints __combined__ is customizable through css now (thanx jmaus)
+* (pix) € appearnce in datapoints __combined__ is customizable through css now (thanx jens-maus)
 
 ### 0.1.0 (2016-06-12)
 * (pix) first version for npm
