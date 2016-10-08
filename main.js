@@ -12,6 +12,8 @@ var adapter = utils.adapter({
     useFormatDate:  true
 });
 
+var optinReset = false;
+
 adapter.on('ready', function () {
     //adapter.getForeignObject('system.config', function (err, data) {
         //if (data && data.common) {
@@ -87,30 +89,31 @@ function readData(url) {
                           // also die ersten in der Liste sind jetzt der Maßstab für den Vergleich, ob billiger oder nicht
                     }
                     // Reset
-                    // billigstes E5
-                    adapter.setState('stations.cheapest.e5.feed',  0);
-                    adapter.setState('stations.cheapest.e5.short', '');
-                    adapter.setState('stations.cheapest.e5.3rd',   0);// dritte stelle
-                    adapter.setState('stations.cheapest.e5.combined', 'keine Daten');
-                    adapter.setState('stations.cheapest.e5.name', '');
-                    adapter.setState('stations.cheapest.e5.status', '');
+                    if (adapter.config.resetValues) {
+                        // billigstes E5
+                        adapter.setState('stations.cheapest.e5.feed',  0);
+                        adapter.setState('stations.cheapest.e5.short', '');
+                        adapter.setState('stations.cheapest.e5.3rd',   0);// dritte stelle
+                        adapter.setState('stations.cheapest.e5.combined', 'keine Daten');
+                        adapter.setState('stations.cheapest.e5.name', '');
+                        adapter.setState('stations.cheapest.e5.status', '');
                     
-                    // billigstes E10
-                    adapter.setState('stations.cheapest.e10.feed',  0);
-                    adapter.setState('stations.cheapest.e10.short', '0');
-                    adapter.setState('stations.cheapest.e10.3rd',   0);
-                    adapter.setState('stations.cheapest.e10.combined', 'keine Daten');
-                    adapter.setState('stations.cheapest.e10.name', '');
-                    adapter.setState('stations.cheapest.e10.status', '');                    
+                        // billigstes E10
+                        adapter.setState('stations.cheapest.e10.feed',  0);
+                        adapter.setState('stations.cheapest.e10.short', '0');
+                        adapter.setState('stations.cheapest.e10.3rd',   0);
+                        adapter.setState('stations.cheapest.e10.combined', 'keine Daten');
+                        adapter.setState('stations.cheapest.e10.name', '');
+                        adapter.setState('stations.cheapest.e10.status', '');                    
                     
-                    // billigster Diesel
-                    adapter.setState('stations.cheapest.diesel.feed',  0);
-                    adapter.setState('stations.cheapest.diesel.short', '0');// zweistellig
-                    adapter.setState('stations.cheapest.diesel.3rd',   0);// dritte stelle
-                    adapter.setState('stations.cheapest.diesel.combined', 'keine Daten');
-                    adapter.setState('stations.cheapest.diesel.name', '');
-                    adapter.setState('stations.cheapest.diesel.status', ''); 
-                    
+                        // billigster Diesel
+                        adapter.setState('stations.cheapest.diesel.feed',  0);
+                        adapter.setState('stations.cheapest.diesel.short', '0');// zweistellig
+                        adapter.setState('stations.cheapest.diesel.3rd',   0);// dritte stelle
+                        adapter.setState('stations.cheapest.diesel.combined', 'keine Daten');
+                        adapter.setState('stations.cheapest.diesel.name', '');
+                        adapter.setState('stations.cheapest.diesel.status', ''); 
+                    }
                     
                     
                     // alle Stationen durchgehen
@@ -293,6 +296,7 @@ function buildQuery() { // Abfrage erstellen (max 10 Tankstellen ID)
 
 function readSettings() {
     //APIKEY
+    adapter.log.debug('Option <reset values> is ' + adapter.config.resetValues);
     adapter.log.debug('API Key Länge: ' + adapter.config.apikey.length + ' Zeichen');
     if (adapter.config.apikey === undefined) {
         adapter.log.warn('No API-Key found.');
