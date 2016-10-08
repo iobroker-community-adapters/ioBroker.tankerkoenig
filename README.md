@@ -21,8 +21,11 @@ Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tank
 Zusätzlich kann ein eigener Name für die Station hinterlegt werden. Bei der Eingabe können Zeilen frei gelassen werden (um später ein weitere Tankstelle einzufügen oder nach dem Löschen einer Station).
 ![alt text](img/tankerkoenigSettingsScreenshot.jpg "Screenshot Settings")
 
+### Werte nullen
+Sollte die Verbindung zum Server nicht funktionieren, verhindert das Löschen der Werte in den Datenpunkte (Reset bzw. nullen), dass veraltete Werte vorgehalten werden. Dieser Reset kann in den Adaptereinstellungen ausgeschaltet werden, um flüssigere History-Daten zu erhalten.
+
 ## Aktivierung / Schedule
-Der Adapter startet alle 5min. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert. Sollte die Verbindung zum Server nicht funktionieren, verhindert das Löschen der Werte in den Datenpunkte, dass veraltete Werte vorgehalten werden. Dieser Reset kann in in den Adaptereinstellungen ausgeschaltet werden, um flüssigere History-Daten zu erhalten.
+Der Adapter startet alle 5min. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert. 
 
 ##  Datenpunkte / Datapoints
 Jeder der zehn Kanäle des Feeds produziert für jede der drei Spritsorten E5, E10 und Diesel jeweils drei Datenpunkte:
@@ -71,7 +74,7 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
-### 0.1.3 (2016-10-08)
+### 1.0.0 (2016-10-08)
 * (pix) reset values to zero before each refresh now can be ticked off. 
 
 ### 0.1.2 (2016-07-05)
