@@ -164,14 +164,35 @@
         $('#station9').val(settings.station9).change(onChange);
         $('#stationname9').val(settings.stationname9).change(onChange);
         
-        
-        if (settings.resetValues === undefined) settings.resetValues = true;
-        $('#resetValues').prop('checked', settings.resetValues).change(onChange);
+       
+        for (var key in settings) {
+            if ($('#' + key + '.value').attr('type') == 'checkbox') {
+                $('#' + key + '.value').prop('checked', settings[key]).change(function () {
+                    onChange();
+                });
+            } else {
+                $('#' + key + '.value').val(settings[key]).change(function () {
+                    onChange();
+                }).keyup(function () {
+                    $(this).trigger('change');
+                });
+            }
+        }
         
         onChange(false);
     }
       
     function save(callback) {
+        // example: select elements with class=value and build settings object
+        var obj = {};
+        $('.value').each(function () {
+            var $this = $(this);
+            if ($this.attr('type') == 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
+            }
+        });
         
         var array = [];
         array [0] = [$('#station0').val().trim() , $('#stationname0').val().trim()];
@@ -219,7 +240,9 @@
             station9: $('#station9').val().trim(),
             stationname9: $('#stationname9').val().trim(),
             
-            stationsarray: array
+            stationsarray: array,
+            
+            obj
         });
     }
 
