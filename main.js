@@ -122,6 +122,7 @@ function readData(url) {
                         var stationname = adapter.config.stationsarray[i][1]; // sowas "Esso Hamburg Flughafenstraße"
                         
                         // hier alle States für Status und Preise leeren (0.00 oder 0), falls nicht alle 10 Felder ausgefüllt sind (ohne ack true)
+                        if (adapter.config.resetValues) { // Zeile testweise eingefügt
                         adapter.setState('stations.' + i + '.status',      '');
                         adapter.setState('stations.' + i + '.e5.feed',      0);
                         adapter.setState('stations.' + i + '.e5.short',     0);
@@ -135,7 +136,7 @@ function readData(url) {
                         adapter.setState('stations.' + i + '.diesel.short', 0);
                         adapter.setState('stations.' + i + '.diesel.3rd',   0);
                         adapter.setState('stations.' + i + '.diesel.combined', "");
-                        
+                        } // Zeile testweise eingefügt
                         if (stationid.length == 36) { // wenn StationID bekannt, also Settings-Feld gefüllt
                             adapter.log.debug('Station ' + stationid + ' ' + stationname + ' wird bearbeitet ...');
                             var status = result.prices[stationid].status;
