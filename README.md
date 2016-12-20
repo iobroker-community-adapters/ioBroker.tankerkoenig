@@ -74,6 +74,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 1.0.1 (2016-12-20)
+* (pix) reset to zero issue fixed
+
 ### 1.0.0 (2016-10-08)
 * (pix) reset values to zero before each refresh now can be ticked off. 
 
@@ -118,6 +121,7 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 * State HTML Table 
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
+* TRAVIS Check
 
 
 ## License
