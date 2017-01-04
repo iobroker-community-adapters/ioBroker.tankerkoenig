@@ -4,6 +4,7 @@
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+[![Tests](https://travis-ci.org/Pix---/ioBroker.tankerkoenig.svg?branch=master)](https://travis-ci.org/Pix---/ioBroker.tankerkoenig)
 
 
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
