@@ -1,48 +1,48 @@
 {
-    "name": "iobroker.tankerkoenig",
-    "description": "Spritpreise von tankerkoenig.de",
-    "version": "1.0.1",
-    "author": "pix",
-    "contributors": [
-        "pix"
-    ],
-    "homepage": "https://github.com/Pix---/ioBroker.tankerkoenig",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Pix---/ioBroker.tankerkoenig"
-    },
-    "license": "MIT",
-    "keywords": [
-        "ioBroker",
-        "schedule",
-        "tankerkoenig",
-        "spritpreis",
-        "diesel",
-        "benzin",
-        "gas",
-        "home automation"
-    ],
-    "dependencies": {
-        "request": "^2.72.0",
-        "xml2js": "^0.2"
-    },
-    "devDependencies": {
-        "grunt": "^1.0.1",
-        "grunt-replace": "^1.0.1",
-        "grunt-contrib-jshint": "^1.0.0",
-        "grunt-jscs": "^2.8.0",
-        "grunt-http": "^2.0.1",
-        "mocha": "^2.4.5",
-        "chai": "^3.5.0"
-    },
-    "bugs": {
-        "url": "https://github.com/Pix---/ioBroker.tankerkoenig/issues"
-    },
-    "main": "main.js",
-    "scripts": {
-        "test": "node node_modules/mocha/bin/mocha"
-    },
-    "maintainers": [
-        "pix"
-    ]
+  "name": "iobroker.tankerkoenig",
+  "description": "Spritpreise von tankerkoenig.de",
+  "version": "1.0.1",
+  "author": "pix",
+  "contributors": [
+    "pix"
+  ],
+  "homepage": "https://github.com/Pix---/ioBroker.tankerkoenig",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pix---/ioBroker.tankerkoenig"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "schedule",
+    "tankerkoenig",
+    "spritpreis",
+    "diesel",
+    "benzin",
+    "gas",
+    "home automation"
+  ],
+  "dependencies": {
+    "request": "^2.72.0",
+    "xml2js": "^0.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-replace": "^0.9.3",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-jscs": "^2.0.0",
+    "grunt-http": "^1.6.0",
+    "mocha": "^2.3.4",
+    "chai": "^3.4.1"
+  },
+  "bugs": {
+    "url": "https://github.com/Pix---/ioBroker.tankerkoenig/issues"
+  },
+  "main": "main.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  },
+  "maintainers": [
+    "pix"
+  ]
 }
