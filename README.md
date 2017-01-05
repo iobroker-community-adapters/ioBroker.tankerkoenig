@@ -77,8 +77,11 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 1.0.3 (2017-01-05)
+* (pix) Appveyor testing added
+
 ### 1.0.2 (2017-01-04)
-* (apollon77) TravisCI added
+* (apollon77) TravisCI testing added
 
 ### 1.0.1 (2016-12-20)
 * (pix) reset to zero issue fixed
