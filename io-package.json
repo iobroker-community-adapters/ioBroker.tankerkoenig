@@ -7,9 +7,13 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Spritpreise - translate to russian, please"
         },
-        "version": "1.0.3",
+        "version": "1.0.4",
 	    "news": {
-	         "1.0.3": {
+	         "1.0.4": {
+                     "en": "position of adapter.stop() optimized",
+                     "de": "Adapter.stop() Funktion besser positioniert",
+                     "ru": "position of adapter.stop() optimized"},
+                 "1.0.3": {
                      "en": "Appveyor testing supported",
                      "de": "Appveyor Test Unterstützung",
                      "ru": "Appveyor тестирование при поддержке"},
