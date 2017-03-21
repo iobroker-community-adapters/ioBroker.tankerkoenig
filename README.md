@@ -77,6 +77,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 1.0.4 (2017-03-21)
+* (pix) position of adapter.stop() optimized
+
 ### 1.0.3 (2017-01-05)
 * (pix) Appveyor testing added
 
