@@ -22,12 +22,6 @@ adapter.on('ready', function () {
 
         adapter.log.debug('initializing objects');
         main();
-
-        setTimeout(function () {
-            adapter.log.info('force terminating adapter after 1 minute');
-            adapter.stop();
-        }, 60000);
-
     //});
 });
 
@@ -243,6 +237,8 @@ function readData(url) {
                     adapter.setState('stations.cheapest.diesel.name', {ack: true, val: adapter.config.stationsarray[cheapest_diesel][1]});
                     adapter.setState('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});
                     // ENDE AUSGABE NIEDRIGSTER PREIS
+                    
+                    adapter.log.info('objects written');
 
                 } else {
                     adapter.log.warn('JSON returns error - Station ID or API-Key probably not correct');
@@ -252,6 +248,7 @@ function readData(url) {
             }
         } else adapter.log.error('Spritpreise einlesen (gezielte Stationen via ID) - Fehler: ' + error);
     });   // Ende request
+    adapter.stop();
 }
 
 function buildQuery() { // Abfrage erstellen (max 10 Tankstellen ID)
@@ -315,5 +312,8 @@ function readSettings() {
 
 function main() {
     readSettings();
-    adapter.log.info('objects written');
+    setTimeout(function () {
+        adapter.log.info('force terminating adapter after 1 minute');
+        adapter.stop();
+    }, 60000);
 }
