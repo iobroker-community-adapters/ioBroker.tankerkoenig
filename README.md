@@ -133,7 +133,8 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 * State HTML Table 
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
-* TRAVIS Check
+* Catch and display tankerkoenig rate limit error 503
+* Save and load adapter settings from withing settings wind (like vis import export)
 
 
 ## License
