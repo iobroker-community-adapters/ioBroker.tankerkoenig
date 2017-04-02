@@ -134,8 +134,8 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit error 503
-* Save and load adapter settings from withing settings wind (like vis import export)
-
+* Save and load adapter settings from within settings window (like vis import export)
+* Datapoints for each station should be created after adapter restart, not only after installation
 
 ## License
 
