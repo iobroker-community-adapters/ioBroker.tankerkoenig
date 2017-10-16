@@ -8,20 +8,23 @@
             "ru": "Tankerkoenig Spritpreise - translate to russian, please"
         },
         "version": "1.0.4",
-	    "news": {
-	         "1.0.4": {
-                     "en": "position of adapter.stop() optimized",
-                     "de": "Adapter.stop() Funktion besser positioniert",
-                     "ru": "position of adapter.stop() optimized"},
-                 "1.0.3": {
-                     "en": "Appveyor testing supported",
-                     "de": "Appveyor Test Unterstützung",
-                     "ru": "Appveyor тестирование при поддержке"},
-                 "1.0.2": {
-                     "en": "Travis CI testing supported",
-                     "de": "Travis CI Test Unterstützung",
-                     "ru": "Travis CI тестирование при поддержке"}
-	    },
+        "news": {
+            "1.0.4": {
+                "en": "position of adapter.stop() optimized",
+                "de": "Adapter.stop() Funktion besser positioniert",
+                "ru": "position of adapter.stop() optimized"
+            },
+            "1.0.3": {
+                "en": "Appveyor testing supported",
+                "de": "Appveyor Test Unterstützung",
+                "ru": "Appveyor тестирование при поддержке"
+            },
+            "1.0.2": {
+                "en": "Travis CI testing supported",
+                "de": "Travis CI Test Unterstützung",
+                "ru": "Travis CI тестирование при поддержке"
+            }
+        },
         "mode": "schedule",
         "schedule": "*/5 * * * *",
         "platform": "javascript/Node.js",
@@ -46,7 +49,7 @@
         "icon": "tankerkoenig.png",
         "extIcon": "https://raw.githubusercontent.com/Pix---/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
         "allowInit": true,
-        "type": "common adapters",
+        "type": "misc-data",
         "config": {
             "width": 850,
             "height": 650,
