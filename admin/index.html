@@ -21,7 +21,7 @@
 <script type="text/javascript" src="../../js/adapter-settings.js"></script>
 
 <style>
-    #config {
+    .config {
         font-size: smaller;	
     }
     img.settings_logo {
@@ -183,7 +183,7 @@
         if (settings.resetValues === undefined) settings.resetValues = true;
         $('#resetValues').prop('checked', settings.resetValues).change(onChange);
         
-        if (settings.noLogs === undefined) settings.noLogs = false;
+        if (settings.noLogs === undefined) settings.noLogs = true;
         $('#noLogs').prop('checked', settings.noLogs).change(onChange);
         
         onChange(false);
@@ -257,7 +257,7 @@
     </table>
     <h4 class="translate" style="width: calc(100% - 10px)">API-Key</h4>
     <p class="translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</p>
-    <table id="config" style="width: calc(100% - 5px)">
+    <table class="config" style="width: calc(100% - 5px)">
         <tr>
             <th class="translate">tankerkoenig API</th>
         </tr>
@@ -268,7 +268,7 @@
     
     <h4 class="translate" style="margin-top: 20px; width: calc(100% - 10px)">Tankstellen</h4>
     <p class="translate">Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.</p>
-    <table id="config" style="width: calc(100% - 5px)">
+    <table class="config" style="width: calc(100% - 5px)">
         <tr>
             <th class="translate">Nummer</th>
             <th class="translate">ID Tankstelle</th>
@@ -328,7 +328,7 @@
     
     <h4 class="translate" style="margin-top: 20px; width: calc(100% - 10px)">Werte nullen</h4>
     <p class="translate">Der Adapter ...</p>
-    <table id="config" style="width: calc(100% - 5px)">
+    <table class="config" style="width: calc(100% - 5px)">
         <tr>
             <label for="resetValues" class="translate">Reset</label> <input class="value" type="checkbox" id="resetValues"/>
         </tr>
@@ -336,7 +336,7 @@
     
     <h4 class="translate" style="margin-top: 20px; width: calc(100% - 10px)">Logdaten minimieren</h4>
     <p class="translate">Logdaten ...</p>
-    <table id="config" style="width: calc(100% - 5px)">
+    <table class="config" style="width: calc(100% - 5px)">
         <tr>
             <label for="noLogs" class="translate">kein Log</label> <input class="value" type="checkbox" id="noLogs"/>
         </tr>
