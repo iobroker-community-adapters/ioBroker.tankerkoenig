@@ -13,7 +13,7 @@ var adapter = utils.adapter({
 });
 
 var optinReset = false;
-var optinNoLog = adapter.config.noLogs; // wichtig für function writeLog()
+var optinNoLog = false;
 
 adapter.on('ready', function () {
     //adapter.getForeignObject('system.config', function (err, data) {
@@ -319,6 +319,8 @@ function readSettings() {
     } else {
         buildQuery();
     }
+    // noLog
+    optinNoLog = adapter.config.noLogs; // wichtig für function writeLog()
 }
 
 function main() {
