@@ -250,10 +250,10 @@ function readData(url) {
                     adapter.setState('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});
                     // ENDE AUSGABE NIEDRIGSTER PREIS
                     
-                    writeLog("objects written", "info");
+                    writeLog("objects written", "debug");
 
                 } else {
-                    writeLog("JSON returns error - Station ID or API-Key probably not correct", "warn");
+                    writeLog("JSON returns error - Station ID or API-Key probably not correct", "error");
                 }
             } catch (e) {
                 writeLog("Spritpreise einlesen (gezielte Stationen via ID) - Parse Fehler: " + e, "error");
@@ -327,7 +327,7 @@ function readSettings() {
 function main() {
     readSettings();
     setTimeout(function () {
-        writeLog("force terminating adapter after 1 minute", "info");
+        writeLog("force terminating adapter after 1 minute", "debug");
         adapter.stop();
     }, 60000);
 }
