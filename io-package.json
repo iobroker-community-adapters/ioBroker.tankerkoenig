@@ -7,8 +7,13 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Spritpreise - translate to russian, please"
         },
-        "version": "1.0.4",
+        "version": "1.0.5",
         "news": {
+            "1.0.5": {
+                "en": "opt out log entries",
+                "de": "Log Einträge ausschalten",
+                "ru": "opt out log entries"
+            },
             "1.0.4": {
                 "en": "position of adapter.stop() optimized",
                 "de": "Adapter.stop() Funktion besser positioniert",

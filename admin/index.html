@@ -127,6 +127,21 @@
                 "en": "Reset values",
                 "de": "Werte vor jeder Aktualisierung nullen",
                 "ru": "Werte vor jeder Aktualisierung nullen (übersetzen)"
+            },
+            "noLog": {
+                "en": "Minimize log events",
+                "de": "Log Ausgaben reduzieren",
+                "ru": "Minimize log events (übersetzen)"
+            },
+            "Logdaten minimieren": {
+                "en": "Logging data",
+                "de": "Log Daten",
+                "ru": "Log Daten (übersetzen)"
+            },
+            "Logdaten ...": {
+                "en": "Every run creates log entries. Wwiting log events can be opted out here.",
+                "de": "Bei jeder Aktualisierung werden Log-Ausgaben geschrieben. Um die Zahl der Schreibzugriffe zu minimieren, kann hier durch einen Haken die Ausgabe reduziert werden.",
+                "ru": "Every run creates log entries. Wwiting log events can be opted out here. (übersetzen)"
             }
 	};
    
@@ -168,6 +183,9 @@
         if (settings.resetValues === undefined) settings.resetValues = true;
         $('#resetValues').prop('checked', settings.resetValues).change(onChange);
         
+        if (settings.noLogs === undefined) settings.noLogs = false;
+        $('#noLogs').prop('checked', settings.noLogs).change(onChange);
+        
         onChange(false);
     }
       
@@ -188,6 +206,8 @@
         
         callback({
             resetValues: $('#resetValues').prop('checked'),
+            
+            noLogs: $('#noLogs').prop('checked'),
         
             apikey: $('#apikey').val(),
             
@@ -311,6 +331,14 @@
     <table id="config" style="width: calc(100% - 5px)">
         <tr>
             <label for="resetValues" class="translate">Reset</label> <input class="value" type="checkbox" id="resetValues"/>
+        </tr>
+    </table>
+    
+    <h4 class="translate" style="margin-top: 20px; width: calc(100% - 10px)">Logdaten minimieren</h4>
+    <p class="translate">Logdaten ...</p>
+    <table id="config" style="width: calc(100% - 5px)">
+        <tr>
+            <label for="noLogs" class="translate">noLog</label> <input class="value" type="checkbox" id="noLogs"/>
         </tr>
     </table>
     

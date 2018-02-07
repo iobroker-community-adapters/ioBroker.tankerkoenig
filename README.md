@@ -27,6 +27,9 @@ Zusätzlich kann ein eigener Name für die Station hinterlegt werden. Bei der Ei
 ### Werte nullen
 Sollte die Verbindung zum Server nicht funktionieren, verhindert das Löschen der Werte in den Datenpunkte (Reset bzw. nullen), dass veraltete Werte vorgehalten werden. Dieser Reset kann in den Adaptereinstellungen ausgeschaltet werden, um flüssigere History-Daten zu erhalten.
 
+### Log minimieren
+Um Schreibzugriffe im Log (z.B. auf empfindliche SD-Karten) zu minimieren, kann ein Haken gesetzt werden.
+
 ## Aktivierung / Schedule
 Der Adapter startet alle 5min. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert. 
 
@@ -77,6 +80,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 1.0.5 (2018-02-07)
+* (pix) Log entry opt out
+
 ### 1.0.4 (2017-03-21)
 * (pix) position of adapter.stop() optimized
 
