@@ -28,12 +28,13 @@ adapter.on('ready', function () {
 
 function writeLog(logtext,logtype) { // wenn optinNoLog TRUE keine Ausgabe bei info, warn und debug, nur bei error
     if (!optinNoLog) { // Ausgabe bei info, debug und error
-        if (logtype === "info") adapter.log.info("logtext");
-        if (logtype === "debug") adapter.log.debug("logtext");
-        if (logtype === "warn") adapter.log.warn("logtext");
-        if (logtype === "error") adapter.log.error("logtext");
+        if (logtype === "silly") adapter.log.silly(logtext);
+        if (logtype === "info") adapter.log.info(logtext);
+        if (logtype === "debug") adapter.log.debug(logtext);
+        if (logtype === "warn") adapter.log.warn(logtext);
+        if (logtype === "error") adapter.log.error(logtext);
     } else { // Ausgabe nur bei error
-        if (logtype === "error") adapter.log.error("logtext");
+        if (logtype === "error") adapter.log.error(logtext);
     }
 }
 
