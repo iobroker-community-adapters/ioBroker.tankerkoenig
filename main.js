@@ -214,7 +214,7 @@ function readData(url) {
                                     if ( parseFloat(result.prices[stationid].diesel) < parseFloat(result.prices[cheapest_diesel_stationid].diesel) ) {
                                         cheapest_diesel = i;
                                         cheapest_diesel_stationid = adapter.config.stationsarray[i][0];
-                                        writLog("Billigster Diesel bisher: " + cheapest_diesel + ". Tankstelle", "debug" );
+                                        writeLog("Billigster Diesel bisher: " + cheapest_diesel + ". Tankstelle", "debug" );
                                     } else writeLog("Diesel: Station " + i + " teurer als bisher billigste Station " + cheapest_diesel, "debug");
                                 }
                             } // Ende Status "open"
