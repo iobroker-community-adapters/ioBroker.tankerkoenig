@@ -6,7 +6,7 @@ var utils       = require(__dirname + '/lib/utils'); // Get common adapter utils
 var request     = require('request');
 var lang = 'de';
 
-var adapter = utils.adapter({
+var adapter = utils.Adapter({
     name:           'tankerkoenig',
     systemConfig:   true,
     useFormatDate:  true
