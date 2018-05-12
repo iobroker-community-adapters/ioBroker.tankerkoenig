@@ -80,6 +80,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 1.1.0 (2018-05-12)
+* (bluefox) prices as number to allow logging were added
+
 ### 1.0.5 (2018-02-07)
 * (pix) Log entry opt out
 
@@ -147,7 +150,7 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 The MIT License (MIT)
 
-Copyright (c) 2016 pix
+Copyright (c) 2016-2018 pix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
