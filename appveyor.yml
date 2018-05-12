@@ -11,9 +11,6 @@ platform:
   - x64
 clone_folder: 'c:\projects\%APPVEYOR_PROJECT_NAME%'
 services:
-  - mssql2014
-  - mysql
-  - postgresql
 install:
   - ps: 'Install-Product node $env:nodejs_version $env:platform'
   - ps: '$NpmVersion = (npm -v).Substring(0,1)'
