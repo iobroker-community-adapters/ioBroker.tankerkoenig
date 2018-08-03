@@ -1,0 +1,87 @@
+<html>
+    <!-- Materialze style -->
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+        <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+        
+        <!-- <link rel="stylesheet" type="text/css" href="http://materializecss.com/css/ghpages-materialize.css"/>  -->
+        
+        
+        <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+
+        <script type="text/javascript" src="../../js/translate.js"></script>
+        <script type="text/javascript" src="../../lib/js/materialize.js"></script>
+        <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+        <script type="text/javascript" src="words.js"></script>
+
+
+        <!-- you have to define 2 functions in the global scope: -->
+        <script type="text/javascript">
+	
+            function load(settings, onChange) {
+                $('#homepilot_ip').val(settings.homepilotip).change(onChange);
+                $('#homepilot_port').val(settings.homepilotport).change(onChange);
+                $('#sync_time').val(settings.synctime).change(onChange);
+                M.updateTextFields();
+                onChange(false);
+            }
+     
+            function save(callback) {
+                callback({
+                    homepilotip: $('#homepilot_ip').val().trim(),
+                    homepilotport: $('#homepilot_port').val().trim(),
+                    synctime: $('#sync_time').val().trim()
+                }); 
+            }
+
+        </script>
+	
+        <style>
+            .adapter-body {
+                overflow: hidden !important;
+            }
+        </style>
+    </head>
+    <body>
+         <div class="m adapter-container">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s4">  <!-- statt s2 -->
+                            <a href="#tab-main" class="translate">homepilot station</a>
+                        </li><!-- weitere Tabs einfügen -->
+                    </ul>
+                </div>
+                <div id="tab-main" class="col s12 page">
+                    <div class="row">
+                        <div class="col s6 m4 l3">
+                            <img src="homepilot.png" class="logo">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m8 l6">
+                            <!-- <input pattern="[0-9]{1,2,3}+\.[0-9]{1,2,3}+\.[0-9]{1,2,3}+\.[0-9]{1,2,3}$" placeholder="192.168.178.50" name="homepilot_ip_adress" type="text" id="homepilot_ip" class="value" size="15" maxlength="15" autocomplete="off" /> -->
+                            <input name="homepilot_ip_adress" type="text" id="homepilot_ip" class="value" />
+                            <label class="translate active" for="homepilot_ip">IP</label><span class="helper-text translate">if left empty 'homepilot.local' will be used</span>
+                        </div>
+                        <div class="input-field col s12 m4 l3">
+                            <!-- <input pattern="[0-9]{1,2,3,4,5}$" name="homepilot_port" type="number" id="homepilot_port" class="value number" size="5" maxlength="5" autocomplete="off" /> -->
+			                <input name="homepilot_port" type="number" id="homepilot_port" class="value number validate"  />
+			                <label data-error="numbers only" data-success="ok" class="translate active" for="homepilot_port">Port</label><span class="helper-text translate">normally no port setting is required</span>
+                         </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="input-field col s12 m4 l3">
+                            <!-- <input pattern="[0-9]{1,2,3}$" name="homepilot_ip_adress" type="number" id="sync_time" class="value" size="3" maxlength="3" autocomplete="off"/>s -->
+                            <input placeholder="12" name="synchronization" type="number" id="sync_time" class="value validate" />
+                            <label data-error="numbers only" data-success="ok" class="translate active" for="sync_time">Synctime</label><span class="helper-text translate">s (default is 12)</span>
+                        </div>
+                    </div>
+                    
+                </div> <!-- Ende tab -->
+            </div><!-- Ende row -->
+        </div>
+    </body>
+</html>
