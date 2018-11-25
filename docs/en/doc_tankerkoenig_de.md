@@ -80,6 +80,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 1.2.0 (2018-11-25)
+* (pix) new datapoint station ID added
+
 ### 1.1.0 (2018-05-12)
 * (bluefox) prices as number to allow logging were added
 
