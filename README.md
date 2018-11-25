@@ -30,6 +30,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 1.2.1 (2018-11-25)
+* (pix) fixed issue `station_id` and `status mixed up
+
 ### 1.2.0 (2018-11-25)
 * (pix) new datapoint station ID added
 
