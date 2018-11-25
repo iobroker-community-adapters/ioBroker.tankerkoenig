@@ -7,14 +7,25 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig - Цены на бензин"
         },
-        "version": "1.1.0",
+        "version": "1.2.0",
         "news": {
+            "1.2.0": {
+                 "en": "New datapoint StationID",
+                 "de": "Neuer Datenpunkt StationID",
+                 "ru": "Новый datapoint StationID",
+                 "pt": "Novo datapoint StationID",
+                 "nl": "Nieuw datapunt StationID",
+                 "fr": "Nouveau point de donnée StationID",
+                 "it": "Nuovo datapoint ID",
+                 "es": "Nuevo punto de datos StationID",
+                 "pl": "Nowy punkt danych StationID"
+            },
             "1.1.0": {
                 "en": "prices as number to allow logging were added",
                 "de": "Preise als Anzahl für die Protokollierung wurden hinzugefügt",
                 "ru": "добавлены цены в качестве номера для ведения журнала",
                 "pt": "preços como número para permitir log foram adicionados",
-                "nl": "prijzen als aantal om logging toe te staan ​​werden toegevoegd",
+                "nl": "prijzen als aantal om logging toe te staan werden toegevoegd",
                 "fr": "les prix en nombre pour permettre la journalisation ont été ajoutés",
                 "it": "sono stati aggiunti i prezzi come numero per consentire la registrazione",
                 "es": "se agregaron los precios como número para permitir el registro",
@@ -125,6 +136,19 @@
             "common": {
                 "name": "Name",
                 "desc": "Eigener Name Tankstelle 1 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "stations.0.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 1 tankerkoenig.de feed",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -405,6 +429,19 @@
             "native": {}
         },
         {
+            "_id": "stations.1.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 2 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "stations.1.e5.feed",
             "type": "state",
             "common": {
@@ -668,6 +705,19 @@
             "native": {}
         },
         {
+            "_id": "stations.2.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 3 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "stations.2.e5.feed",
             "type": "state",
             "common": {
@@ -884,6 +934,19 @@
             "common": {
                 "name": "Name",
                 "desc": "Eigener Name Tankstelle 4 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "stations.3.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 4 tankerkoenig.de feed",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -1116,6 +1179,19 @@
             "native": {}
         },
         {
+            "_id": "stations.4.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 5 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "stations.4.e5.feed",
             "type": "state",
             "common": {
@@ -1332,6 +1408,19 @@
             "common": {
                 "name": "Name",
                 "desc": "Eigener Name Tankstelle 6 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "stations.5.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 6 tankerkoenig.de feed",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -1564,6 +1653,19 @@
             "native": {}
         },
         {
+            "_id": "stations.6.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 7 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "stations.6.e5.feed",
             "type": "state",
             "common": {
@@ -1780,6 +1882,19 @@
             "common": {
                 "name": "Name",
                 "desc": "Eigener Name Tankstelle 8 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "stations.7.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 8 tankerkoenig.de feed",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -2012,6 +2127,19 @@
             "native": {}
         },
         {
+            "_id": "stations.8.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 9 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "stations.8.e5.feed",
             "type": "state",
             "common": {
@@ -2228,6 +2356,19 @@
             "common": {
                 "name": "Name",
                 "desc": "Eigener Name Tankstelle 10 tankerkoenig.de feed",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "stations.9.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID Tankstelle 10 tankerkoenig.de feed",
                 "type": "string",
                 "role": "value",
                 "read": true,
@@ -2460,6 +2601,19 @@
             "native": {}
         },
         {
+            "_id": "stations.cheapest.e5.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID günstigste E5 Tankstelle",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "stations.cheapest.e5.feed",
             "type": "state",
             "common": {
@@ -2562,6 +2716,19 @@
             "native": {}
         },
         {
+            "_id": "stations.cheapest.e10.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID günstigste E10 Tankstelle",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "stations.cheapest.e10.feed",
             "type": "state",
             "common": {
@@ -2656,6 +2823,19 @@
             "common": {
                 "name": "Name",
                 "desc": "Eigener Name günstigste Diesel Tankstelle",
+                "type": "string",
+                "role": "value",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "stations.cheapest.diesel.station_id",
+            "type": "state",
+            "common": {
+                "name": "Station ID",
+                "desc": "Station ID günstigste Diesel Tankstelle",
                 "type": "string",
                 "role": "value",
                 "read": true,
