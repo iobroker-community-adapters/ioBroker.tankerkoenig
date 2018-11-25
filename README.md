@@ -44,6 +44,7 @@ Jeder der zehn Kanäle des Feeds produziert für jede der drei Spritsorten E5, E
 Ausserdem werden noch zwei Datenpunkte gespeichert
 * status (Station geöffnet?)
 * name (vom Nutzer vergebener Name der Tankstelle)
+* station_id (Tankerkönig ID der Tankstelle)
 
 Zusätzlich werden noch den die günstigsten Tankstellen aus der Liste in die Kanäle ermittelt
 * cheapest.E5
@@ -52,7 +53,7 @@ Zusätzlich werden noch den die günstigsten Tankstellen aus der Liste in die Ka
 
 Innerhalb dieser Kanäle ist die jeweils günstigste Tankstelle für die genannte Spritsorte angelegt. Bieten mehrere Tankstellen einen Treibstoff zum gleichen Preis an, wird die Station ausgegeben, die in den Einstellungen zuerst/ganz oben eingetragen wurde.
 
-Es werden insgesamt 168 Werte geschrieben.
+Es werden insgesamt 181 Werte geschrieben.
 
 ## VIS Nutzung
 Der Datenpunkt combined lässt sich in VIS mit diesem Widget darstellen
@@ -80,6 +81,9 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 
 
 ## Changelog
+### 1.2.0 (2018-11-25)
+* (pix) new datapoint station ID added
+
 ### 1.1.0 (2018-05-12)
 * (bluefox) prices as number to allow logging were added
 
@@ -139,11 +143,11 @@ Der Inhalt des Datenpunktes "combined" wird mit einer CSS-Klasse übergeben. Die
 * (pix) Adapter created
 
 ## Roadmap
+* Material design of settings window
 * State HTML Table 
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit error 503
-* Save and load adapter settings from within settings window (like vis import export)
 * Datapoints for each station should be created after adapter restart, not only after installation
 
 ## License
