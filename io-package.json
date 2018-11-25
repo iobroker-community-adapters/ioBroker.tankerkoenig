@@ -10,7 +10,7 @@
         "version": "1.2.0",
         "news": {
             "1.2.0": {
-                 "en": "New datapoint StationID",
+                 "en": "New datapoint StationID, english readme",
                  "de": "Neuer Datenpunkt StationID",
                  "ru": "Новый datapoint StationID",
                  "pt": "Novo datapoint StationID",
