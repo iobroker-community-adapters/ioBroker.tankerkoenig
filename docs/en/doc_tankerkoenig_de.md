@@ -1,4 +1,4 @@
-![Logo](admin/tankerkoenig.png)
+![Logo](../../admin/tankerkoenig.png)
 # ioBroker.tankerkoenig
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
