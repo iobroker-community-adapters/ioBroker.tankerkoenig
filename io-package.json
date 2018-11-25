@@ -7,7 +7,7 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig - Цены на бензин"
         },
-        "version": "1.2.0",
+        "version": "1.2.1",
         "news": {
             "1.2.0": {
                  "en": "New datapoint StationID, english readme",
