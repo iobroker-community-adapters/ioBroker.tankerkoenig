@@ -103,7 +103,8 @@
         $('#station9').val(settings.station9).change(onChange);
         $('#stationname9').val(settings.stationname9).change(onChange);
         
-       
+        $('#sync_time').val(settings.synctime).change(onChange);
+        
         if (settings.resetValues === undefined) settings.resetValues = true;
         $('#resetValues').prop('checked', settings.resetValues).change(onChange);
         
@@ -129,6 +130,8 @@
         
         
         callback({
+            synctime: $('#sync_time').val().trim(),
+            
             resetValues: $('#resetValues').prop('checked'),
             
             noLogs: $('#noLogs').prop('checked'),
@@ -263,6 +266,14 @@
     <table class="config" style="width: calc(100% - 5px)">
         <tr>
             <label for="noLogs" class="translate">kein Log</label> <input class="value" type="checkbox" id="noLogs"/>
+        </tr>
+    </table>
+    
+    <h4 class="translate" style="margin-top: 20px; width: calc(100% - 10px)">Intervall</h4>
+    <p class="translate">Abfrageintervall</p>
+    <table class="config" style="width: calc(100% - 5px)">
+        <tr>
+            <label for="sync_time" class="translate">in Minuten</label> <input class="value" type="text" id="sync_time"/>
         </tr>
     </table>
     
