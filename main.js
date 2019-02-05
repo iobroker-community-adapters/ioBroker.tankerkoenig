@@ -6,10 +6,19 @@ const utils       = require(__dirname + '/lib/utils'); // Get common adapter uti
 const request     = require('request');
 // var lang = 'de';
 
-let adapter = new utils.Adapter({
-    name:           'tankerkoenig',
-    systemConfig:   true,
-    useFormatDate:  true
+let adapter;
+function startAdapter(options) {
+    options = options || {};
+    Object.assign(options, {
+        name:           'tankerkoenig',
+        systemConfig:   true,
+        useFormatDate:  true
+        /*stateChange: function () {...},
+               ...*/
+    });
+    adapter = new utils.Adapter(options);
+          
+    return adapter;
 });
 
 let optinNoLog = false;
@@ -364,3 +373,11 @@ function main() {
         adapter.stop();
     }, 60000);
 }
+
+// If started as allInOne/compact mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
+} 
