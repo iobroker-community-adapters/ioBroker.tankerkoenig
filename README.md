@@ -30,6 +30,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 1.3.0 (2019-02-05)
+* (pix) Compact mode added
+
 ### 1.2.1 (2018-11-25)
 * (pix) fixed issue `station_id` and `status mixed up
 
@@ -106,7 +109,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 The MIT License (MIT)
 
-Copyright (c) 2016-2018 pix
+Copyright (c) 2016-2019 pix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
