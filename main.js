@@ -4,7 +4,8 @@
 'use strict';
 const utils       = require(__dirname + '/lib/utils'); // Get common adapter utils
 const request     = require('request');
-// var lang = 'de';
+
+const adapterName = require('./package.json').name.split('.').pop();
 
 let result;
 let err;
@@ -12,15 +13,13 @@ let url = "";
 let timer     = null;
 let stopTimer = null;
 let isStopping = false;
-
+let systemLang = 'de';
 let adapter;
+
 function startAdapter(options) {
-    options = options || { ready: function () {
-            main();
-        }
-    };
+    options = options || {};
     Object.assign(options, {
-        name:           'tankerkoenig',
+        name:           adapterName,
         systemConfig:   true,
         useFormatDate:  true
         /*stateChange: function () {...},
@@ -28,30 +27,27 @@ function startAdapter(options) {
     });
     adapter = new utils.Adapter(options);
 
+    
+    adapter.on('objectChange', function (id, obj) {
+        adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+    });
+
+    adapter.on('stateChange', function (id, state) {
+
+    });
+    
+    adapter.on('unload', function () {
+        if (timer) {
+            clearInterval(timer);
+            timer = 0;
+        }
+        isStopping = true;
+    });
+    
     return adapter;
 });
 
 let optinNoLog = false;
-
-/* ALTE VERSION
-adapter.on('ready', function () {
-    //adapter.getForeignObject('system.config', function (err, data) {
-        //if (data && data.common) {
-        //    lang  = data.common.language;
-        //}
-
-        writeLog('initializing objects', 'debug');
-        main();
-    //});
-});
-*/
-adapter.on('unload', function () {
-    if (timer) {
-        clearInterval(timer);
-        timer = 0;
-    }
-    isStopping = true;
-});
 
 function stop() {
     if (stopTimer) clearTimeout(stopTimer);
@@ -66,14 +62,6 @@ function stop() {
         }, 30000);
     }
 }
-
-adapter.on('objectChange', function (id, obj) {
-    adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
-});
-
-adapter.on('stateChange', function (id, state) {
-
-});
 
 process.on('SIGINT', function () {
     if (timer) clearTimeout(timer);
