@@ -353,7 +353,6 @@ function readData(url) {
             }
         } else writeLog('Spritpreise einlesen (gezielte Stationen via ID) - Fehler: ' + error, 'error');
     });   // Ende request
-    adapter.stop();
 }
 
 function buildQuery() { // Abfrage erstellen (max 10 Tankstellen ID)
