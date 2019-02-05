@@ -502,9 +502,9 @@ function main() {
  //   adapter.config.interval = parseInt(adapter.config.interval, 10);
     adapter.config.interval = 0;
 
-// polling min 15 min.
+// polling min 5min
     if (adapter.config.interval < 5000) {
-        adapter.config.interval = 60 * 1000 * 15;
+        adapter.config.interval = 60 * 1000 * 5;
     }
     syncConfig(function () {
         getTanke('go');
