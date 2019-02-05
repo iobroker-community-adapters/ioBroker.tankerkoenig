@@ -21,7 +21,7 @@ function startAdapter(options) {
     Object.assign(options, {
         name:           adapterName,
         systemConfig:   true,
-        useFormatDate:  true,
+        useFormatDate:  true/*,
         
         ready: function () { 
             main(); 
@@ -40,11 +40,15 @@ function startAdapter(options) {
             }
             isStopping = true;
         }
-        
+        */
     });
     
     adapter = new utils.Adapter(options);
-    /*
+    
+    adapter.on('ready', function() {
+        main();
+    });
+    
     adapter.on('objectChange', function (id, obj) {
         adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
     });
@@ -60,7 +64,7 @@ function startAdapter(options) {
         }
         isStopping = true;
     });
-    */
+    
     return adapter;
 });
 
