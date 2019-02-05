@@ -21,14 +21,30 @@ function startAdapter(options) {
     Object.assign(options, {
         name:           adapterName,
         systemConfig:   true,
-        useFormatDate:  true
-        /*stateChange: function () {...},
-               ...*/
+        useFormatDate:  true,
+        
+        ready: function () { 
+            main(); 
+        },
+        
+        objectChange: function (id, obj) {
+            adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+        },
+        
+        stateChange: function (id, state) {},
+        
+        unload: function () {
+            if (timer) {
+                clearInterval(timer);
+                timer = 0;
+            }
+            isStopping = true;
+        }
+        
     });
-    adapter = new utils.Adapter(options);
-
-    adapter.on('ready', main);
     
+    adapter = new utils.Adapter(options);
+    /*
     adapter.on('objectChange', function (id, obj) {
         adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
     });
@@ -44,7 +60,7 @@ function startAdapter(options) {
         }
         isStopping = true;
     });
-    
+    */
     return adapter;
 });
 
