@@ -32,6 +32,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 1.3.1 (2019-02-05)
+* (arteck, pix) request issues fixed
+
 ### 1.3.0 (2019-02-05)
 * (pix) Compact mode added
 
