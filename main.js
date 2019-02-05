@@ -78,6 +78,7 @@ function stop() {
         stopTimer = setTimeout(function () {
             stopTimer = null;
             if (timer) clearInterval(timer);
+            adapter.log.warn("adapter stopped in scedule mode");
             isStopping = true;
             adapter.stop();
         }, 30000);
