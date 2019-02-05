@@ -27,6 +27,7 @@ function startAdapter(options) {
     });
     adapter = new utils.Adapter(options);
 
+    adapter.on('ready', main);
     
     adapter.on('objectChange', function (id, obj) {
         adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
