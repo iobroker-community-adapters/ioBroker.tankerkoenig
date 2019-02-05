@@ -76,7 +76,7 @@
                 "ru": "Travis CI тестирование при поддержке"
             }
         },
-        "mode": "schedule",
+        "mode": "daemon",
         "schedule": "*/5 * * * *",
         "platform": "javascript/Node.js",
         "loglevel": "info",
