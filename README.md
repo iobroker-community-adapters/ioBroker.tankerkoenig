@@ -28,6 +28,8 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 :poland: [Dokumentacja](/docs/en/doc_tankerkoenig_en.md)
 
+:cn: [文档](/docs/en/doc_tankerkoenig_en.md)
+
 
 ## Changelog
 ### 1.3.0 (2019-02-05)
