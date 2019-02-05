@@ -15,7 +15,10 @@ let isStopping = false;
 
 let adapter;
 function startAdapter(options) {
-    options = options || {};
+    options = options || { ready: function () {
+            main();
+        }
+    };
     Object.assign(options, {
         name:           'tankerkoenig',
         systemConfig:   true,
@@ -385,7 +388,7 @@ function buildQuery() { // Abfrage erstellen (max 10 Tankstellen ID)
     //adapter.log.debug('Stations 10: ' + stations);
 
     // String in URL einbetten (in eckigen Klammern) und mit APIKey
-    url = 'https://creativecommons.tankerkoenig.de/json/prices.php?ids=%5B' + stations + '%5D&apikey=' + adapter.config.apikey;
+    var url = 'https://creativecommons.tankerkoenig.de/json/prices.php?ids=%5B' + stations + '%5D&apikey=' + adapter.config.apikey;
     return url;
 }
 
