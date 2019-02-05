@@ -486,7 +486,7 @@ function getTanke(tanke) {
     if (!tanke) {
         timer = setTimeout(function () {
             getTanke('go');
-        }, adapter.config.interval);
+        }, adapter.config.sync_time);
         return;
     }
     readData(url);
@@ -499,12 +499,12 @@ function getTanke(tanke) {
 
 
 function main() {
- //   adapter.config.interval = parseInt(adapter.config.interval, 10);
-    adapter.config.interval = 0;
+ //   adapter.config.interval = parseInt(adapter.config.sync_time, 10);
+    adapter.config.sync_time = 0;
 
 // polling min 5min
-    if (adapter.config.interval < 5000) {
-        adapter.config.interval = 60 * 1000 * 5;
+    if (adapter.config.sync_time < 5000) {
+        adapter.config.sync_time = 60 * 1000 * 5;
     }
     syncConfig(function () {
         getTanke('go');
