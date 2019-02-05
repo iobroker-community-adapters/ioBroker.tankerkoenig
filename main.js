@@ -6,6 +6,13 @@ const utils       = require(__dirname + '/lib/utils'); // Get common adapter uti
 const request     = require('request');
 // var lang = 'de';
 
+let result;
+let err;
+let url = "";
+let timer     = null;
+let stopTimer = null;
+let isStopping = false;
+
 let adapter;
 function startAdapter(options) {
     options = options || {};
@@ -17,12 +24,13 @@ function startAdapter(options) {
                ...*/
     });
     adapter = new utils.Adapter(options);
-          
+
     return adapter;
 });
 
 let optinNoLog = false;
 
+/* ALTE VERSION
 adapter.on('ready', function () {
     //adapter.getForeignObject('system.config', function (err, data) {
         //if (data && data.common) {
@@ -33,6 +41,41 @@ adapter.on('ready', function () {
         main();
     //});
 });
+*/
+adapter.on('unload', function () {
+    if (timer) {
+        clearInterval(timer);
+        timer = 0;
+    }
+    isStopping = true;
+});
+
+function stop() {
+    if (stopTimer) clearTimeout(stopTimer);
+
+    // Stop only if schedule mode
+    if (adapter.common && adapter.common.mode == 'schedule') {
+        stopTimer = setTimeout(function () {
+            stopTimer = null;
+            if (timer) clearInterval(timer);
+            isStopping = true;
+            adapter.stop();
+        }, 30000);
+    }
+}
+
+adapter.on('objectChange', function (id, obj) {
+    adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+});
+
+adapter.on('stateChange', function (id, state) {
+
+});
+
+process.on('SIGINT', function () {
+    if (timer) clearTimeout(timer);
+});
+
 
 function writeLog(logtext,logtype) { // wenn optinNoLog TRUE keine Ausgabe bei info, warn und debug, nur bei error
     if (!optinNoLog) { // Ausgabe bei info, debug und error
@@ -194,7 +237,7 @@ function readData(url) {
                                     if (i < 2) adapter.setState('stations.' + i + '.e5.price', {ack: true, val: prices.price}); // normal float
                                     adapter.setState('stations.' + i + '.e5.short', {ack: true, val: prices.priceshort});// zweistellig
                                     adapter.setState('stations.' + i + '.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                                    adapter.setState('stations.' + i + '.e5.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                                    adapter.setState('stations.' + i + '.e5.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
 
                                     // Niedrigsten Preis E5 ermitteln
                                     writeLog('E5-Preis-Feld ' +  i + ' gefüllt', 'debug');
@@ -216,7 +259,7 @@ function readData(url) {
                                     if (i < 2) adapter.setState('stations.' + i + '.e10.price', {ack: true, val: prices.price}); // normal float
                                     adapter.setState('stations.' + i + '.e10.short', {ack: true, val: prices.priceshort});
                                     adapter.setState('stations.' + i + '.e10.3rd', {ack: true, val: prices.price3rd});
-                                    adapter.setState('stations.' + i + '.e10.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                                    adapter.setState('stations.' + i + '.e10.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
 
                                     /// Niedrigsten Preis E10 ermitteln
                                     writeLog('E10-Preis-Feld ' +  i + ' gefüllt', 'debug');
@@ -238,7 +281,7 @@ function readData(url) {
                                     if (i < 2) adapter.setState('stations.' + i + '.diesel.price', {ack: true, val: prices.price}); // normal float
                                     adapter.setState('stations.' + i + '.diesel.short', {ack: true, val: prices.priceshort});
                                     adapter.setState('stations.' + i + '.diesel.3rd', {ack: true, val: prices.price3rd});
-                                    adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                                    adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
 
                                     // Niedrigsten Preis Diesel ermitteln
                                     writeLog('Diesel-Preis-Feld ' +  i + ' gefüllt', 'debug');
@@ -262,7 +305,7 @@ function readData(url) {
                     adapter.setState('stations.cheapest.e5.price', {ack: true, val: prices.price});// float
                     adapter.setState('stations.cheapest.e5.short', {ack: true, val: prices.priceshort});// zweistellig
                     adapter.setState('stations.cheapest.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                    adapter.setState('stations.cheapest.e5.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                    adapter.setState('stations.cheapest.e5.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
                     adapter.setState('stations.cheapest.e5.name', {ack: true, val: adapter.config.stationsarray[cheapest_e5][1]});
                     adapter.setState('stations.cheapest.e5.status', {ack: true, val: result.prices[cheapest_e5_stationid].status});
                     adapter.setState('stations.cheapest.e5.station_id', {ack: true, val: cheapest_e5_stationid});
@@ -274,7 +317,7 @@ function readData(url) {
                     adapter.setState('stations.cheapest.e10.price', {ack: true, val: prices.price});// float
                     adapter.setState('stations.cheapest.e10.short', {ack: true, val: prices.priceshort});// zweistellig
                     adapter.setState('stations.cheapest.e10.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                    adapter.setState('stations.cheapest.e10.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                    adapter.setState('stations.cheapest.e10.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
                     adapter.setState('stations.cheapest.e10.name', {ack: true, val: adapter.config.stationsarray[cheapest_e10][1]});
                     adapter.setState('stations.cheapest.e10.status', {ack: true, val: result.prices[cheapest_e10_stationid].status});
                     adapter.setState('stations.cheapest.e10.station_id', {ack: true, val: cheapest_e10_stationid});
@@ -286,12 +329,12 @@ function readData(url) {
                     adapter.setState('stations.cheapest.diesel.price', {ack: true, val: prices.price});// float
                     adapter.setState('stations.cheapest.diesel.short', {ack: true, val: prices.priceshort});// zweistellig
                     adapter.setState('stations.cheapest.diesel.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                    adapter.setState('stations.cheapest.diesel.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                    adapter.setState('stations.cheapest.diesel.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
                     adapter.setState('stations.cheapest.diesel.name', {ack: true, val: adapter.config.stationsarray[cheapest_diesel][1]});
                     adapter.setState('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});
                     adapter.setState('stations.cheapest.diesel.station_id', {ack: true, val: cheapest_diesel_stationid});
                     // ENDE AUSGABE NIEDRIGSTER PREIS
-                    
+
                     writeLog('objects written', 'debug');
 
                 } else {
@@ -342,12 +385,15 @@ function buildQuery() { // Abfrage erstellen (max 10 Tankstellen ID)
     //adapter.log.debug('Stations 10: ' + stations);
 
     // String in URL einbetten (in eckigen Klammern) und mit APIKey
-    const url = 'https://creativecommons.tankerkoenig.de/json/prices.php?ids=%5B' + stations + '%5D&apikey=' + adapter.config.apikey;
-    readData(url);
+    url = 'https://creativecommons.tankerkoenig.de/json/prices.php?ids=%5B' + stations + '%5D&apikey=' + adapter.config.apikey;
+    return url;
 }
 
-function readSettings() {
+function syncConfig(callback) {
     //APIKEY
+
+    let tasks = [];
+
     writeLog('Option <reset values> is ' + adapter.config.resetValues, 'debug');
     writeLog('API Key Länge: ' + (adapter.config.apikey?adapter.config.apikey.length:0) + ' Zeichen', 'debug');
     if (adapter.config.apikey === undefined) {
@@ -359,19 +405,100 @@ function readSettings() {
     } else if (adapter.config.apikey.length > 36) {
         writeLog('API-Key too long, should be 36 digits.', 'error');
         return; // abbruch
-    } else {
-        buildQuery();
     }
+
+    tasks.push({
+        type: 'extendObject',
+        id:   'tank',
+        data: {
+            common: {
+                name: 'tank',
+                read: true,
+                write: false
+            }
+        }
+    });
+
+    processTasks(tasks, function () {
+        var count = 0;
+        url = buildQuery();
+
+        if (!count && callback) callback();
+    });
+
     // noLog
     optinNoLog = adapter.config.noLogs; // wichtig für function writeLog()
 }
 
+
+function processTasks(tasks, callback) {
+    if (!tasks || !tasks.length) {
+        callback && callback();
+    } else {
+        let task = tasks.shift();
+        let timeout = setTimeout(function () {
+            adapter.log.warn('Please update js-controller to at least 1.2.0');
+            timeout = null;
+            processTasks(tasks, callback);
+        }, 1000);
+
+        if (task.type === 'extendObject') {
+            adapter.extendObject(task.id, task.data, function (/* err */) {
+                if (timeout) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                    setImmediate(processTasks, tasks, callback);
+                }
+            });
+        } else  if (task.type === 'deleteState') {
+            adapter.deleteState('', host, task.id, function (/* err */) {
+                if (timeout) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                    setImmediate(processTasks, tasks, callback);
+                }
+            });
+        } else {
+            adapter.log.error('Unknown task name: ' + JSON.stringify(task));
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+                setImmediate(processTasks, tasks, callback);
+            }
+        }
+    }
+}
+
+
+function getTanke(tanke) {
+    if (stopTimer) clearTimeout(stopTimer);
+    if (!tanke) {
+        timer = setTimeout(function () {
+            getTanke('go');
+        }, adapter.config.interval);
+        return;
+    }
+    readData(url);
+    if (!isStopping)  {
+        setTimeout(function () {
+            getTanke('');
+        }, 0);
+    };
+}
+
+
 function main() {
-    readSettings();
-    setTimeout(function () {
-        writeLog('force terminating adapter after 1 minute', 'debug');
-        adapter.stop();
-    }, 60000);
+ //   adapter.config.interval = parseInt(adapter.config.interval, 10);
+    adapter.config.interval = 0;
+
+// polling min 15 min.
+    if (adapter.config.interval < 5000) {
+        adapter.config.interval = 60 * 1000 * 15;
+    }
+    syncConfig(function () {
+        getTanke('go');
+    });
+    adapter.subscribeStates('*');
 }
 
 // If started as allInOne/compact mode => return function to create instance
@@ -380,4 +507,4 @@ if (module && module.parent) {
 } else {
     // or start the instance directly
     startAdapter();
-} 
+}
