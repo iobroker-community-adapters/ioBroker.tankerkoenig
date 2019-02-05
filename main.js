@@ -499,8 +499,8 @@ function getTanke(tanke) {
 
 
 function main() {
- //   adapter.config.interval = parseInt(adapter.config.sync_time, 10);
-    adapter.config.sync_time = 0;
+    adapter.config.sync_time = parseInt(adapter.config.sync_time, 10);
+ //   adapter.config.sync_time = 0;
 
 // polling min 5min
     if (adapter.config.sync_time < 5000) {
