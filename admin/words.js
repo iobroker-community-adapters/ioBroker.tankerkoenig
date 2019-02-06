@@ -79,7 +79,7 @@ systemDictionary = {
     },
     "Intervall": {
         "en": "Interval",
-        "de": "Interval",
+        "de": "Intervall",
         "ru": "Interval"
     },
     "Abfrageintervall": {
