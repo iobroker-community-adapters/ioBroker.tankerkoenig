@@ -500,6 +500,14 @@ function getTanke(tanke) {
 
 
 function main() {
+    // Umbau auf daemon
+    adapter.getForeignObject('system.adapter.' + adapter.namespace, function (err, obj) {
+	    if (obj.common.mode !== 'daemon') {
+		    obj.common.mode = 'daemon';
+		    adapter.setForeignObject(obj._id, obj);
+	    }
+    });
+    
     adapter.config.sync_time = parseInt(adapter.config.sync_time, 10);
  //   adapter.config.sync_time = 0;
 
