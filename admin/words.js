@@ -76,5 +76,20 @@ systemDictionary = {
         "en": "Every run creates log entries. Wwiting log events can be opted out here.",
         "de": "Bei jeder Aktualisierung werden Log-Ausgaben geschrieben. Um die Zahl der Schreibzugriffe zu minimieren, kann hier durch einen Haken die Ausgabe reduziert werden.",
         "ru": "Every run creates log entries. Wwiting log events can be opted out here. (übersetzen)"
+    },
+    "Intervall": {
+        "en": "Interval",
+        "de": "Interval",
+        "ru": "Interval"
+    },
+    "Abfrageintervall": {
+        "en": "Time between requests",
+        "de": "Dauer zwischen den Abfragen",
+        "ru": "Time between requests (übersetzen)"
+    },
+    "in Minuten": {
+        "en": "in minutes (at least 5min)",
+        "de": "In Minuten (min. 5min)",
+        "ru": "in minutes (at least 5min) (übersetzen)"
     }
 };
