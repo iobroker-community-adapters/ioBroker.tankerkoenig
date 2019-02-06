@@ -514,6 +514,7 @@ function main() {
 // polling min 5min
     if (adapter.config.sync_time < 5 * 1000 * 60) {
         adapter.config.sync_time = 5 * 1000 * 60;
+	adapter.log.warn("Sync time set to minimum " + adapter.config.sync_time / 1000 * 60 + "min");
     }
     syncConfig(function () {
         getTanke('go');
