@@ -77,7 +77,6 @@
             }
         },
         "mode": "daemon",
-        "schedule": "*/5 * * * *",
         "platform": "javascript/Node.js",
         "loglevel": "info",
         "compact": true,
