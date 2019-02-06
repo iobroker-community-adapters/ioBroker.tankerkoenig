@@ -508,12 +508,12 @@ function main() {
 	    }
     });
     
-    adapter.config.sync_time = parseInt(adapter.config.sync_time, 10);
+    adapter.config.sync_time = parseInt(adapter.config.sync_time, 10) * 1000 * 60;
  //   adapter.config.sync_time = 0;
 
 // polling min 5min
-    if (adapter.config.sync_time < 5000) {
-        adapter.config.sync_time = 60 * 1000 * 5;
+    if (adapter.config.sync_time < 5 * 1000 * 60) {
+        adapter.config.sync_time = 5 * 1000 * 60;
     }
     syncConfig(function () {
         getTanke('go');
