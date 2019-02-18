@@ -27,7 +27,7 @@
                 for (var st=0; st <10; st++) {
                     stationTabHTML += '        <div class="row stationclass"> <!-- Station ' + (st + 1) + ' -->';
                     stationTabHTML += '            <div class="col s12 m1 l1">';
-                    stationTabHTML += '                <span class="translate">' + systemDictionary.["Nummer"].systemLang + '</span>&nbsp;' + (st + 1);
+                    stationTabHTML += '                <span class="translate">Nummer</span>&nbsp;' + (st + 1);
                     stationTabHTML += '            </div>';
                     stationTabHTML += '            <div class="input-field col s12 m5 l5">';
                     stationTabHTML += '                <input id="station' + st + '" name="name_station'+ st + '" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />';
@@ -225,7 +225,7 @@
                         </div>
                     </div>
 
-                    <div id="insertstations"> <!-- insert Station forms through javascript -->
+                    <div id="insertstations" class="translate"> <!-- insert Station forms through javascript -->
                     </div>
 
 
