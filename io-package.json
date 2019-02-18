@@ -101,6 +101,7 @@
         "extIcon": "https://raw.githubusercontent.com/Pix---/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
         "allowInit": true,
         "type": "misc-data",
+        "materialize": true,
         "config": {
             "width": 850,
             "height": 650,
