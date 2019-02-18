@@ -91,7 +91,7 @@
                 onChange(false);
             }
 
-            function save(callback) {
+            function save2(callback) {
 
                 var array = [];
                 array [0] = [$('#station0').val().trim(), $('#stationname0').val().trim()];
@@ -147,6 +147,22 @@
                     stationsarray: array
                 });
             }
+
+            function save(callback) {
+                var patt = /[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$/;
+
+	              if (!patt.test($('#apikey').val())) {
+	                  confirmMessage(_('No_Password'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
+	                      if (result === 1) {
+	                          return;
+	                      } else {
+	                          save2(callback);
+	                      }
+	                  });
+	              } else {
+	                  save2(callback);
+	              }
+	          }
 
         </script>
 
@@ -247,12 +263,7 @@
                             <p class="translate">Abfrageinfo</p>
                         </div>
                         <div class="input-field col s12 m4 l3">
-                            <!-- <input id="sync_time" class="value validate" name="synchronization" type="number" min="5" placeholder="5"  /> -->
-                            <form action="#">
-                              <p class="range-field">
-                                <input id="sync_time" class="value" name="points" type="range" min="5" max="60"  />
-                              </p>
-                            </form>
+                            <input id="sync_time" class="value validate" name="synchronization" type="number" min="5" placeholder="5"  />
                             <label class="translate active" for="sync_time">Abfrageintervall</label>
                             <label data-error="numbers only" data-success="ok" class="translate active" for="sync_time">Abfrageintervall</label>
                             <span class="helper-text translate">in Minuten</span>
