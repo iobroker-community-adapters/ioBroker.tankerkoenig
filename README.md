@@ -32,6 +32,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 2.0.0 (2019-02-18)
+* (pix) admin3 ready
+
 ### 1.3.1 (2019-02-05)
 * (arteck, pix) request issues fixed
 
@@ -103,7 +106,6 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) Adapter created
 
 ## Roadmap
-* Material design of settings window
 * State HTML Table 
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
