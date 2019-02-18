@@ -206,7 +206,7 @@
                             <span class="translate">Nummer</span>&nbsp;1
                         </div>
                         <div class="input-field col s12 m5 l5">
-                            <input id="station0" name="name_station0" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" data-length="36" autocomplete="off" />
+                            <input id="station0" name="name_station0" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station0">ID Tankstelle</label>
                             <span class="helper-text translate" data-error="wrong" data-success="good"><!--StationID falsch oder leer--></span>
                             <span class="helper-text translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</span>
@@ -369,7 +369,10 @@
                         </div>
                         <div class="input-field col s12 m4 l3">
                             <!-- <input id="sync_time" class="value validate" name="synchronization" type="number" min="5" placeholder="5"  /> -->
-                            <input id="sync_time" class="value" name="synchronization" type="range" min="5" max="60"  />
+                            <p class="range-field">
+                                <input type="range" id="sync_time" class="value" min="5" max="60" />
+                            </p>
+                            <!--  <input id="sync_time" class="value" name="synchronization" type="range" min="5" max="60"  /> -->
                             <label class="translate active" for="sync_time">Abfrageintervall</label>
                             <!-- <label data-error="numbers only" data-success="ok" class="translate active" for="sync_time">Abfrageintervall</label> -->
                             <span class="helper-text translate">in Minuten</span>
