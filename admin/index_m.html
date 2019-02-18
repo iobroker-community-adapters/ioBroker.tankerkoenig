@@ -247,7 +247,10 @@
                             <p class="translate">Abfrageinfo</p>
                         </div>
                         <div class="input-field col s12 m4 l3">
-                            <input id="sync_time" class="value validate" name="synchronization" type="number" min="5" placeholder="5"  />
+                            <!-- <input id="sync_time" class="value validate" name="synchronization" type="number" min="5" placeholder="5"  /> -->
+                            <form action="#">
+                                <input id="sync_time" class="value" name="synchronization" type="range" min="5" max="60"  />
+                            </form>
                             <label class="translate active" for="sync_time">Abfrageintervall</label>
                             <label data-error="numbers only" data-success="ok" class="translate active" for="sync_time">Abfrageintervall</label>
                             <span class="helper-text translate">in Minuten</span>
