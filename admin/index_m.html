@@ -33,7 +33,7 @@
                     stationTabHTML += '                <input id="station' + st + '" name="name_station'+ st + '" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />';
                     stationTabHTML += '                <label class="translate active" for="station' + st + '">' + systemDictionary["ID Tankstelle"][systemLang] + '</label>';
                     stationTabHTML += '                <span class="helper-text translate" data-error="wrong" data-success="good"><!--' + systemDictionary["StationID falsch oder leer"][systemLang] + '--></span>';
-                    stationTabHTML += '                <span class="helper-text translate">' + systemDictionary["Woher Schluessel"][systemLang] + '</span>';
+                    stationTabHTML += '                <!-- <span class="helper-text translate">' + systemDictionary["Woher Schluessel"][systemLang] + '</span> -->';
                     stationTabHTML += '            </div>';
                     stationTabHTML += '            <div class="input-field col s12 m5 l5">';
                     stationTabHTML += '                <input id="stationname' + st + '" name="name_station' + st + '" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />';
@@ -221,6 +221,7 @@
                     <div class="row">
                         <div class="col s12 m12 l12">
                           <p class="translate">Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.</p>
+                          <p class="translate">Woher Schluessel</p>
                           <!-- weitere Erklärungen hier -->
                         </div>
                     </div>
