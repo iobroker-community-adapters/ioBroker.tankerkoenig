@@ -220,7 +220,7 @@
                         <div class="input-field col s12 m5 l6">
                             <input id="station1" name="name_station1" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station1">ID Tankstelle</label>
-                            <!--<span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>-->
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname1" name="name_station1" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -235,7 +235,7 @@
                         <div class="input-field col s12 m5 l6">
                             <input id="station2" name="name_station2" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station2">ID Tankstelle</label>
-                            <span class="helper-text translate" data-error="wrong" data-success="right"><!--StationID falsch oder leer--></span>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname2" name="name_station2" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -362,10 +362,11 @@
                     <div class="row">
                         <div class="input-field col s12 m4 l3">
                             <!-- <input pattern="[0-9]{1,2,3}$" name="synchronization" type="number" id="sync_time" class="value" size="3" maxlength="3" autocomplete="off"/>s -->
+                            <p class="translate">Abfrageinfo</p>
                             <input id="sync_time" class="value validate" name="synchronization" type="number" min="5" placeholder="5"  />
                             <label data-error="numbers only" data-success="ok" class="translate active" for="sync_time">Abfrageintervall</label>
                             <span class="helper-text translate">in Minuten</span>
-                            <span class="helper-text translate" data-error="to small">Abfrageinfo</span>
+                            <span class="helper-text translate" data-error="to small"></span>
                         </div>
                     </div>
 
