@@ -62,7 +62,7 @@ systemDictionary = {
         "pl": "Wprowadź identyfikator wymaganej stacji benzynowej. Możliwe jest maksymalnie dziesięć stacji paliw.",
         "zh-cn": "输入所需加油站的ID。最多可以有十个加油站。"
     },
-    "Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de": {
+    "Woher Schluessel": {
         "en": "Input your personal 36 digit API-Key from <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
         "de": "Sie erhalten den API Schl&uuml;ssel auf der Seite <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
         "ru": "Input the 36digit API-Key from <a href='https://creativecommons.tankerkoenig.de/#register' target='_blank' alt='register API' >tankerkoenig.de</a>",
