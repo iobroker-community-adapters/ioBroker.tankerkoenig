@@ -60,6 +60,9 @@
                 if (settings.noLogs === undefined) settings.noLogs = true;
                 $('#noLogs').prop('checked', settings.noLogs).change(onChange);
 
+
+                M.updateTextFields();
+                
                 onChange(false);
             }
 
