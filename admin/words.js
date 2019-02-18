@@ -39,7 +39,7 @@ systemDictionary = {
     },
     "Name Tankstelle": {
         "en": "Custom station name",
-        "de": "Eigener Name für Tankstelle (z.B. ARAL Bahnhofsplatz)",
+        "de": "Eigener Name für Tankstelle",
         "ru": "Custom station name"
     },
     "Nummer": {
@@ -91,5 +91,10 @@ systemDictionary = {
         "en": "in minutes (at least 5min)",
         "de": "In Minuten (min. 5min)",
         "ru": "in minutes (at least 5min) (übersetzen)"
+    },
+    "Settings": {
+        "en": "settings",
+        "de": "Einstellungen",
+        "ru": "settings"
     }
 };
