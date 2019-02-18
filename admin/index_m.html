@@ -150,8 +150,8 @@
 
             function save(callback) {
                 var patt = /[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$/;
-
-	              if (!patt.test($('#apikey').val())) {
+                var apikey_string = $('#apikey').val();
+	              if (!patt.test(apikey_string)) {
 	                  confirmMessage(_('No_Password'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
 	                      if (result === 1) {
 	                          return;
