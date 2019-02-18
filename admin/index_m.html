@@ -20,6 +20,31 @@
         <script type="text/javascript">
 
             function load(settings, onChange) {
+
+
+                var stationTabHTML =  '';
+
+                for (var st=0; st <=10; st++) {
+                    stationTabHTML += '        <div class="row stationclass"> <!-- Station ' + (st + 1) + ' -->';
+                    stationTabHTML += '            <div class="col s12 m1 l1">';
+                    stationTabHTML += '                <span class="translate">Nummer</span>&nbsp;' + st;
+                    stationTabHTML += '            </div>';
+                    stationTabHTML += '            <div class="input-field col s12 m5 l5">';
+                    stationTabHTML += '                <input id="station' + st + '" name="name_station'+ st + '" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />';
+                    stationTabHTML += '                <label class="translate active" for="station' + st + '">ID Tankstelle</label>';
+                    stationTabHTML += '                <span class="helper-text translate" data-error="wrong" data-success="good"><!--StationID falsch oder leer--></span>';
+                    stationTabHTML += '                <span class="helper-text translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</span>';
+                    stationTabHTML += '            </div>';
+                    stationTabHTML += '            <div class="input-field col s12 m5 l5">';
+                    stationTabHTML += '                <input id="stationname0" name="name_station' + st + '" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />';
+                    stationTabHTML += '                <label class="translate active" for="station' + st + '">Name Tankstelle</label>';
+                    stationTabHTML += '            </div>';
+                    stationTabHTML += '        </div><!-- Ende Station ' + (st + 1) + ' -->';
+                }
+
+                $('#insertstations').append(stationTabHTML);
+
+
                 $('#apikey').val(settings.apikey).change(onChange);
 
                 $('#station0').val(settings.station0).change(onChange);
@@ -198,6 +223,9 @@
                           <p class="translate">Geben Sie die ID der gew&uuml;nschten Tankstelle ein. Es sind maximal zehn Tankestellen m&ouml;glich.</p>
                           <!-- weitere Erklärungen hier -->
                         </div>
+                    </div>
+
+                    <div id="insertstations">
                     </div>
 
                     <div class="row stationclass"> <!-- Station 1 -->
