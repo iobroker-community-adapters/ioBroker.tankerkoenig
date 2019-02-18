@@ -129,14 +129,15 @@
             /* tbd */
             .stationclass {
                 padding-top: 3px;
+                padding-right: 2%;
             }
             .stationclass:nth-child(even) {
                 border: 0px solid red;
-                /*background-color: lightgrey*/
+                background-color: #F0FFFF; /* azure1*/
             }
             .stationclass:nth-child(odd) {
                 border: 0px solid green;
-                background-color: #FFF;
+                background-color: #FFFFFF; /* weiss */
             }
         </style>
     </head>
@@ -329,6 +330,7 @@
                         <div class="input-field col s12 m5 l6">
                             <input id="station9" name="name_station9" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station9">ID Tankstelle</label>
+                            <span class="helper-text" data-error="wrong" data-success="right">StationID falsch</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname9" name="name_station9" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
