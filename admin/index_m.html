@@ -174,9 +174,10 @@
                             <!-- Erklärungen hier -->
                         </div>
                         <div class="input-field col s12 m12 l12">
-                            <input id="apikey" name="apikey" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="apikey" name="apikey" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab345678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="apikey">tankerkoenig API</label>
-                            <span class="helper-text translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</span>
+                            <span class="helper-text translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</span> <!-- Übersetzung checken -->
+                            <span class="helper-text translate" data-error="wrong" data-success="right">API-Key falsch oder leer</span>
                         </div>
                     </div>
                 </div> <!-- Ende tab -->
@@ -201,9 +202,10 @@
                             <span class="translate">Nummer</span>&nbsp;1
                         </div>
                         <div class="input-field col s12 m5 l5">
-                            <input id="station0" name="name_station0" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station0" name="name_station0" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station0">ID Tankstelle</label>
                             <span class="helper-text translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</span>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m5 l5">
                             <input id="stationname0" name="name_station0" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -216,8 +218,9 @@
                             <span class="translate">Nummer</span>&nbsp;2
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station1" name="name_station1" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station1" name="name_station1" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station1">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname1" name="name_station1" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -230,8 +233,9 @@
                             <span class="translate">Nummer</span>&nbsp;3
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station2" name="name_station2" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station2" name="name_station2" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station1">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname2" name="name_station2" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -244,8 +248,9 @@
                             <span class="translate">Nummer</span>&nbsp;4
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station3" name="name_station3" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station3" name="name_station3" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station3">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname3" name="name_station3" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -258,8 +263,9 @@
                             <span class="translate">Nummer</span>&nbsp;5
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station4" name="name_station4" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station4" name="name_station4" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station1">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname4" name="name_station4" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -272,8 +278,9 @@
                             <span class="translate">Nummer</span>&nbsp;6
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station5" name="name_station5" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station5" name="name_station5" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station5">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname5" name="name_station5" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -286,8 +293,9 @@
                             <span class="translate">Nummer</span>&nbsp;7
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station6" name="name_station6" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station6" name="name_station6" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station6">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname6" name="name_station6" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -300,8 +308,9 @@
                             <span class="translate">Nummer</span>&nbsp;8
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station7" name="name_station7" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station7" name="name_station7" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station7">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname7" name="name_station7" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -314,8 +323,9 @@
                             <span class="translate">Nummer</span>&nbsp;9
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station8" name="name_station8" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station8" name="name_station8" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station8">ID Tankstelle</label>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname8" name="name_station8" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
@@ -328,16 +338,18 @@
                             <span class="translate">Nummer</span>&nbsp;10
                         </div>
                         <div class="input-field col s12 m5 l6">
-                            <input id="station9" name="name_station9" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="1b3d5678-12cd-ab34-ab34-12cd56789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
+                            <input id="station9" name="name_station9" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station9">ID Tankstelle</label>
-                            <span class="helper-text" data-error="wrong" data-success="right">StationID falsch oder leer</span>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">StationID falsch oder leer</span>
                         </div>
                         <div class="input-field col s12 m6 l5">
                             <input id="stationname9" name="name_station9" placeholder="Shell City" type="text" class="value" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="station9">Name Tankstelle</label>
                         </div>
                     </div> <!-- Ende Station 10 -->
+
                 </div> <!-- Ende tab -->
+
 
                 <!-- Tab interval -->
                 <div id="tab-interval" class="col s12 page">
@@ -350,9 +362,10 @@
                     <div class="row">
                         <div class="input-field col s12 m4 l3">
                             <!-- <input pattern="[0-9]{1,2,3}$" name="synchronization" type="number" id="sync_time" class="value" size="3" maxlength="3" autocomplete="off"/>s -->
-                            <input placeholder="5" name="synchronization" type="number" id="sync_time" class="value validate" />
+                            <input id="sync_time" class="value validate" name="synchronization" type="number" min="5" placeholder="5"  />
                             <label data-error="numbers only" data-success="ok" class="translate active" for="sync_time">Abfrageintervall</label>
                             <span class="helper-text translate">in Minuten</span>
+                            <span class="helper-text translate" data-error="wrong" data-success="right">Abfrageinfo</span>
                         </div>
                     </div>
 
