@@ -93,7 +93,7 @@
 
 
             function save(callback) {
-                var patt = /[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}/g;
+                var patt = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
                 var apikey_string = $('#apikey').val();
                 var regexp_result = apikey_string.match(patt);
                 if (regexp_result === null) {
