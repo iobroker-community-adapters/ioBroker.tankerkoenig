@@ -67,7 +67,7 @@ function startAdapter(options) {
     });
 
     return adapter;
-});
+}
 
 let optinNoLog = false;
 
