@@ -137,7 +137,7 @@ systemDictionary = {
         "de": "Werte vor jeder Aktualisierung nullen",
         "ru": "Werte vor jeder Aktualisierung nullen (übersetzen)"
     },
-    "kein Log": {
+    "Logdaten minimieren": {
         "en": "reduce log events",
         "de": "Log Ausgaben reduzieren",
         "ru": "уменьшить журнал событий",
@@ -148,11 +148,6 @@ systemDictionary = {
         "es": "reducir los eventos de registro",
         "pl": "ogranicz dzienniki zdarzeń",
         "zh-cn": "减少日志事件"
-    },
-    "Logdaten minimieren": {
-        "en": "Logging data",
-        "de": "Log Daten",
-        "ru": "Log Daten (übersetzen)"
     },
     "Logdaten ...": {
         "en": "Each update updates log output. To minimize the number of write accesses, the output can be reduced by a tick.",
