@@ -149,10 +149,10 @@
             }
 
             function save(callback) {
-                var patt = /[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$/gi;
+                var patt = /[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}/g;
                 var apikey_string = $('#apikey').val();
-                var regexp_result = patt.exec(apikey_string);
-                if (regexp_result == null) {
+                var regexp_result = apikey_string.match(patt);
+                if (regexp_result === null) {
 	                  confirmMessage(_('No_Password'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
 	                      if (result === 1) {
 	                          return;
