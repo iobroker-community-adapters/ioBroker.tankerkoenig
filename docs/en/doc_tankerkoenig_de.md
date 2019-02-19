@@ -29,8 +29,8 @@ In case of a disconnect this option prevents the adapter to store old values. It
 ### Minimize log
 To reduce log writing (e.g. on SD cards) this option can be selected.
 
-## Activation / schedule
-The adapter starts every five minutes. Tankerkoenig.de updates their data from only every four minutes. 
+## Activation
+The adapter runs as a daemon (not in schedule mode) and starts regularly every five minutes. The data of the source feed are updated by the server at tankerkoenig.de only every 4 minutes, therefore a more frequent query of the data makes no sense and causes only superfluous data traffic and costs resources. Larger intervals can be set at any time.
 
 ##  Datapoints
 Each of the ten ten stations have a channel for each fuel type (E5, E10 and diesel) and furthermore each of them has another four datapoints.
@@ -77,3 +77,6 @@ The value of the datapoint `combined` deliveres a css class. These classes are `
     font-size: 80%;
 }
 ```
+
+## Compact Mode
+This adapter is ready for iobroker's compact mode.
