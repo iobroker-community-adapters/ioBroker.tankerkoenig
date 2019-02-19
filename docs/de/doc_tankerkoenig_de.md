@@ -30,8 +30,8 @@ Sollte die Verbindung zum Server nicht funktionieren, verhindert das Löschen de
 ### Log minimieren
 Um Schreibzugriffe im Log (z.B. auf empfindliche SD-Karten) zu minimieren, kann ein Haken gesetzt werden.
 
-## Aktivierung / Schedule
-Der Adapter startet alle 5min. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert. 
+## Aktivierung
+Der Adapter läuft als Daemon (nicht im Schedule Modus) und startet regulär alle fünf Minuten. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert, daher macht eine häufigere Abfrage der Daten keinen Sinn und verursacht nur überflüssigen Datenverkehr und kostet Ressourcen. Größere Intervalle sind jederzeit einstellbar.
 
 ##  Datenpunkte
 Jeder der zehn Kanäle des Feeds produziert für jede der drei Spritsorten E5, E10 und Diesel jeweils drei Datenpunkte:
@@ -78,3 +78,6 @@ Der Inhalt des Datenpunktes `combined` wird mit einer CSS-Klasse übergeben. Die
     font-size: 80%;
 }
 ```
+
+## Kompakt Modus
+Der Adapter ist im Kompaktmodus von ioBroker lauffähig.
