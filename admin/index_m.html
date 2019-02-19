@@ -30,7 +30,7 @@
                     stationTabHTML += '                <span class="translate">' + systemDictionary["Nummer"][systemLang] + '</span>&nbsp;' + (st + 1);
                     stationTabHTML += '            </div>';
                     stationTabHTML += '            <div class="input-field col s12 m5 l5">';
-                    stationTabHTML += '                <input id="station' + st + '" name="name_station'+ st + '" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />';
+                    stationTabHTML += '                <input id="station' + st + '" name="name_station'+ st + '" pattern="[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}$" placeholder="ab3d5678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />';
                     stationTabHTML += '                <label class="translate active" for="station' + st + '">' + systemDictionary["ID Tankstelle"][systemLang] + '</label>';
                     stationTabHTML += '                <span class="helper-text translate" data-error="wrong" data-success="good"><!--' + systemDictionary["StationID falsch oder leer"][systemLang] + '--></span>';
                     stationTabHTML += '                <!-- <span class="helper-text translate">' + systemDictionary["Woher Schluessel"][systemLang] + '</span> -->';
@@ -92,24 +92,6 @@
             }
 
 
-            function save(callback) {
-                var patt = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
-                var apikey_string = $('#apikey').val();
-                var regexp_result = apikey_string.match(patt);
-                if (regexp_result === null) {
-	                  confirmMessage(_('No_Password'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
-	                      if (result === 1) {
-	                          return;
-	                      } else {
-	                          save2(callback);
-	                      }
-	                  });
-	              } else {
-	                  save2(callback);
-	              }
-	          }
-
-
             function save2(callback) {
 
                 var array = [];
@@ -169,6 +151,25 @@
 
 
 
+            function save(callback) {
+                var patt = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
+                var apikey_string = $('#apikey').val();
+                if (apikey_string.match(patt) === null) {
+                    confirmMessage(_('check user API Key'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
+                        if (result === 1) {
+                            return;
+                        } else {
+                            save2(callback);
+                        }
+                    });
+                } else if (parseInt( $('#sync_time').val().trim() ,10) < 5 || !$('#sync_time').val() ) {
+                    $('#sync_time').val() = 5;
+                    save2(callback);
+                } else {
+                    save2(callback);
+                }
+            }
+
         </script>
 
         <style>
@@ -223,7 +224,7 @@
                             <!-- Erklärungen hier -->
                         </div>
                         <div class="input-field col s12 m12 l12">
-                            <input id="apikey" name="apikey" pattern="[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}$" placeholder="ab345678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
+                            <input id="apikey" name="apikey" pattern="[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}$" placeholder="ab345678-ab34-ab34-ab34-ab3456789012" type="text" class="value validate" size="36" maxlength="36" autocomplete="off" />
                             <label class="translate active" for="apikey">tankerkoenig API</label>
                             <span class="helper-text translate" data-error="wrong" data-success="good"><!--API-Key falsch oder leer--></span>
                             <span class="helper-text translate">Sie erhalten den API Schl&uuml;ssel auf der Seite creativecommons.tankerkoenig.de</span> <!-- Übersetzung checken -->

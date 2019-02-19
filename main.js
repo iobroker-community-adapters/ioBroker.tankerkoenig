@@ -15,6 +15,7 @@ let stopTimer = null;
 let isStopping = false;
 let systemLang = 'de';
 let adapter;
+let sync_milliseconds;
 
 function startAdapter(options) {
     options = options || {};
@@ -22,17 +23,17 @@ function startAdapter(options) {
         name:           adapterName,
         systemConfig:   true,
         useFormatDate:  true/*,
-        
-        ready: function () { 
-            main(); 
+
+        ready: function () {
+            main();
         },
-        
+
         objectChange: function (id, obj) {
             adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
         },
-        
+
         stateChange: function (id, state) {},
-        
+
         unload: function () {
             if (timer) {
                 clearInterval(timer);
@@ -42,13 +43,13 @@ function startAdapter(options) {
         }
         */
     });
-    
+
     adapter = new utils.Adapter(options);
-    
+
     adapter.on('ready', function() {
         main();
     });
-    
+
     adapter.on('objectChange', function (id, obj) {
         adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
     });
@@ -56,7 +57,7 @@ function startAdapter(options) {
     adapter.on('stateChange', function (id, state) {
 
     });
-    
+
     adapter.on('unload', function () {
         if (timer) {
             clearInterval(timer);
@@ -64,7 +65,7 @@ function startAdapter(options) {
         }
         isStopping = true;
     });
-    
+
     return adapter;
 });
 
@@ -78,7 +79,7 @@ function stop() {
         stopTimer = setTimeout(function () {
             stopTimer = null;
             if (timer) clearInterval(timer);
-            adapter.log.warn("adapter stopped in scedule mode");
+            adapter.log.warn("adapter stopped in schedule mode");
             isStopping = true;
             adapter.stop();
         }, 30000);
@@ -462,7 +463,7 @@ function processTasks(tasks, callback) {
                     setImmediate(processTasks, tasks, callback);
                 }
             });
-        } else  if (task.type === 'deleteState') {
+        } else if (task.type === 'deleteState') {
             adapter.deleteState('', host, task.id, function (/* err */) {
                 if (timeout) {
                     clearTimeout(timeout);
@@ -487,7 +488,7 @@ function getTanke(tanke) {
     if (!tanke) {
         timer = setTimeout(function () {
             getTanke('go');
-        }, adapter.config.sync_time);
+        }, sync_milliseconds); // Sync Interval
         return;
     }
     readData(url);
@@ -507,15 +508,10 @@ function main() {
 		    adapter.setForeignObject(obj._id, obj);
 	    }
     });
-    
-    adapter.config.sync_time = parseInt(adapter.config.sync_time, 10) * 1000 * 60;
- //   adapter.config.sync_time = 0;
 
-// polling min 5min
-    if (adapter.config.sync_time < 5 * 1000 * 60) {
-        adapter.config.sync_time = 5 * 1000 * 60;
-	adapter.log.warn("Sync time set to minimum " + adapter.config.sync_time / 1000 * 60 + "min");
-    }
+    // polling min 5min
+    sync_milliseconds = parseInt(adapter.config.sync_time, 10) * 1000 * 60 || 5 * 1000 * 60;
+    adapter.log.debug("Sync set to " + adapter.config.sync_time + "min or " + adapter.config.sync_time * 1000 * 60 + " ms");
     syncConfig(function () {
         getTanke('go');
     });
