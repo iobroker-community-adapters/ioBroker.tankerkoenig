@@ -91,6 +91,25 @@
                 onChange(false);
             }
 
+
+            function save(callback) {
+                var patt = /[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}/g;
+                var apikey_string = $('#apikey').val();
+                var regexp_result = apikey_string.match(patt);
+                if (regexp_result === null) {
+	                  confirmMessage(_('No_Password'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
+	                      if (result === 1) {
+	                          return;
+	                      } else {
+	                          save2(callback);
+	                      }
+	                  });
+	              } else {
+	                  save2(callback);
+	              }
+	          }
+
+
             function save2(callback) {
 
                 var array = [];
@@ -148,22 +167,7 @@
                 });
             }
 
-            function save(callback) {
-                var patt = /[0-9|a-z]{8}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{4}+\-[0-9|a-z]{12}/g;
-                var apikey_string = $('#apikey').val();
-                var regexp_result = apikey_string.match(patt);
-                if (regexp_result === null) {
-	                  confirmMessage(_('No_Password'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
-	                      if (result === 1) {
-	                          return;
-	                      } else {
-	                          save2(callback);
-	                      }
-	                  });
-	              } else {
-	                  save2(callback);
-	              }
-	          }
+
 
         </script>
 
