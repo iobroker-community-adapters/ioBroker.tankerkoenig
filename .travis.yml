@@ -25,6 +25,7 @@ before_script:
   - npm install winston@2.3.1
   - 'npm install https://github.com/ioBroker/ioBroker.js-controller/tarball/master --production'
 addons:
+  mariadb: '10.0'
   apt:
     sources:
       - ubuntu-toolchain-r-test
