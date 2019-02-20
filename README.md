@@ -32,6 +32,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 2.0.1 (2019-02-20)
+* (pix) fixed scrollbar issue in firefox
+
 ### 2.0.0 (2019-02-18)
 * (pix) admin3 ready
 
