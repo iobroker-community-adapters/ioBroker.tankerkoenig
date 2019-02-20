@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.0",
+        "version": "2.0.1",
         "news": {
+            "2.0.1": {
+                  "en": "fixed scrollbar issue in firefox",
+                  "de": "Problem mit der Bildlaufleiste in Firefox behoben",
+                  "ru": "исправлена ​​проблема с полосой прокрутки в Firefox",
+                  "pt": "problema de barra de rolagem fixa no firefox",
+                  "nl": "probleem met de vaste schuifbalk in firefox",
+                  "fr": "Correction d'un problème de barre de défilement dans Firefox",
+                  "it": "problema fisso della barra di scorrimento in firefox",
+                  "es": "Se solucionó el problema de la barra de desplazamiento en Firefox",
+                  "pl": "naprawiono problem z przewijaniem w firefox",
+                  "zh-cn": "修复了Firefox中的滚动条问题"
+            },
             "2.0.0": {
                   "en": "Admin3 ready",
                   "de": "Admin3 bereit",
