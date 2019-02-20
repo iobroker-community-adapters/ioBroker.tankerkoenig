@@ -510,8 +510,8 @@ function main() {
     });
 
     // polling min 5min
-    sync_milliseconds = parseInt(adapter.config.sync_time, 10) * 1000 * 60 || 5 * 1000 * 60;
-    adapter.log.debug("Sync set to " + adapter.config.sync_time + "min or " + adapter.config.sync_time * 1000 * 60 + " ms");
+    sync_milliseconds = adapter.config.sync_time * 1000 * 60;
+    adapter.log.debug("Sync set to " + adapter.config.sync_time + "min or " + sync_milliseconds + " ms");
     syncConfig(function () {
         getTanke('go');
     });
