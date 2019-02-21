@@ -32,8 +32,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
-### 2.0.2 (2019-02-21)
+### 2.0.3 (2019-02-21)
 * (pix) fixed issue with too short sync interval
+* (pix) removed datoint 'price' which was created for debug only
 
 ### 2.0.1 (2019-02-20)
 * (pix) fixed scrollbar issue in firefox
@@ -72,10 +73,10 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) reset to zero issue fixed
 
 ### 1.0.0 (2016-10-08)
-* (pix) reset values to zero before each refresh now can be ticked off. 
+* (pix) reset values to zero before each refresh now can be ticked off.
 
 ### 0.1.2 (2016-07-05)
-* (pix,jens-maus) whitespaces between price and € sign 
+* (pix,jens-maus) whitespaces between price and € sign
 
 ### 0.1.1 (2016-07-05)
 * (pix) € appearance in datapoints __combined__ is customizable through css now (thanx jens-maus)
@@ -104,7 +105,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 ### 0.0.3 (2016-06-01)
 * (pix) Datapoint "combined" with CSS class for status
- 
+
 ### 0.0.2 (2016-06-01)
 * (pix) Datapoint "combined"
 
@@ -112,7 +113,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) Adapter created
 
 ## Roadmap
-* State HTML Table 
+* State HTML Table
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit error 503

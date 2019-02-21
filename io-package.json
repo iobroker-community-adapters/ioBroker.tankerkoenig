@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.2",
+        "version": "2.0.3",
         "news": {
+            "2.0.3": {
+              "en": "removed datapoint 'price' (created for debug only)",
+              "de": "Datenpunkt 'Preis' entfernt (nur für Debugging erstellt)",
+              "ru": "удален пункт данных 'цена' (создан только для отладки)",
+              "pt": "Datapoint removido 'preço' (criado apenas para depuração)",
+              "nl": "verwijderde datapunt 'prijs' (alleen gemaakt voor foutopsporing)",
+              "fr": "point de données supprimé 'prix' (créé pour le débogage uniquement)",
+              "it": "rimosso il \"prezzo\" del datapoint (creato solo per il debug)",
+              "es": "punto de datos eliminado 'precio' (creado solo para depuración)",
+              "pl": "usunięto \"cenę\" rekordu danych (stworzony tylko dla debugowania)",
+              "zh-cn": "删除了datapoint'price'（仅为调试而创建）"
+            },
             "2.0.2": {
                    "en": "fixed issue with too short sync interval",
                    "de": "Problem mit zu kurzem Synchronisierungsintervall behoben",
@@ -253,19 +265,6 @@
             "native": {}
         },
         {
-            "_id": "stations.0.e5.price",
-            "type": "state",
-            "common": {
-                "name": "e5 float",
-                "desc": "Preis E5 as float",
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
             "_id": "stations.0.e5.short",
             "type": "state",
             "common": {
@@ -329,19 +328,6 @@
             "native": {}
         },
         {
-            "_id": "stations.0.e10.price",
-            "type": "state",
-            "common": {
-                "name": "e5 float",
-                "desc": "Preis E10 as float",
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
             "_id": "stations.0.e10.short",
             "type": "state",
             "common": {
@@ -398,19 +384,6 @@
                 "desc": "Preis Diesel (e.eee) wie im Feed",
                 "type": "number",
                 "unit": "€",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "stations.0.diesel.price",
-            "type": "state",
-            "common": {
-                "name": "diesel float",
-                "desc": "Preis Diesel as float",
-                "type": "number",
                 "role": "value",
                 "read": true,
                 "write": false
@@ -529,19 +502,6 @@
             "native": {}
         },
         {
-            "_id": "stations.1.e5.price",
-            "type": "state",
-            "common": {
-                "name": "E5 float",
-                "desc": "Preis E5 as float",
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
             "_id": "stations.1.e5.short",
             "type": "state",
             "common": {
@@ -605,19 +565,6 @@
             "native": {}
         },
         {
-            "_id": "stations.1.e10.price",
-            "type": "state",
-            "common": {
-                "name": "E10 float",
-                "desc": "Preis E10 as float",
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
             "_id": "stations.1.e10.short",
             "type": "state",
             "common": {
@@ -674,19 +621,6 @@
                 "desc": "Preis Diesel (e.eee) wie im Feed",
                 "type": "number",
                 "unit": "€",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "stations.1.diesel.price",
-            "type": "state",
-            "common": {
-                "name": "diesel float",
-                "desc": "Preis Diesel as float",
-                "type": "number",
                 "role": "value",
                 "read": true,
                 "write": false
@@ -2701,19 +2635,6 @@
             "native": {}
         },
         {
-            "_id": "stations.cheapest.e5.price",
-            "type": "state",
-            "common": {
-                "name": "Günstigste E5 Tankstelle float",
-                "desc": "Preis E5 as float",
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
             "_id": "stations.cheapest.e5.short",
             "type": "state",
             "common": {
@@ -2816,19 +2737,6 @@
             "native": {}
         },
         {
-            "_id": "stations.cheapest.e10.price",
-            "type": "state",
-            "common": {
-                "name": "Günstigste E10 Tankstelle float",
-                "desc": "Preis E10 as float",
-                "type": "number",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
             "_id": "stations.cheapest.e10.short",
             "type": "state",
             "common": {
@@ -2924,19 +2832,6 @@
                 "desc": "Preis Diesel (e.eee) wie im Feed",
                 "type": "number",
                 "unit": "€",
-                "role": "value",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "stations.cheapest.diesel.price",
-            "type": "state",
-            "common": {
-                "name": "Günstigste Diesel Tankstelle float",
-                "desc": "Preis Diesel as float",
-                "type": "number",
                 "role": "value",
                 "read": true,
                 "write": false
