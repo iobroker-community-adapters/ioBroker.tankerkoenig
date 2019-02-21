@@ -485,7 +485,6 @@ function getTanke(tanke) {
     adapter.log.info("Daten werden eingelesen"); // DEBUG, kann wieder gelöscht werden
     readData(url);
     if (!isStopping)  {
-        adapter.log.info("Adapter gestoppt - es werden keine Daten mehr eingelesen"); // DEBUG, kann wieder gelöscht werden
         setTimeout(function () {
             getTanke('');
         }, 0);
