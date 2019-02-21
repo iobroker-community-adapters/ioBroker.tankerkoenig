@@ -10,9 +10,9 @@
 **Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/Pix---/ioBroker.tankerkoenig/master.svg)](https://travis-ci.org/Pix---/ioBroker.tankerkoenig)
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/ioBroker.tankerkoenig?branch=master&svg=true)](https://ci.appveyor.com/project/Pix---/ioBroker-tankerkoenig/)
 
-# Bitte nicht Installieren
+# Bitte nicht derzeit installieren
 
-Bitte derzeit nicht die Adapterversionen von github installieren.
+Bitte derzeit nicht die Adapterversionen 2.*.* von github installieren.
 Infos ->>>  https://forum.iobroker.net/post/230562
 
 :de: [Dokumentation](/docs/de/doc_tankerkoenig_de.md)
