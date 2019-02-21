@@ -32,6 +32,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 2.0.2 (2019-02-21)
+* (pix) fixed issue with too short sync interval
+
 ### 2.0.1 (2019-02-20)
 * (pix) fixed scrollbar issue in firefox
 
