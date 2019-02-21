@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.1",
+        "version": "2.0.2",
         "news": {
+            "2.0.2": {
+                   "en": "fixed issue with too short sync interval",
+                   "de": "Problem mit zu kurzem Synchronisierungsintervall behoben",
+                   "ru": "исправлена ​​проблема со слишком коротким интервалом синхронизации",
+                   "pt": "problema corrigido com intervalo de sincronização muito curto",
+                   "nl": "vast probleem met een te kort synchronisatie-interval",
+                   "fr": "problème résolu avec un intervalle de synchronisation trop court",
+                   "it": "problema risolto con intervallo di sincronizzazione troppo breve",
+                   "es": "problema solucionado con un intervalo de sincronización demasiado corto",
+                   "pl": "Naprawiono problem z zbyt krótkim interwałem synchronizacji",
+                   "zh-cn": "修复了同步间隔太短的问题"
+            },
             "2.0.1": {
                   "en": "fixed scrollbar issue in firefox",
                   "de": "Problem mit der Bildlaufleiste in Firefox behoben",
