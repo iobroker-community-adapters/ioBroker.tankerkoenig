@@ -15,6 +15,8 @@ let stopTimer = null;
 let isStopping = false;
 let systemLang = 'de';
 let adapter;
+let optinNoLog = false;
+
 var sync_milliseconds = 5 * 60 * 1000;  // 5min
 
 function startAdapter(options) {
@@ -22,26 +24,7 @@ function startAdapter(options) {
     Object.assign(options, {
         name:           adapterName,
         systemConfig:   true,
-        useFormatDate:  true/*,
-
-        ready: function () {
-            main();
-        },
-
-        objectChange: function (id, obj) {
-            adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
-        },
-
-        stateChange: function (id, state) {},
-
-        unload: function () {
-            if (timer) {
-                clearInterval(timer);
-                timer = 0;
-            }
-            isStopping = true;
-        }
-        */
+        useFormatDate:  true
     });
 
     adapter = new utils.Adapter(options);
@@ -68,8 +51,6 @@ function startAdapter(options) {
 
     return adapter;
 }
-
-let optinNoLog = false;
 
 function stop() {
     if (stopTimer) clearTimeout(stopTimer);
@@ -120,6 +101,7 @@ function cutPrice(preis) {
 }
 
 function readData(url) {
+    adapter.log.info("Reading data from tankerkoenig ..."); // DEBUG, kann wieder gelöscht werden
     request(url, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             let result;
@@ -482,7 +464,6 @@ function getTanke(tanke) {
         }, sync_milliseconds); // Sync Interval
         return;
     }
-    adapter.log.info("Daten werden eingelesen"); // DEBUG, kann wieder gelöscht werden
     readData(url);
     if (!isStopping)  {
         setTimeout(function () {
@@ -505,10 +486,10 @@ function main() {
     sync_milliseconds = parseFloat(adapter.config.synctime * 1000 * 60);
 
     if (sync_milliseconds < (5 * 60 * 1000)) {
-	    sync_milliseconds = 300000; //5 * 60 * 1000
+	    sync_milliseconds = 300000; //5 * 60 * 1000 wird als Mindestintervall gesetzt
 	    adapter.log.warn("Sync time was too short. New sync time is 5min");
     }
-    adapter.log.info("Sync set to " + adapter.config.synctime + "min or " + sync_milliseconds + " ms");
+    adapter.log.info("Sync time set to " + adapter.config.synctime + " minutes or " + sync_milliseconds + " ms");
 
     syncConfig(function () {
         getTanke('go');

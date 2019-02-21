@@ -123,19 +123,40 @@ systemDictionary = {
         "zh-cn": "StationID：格式错误或丢失"
     },
     "Werte nullen": {
-        "en": "Reset values",
-        "de": "Werte nullen",
-        "ru": "Werte nullen (übersetzen)"
+        "en": "Reset values before each sync",
+        "de": "Setzen Sie die Werte vor jeder Synchronisierung zurück",
+        "ru": "Сбрасывать значения перед каждой синхронизацией",
+        "pt": "Redefinir valores antes de cada sincronização",
+        "nl": "Reset waarden vóór elke synchronisatie",
+        "fr": "Réinitialiser les valeurs avant chaque synchronisation",
+        "it": "Reimposta i valori prima di ogni sincronizzazione",
+        "es": "Restablecer valores antes de cada sincronización",
+        "pl": "Zresetuj wartości przed każdą synchronizacją",
+        "zh-cn": "每次同步前重置值"
     },
     "Der Adapter ...": {
-        "en": "The adapter resets all prices before every scheduled refresh. This function prevents from saving outdated values if any error occurs while updating from the tankerkoenig-server.<br>To keep the data fluently without zeroes tick off this box.",
-        "de": "Der Adapter setzt bei jeder Aktualisierung der Preise vorher den Wert 0. Damit wird verhindert, dass sich ein veralteter Preis über evtl. Störungen bei der Aktualisierung hinweg hält.<br>Wenn Sie den Haken entfernen, wird keine 0 gesetzt. Damit werden Aufzeichnungen gleichmäßiger.",
-        "ru": "Der Adapter setzt bei jeder Aktualisierung der Preise vorher den Wert 0. Damit wird verhindert, dass sich ein veralteter Preis über evtl. Störungen bei der Aktualisierung hinweg hält.<br>Wenn Sie den Haken entfernen, wird keine 0 gesetzt. Damit werden Aufzeichnungen gleichmäßiger. (übersetzen)"
+        "en": "The adapter resets all prices before every scheduled refresh. This function prevents from saving outdated values if any error occurs while updating from the tankerkoenig server.<br>To keep the data fluently and to prevent zeroes tick off this box.",
+        "de": "Der Adapter setzt alle Preise vor jeder geplanten Aktualisierung zurück. Diese Funktion verhindert, dass veraltete Werte gespeichert werden, wenn beim Aktualisieren vom Tankerkoenig-Server ein Fehler auftritt. <br>Aktivieren Sie dieses Kontrollkästchen, um die Daten fließend zu halten und Nullen zu verhindern.",
+        "ru": "Адаптер сбрасывает все цены перед каждым запланированным обновлением. Эта функция предотвращает сохранение устаревших значений, если при обновлении с сервера tankerkoenig происходит какая-либо ошибка. <br>Для свободного хранения данных и предотвращения обнуления установите этот флажок.",
+        "pt": "O adaptador redefine todos os preços antes de cada atualização agendada. Esta função evita salvar valores desatualizados se ocorrer algum erro durante a atualização do servidor tankerkoenig. <br>Manter os dados fluentemente e evitar que zeros sejam desmarcados nesta caixa.",
+        "nl": "De adapter reset alle prijzen vóór elke geplande vernieuwing. Deze functie voorkomt het opslaan van verouderde waarden als er een fout optreedt tijdens het updaten vanaf de tankerkoenig-server. <br>Om de gegevens vloeiend te houden en om nullen te voorkomen, vinkt u dit vakje aan.",
+        "fr": "L'adaptateur réinitialise tous les prix avant chaque actualisation planifiée. Cette fonction empêche de sauvegarder les valeurs obsolètes si une erreur survient lors de la mise à jour à partir du serveur tankerkoenig. <br>Pour conserver les données facilement et éviter les zéros, cochez cette case.",
+        "it": "L'adattatore ripristina tutti i prezzi prima di ogni aggiornamento programmato. Questa funzione impedisce di salvare i valori obsoleti se si verifica un errore durante l'aggiornamento dal server tankerkoenig. <br>Per mantenere i dati fluidi e per evitare che gli zero ticchino questa casella.",
+        "es": "El adaptador restablece todos los precios antes de cada actualización programada. Esta función evita guardar valores desactualizados si se produce un error al actualizar desde el servidor tankerkoenig. <br>Para mantener los datos con fluidez y evitar que los ceros marquen esta casilla.",
+        "pl": "Adapter resetuje wszystkie ceny przed każdym zaplanowanym odświeżeniem. Ta funkcja zapobiega zapisywaniu nieaktualnych wartości, jeśli wystąpi jakikolwiek błąd podczas aktualizacji z serwera tankerkoenig. <br>Aby zachować dane płynnie i aby zapobiec zerom zaznaczyć to pole.",
+        "zh-cn": "适配器在每次计划的刷新之前重置所有价格。如果从tankerkoenig服务器更新时发生任何错误，此功能可防止保存过时值。<br>为了保持数据流畅并防止零点勾选此框。"
     },
     "Reset": {
-        "en": "Reset values",
-        "de": "Werte vor jeder Aktualisierung nullen",
-        "ru": "Werte vor jeder Aktualisierung nullen (übersetzen)"
+        "en": "Reset values before each sync",
+        "de": "Setzen Sie die Werte vor jeder Synchronisierung zurück",
+        "ru": "Сбрасывать значения перед каждой синхронизацией",
+        "pt": "Redefinir valores antes de cada sincronização",
+        "nl": "Reset waarden vóór elke synchronisatie",
+        "fr": "Réinitialiser les valeurs avant chaque synchronisation",
+        "it": "Reimposta i valori prima di ogni sincronizzazione",
+        "es": "Restablecer valores antes de cada sincronización",
+        "pl": "Zresetuj wartości przed każdą synchronizacją",
+        "zh-cn": "每次同步前重置值"
     },
     "Logdaten minimieren": {
         "en": "reduce log events",

@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.3",
+        "version": "2.0.4",
         "news": {
+            "2.0.4": {
+              "en": "Final fix for sync issues and further translations",
+              "de": "Behebung der Synchronisierungsprobleme und weitere Übersetzungen",
+              "ru": "окончательное исправление ошибок синхронизации и дальнейших переводов",
+              "pt": "Correção final para problemas de sincronização e mais traduções",
+              "nl": "Definitieve oplossing voor synchronisatieproblemen en verdere vertalingen",
+              "fr": "Correctif final 2.0.4 pour les problèmes de synchronisation et les traductions supplémentaires",
+              "it": "Correzione finale per problemi di sincronizzazione e ulteriori traduzioni",
+              "es": "Solución final para problemas de sincronización y otras traducciones",
+              "pl": "Ostateczna poprawka dotycząca problemów z synchronizacją i dalszych tłumaczeń",
+              "zh-cn": "同步问题和进一步翻译的最终修复"
+            },
             "2.0.3": {
               "en": "removed datapoint 'price' (created for debug only)",
               "de": "Datenpunkt 'Preis' entfernt (nur für Debugging erstellt)",
