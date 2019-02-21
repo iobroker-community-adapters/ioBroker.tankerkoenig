@@ -512,7 +512,7 @@ function main() {
     // polling min 5min
     sync_milliseconds = parseFloat(adapter.config.sync_time * 1000 * 60);
 	
-    if (sync_milliseconds) < (5 * 60 * 1000)) {
+    if (sync_milliseconds < (5 * 60 * 1000)) {
 	    sync_milliseconds = 300000; //5 * 60 * 1000
 	    adapter.log.warn("Sync time was too short. New sync time is 5min");
     }
