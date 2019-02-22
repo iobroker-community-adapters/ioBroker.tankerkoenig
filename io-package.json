@@ -19,8 +19,12 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.4",
+        "version": "2.0.5",
         "news": {
+            "2.0.5": {
+              "en": "Fixes against request() flooding",
+              "de": "Bugfixes um multiple request() auszuschliessen"
+            },
             "2.0.4": {
               "en": "Final fix for sync issues and further translations",
               "de": "Behebung der Synchronisierungsprobleme und weitere Übersetzungen",
