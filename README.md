@@ -10,11 +10,6 @@
 **Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/Pix---/ioBroker.tankerkoenig/master.svg)](https://travis-ci.org/Pix---/ioBroker.tankerkoenig)
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/ioBroker.tankerkoenig?branch=master&svg=true)](https://ci.appveyor.com/project/Pix---/ioBroker-tankerkoenig/)
 
-# Bitte nicht derzeit installieren
-
-Bitte derzeit nicht die Adapterversionen 2.*.* von github installieren.
-Infos ->>>  https://forum.iobroker.net/post/230562
-
 :de: [Dokumentation](/docs/de/doc_tankerkoenig_de.md)
 
 :uk: [Documentation](/docs/en/doc_tankerkoenig_en.md)
@@ -37,6 +32,10 @@ Infos ->>>  https://forum.iobroker.net/post/230562
 
 
 ## Changelog
+
+### 2.0.5 (2019-02-221)
+* (jens-maus) fixes to prevent request() floodings
+
 ### 2.0.3 (2019-02-21)
 * (pix) fixed issue with too short sync interval
 * (pix) removed datoint 'price' which was created for debug only
@@ -54,7 +53,7 @@ Infos ->>>  https://forum.iobroker.net/post/230562
 * (pix) Compact mode added
 
 ### 1.2.1 (2018-11-25)
-* (pix) fixed issue `station_id` and `status mixed up
+* (pix) fixed issue 'station_id' and 'status' mixed up
 
 ### 1.2.0 (2018-11-25)
 * (pix) new datapoint station ID added
@@ -122,7 +121,7 @@ Infos ->>>  https://forum.iobroker.net/post/230562
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit error 503
-* Datapoints for each station should be created after adapter restart, not only after installation
+* ~~Datapoints for each station should be created after adapter restart, not only after installation~~
 
 ## License
 
