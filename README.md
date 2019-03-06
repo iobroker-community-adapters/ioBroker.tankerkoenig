@@ -117,6 +117,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) Adapter created
 
 ## Roadmap
+* Save settings is not possible when no interval was entered -> 
 * State HTML Table
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
