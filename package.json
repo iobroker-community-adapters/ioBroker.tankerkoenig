@@ -23,7 +23,8 @@
   ],
   "dependencies": {
     "request": "^2.72.0",
-    "xml2js": "^0.2"
+    "xml2js": "^0.2",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
