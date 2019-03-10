@@ -1,7 +1,7 @@
 ![Logo](admin/tankerkoenig.png)
 # ioBroker.tankerkoenig
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) ![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Open Issues](http://githubbadges.herokuapp.com/Pix---/ioBroker.tankerkoenig/issues.svg)](http://github.com/Pix---/ioBroker.tankerkoenig/issues)
 
