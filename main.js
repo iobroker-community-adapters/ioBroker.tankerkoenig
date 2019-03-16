@@ -2,7 +2,7 @@
 /*jslint node: true */
 
 'use strict';
-const utils = require('@iobroker/adapter-core'); // Get common adapter utils
+const utils       = require(__dirname + '/lib/utils'); // Get common adapter utils
 const request     = require('request');
 
 const adapterName = require('./package.json').name;
@@ -293,37 +293,46 @@ function readData(url) {
 
                     // AUSGABE NIEDRIGSTER PREIS
                     // billigstes E5
-                    let prices = cutPrice(result.prices[cheapest_e5_stationid].e5);
-                    writeLog('Billigster E5: ' + cheapest_e5 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e5][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e5_stationid].e5), 'debug');
-                    adapter.setState('stations.cheapest.e5.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e5_stationid].e5)});
-                    adapter.setState('stations.cheapest.e5.short', {ack: true, val: prices.priceshort});// zweistellig
-                    adapter.setState('stations.cheapest.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                    adapter.setState('stations.cheapest.e5.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
-                    adapter.setState('stations.cheapest.e5.name', {ack: true, val: adapter.config.stationsarray[cheapest_e5][1]});
-                    adapter.setState('stations.cheapest.e5.status', {ack: true, val: result.prices[cheapest_e5_stationid].status});
-                    adapter.setState('stations.cheapest.e5.station_id', {ack: true, val: cheapest_e5_stationid});
+                    writeLog('ID der günstigsten Station für e5 ' + cheapest_e5_stationid, 'debug');
+                    if (cheapest_e5_stationid) {
+                        let prices = cutPrice(result.prices[cheapest_e5_stationid].e5);
+                        writeLog('Billigster E5: ' + cheapest_e5 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e5][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e5_stationid].e5), 'debug');
+                        adapter.setState('stations.cheapest.e5.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e5_stationid].e5)});
+                        adapter.setState('stations.cheapest.e5.short', {ack: true, val: prices.priceshort});// zweistellig
+                        adapter.setState('stations.cheapest.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
+                        adapter.setState('stations.cheapest.e5.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                        adapter.setState('stations.cheapest.e5.name', {ack: true, val: adapter.config.stationsarray[cheapest_e5][1]});
+                        adapter.setState('stations.cheapest.e5.status', {ack: true, val: result.prices[cheapest_e5_stationid].status});
+                        adapter.setState('stations.cheapest.e5.station_id', {ack: true, val: cheapest_e5_stationid});
+                    }
 
                     // billigstes E10
-                    prices = cutPrice(result.prices[cheapest_e5_stationid].e10);
-                    writeLog('Billigster E10: ' + cheapest_e10 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e10][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e10_stationid].e10), 'debug');
-                    adapter.setState('stations.cheapest.e10.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e10_stationid].e10)});
-                    adapter.setState('stations.cheapest.e10.short', {ack: true, val: prices.priceshort});// zweistellig
-                    adapter.setState('stations.cheapest.e10.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                    adapter.setState('stations.cheapest.e10.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
-                    adapter.setState('stations.cheapest.e10.name', {ack: true, val: adapter.config.stationsarray[cheapest_e10][1]});
-                    adapter.setState('stations.cheapest.e10.status', {ack: true, val: result.prices[cheapest_e10_stationid].status});
-                    adapter.setState('stations.cheapest.e10.station_id', {ack: true, val: cheapest_e10_stationid});
+                    writeLog('ID der günstigsten Station für e10 ' + cheapest_e10_stationid, 'debug');
+                    if (cheapest_e10_stationid) {
+                        let prices = cutPrice(result.prices[cheapest_e10_stationid].e10);
+                        writeLog('Billigster E10: ' + cheapest_e10 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e10][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e10_stationid].e10), 'debug');
+                        adapter.setState('stations.cheapest.e10.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e10_stationid].e10)});
+                        adapter.setState('stations.cheapest.e10.short', {ack: true, val: prices.priceshort});// zweistellig
+                        adapter.setState('stations.cheapest.e10.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
+                        adapter.setState('stations.cheapest.e10.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                        adapter.setState('stations.cheapest.e10.name', {ack: true, val: adapter.config.stationsarray[cheapest_e10][1]});
+                        adapter.setState('stations.cheapest.e10.status', {ack: true, val: result.prices[cheapest_e10_stationid].status});
+                        adapter.setState('stations.cheapest.e10.station_id', {ack: true, val: cheapest_e10_stationid});
+                    }
 
                     // billigster Diesel
-                    prices = cutPrice(result.prices[cheapest_e5_stationid].diesel);
-                    writeLog('Billigster Diesel: ' + cheapest_diesel + '. Tankstelle ' + adapter.config.stationsarray[cheapest_diesel][1] + ', Preis: ' + parseFloat(result.prices[cheapest_diesel_stationid].diesel), 'debug');
-                    adapter.setState('stations.cheapest.diesel.feed',  {ack: true, val: parseFloat(result.prices[cheapest_diesel_stationid].diesel)});
-                    adapter.setState('stations.cheapest.diesel.short', {ack: true, val: prices.priceshort});// zweistellig
-                    adapter.setState('stations.cheapest.diesel.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                    adapter.setState('stations.cheapest.diesel.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
-                    adapter.setState('stations.cheapest.diesel.name', {ack: true, val: adapter.config.stationsarray[cheapest_diesel][1]});
-                    adapter.setState('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});
-                    adapter.setState('stations.cheapest.diesel.station_id', {ack: true, val: cheapest_diesel_stationid});
+                    writeLog('ID der günstigsten Station für diesel ' + cheapest_diesel_stationid, 'debug');
+                    if (cheapest_diesel_stationid) {
+                        let prices = cutPrice(result.prices[cheapest_diesel_stationid].diesel);
+                        writeLog('Billigster Diesel: ' + cheapest_diesel + '. Tankstelle ' + adapter.config.stationsarray[cheapest_diesel][1] + ', Preis: ' + parseFloat(result.prices[cheapest_diesel_stationid].diesel), 'debug');
+                        adapter.setState('stations.cheapest.diesel.feed',  {ack: true, val: parseFloat(result.prices[cheapest_diesel_stationid].diesel)});
+                        adapter.setState('stations.cheapest.diesel.short', {ack: true, val: prices.priceshort});// zweistellig
+                        adapter.setState('stations.cheapest.diesel.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
+                        adapter.setState('stations.cheapest.diesel.combined', '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>');
+                        adapter.setState('stations.cheapest.diesel.name', {ack: true, val: adapter.config.stationsarray[cheapest_diesel][1]});
+                        adapter.setState('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});
+                        adapter.setState('stations.cheapest.diesel.station_id', {ack: true, val: cheapest_diesel_stationid});
+                    }
                     // ENDE AUSGABE NIEDRIGSTER PREIS
 
                     writeLog('objects written', 'debug');
