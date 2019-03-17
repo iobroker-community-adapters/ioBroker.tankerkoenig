@@ -3,7 +3,7 @@
 
 'use strict';
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
-const request     = require('request');');
+const request     = require('request');
 
 const adapterName = require('./package.json').name;
 const adapterVersion = require('./package.json').version;
