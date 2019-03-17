@@ -2,8 +2,8 @@
 /*jslint node: true */
 
 'use strict';
-const utils       = require(__dirname + '/lib/utils'); // Get common adapter utils
-const request     = require('request');
+const utils = require('@iobroker/adapter-core'); // Get common adapter utils
+const request     = require('request');');
 
 const adapterName = require('./package.json').name;
 const adapterVersion = require('./package.json').version;
