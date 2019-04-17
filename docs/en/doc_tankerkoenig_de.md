@@ -3,7 +3,6 @@
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
-[![Open Issues](http://githubbadges.herokuapp.com/Pix---/ioBroker.tankerkoenig/issues.svg)](http://github.com/Pix---/ioBroker.tankerkoenig/issues)
 
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
