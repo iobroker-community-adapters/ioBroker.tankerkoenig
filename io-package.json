@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.5",
+        "version": "2.0.6",
         "news": {
+            "2.0.6": {
+                "en": "Implementation of utils corrected",
+                "de": "Implementierung von utils korrigiert",
+                "ru": "Исправлена реализация утилит",
+                "pt": "Implementação de utils corrigidos",
+                "nl": "Implementatie van utils gecorrigeerd",
+                "fr": "Mise en œuvre des utils corrigée",
+                "it": "Implementazione di utils corretti",
+                "es": "Implementación de utils corregidos.",
+                "pl": "Poprawiono implementację narzędzi",
+                "zh-cn": "utils的实现更正了"
+            },
             "2.0.5": {
                 "en": "Fixes against request() flooding",
                 "de": "Bugfixes um multiple request() auszuschliessen",
