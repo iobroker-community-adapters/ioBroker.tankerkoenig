@@ -88,7 +88,7 @@ systemDictionary = {
     },
     "Name Tankstelle": {
         "en": "Custom name for station",
-        "de": "Eignener Name für die Station",
+        "de": "Eigener Name für die Station",
         "ru": "Пользовательское имя для станции",
         "pt": "Nome personalizado para a estação",
         "nl": "Aangepaste naam voor station",
