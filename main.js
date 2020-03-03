@@ -102,7 +102,7 @@ function cutPrice(preis) {
 }
 
 function readData(url) {
-    adapter.log.info("Reading data from tankerkoenig ..."); // DEBUG, kann wieder gelöscht werden
+    adapter.log.debug("Reading data from tankerkoenig ..."); // DEBUG, kann wieder gelöscht werden
     request({
               headers: { 'User-Agent': adapterName + '/' + adapterVersion },
               uri: url
