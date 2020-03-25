@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.6",
+        "version": "2.0.7",
         "news": {
+            "2.0.7": {
+                "en": "Catch error if station status reports 'no stations'",
+                "de": "Fangfehler, wenn der Stationsstatus 'keine Stationen' meldet",
+                "ru": "Ошибка перехвата, если статус станции сообщает «нет станций»",
+                "pt": "Erro de captura se o status da estação relatar 'sem estações'",
+                "nl": "Vangstfout als stationstatus 'geen stations' meldt",
+                "fr": "Erreur de capture si l'état de la station signale «aucune station»",
+                "it": "Errore di cattura se lo stato della stazione riporta 'nessuna stazione'",
+                "es": "Error de captura si el estado de la estación informa 'no hay estaciones'",
+                "pl": "Błąd połowu, jeśli status stacji zgłasza „brak stacji”",
+                "zh-cn": "如果站状态报告“无站”，则捕获错误"
+            },
             "2.0.6": {
                 "en": "Implementation of utils corrected",
                 "de": "Implementierung von utils korrigiert",
