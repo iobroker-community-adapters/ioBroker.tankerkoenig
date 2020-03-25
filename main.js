@@ -211,7 +211,7 @@ function readData(url) {
                             adapter.setState('stations.' + i + '.station_id', {ack: true, val: stationID});
 
                             // status checken
-                            if (status.indexOf('not found') !== -1) {
+                            if (status.indexOf('not found') || status.indexOf('no stations') !== -1) {
                                 writeLog('Station ' + stationID + ' nicht gefunden', 'warn');
                                 adapter.setState('stations.' + i + '.e5.combined',     '<span class="station_notfound">nicht gefunden</span>');
                                 adapter.setState('stations.' + i + '.e10.combined',    '<span class="station_notfound">nicht gefunden</span>');
