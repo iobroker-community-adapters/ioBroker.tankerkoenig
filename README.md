@@ -31,6 +31,9 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 2.0.7 (2020-03-25)
+* (pix) 2.0.7 Catch error if station status reports "no stations"
+
 ### 2.0.6 (2019-04-17)
 * (Zwer2k) implementation of utils corrected
 * (Zwer2k) fixed error occured when all stations were closed
@@ -119,12 +122,12 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) Adapter created
 
 ## Roadmap
-* Save settings is not possible when no interval was entered -> 
+* Save settings is not possible when no interval was entered
 * State HTML Table
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit error 503
-* ~~Datapoints for each station should be created after adapter restart, not only after installation~~
+* Datapoints for each station should be created after adapter restart, not only after installation~~
 
 ## License
 
