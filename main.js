@@ -211,11 +211,16 @@ function readData(url) {
                             adapter.setState('stations.' + i + '.station_id', {ack: true, val: stationID});
 
                             // status checken
-                            if (status.indexOf('not found') || status.indexOf('no stations') !== -1) {
+                            if (status.indexOf('not found') !== -1) {
                                 writeLog('Station ' + stationID + ' nicht gefunden', 'warn');
                                 adapter.setState('stations.' + i + '.e5.combined',     '<span class="station_notfound">nicht gefunden</span>');
                                 adapter.setState('stations.' + i + '.e10.combined',    '<span class="station_notfound">nicht gefunden</span>');
                                 adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_notfound">nicht gefunden</span>');
+                            } else if (status.indexOf('no stations') !== -1) {
+                                writeLog('Station ' + stationID + ' ergibt NO STATIONS', 'warn');
+                                adapter.setState('stations.' + i + '.e5.combined',     '<span class="station_notfound">Fehler NO STATIONS</span>');
+                                adapter.setState('stations.' + i + '.e10.combined',    '<span class="station_notfound">Fehler NO STATIONS</span>');
+                                adapter.setState('stations.' + i + '.diesel.combined', '<span class="station_notfound">Fehler NO STATIONS</span>');
                             } else if (status.indexOf('closed') !== -1) {
                                 writeLog('Station ' + stationID + ' ' + stationName +  ' geschlossen', 'debug');
                                 adapter.setState('stations.' + i + '.e5.combined',     '<span class="station_closed">geschlossen</span>');
