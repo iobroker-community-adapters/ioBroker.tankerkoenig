@@ -1,7 +1,7 @@
 {
   "name": "iobroker.tankerkoenig",
   "description": "Spritpreise von tankerkoenig.de",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "author": "pix",
   "contributors": [
     "pix"

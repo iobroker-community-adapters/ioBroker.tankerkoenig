@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.7",
+        "version": "2.0.8",
         "news": {
+            "2.0.8": {
+              "en": "fixed issue when api reports no data ",
+              "de": "Problem behoben, wenn API keine Daten meldet",
+              "ru": "исправлена проблема, когда API не сообщает данных",
+              "pt": "Foi corrigido um problema quando a API não informa dados",
+              "nl": "opgelost probleem wanneer api geen gegevens rapporteert",
+              "fr": "correction d'un problème lorsque l'api ne signale aucune donnée",
+              "it": "risolto problema quando api non riportava dati",
+              "es": "problema solucionado cuando la API no informa datos",
+              "pl": "naprawiono problem, gdy API nie zgłasza danych",
+              "zh-cn": "修复了api报告无数据时的问题"
+            },
             "2.0.7": {
                 "en": "Catch error if station status reports 'no stations'",
                 "de": "Fangfehler, wenn der Stationsstatus 'keine Stationen' meldet",

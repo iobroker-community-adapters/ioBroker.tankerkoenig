@@ -31,8 +31,11 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 
 ## Changelog
+### 2.0.8 (2020-03-27)
+* (Zwer2k) 2.0.8 Catch error if station status reports 'no data'
+
 ### 2.0.7 (2020-03-25)
-* (pix) 2.0.7 Catch error if station status reports "no stations"
+* (pix) 2.0.7 Catch error if station status reports 'no stations'
 
 ### 2.0.6 (2019-04-17)
 * (Zwer2k) implementation of utils corrected
