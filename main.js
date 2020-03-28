@@ -132,17 +132,21 @@ function readData(url) {
                         if (!adapter.config.stationsarray[j][0]) {
                             adapter.log.debug('Einstellung/Eintrag Nr. ' + j + ' ist leer');
                         } else {
-                            if (result.prices[stationID].e5 > 0) {
-                                cheapest_e5 = j;
-                                cheapest_e5_stationid = adapter.config.stationsarray[j][0];
-                            }
-                            if (result.prices[stationID].e10 > 0) {
-                                cheapest_e10 = j;
-                                cheapest_e10_stationid = adapter.config.stationsarray[j][0];
-                            }
-                            if (result.prices[stationID].diesel > 0) {
-                                cheapest_diesel = j;
-                                cheapest_diesel_stationid = adapter.config.stationsarray[j][0];
+                            if (result.prices[stationID] === undefined) {
+                                adapter.log.debug('Keine Daten für Tankstelle ' + stationID + ' vorhanden');
+                            } else {
+                                if (result.prices[stationID].e5 > 0) {
+                                    cheapest_e5 = j;
+                                    cheapest_e5_stationid = adapter.config.stationsarray[j][0];
+                                }
+                                if (result.prices[stationID].e10 > 0) {
+                                    cheapest_e10 = j;
+                                    cheapest_e10_stationid = adapter.config.stationsarray[j][0];
+                                }
+                                if (result.prices[stationID].diesel > 0) {
+                                    cheapest_diesel = j;
+                                    cheapest_diesel_stationid = adapter.config.stationsarray[j][0];
+                                }
                             }
                         } // die letzten gefundenen Einträge beim Runterzählen,
                           // also die ersten in der Liste sind jetzt der Maßstab für den Vergleich, ob billiger oder nicht
@@ -202,7 +206,7 @@ function readData(url) {
                             adapter.setState('stations.' + i + '.diesel.combined', '');
                         } // Zeile testweise eingefügt
 
-                        if (stationID.length === 36) { // wenn StationID bekannt, also Settings-Feld gefüllt
+                        if ((stationID.length === 36) && (result.prices[stationID] !== undefined)) { // wenn StationID bekannt, also Settings-Feld gefüllt
                             writeLog('Station ' + stationID + ' ' + stationName + ' wird bearbeitet ...','debug');
                             const status = result.prices[stationID].status;
                             // Namen und Status in jedem Fall schreiben
@@ -494,18 +498,18 @@ function getTanke(tanke) {
 function main() {
     // Umbau auf daemon
     adapter.getForeignObject('system.adapter.' + adapter.namespace, function (err, obj) {
-	    if (obj.common.mode !== 'daemon') {
-		    obj.common.mode = 'daemon';
-		    adapter.setForeignObject(obj._id, obj);
-	    }
+            if (obj.common.mode !== 'daemon') {
+                    obj.common.mode = 'daemon';
+                    adapter.setForeignObject(obj._id, obj);
+            }
     });
 
     // polling min 5min
     sync_milliseconds = parseFloat(adapter.config.synctime * 1000 * 60);
 
     if (isNaN(sync_milliseconds) || sync_milliseconds < (5 * 60 * 1000)) {
-	    sync_milliseconds = 300000; //5 * 60 * 1000 wird als Mindestintervall gesetzt
-	    adapter.log.warn("Sync time was too short (" + adapter.config.synctime + "). New sync time is 5 min");
+            sync_milliseconds = 300000; //5 * 60 * 1000 wird als Mindestintervall gesetzt
+            adapter.log.warn("Sync time was too short (" + adapter.config.synctime + "). New sync time is 5 min");
     }
     adapter.log.info("Sync time set to " + adapter.config.synctime + " minutes or " + sync_milliseconds + " ms");
 
