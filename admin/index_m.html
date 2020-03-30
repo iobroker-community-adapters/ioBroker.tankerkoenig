@@ -155,7 +155,7 @@
                 var patt = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
                 var apikey_string = $('#apikey').val();
                 if (apikey_string.match(patt) === null) {
-                    confirmMessage(_('check user API Key'), _('Warning!'), null, [_('Ignore warning'), _('Set API-Key')], function (result) {
+                    confirmMessage(_('Check user API key'), _('Warning!'), null, [_('Ignore warning'), _('Set API key')], function (result) {
                         if (result === 1) {
                             return;
                         } else {
