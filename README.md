@@ -32,21 +32,21 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 ## Changelog
 ### 2.0.8 (2020-03-27)
-* (Zwer2k) 2.0.8 Catch error if station status reports __no data__
+* (Zwer2k) 2.0.8 Catch error if station status reports _no data_
 
 ### 2.0.7 (2020-03-25)
-* (pix) 2.0.7 Catch error if station status reports __no stations__
+* (pix) 2.0.7 Catch error if station status reports _no stations_
 
 ### 2.0.6 (2019-04-17)
 * (Zwer2k) implementation of utils corrected
 * (Zwer2k) fixed error occured when all stations were closed
 
 ### 2.0.5 (2019-02-22)
-* (jens-maus) fixes to prevent request() floodings
+* (jens-maus) fixes to prevent _request()_ floodings
 
 ### 2.0.3 (2019-02-21)
 * (pix) fixed issue with too short sync interval
-* (pix) removed datoint __price__ which was created for debug only
+* (pix) removed datapoint __price__ which was created for debug only
 
 ### 2.0.1 (2019-02-20)
 * (pix) fixed scrollbar issue in firefox
@@ -73,7 +73,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) Log entry opt out
 
 ### 1.0.4 (2017-03-21)
-* (pix) position of adapter.stop() optimized
+* (pix) position of _adapter.stop()_ optimized
 
 ### 1.0.3 (2017-01-05)
 * (pix) Appveyor testing added
@@ -129,14 +129,14 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * State HTML Table
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
-* Catch and display tankerkoenig rate limit error 503
+* Catch and display tankerkoenig rate limit _error 503_
 * Datapoints for each station should be created after adapter restart, not only after installation
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2016-2019 pix
+Copyright (c) 2016-2020 pix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
