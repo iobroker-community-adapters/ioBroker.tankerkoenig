@@ -32,10 +32,10 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 ## Changelog
 ### 2.0.8 (2020-03-27)
-* (Zwer2k) 2.0.8 Catch error if station status reports 'no data'
+* (Zwer2k) 2.0.8 Catch error if station status reports __no data__
 
 ### 2.0.7 (2020-03-25)
-* (pix) 2.0.7 Catch error if station status reports 'no stations'
+* (pix) 2.0.7 Catch error if station status reports __no stations__
 
 ### 2.0.6 (2019-04-17)
 * (Zwer2k) implementation of utils corrected
@@ -46,7 +46,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 
 ### 2.0.3 (2019-02-21)
 * (pix) fixed issue with too short sync interval
-* (pix) removed datoint 'price' which was created for debug only
+* (pix) removed datoint __price__ which was created for debug only
 
 ### 2.0.1 (2019-02-20)
 * (pix) fixed scrollbar issue in firefox
@@ -61,7 +61,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) Compact mode added
 
 ### 1.2.1 (2018-11-25)
-* (pix) fixed issue 'station_id' and 'status' mixed up
+* (pix) fixed issue __station_id__ and __status__ mixed up
 
 ### 1.2.0 (2018-11-25)
 * (pix) new datapoint station ID added
@@ -113,13 +113,13 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * (pix) scheduled starting improved
 
 ### 0.0.4 (2016-06-01)
-* (pix) HTML Code in Datapoint "combined" corrected
+* (pix) HTML Code in Datapoint __combined__ corrected
 
 ### 0.0.3 (2016-06-01)
-* (pix) Datapoint "combined" with CSS class for status
+* (pix) Datapoint __combined__ with CSS class for status
 
 ### 0.0.2 (2016-06-01)
-* (pix) Datapoint "combined"
+* (pix) Datapoint __combined__
 
 ### 0.0.1 (2016-05-31)
 * (pix) Adapter created
@@ -130,7 +130,7 @@ Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/
 * State JSON Table for VIS JSON table widget
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit error 503
-* Datapoints for each station should be created after adapter restart, not only after installation~~
+* Datapoints for each station should be created after adapter restart, not only after installation
 
 ## License
 
