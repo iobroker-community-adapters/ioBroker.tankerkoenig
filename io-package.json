@@ -19,19 +19,31 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.8",
+        "version": "2.0.9",
         "news": {
+            "2.0.9": {
+                "en": "NodeJS 10 or higher required",
+                "de": "NodeJS 10 oder höher erforderlich",
+                "ru": "Требуется NodeJS 10 или выше",
+                "pt": "Necessário NodeJS 10 ou superior",
+                "nl": "NodeJS 10 of hoger vereist",
+                "fr": "NodeJS 10 ou supérieur requis",
+                "it": "Nodo JS 10 o superiore richiesto",
+                "es": "Nodo JS 10 o superior requerido",
+                "pl": "Wymagany NodeJS 10 lub wyższy",
+                "zh-cn": "需要NodeJS 10或更高版本"
+            },
             "2.0.8": {
-              "en": "fixed issue when api reports no data ",
-              "de": "Problem behoben, wenn API keine Daten meldet",
-              "ru": "исправлена проблема, когда API не сообщает данных",
-              "pt": "Foi corrigido um problema quando a API não informa dados",
-              "nl": "opgelost probleem wanneer api geen gegevens rapporteert",
-              "fr": "correction d'un problème lorsque l'api ne signale aucune donnée",
-              "it": "risolto problema quando api non riportava dati",
-              "es": "problema solucionado cuando la API no informa datos",
-              "pl": "naprawiono problem, gdy API nie zgłasza danych",
-              "zh-cn": "修复了api报告无数据时的问题"
+                "en": "fixed issue when api reports no data ",
+                "de": "Problem behoben, wenn API keine Daten meldet",
+                "ru": "исправлена проблема, когда API не сообщает данных",
+                "pt": "Foi corrigido um problema quando a API não informa dados",
+                "nl": "opgelost probleem wanneer api geen gegevens rapporteert",
+                "fr": "correction d'un problème lorsque l'api ne signale aucune donnée",
+                "it": "risolto problema quando api non riportava dati",
+                "es": "problema solucionado cuando la API no informa datos",
+                "pl": "naprawiono problem, gdy API nie zgłasza danych",
+                "zh-cn": "修复了api报告无数据时的问题"
             },
             "2.0.7": {
                 "en": "Catch error if station status reports 'no stations'",
