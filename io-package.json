@@ -57,90 +57,6 @@
                 "pl": "Błąd połowu, jeśli status stacji zgłasza „brak stacji”",
                 "zh-cn": "如果站状态报告“无站”，则捕获错误"
             },
-            "2.0.6": {
-                "en": "Implementation of utils corrected",
-                "de": "Implementierung von utils korrigiert",
-                "ru": "Исправлена реализация утилит",
-                "pt": "Implementação de utils corrigidos",
-                "nl": "Implementatie van utils gecorrigeerd",
-                "fr": "Mise en œuvre des utils corrigée",
-                "it": "Implementazione di utils corretti",
-                "es": "Implementación de utils corregidos.",
-                "pl": "Poprawiono implementację narzędzi",
-                "zh-cn": "utils的实现更正了"
-            },
-            "2.0.5": {
-                "en": "Fixes against request() flooding",
-                "de": "Bugfixes um multiple request() auszuschliessen",
-                "ru": "Исправления против запроса ()",
-                "pt": "Correções contra inundação request ()",
-                "nl": "Oplossingen voor flooding van verzoeken ()",
-                "fr": "Corrections contre les inondations de requête ()",
-                "it": "Correzioni contro l'allagamento request ()",
-                "es": "Correcciones contra solicitud () inundaciones",
-                "pl": "Rozwiązuje problem z powodzią ()",
-                "zh-cn": "修复了request（）泛滥"
-            },
-            "2.0.4": {
-                "en": "Final fix for sync issues and further translations",
-                "de": "Behebung der Synchronisierungsprobleme und weitere Übersetzungen",
-                "ru": "окончательное исправление ошибок синхронизации и дальнейших переводов",
-                "pt": "Correção final para problemas de sincronização e mais traduções",
-                "nl": "Definitieve oplossing voor synchronisatieproblemen en verdere vertalingen",
-                "fr": "Correctif final 2.0.4 pour les problèmes de synchronisation et les traductions supplémentaires",
-                "it": "Correzione finale per problemi di sincronizzazione e ulteriori traduzioni",
-                "es": "Solución final para problemas de sincronización y otras traducciones",
-                "pl": "Ostateczna poprawka dotycząca problemów z synchronizacją i dalszych tłumaczeń",
-                "zh-cn": "同步问题和进一步翻译的最终修复"
-            },
-            "2.0.3": {
-                "en": "removed datapoint 'price' (created for debug only)",
-                "de": "Datenpunkt 'Preis' entfernt (nur für Debugging erstellt)",
-                "ru": "удален пункт данных 'цена' (создан только для отладки)",
-                "pt": "Datapoint removido 'preço' (criado apenas para depuração)",
-                "nl": "verwijderde datapunt 'prijs' (alleen gemaakt voor foutopsporing)",
-                "fr": "point de données supprimé 'prix' (créé pour le débogage uniquement)",
-                "it": "rimosso il \"prezzo\" del datapoint (creato solo per il debug)",
-                "es": "punto de datos eliminado 'precio' (creado solo para depuración)",
-                "pl": "usunięto \"cenę\" rekordu danych (stworzony tylko dla debugowania)",
-                "zh-cn": "删除了datapoint'price'（仅为调试而创建）"
-            },
-            "2.0.2": {
-                "en": "fixed issue with too short sync interval",
-                "de": "Problem mit zu kurzem Synchronisierungsintervall behoben",
-                "ru": "исправлена ​​проблема со слишком коротким интервалом синхронизации",
-                "pt": "problema corrigido com intervalo de sincronização muito curto",
-                "nl": "vast probleem met een te kort synchronisatie-interval",
-                "fr": "problème résolu avec un intervalle de synchronisation trop court",
-                "it": "problema risolto con intervallo di sincronizzazione troppo breve",
-                "es": "problema solucionado con un intervalo de sincronización demasiado corto",
-                "pl": "Naprawiono problem z zbyt krótkim interwałem synchronizacji",
-                "zh-cn": "修复了同步间隔太短的问题"
-            },
-            "2.0.1": {
-                "en": "fixed scrollbar issue in firefox",
-                "de": "Problem mit der Bildlaufleiste in Firefox behoben",
-                "ru": "исправлена ​​проблема с полосой прокрутки в Firefox",
-                "pt": "problema de barra de rolagem fixa no firefox",
-                "nl": "probleem met de vaste schuifbalk in firefox",
-                "fr": "Correction d'un problème de barre de défilement dans Firefox",
-                "it": "problema fisso della barra di scorrimento in firefox",
-                "es": "Se solucionó el problema de la barra de desplazamiento en Firefox",
-                "pl": "naprawiono problem z przewijaniem w firefox",
-                "zh-cn": "修复了Firefox中的滚动条问题"
-            },
-            "2.0.0": {
-                "en": "Admin3 ready",
-                "de": "Admin3 bereit",
-                "ru": "Admin3 готов",
-                "pt": "Pronto para Admin3",
-                "nl": "Admin3 klaar",
-                "fr": "Admin3 prêt",
-                "it": "Admin3 pronto",
-                "es": "Admin3 listo",
-                "pl": "Admin3 gotowy",
-                "zh-cn": "Admin3准备好了"
-            },
             "1.3.1": {
                 "en": "request issues fixed",
                 "de": "Anforderungsprobleme behoben",
@@ -152,60 +68,6 @@
                 "es": "problemas de solicitud solucionados",
                 "pl": "Naprawiono problemy z prośbą",
                 "zh-cn": "请求问题已修复"
-            },
-            "1.3.0": {
-                "en": "Compact mode added",
-                "de": "Kompaktmodus hinzugefügt",
-                "ru": "Добавлен компактный режим",
-                "pt": "Modo compacto adicionado",
-                "nl": "Compact-modus toegevoegd",
-                "fr": "Mode compact ajouté",
-                "it": "Aggiunta modalità compatta",
-                "es": "Modo compacto agregado",
-                "pl": "Dodano tryb kompaktowy",
-                "zh-cn": "紧凑模式添加"
-            },
-            "1.2.0": {
-                "en": "New datapoint StationID, english readme",
-                "de": "Neuer Datenpunkt StationID",
-                "ru": "Новый datapoint StationID",
-                "pt": "Novo datapoint StationID",
-                "nl": "Nieuw datapunt StationID",
-                "fr": "Nouveau point de donnée StationID",
-                "it": "Nuovo datapoint ID",
-                "es": "Nuevo punto de datos StationID",
-                "pl": "Nowy punkt danych StationID"
-            },
-            "1.1.0": {
-                "en": "prices as number to allow logging were added",
-                "de": "Preise als Anzahl für die Protokollierung wurden hinzugefügt",
-                "ru": "добавлены цены в качестве номера для ведения журнала",
-                "pt": "preços como número para permitir log foram adicionados",
-                "nl": "prijzen als aantal om logging toe te staan werden toegevoegd",
-                "fr": "les prix en nombre pour permettre la journalisation ont été ajoutés",
-                "it": "sono stati aggiunti i prezzi come numero per consentire la registrazione",
-                "es": "se agregaron los precios como número para permitir el registro",
-                "pl": "dodano ceny jako liczbę umożliwiającą rejestrację"
-            },
-            "1.0.5": {
-                "en": "opt out log entries",
-                "de": "Log Einträge ausschalten",
-                "ru": "opt out log entries"
-            },
-            "1.0.4": {
-                "en": "position of adapter.stop() optimized",
-                "de": "Adapter.stop() Funktion besser positioniert",
-                "ru": "position of adapter.stop() optimized"
-            },
-            "1.0.3": {
-                "en": "Appveyor testing supported",
-                "de": "Appveyor Test Unterstützung",
-                "ru": "Appveyor тестирование при поддержке"
-            },
-            "1.0.2": {
-                "en": "Travis CI testing supported",
-                "de": "Travis CI Test Unterstützung",
-                "ru": "Travis CI тестирование при поддержке"
             }
         },
         "mode": "daemon",
@@ -227,6 +89,10 @@
         "authors": [
             "Pix"
         ],
+        "docs": {
+           "en": "docs/en/doc_tankerkoenig_de.md",
+           "de": "docs/de/doc_tankerkoenig_de.md"
+        },
         "license": "MIT",
         "readme": "https://github.com/Pix---/ioBroker.tankerkoenig/blob/master/README.md",
         "icon": "tankerkoenig.png",
