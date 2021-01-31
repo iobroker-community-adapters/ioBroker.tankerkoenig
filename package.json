@@ -24,13 +24,13 @@
   "dependencies": {
     "request": "^2.72.0",
     "xml2js": "^0.4.23",
-    "@iobroker/adapter-core": "^1.0.3"
+    "@iobroker/adapter-core": "^2.4.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "mocha": "^4.1.0",
-    "chai": "^4.1.2",
-    "@iobroker/testing": "^1.1.10"
+    "gulp": "^4.0.2",
+    "mocha": "^7.0.2",
+    "chai": "^4.2.0",
+    "@iobroker/testing": "^2.4.2"
   },
   "bugs": {
     "url": "https://github.com/Pix---/ioBroker.tankerkoenig/issues"
