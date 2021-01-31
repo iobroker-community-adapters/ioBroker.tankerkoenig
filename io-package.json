@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.9",
+        "version": "2.0.10",
         "news": {
+            "2.0.10": {
+                "en": "\"has no existing object\" issue fixed",
+                "de": "Problem \"hat kein vorhandenes Objekt\" behoben",
+                "ru": "Исправлена проблема \"не имеет существующего объекта\"",
+                "pt": "Problema \"não tem objeto existente\" corrigido",
+                "nl": "\"heeft geen bestaand object\" probleem opgelost",
+                "fr": "Problème \"n'a aucun objet existant\" résolu",
+                "it": "Problema \"non ha oggetto esistente\" risolto",
+                "es": "Problema \"no tiene ningún objeto existente\" solucionado",
+                "pl": "Naprawiono problem \"nie ma istniejącego obiektu\"",
+                "zh-cn": "修复\"没有对象\"的问题"
+            },
             "2.0.9": {
                 "en": "NodeJS 10 or higher required",
                 "de": "NodeJS 10 oder höher erforderlich",
