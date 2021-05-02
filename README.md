@@ -36,6 +36,9 @@ NodeJS v10 oder höher wird vorausgesetzt.
 
 
 ## Changelog
+### 2.0.11 (2021-05-02)
+* (anwa) "wrong type" and "ack flag" issues fixed (upcoming in js-controller > 3.3)
+
 ### 2.0.10 (2021-02-01)
 * (wendy) "has no existing object" issue fixed
 
