@@ -19,8 +19,20 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.10",
+        "version": "2.0.11",
         "news": {
+            "2.0.11": {
+                "en": "\"ack flag\" and \"wrong type\" issues coming up due to js-controller upgrade 3.3 were fixed",
+                "de": "Probleme mit \"ack flag\" und \"false type\" aufgrund von js-controller upgrade 3.3 wurden behoben",
+                "ru": "Исправлены проблемы с \"флагом подтверждения\" и \"неправильным типом\", возникающие в связи с обновлением js-controller 3.3.",
+                "pt": "Os problemas de \"ack flag\" e \"tipo incorreto\" que surgiam devido à atualização 3.3 do js-controller foram corrigidos",
+                "nl": "\"ack flag\" en \"verkeerde type\" problemen die aan de orde kwamen als gevolg van de js-controller upgrade 3.3 waren opgelost",
+                "fr": "Les problèmes de «drapeau d'ack» et de «type incorrect» à venir en raison de la mise à jour 3.3 du contrôleur js ont été corrigés",
+                "it": "Sono stati risolti i problemi di \"flag ack\" e \"tipo sbagliato\" dovuti all'aggiornamento 3.3 di js-controller",
+                "es": "Se solucionaron los problemas de \"bandera ack\" y \"tipo incorrecto\" debido a la actualización 3.3 del controlador js",
+                "pl": "Naprawiono problemy z flagą ACK i złym typem pojawiające się w związku z aktualizacją js-controller do wersji 3.3",
+                "zh-cn": "修复了由于js-controller升级3.3而出现的“ ack标志”和“错误类型”问题"
+            },
             "2.0.10": {
                 "en": "\"has no existing object\" issue fixed",
                 "de": "Problem \"hat kein vorhandenes Objekt\" behoben",
