@@ -19,7 +19,7 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.0.12“,
+        "version": "2.0.12",
         "news": {
             "2.0.11": {
                 "en": "\"ack flag\" and \"wrong type\" issues coming up due to js-controller upgrade 3.3 were fixed",
