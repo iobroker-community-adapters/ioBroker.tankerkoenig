@@ -19,11 +19,11 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.1.0",
+        "version": "2.1.1",
         "news": {
-          "2.1.0": {
-            "en": "New adapter category \"vehicle\"",
-            "de": "Neue Adapterkategorie \"Fahrzeug\"",
+          "2.1.1": {
+            "en": "New adapter category \"vehicle\", NodeJS v16 testing",
+            "de": "Neue Adapterkategorie \"Fahrzeug\", NodeJS v16 Test",
             "ru": "Новая категория адаптера \"автомобиль\"",
             "pt": "Nova categoria de adaptador \"veículo\"",
             "nl": "Nieuwe adapter categorie \"voertuig\"",
