@@ -36,6 +36,10 @@ NodeJS v10 oder höher wird vorausgesetzt.
 
 
 ## Changelog
+### 2.1.0 (2021-06-22)
+* (pix) New adapter category "vehicle"
+* (pix) Testing for Nodejs 16
+
 ### 2.0.12 (2021-05-05)
 * (pix) connectionType and dataSource added
 
