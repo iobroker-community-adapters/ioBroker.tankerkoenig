@@ -36,6 +36,9 @@ NodeJS v10 oder höher wird vorausgesetzt.
 
 
 ## Changelog
+### 2.2.0 (2021-11-14)
+* (simatec) Design Fix for Admin Dark/Blue Theme
+
 ### 2.1.1 (2021-06-22)
 * (pix) New adapter category "vehicle" [#67](https://github.com/Pix---/ioBroker.tankerkoenig/issues/67)
 * (pix) Testing for Nodejs 16
