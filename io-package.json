@@ -19,9 +19,21 @@
             "de": "Tankerkönig Spritpreise",
             "ru": "Tankerkoenig Цены на топливо"
         },
-        "version": "2.1.1",
+        "version": "2.2.0",
         "news": {
-          "2.1.1": {
+          "2.2.0": {
+            "en": "Design Fix for Admin Dark/Blue Theme",
+            "de": "Design Fix for Admin Dark/Blue Theme",
+            "ru": "Design Fix for Admin Dark/Blue Theme",
+            "pt": "Design Fix for Admin Dark/Blue Theme",
+            "nl": "Design Fix for Admin Dark/Blue Theme",
+            "fr": "Design Fix for Admin Dark/Blue Theme",
+            "it": "Design Fix for Admin Dark/Blue Theme",
+            "es": "Design Fix for Admin Dark/Blue Theme",
+            "pl": "Design Fix for Admin Dark/Blue Theme",
+            "zh-cn": "Design Fix for Admin Dark/Blue Theme"
+          },
+            "2.1.1": {
             "en": "New adapter category \"vehicle\", NodeJS v16 testing",
             "de": "Neue Adapterkategorie \"Fahrzeug\", NodeJS v16 Test",
             "ru": "Новая категория адаптера \"автомобиль\"",
@@ -30,8 +42,8 @@
             "fr": "Nouvel adaptateur catégorie \"véhicule\"",
             "it": "Nuova categoria di adattatori \"veicolo\"",
             "es": "Nueva categoría de adaptador \"vehículo\"",
-            "pl": "Nowa kategoria adapterów „pojazd”",
-            "zh-cn": "新的适配器类别“车辆”"
+            "pl": "Nowa kategoria adapterów \"pojazd\"",
+            "zh-cn": "新的适配器类别\"车辆\""
           },
           "2.0.11": {
                 "en": "\"ack flag\" and \"wrong type\" issues coming up due to js-controller upgrade 3.3 were fixed",
@@ -43,7 +55,7 @@
                 "it": "Sono stati risolti i problemi di \"flag ack\" e \"tipo sbagliato\" dovuti all'aggiornamento 3.3 di js-controller",
                 "es": "Se solucionaron los problemas de \"bandera ack\" y \"tipo incorrecto\" debido a la actualización 3.3 del controlador js",
                 "pl": "Naprawiono problemy z flagą ACK i złym typem pojawiające się w związku z aktualizacją js-controller do wersji 3.3",
-                "zh-cn": "修复了由于js-controller升级3.3而出现的“ ack标志”和“错误类型”问题"
+                "zh-cn": "修复了由于js-controller升级3.3而出现的\" ack标志\"和\"错误类型\"问题"
             },
             "2.0.10": {
                 "en": "\"has no existing object\" issue fixed",
