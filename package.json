@@ -1,50 +1,134 @@
 {
   "name": "iobroker.tankerkoenig",
-  "description": "Spritpreise von tankerkoenig.de",
   "version": "2.2.0",
-  "author": "pix",
-  "contributors": [
-    "pix"
-  ],
-  "homepage": "https://github.com/Pix---/ioBroker.tankerkoenig",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Pix---/ioBroker.tankerkoenig"
+  "description": "Spritpreise von tankerkoenig.de",
+  "author": {
+	"name": "pix"
   },
+  "contributors": [{
+	"name": "pix"
+  }],
+  "homepage": "https://github.com/Pix---/ioBroker.tankerkoenig",
   "license": "MIT",
   "keywords": [
-    "ioBroker",
-    "tankerkoenig",
-    "spritpreis",
-    "diesel",
-    "benzin",
-    "preis",
-    "kraftstoff",
-    "gas",
-    "home automation"
+	"ioBroker",
+	"tankerkoenig",
+	"spritpreis",
+	"diesel",
+	"benzin",
+	"preis",
+	"kraftstoff",
+	"gas",
+	"home automation"
   ],
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/Pix---/ioBroker.tankerkoenig"
+  },
   "dependencies": {
-    "request": "^2.72.0",
-    "xml2js": "^0.4.23",
-    "@iobroker/adapter-core": "^2.4.0"
+	"axios": "^0.27.2",
+	"xml2js": "^0.4.23",
+	"@iobroker/adapter-core": "^2.6.0"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "mocha": "^7.0.2",
-    "chai": "^4.2.0",
-    "@iobroker/testing": "^2.4.2"
+	"@alcalzone/release-script": "^3.5.9",
+	"@alcalzone/release-script-plugin-iobroker": "^3.5.9",
+	"@alcalzone/release-script-plugin-license": "^3.5.9",
+	"@emotion/react": "^11.9.0",
+	"@emotion/styled": "^11.8.1",
+	"@iobroker/adapter-dev": "^1.0.0",
+	"@iobroker/adapter-react": "2.1.0",
+	"@iobroker/socket-client": "^1.1.0",
+	"@iobroker/testing": "^3.0.2",
+	"@mui/icons-material": "^5.8.0",
+	"@mui/material": "^5.8.1",
+	"@mui/styles": "^5.8.0",
+	"@types/chai": "^4.3.1",
+	"@types/chai-as-promised": "^7.1.5",
+	"@types/mocha": "^9.1.1",
+	"@types/node": "^17.0.36",
+	"@types/proxyquire": "^1.3.28",
+	"@types/react": "^17.0.43",
+	"@types/react-dom": "^17.0.14",
+	"@types/sinon": "^10.0.11",
+	"@types/sinon-chai": "^3.2.8",
+	"@typescript-eslint/eslint-plugin": "^5.26.0",
+	"@typescript-eslint/parser": "^5.26.0",
+	"axios": "^0.27.2",
+	"chai": "^4.3.6",
+	"chai-as-promised": "^7.1.1",
+	"eslint": "^8.16.0",
+	"eslint-config-prettier": "^8.5.0",
+	"eslint-plugin-prettier": "^4.0.0",
+	"eslint-plugin-react": "^7.30.0",
+	"iobroker-react": "git+https://git@github.com/AlCalzone/iobroker-react.git",
+	"mocha": "^10.0.0",
+	"nyc": "^15.1.0",
+	"prettier": "^2.6.2",
+	"proxyquire": "^2.1.3",
+	"react": "^17.0.2",
+	"react-dom": "^17.0.2",
+	"rimraf": "^3.0.2",
+	"sinon": "^14.0.0",
+	"sinon-chai": "^3.7.0",
+	"source-map-support": "^0.5.21",
+	"tiny-glob": "^0.2.9",
+	"ts-node": "^10.8.0",
+	"typescript": "~4.7.2"
+  },
+  "main": "build/main.js",
+  "files": [
+	"admin{,/!(src)/**}/!(tsconfig|tsconfig.*).json",
+	"admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+	"admin/build/",
+	"build/",
+	"www/",
+	"io-package.json",
+	"LICENSE"
+  ],
+  "scripts": {
+	"prebuild": "rimraf build admin/build",
+	"build": "build-adapter all",
+	"watch": "build-adapter all --watch",
+	"prebuild:ts": "rimraf build",
+	"build:ts": "build-adapter ts",
+	"watch:ts": "build-adapter ts --watch",
+	"prebuild:react": "rimraf admin/build",
+	"build:react": "build-adapter react",
+	"watch:react": "build-adapter react --watch",
+	"test:ts": "mocha --config test/mocharc.custom.json src/**/*.test.ts",
+	"test:package": "mocha test/package --exit",
+	"test:unit": "mocha test/unit --exit",
+	"test:integration": "mocha test/integration --exit",
+	"test": "npm run test:ts && npm run test:package",
+	"check": "tsc --noEmit",
+	"coverage": "nyc npm run test:ts",
+	"lint": "eslint --ext .ts,.tsx src/ admin/src/",
+	"translate": "translate-adapter",
+	"release": "release-script"
+  },
+  "nyc": {
+	"include": [
+	  "src/**/*.ts"
+	],
+	"exclude": [
+	  "src/**/*.test.ts"
+	],
+	"extension": [
+	  ".ts"
+	],
+	"require": [
+	  "ts-node/register"
+	],
+	"reporter": [
+	  "text-summary",
+	  "html"
+	],
+	"sourceMap": true,
+	"instrument": true
   },
   "bugs": {
-    "url": "https://github.com/Pix---/ioBroker.tankerkoenig/issues"
+	"url": "https://github.com/Pix---/ioBroker.tankerkoenig/issues"
   },
-  "main": "main.js",
-  "scripts": {
-    "test": "npm run test:package && npm run test:unit",
-    "test:package": "mocha test/package --exit",
-    "test:unit": "mocha test/unit --exit",
-    "test:integration": "mocha test/integration --exit"
-  },
-  "maintainers": [
-    "pix"
-  ]
+  "readmeFilename": "README.md"
 }
