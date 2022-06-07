@@ -36,6 +36,20 @@ NodeJS v10 oder höher wird vorausgesetzt.
 
 
 ## Changelog
+ <!--
+ Release Script: https://github.com/AlCalzone/release-script
+ Placeholder for the next version (at the beginning of the line):
+ ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
+ -->
+### __WORK IN PROGRESS__
+* (xXBJXx) BREAKING Adapter code completely revised
+* (xXBJXx) Adapter completely switched to TypeScript
+* (xXBJXx) BREAKING Adapter configurations page switched to React and redesigned
+  (old config not compatible stations must be recreated)
+* (xXBJXx) add Dependabot auto merge support
+* (xXBJXx) add test and release script 
+* (xXBJXx) Dependency updated
+
 ### 2.2.0 (2021-11-14)
 * (simatec) Design Fix for Admin Dark/Blue Theme
 
@@ -162,7 +176,7 @@ NodeJS v10 oder höher wird vorausgesetzt.
 
 The MIT License (MIT)
 
-Copyright (c) 2016-2021 pix
+Copyright (c) 2016-2022 pix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
