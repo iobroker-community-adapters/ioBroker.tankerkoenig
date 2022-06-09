@@ -10,7 +10,7 @@
   "Reset values info2": "Diese Funktion verhindert, dass veraltete Werte gespeichert werden, wenn beim Aktualisieren vom Tankerkönig-Server ein Fehler auftritt.",
   "Reset values info3": "Aktivieren Sie dieses Kontrollkästchen, um die Daten fließend zu halten und Nullen zu verhindern.",
   "StationName": "Name der Station",
-  "add": "hinzufügen.",
+  "add": "hinzufügen",
   "addNewStation ": "Neue Station hinzufügen ",
   "addStation": "Station hinzufügen",
   "cancel": "Abbrechen",

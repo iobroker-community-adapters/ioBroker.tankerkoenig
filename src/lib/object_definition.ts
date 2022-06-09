@@ -4,7 +4,7 @@ export const statesObj: { [key: string]: any } = {
 		common: {
 			name: 'Status',
 			type: 'string',
-			role: 'state',
+			role: 'text',
 			def: '',
 			read: true,
 			write: false,
@@ -16,7 +16,7 @@ export const statesObj: { [key: string]: any } = {
 		common: {
 			name: 'Name',
 			type: 'string',
-			role: 'state',
+			role: 'text',
 			def: '',
 			read: true,
 			write: false,
@@ -28,7 +28,7 @@ export const statesObj: { [key: string]: any } = {
 		common: {
 			name: 'Station ID',
 			type: 'string',
-			role: 'state',
+			role: 'text',
 			def: '',
 			read: true,
 			write: false,
@@ -53,7 +53,7 @@ export const priceObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			type: 'string',
-			role: 'state',
+			role: 'text',
 			def: '',
 			read: true,
 			write: false,
@@ -76,8 +76,8 @@ export const priceObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			type: 'string',
-			role: 'state',
-			def: '0',
+			role: 'text',
+			def: '',
 			unit: '€',
 			read: true,
 			write: false,

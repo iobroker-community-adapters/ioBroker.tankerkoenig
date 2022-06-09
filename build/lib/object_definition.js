@@ -27,7 +27,7 @@ const statesObj = {
     common: {
       name: "Status",
       type: "string",
-      role: "state",
+      role: "text",
       def: "",
       read: true,
       write: false
@@ -39,7 +39,7 @@ const statesObj = {
     common: {
       name: "Name",
       type: "string",
-      role: "state",
+      role: "text",
       def: "",
       read: true,
       write: false
@@ -51,7 +51,7 @@ const statesObj = {
     common: {
       name: "Station ID",
       type: "string",
-      role: "state",
+      role: "text",
       def: "",
       read: true,
       write: false
@@ -75,7 +75,7 @@ const priceObj = {
     type: "state",
     common: {
       type: "string",
-      role: "state",
+      role: "text",
       def: "",
       read: true,
       write: false
@@ -98,8 +98,8 @@ const priceObj = {
     type: "state",
     common: {
       type: "string",
-      role: "state",
-      def: "0",
+      role: "text",
+      def: "",
       unit: "\u20AC",
       read: true,
       write: false

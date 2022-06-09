@@ -11,11 +11,16 @@ import axios from 'axios';
 import { statesObj, priceObj } from './lib/object_definition';
 import { Result } from './lib/interface/resultInterface';
 
-// Global variables here
+// timeouts
 let requestTimeout: NodeJS.Timeout | null = null;
+let refreshTimeout: NodeJS.Timeout | null = null;
+let refreshStatusTimeout: NodeJS.Timeout | null = null;
+
+// Global variables here
+let refreshStatus = false;
 const optionNoLog = false;
 let sync_milliseconds = 5 * 60 * 1000; // 5min
-const fuelTypes = ['e5', 'e10', 'diesel'];
+const fuelTypes: string[] = ['e5', 'e10', 'diesel'];
 
 class Tankerkoenig extends utils.Adapter {
 	public constructor(options: Partial<utils.AdapterOptions> = {}) {
@@ -24,8 +29,8 @@ class Tankerkoenig extends utils.Adapter {
 			name: 'tankerkoenig',
 		});
 		this.on('ready', this.onReady.bind(this));
-		// this.on('stateChange', this.onStateChange.bind(this));
-		this.on('objectChange', this.onObjectChange.bind(this));
+		this.on('stateChange', this.onStateChange.bind(this));
+		//		this.on('objectChange', this.onObjectChange.bind(this));
 		// this.on('message', this.onMessage.bind(this));
 		this.on('unload', this.onUnload.bind(this));
 	}
@@ -100,19 +105,36 @@ class Tankerkoenig extends utils.Adapter {
 								ack: true,
 							});
 							await this.writeState(response.data.prices);
+							if (refreshStatusTimeout) clearTimeout(refreshStatusTimeout);
+							refreshStatusTimeout = setTimeout(async () => {
+								await this.setStateAsync(`stations.adapterStatus`, {
+									val: 'idle',
+									ack: true,
+								});
+							}, 2_000);
 						}
 					}
 				})
-				.catch((error) => {
+				.catch(async (error) => {
 					this.writeLog(
 						'Read in fuel prices (targeted stations via ID) - Error: ' + error,
 						'error',
 					);
+					await this.setStateAsync(`stations.adapterStatus`, {
+						val: 'request Error',
+						ack: true,
+					});
 				});
-			this.setState(`stations.lastUpdate`, { val: Date.now(), ack: true });
+			await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
 			this.writeLog(`last update: ${new Date().toString()}`, 'debug');
+
+			// start the timer for the next request
 			requestTimeout = setTimeout(async () => {
 				this.writeLog(`request timeout start new request`, 'debug');
+				await this.setStateAsync(`stations.adapterStatus`, {
+					val: 'automatic request',
+					ack: true,
+				});
 				await this.requestData();
 			}, sync_milliseconds);
 		} catch (error) {
@@ -128,6 +150,7 @@ class Tankerkoenig extends utils.Adapter {
 			const cheapest_diesel: any[] = [];
 
 			if (this.config.resetValues) {
+				this.writeLog(`reset all values`, 'debug');
 				for (const fuelTypesKey in fuelTypes) {
 					await this.setStateAsync(`stations.cheapest.${fuelTypes[fuelTypesKey]}.feed`, {
 						val: 0,
@@ -478,25 +501,31 @@ class Tankerkoenig extends utils.Adapter {
 	}
 
 	private async cutPrice(
-		preis: string | number | boolean | undefined,
+		price: string | number | boolean | undefined,
 	): Promise<{ priceshort: string; price3rd: number }> {
-		if (preis === undefined) {
+		this.writeLog(`cutPrice: ${price} price type ${typeof price}`, 'debug');
+		if (price === undefined) {
 			return { priceshort: '0', price3rd: 0 };
 		}
-		if (typeof preis === 'string') {
-			preis = parseFloat(preis);
+		if (typeof price === 'string') {
+			price = parseFloat(price);
 		}
-		if (typeof preis === 'boolean') {
-			preis = 0;
+		if (typeof price === 'boolean') {
+			price = 0;
 		}
-		let temp = preis * 100; // 100x price now with one decimal place
-		const temp2 = preis * 1000; // 1000x price without decimal place
+		this.writeLog(`price: ${price}`, 'debug');
+		let temp = price * 100; // 100x price now with one decimal place
+		const temp2 = price * 1000; // 1000x price without decimal place
+		this.writeLog(`temp: ${temp} temp2: ${temp2}`, 'debug');
 		temp = Math.floor(temp); // Decimal place (.x) is truncated
+		this.writeLog(`[cutPrice] temp.Math.floor(temp): ${temp}`, 'debug');
 		temp = temp / 100; // two decimal places remain
+		this.writeLog(`[cutPrice] temp / 100 : ${temp}`, 'debug');
 		const price_short = temp.toFixed(2); // Output price with 2 decimal places (truncated)
 		const price_3rd_digit = temp2 % 10; // Determine third decimal place individually
+		this.writeLog(`[cutPrice] price_short: ${price_short} price_3rd_digit: ${price_3rd_digit}`, 'debug');
 		return {
-			priceshort: price_short, // als String wg. Nullen zB 1.10 statt 1.1
+			priceshort: price_short, // als String wg. Nullen z.B. 1.10 statt 1.1
 			price3rd: price_3rd_digit,
 		};
 	}
@@ -648,6 +677,37 @@ class Tankerkoenig extends utils.Adapter {
 				},
 				native: {},
 			});
+
+			await this.setObjectNotExistsAsync(`stations.adapterStatus`, {
+				type: 'state',
+				common: {
+					name: 'adapter status',
+					desc: 'adapter status',
+					type: `string`,
+					role: `info.status`,
+					def: 'idle',
+					read: true,
+					write: false,
+				},
+				native: {},
+			});
+
+			await this.setObjectNotExistsAsync(`stations.refresh`, {
+				type: 'state',
+				common: {
+					name: 'manuel refresh the data from tankerkoenig.de',
+					desc: 'refresh the data from tankerkoenig.de',
+					type: `boolean`,
+					role: `button`,
+					def: false,
+					read: true,
+					write: true,
+				},
+				native: {},
+			});
+			await this.subscribeStates(`stations.refresh`);
+
+			// end of create objects
 		} catch (e) {
 			this.writeLog(`Error creating all states: ${e}`, 'error');
 		}
@@ -677,26 +737,71 @@ class Tankerkoenig extends utils.Adapter {
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 */
-	private onUnload(callback: () => void): void {
+	private async onUnload(callback: () => void): Promise<void> {
 		try {
 			// Here you must clear all timeouts or intervals that may still be active
 			if (requestTimeout) clearInterval(requestTimeout);
+			if (refreshTimeout) clearInterval(refreshTimeout);
+			if (refreshStatusTimeout) clearTimeout(refreshStatusTimeout);
 
+			await this.setStateAsync(`stations.adapterStatus`, {
+				val: 'offline',
+				ack: true,
+			});
 			callback();
 		} catch (e) {
 			callback();
 		}
 	}
 
-	// If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
-	// You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
-	// /**
-	//  * Is called if a subscribed object changes
-	//  */
-	private onObjectChange(id: string, obj: ioBroker.Object | null | undefined): void {
-		if (obj) {
-			// The object was changed
-			this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
+	/**
+	 * Is called if a subscribed state changes
+	 */
+	private async onStateChange(id: string, state: ioBroker.State | null | undefined): Promise<void> {
+		try {
+			if (state) {
+				if (id === `${this.namespace}.stations.refresh`) {
+					if (state.val && !state.ack) {
+						// set refresh to timeout to 1min to prevent multiple refreshes
+						if (!refreshTimeout) {
+							this.writeLog(`refresh timeout set to 1min`, 'info');
+							refreshTimeout = setTimeout(async () => {
+								this.writeLog(`refresh again possible`, 'info');
+								refreshTimeout = null;
+								refreshStatus = false;
+							}, 60000);
+						}
+						if (!refreshStatus) {
+							refreshStatus = true;
+
+							this.writeLog('manuel refresh the data from tankerkoenig.de', 'info');
+							await this.setStateAsync(`stations.adapterStatus`, {
+								val: 'manuel request',
+								ack: true,
+							});
+							await this.requestData();
+						} else {
+							this.writeLog(
+								'too short time between manual refreshes, manual request is allowed only once per min.',
+								'warn',
+							);
+							await this.setStateAsync(`stations.adapterStatus`, {
+								val: 'request timeout 1min',
+								ack: true,
+							});
+							if (refreshStatusTimeout) clearTimeout(refreshStatusTimeout);
+							refreshStatusTimeout = setTimeout(async () => {
+								await this.setStateAsync(`stations.adapterStatus`, {
+									val: 'idle',
+									ack: true,
+								});
+							}, 5000);
+						}
+					}
+				}
+			}
+		} catch (e) {
+			this.writeLog(`[onStateChane ${id}] error: ${e} , stack: ${e.stack}`, 'error');
 		}
 	}
 }
