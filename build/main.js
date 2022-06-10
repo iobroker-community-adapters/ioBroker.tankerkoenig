@@ -131,6 +131,10 @@ class Tankerkoenig extends utils.Adapter {
       const cheapest_e5 = [];
       const cheapest_e10 = [];
       const cheapest_diesel = [];
+      await this.setStateAsync(`stations.adapterStatus`, {
+        val: "write states",
+        ack: true
+      });
       if (this.config.resetValues) {
         this.writeLog(`reset all values`, "debug");
         for (const fuelTypesKey in fuelTypes) {
@@ -420,19 +424,15 @@ class Tankerkoenig extends utils.Adapter {
       price = 0;
     }
     this.writeLog(`price: ${price}`, "debug");
-    let temp = price * 100;
-    const temp2 = price * 1e3;
-    this.writeLog(`temp: ${temp} temp2: ${temp2}`, "debug");
-    temp = Math.floor(temp);
-    this.writeLog(`[cutPrice] temp.Math.floor(temp): ${temp}`, "debug");
-    temp = temp / 100;
-    this.writeLog(`[cutPrice] temp / 100 : ${temp}`, "debug");
-    const price_short = temp.toFixed(2);
-    const price_3rd_digit = temp2 % 10;
-    this.writeLog(`[cutPrice] price_short: ${price_short} price_3rd_digit: ${price_3rd_digit}`, "debug");
+    price = price.toFixed(3);
+    this.writeLog(` price.toFixed(3): ${price}`, "debug");
+    const priceshort = price.slice(0, price.length - 1);
+    this.writeLog(` priceshort: ${priceshort}`, "debug");
+    const price3rd = parseInt(price.slice(-1));
+    this.writeLog(` price3rd: ${price3rd}`, "debug");
     return {
-      priceshort: price_short,
-      price3rd: price_3rd_digit
+      priceshort,
+      price3rd
     };
   }
   async createAllStates(stations) {

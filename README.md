@@ -51,6 +51,7 @@ NodeJS v10 oder höher wird vorausgesetzt.
 * (xXBJXx) Dependency updated
 * (xXBJXx) add feature request: manual update of all stations (one request per minute allowed) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) 
 * (xXBJXx) add a new state => adapterStatus (indicates whether the adapter executes an automatic request or a manual request)
+* (xXBJXx) add new cutPrice function [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)
 
 
 ### 2.2.0 (2021-11-14)

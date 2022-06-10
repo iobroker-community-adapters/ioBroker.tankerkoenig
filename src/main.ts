@@ -149,6 +149,11 @@ class Tankerkoenig extends utils.Adapter {
 			const cheapest_e10: any[] = [];
 			const cheapest_diesel: any[] = [];
 
+			await this.setStateAsync(`stations.adapterStatus`, {
+				val: 'write states',
+				ack: true,
+			});
+
 			if (this.config.resetValues) {
 				this.writeLog(`reset all values`, 'debug');
 				for (const fuelTypesKey in fuelTypes) {
@@ -513,20 +518,33 @@ class Tankerkoenig extends utils.Adapter {
 		if (typeof price === 'boolean') {
 			price = 0;
 		}
+
+		/** old version still leave in case something is wrong
+		 * this.writeLog(`price: ${price}`, 'debug');
+		 * let temp = price * 100; // 100x price now with one decimal place
+		 * const temp2 = price * 1000; // 1000x price without decimal place
+		 * temp = Math.floor(temp); // Decimal place (.x) is truncated
+		 * temp = temp / 100; // two decimal places remain
+		 * const price_short = temp.toFixed(2); // Output price with 2 decimal places (truncated)
+		 * const price_3rd_digit = temp2 % 10; // Determine third decimal place individually
+		 * return {
+		 * 	priceshort: price_short, // als String wg. Nullen z.B. 1.10 statt 1.1
+		 * 	price3rd: price_3rd_digit,
+		 * };
+		 */
+
+		// new cutPrice version Will still be tested
 		this.writeLog(`price: ${price}`, 'debug');
-		let temp = price * 100; // 100x price now with one decimal place
-		const temp2 = price * 1000; // 1000x price without decimal place
-		this.writeLog(`temp: ${temp} temp2: ${temp2}`, 'debug');
-		temp = Math.floor(temp); // Decimal place (.x) is truncated
-		this.writeLog(`[cutPrice] temp.Math.floor(temp): ${temp}`, 'debug');
-		temp = temp / 100; // two decimal places remain
-		this.writeLog(`[cutPrice] temp / 100 : ${temp}`, 'debug');
-		const price_short = temp.toFixed(2); // Output price with 2 decimal places (truncated)
-		const price_3rd_digit = temp2 % 10; // Determine third decimal place individually
-		this.writeLog(`[cutPrice] price_short: ${price_short} price_3rd_digit: ${price_3rd_digit}`, 'debug');
+		price = price.toFixed(3);
+		this.writeLog(` price.toFixed(3): ${price}`, 'debug');
+		const priceshort = price.slice(0, price.length - 1);
+		this.writeLog(` priceshort: ${priceshort}`, 'debug');
+		const price3rd = parseInt(price.slice(-1));
+		this.writeLog(` price3rd: ${price3rd}`, 'debug');
+
 		return {
-			priceshort: price_short, // als String wg. Nullen z.B. 1.10 statt 1.1
-			price3rd: price_3rd_digit,
+			priceshort,
+			price3rd,
 		};
 	}
 
