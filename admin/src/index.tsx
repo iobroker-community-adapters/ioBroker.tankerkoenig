@@ -42,7 +42,6 @@ const SettingsPageContent: React.FC = React.memo(() => {
 
 const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 	// Here's an example for editing settings after they are loaded from the backend
-	// In this case, option1 will be set to true by default
 	if (settings.apikey === undefined) {
 		settings.apikey = '';
 	}
@@ -57,6 +56,21 @@ const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 	}
 	if (settings.station === undefined) {
 		settings.station = [];
+	}
+	if (settings.station !== undefined) {
+		settings.station.map((stationValue, index) => {
+			if (stationValue.discounted === undefined) {
+				settings.station[index].discounted = false;
+			}
+
+			if (stationValue.discountObj === undefined) {
+				settings.station[index].discountObj = {
+					discount: 0,
+					fuelType: ['e5', 'e10', 'diesel'],
+					discountType: 'absolute',
+				};
+			}
+		});
 	}
 };
 
