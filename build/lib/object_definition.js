@@ -25,7 +25,7 @@ const statesObj = {
   status: {
     type: "state",
     common: {
-      name: "Status",
+      name: "Station Status",
       type: "string",
       role: "text",
       def: "",
@@ -37,7 +37,7 @@ const statesObj = {
   name: {
     type: "state",
     common: {
-      name: "Name",
+      name: "Station Name",
       type: "string",
       role: "text",
       def: "",
@@ -53,6 +53,32 @@ const statesObj = {
       type: "string",
       role: "text",
       def: "",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  discounted: {
+    type: "state",
+    common: {
+      name: "Discount active",
+      desc: "Shows whether the discount is activated at this station",
+      type: `boolean`,
+      role: `indicator`,
+      def: false,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  discount: {
+    type: "state",
+    common: {
+      name: "Discount",
+      desc: "Shows the discount at this station",
+      type: `number`,
+      role: `value`,
+      def: 0,
       read: true,
       write: false
     },

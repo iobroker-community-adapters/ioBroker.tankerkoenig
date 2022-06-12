@@ -14,6 +14,12 @@ declare global {
 		interface Station {
 			station: string;
 			stationname: string;
+			discounted: boolean;
+			discountObj: {
+				discount: number;
+				fuelType: string[];
+				discountType: string;
+			};
 		}
 	}
 }
