@@ -180,6 +180,45 @@
 	  {
 		"admin": ">=5.3.3"
 	  }
+	],
+	"messages": [
+	  {
+		"condition": {
+		  "operand": "and",
+		  "rules": [
+			"oldVersion<2.1.1",
+			"newVersion>=3.0.0"
+		  ]
+		},
+		"title": {
+		  "en": "Important notice!",
+		  "de": "Wichtiger Hinweis!",
+		  "ru": "Важное замечание!",
+		  "pt": "Notícia importante!",
+		  "nl": "Belangrijke mededeling!",
+		  "fr": "Avis important!",
+		  "it": "Avviso IMPORTANTE!",
+		  "es": "Noticia importante!",
+		  "pl": "Ważna uwaga!",
+		  "zh-cn": "重要通知!"
+		},
+		"text": {
+		  "en": "The adapter has been reprogrammed from scratch, which means that the old config is no longer compatible with the new version. Please delete the old adapter before and then reinstall, otherwise the adapter may not work properly!",
+		  "de": "Der Adapter wurde von Grund auf neu programmiert, das bedeutet, die alte Config ist nicht mehr kompatibel ist mit der neuen Version. Bitte den alten Adapter vorher löschen und dann neu installieren, da sonst der Adapter nicht richtig funktionieren könnte!",
+		  "ru": "Адаптер был перепрограммирован с нуля, что означает, что старый конфиг больше не совместим с новой версией. Пожалуйста, предварительно удалите старый адаптер, а затем установите его заново, иначе адаптер может работать неправильно!",
+		  "pt": "O adaptador foi reprogramado de raiz, o que significa que a configuração antiga já não é compatível com a nova versão. Por favor, apague previamente o adaptador antigo e depois reinstale-o, caso contrário o adaptador pode não funcionar correctamente!",
+		  "nl": "De adapter is helemaal opnieuw geprogrammeerd, wat betekent dat de oude configuratie niet langer compatibel is met de nieuwe versie. Verwijder eerst de oude adapter en installeer hem daarna opnieuw, anders kan de adapter niet goed werken!",
+		  "fr": "L'adaptateur a été reprogrammé à partir de zéro, ce qui signifie que l'ancienne config n'est plus compatible avec la nouvelle version. Veuillez effacer l'ancien adaptateur avant de le réinstaller, sinon l'adaptateur pourrait ne pas fonctionner correctement !",
+		  "it": "L'adattatore è stato riprogrammato da zero, il che significa che la vecchia configurazione non è più compatibile con la nuova versione. Eliminare prima il vecchio adattatore e poi reinstallarlo, altrimenti l'adattatore potrebbe non funzionare correttamente!",
+		  "es": "El adaptador ha sido reprogramado desde cero, lo que significa que la antigua configuración ya no es compatible con la nueva versión. Por favor, borre previamente el adaptador antiguo y vuelva a instalarlo, de lo contrario el adaptador podría no funcionar correctamente.",
+		  "pl": "Adapter został przeprogramowany od podstaw, co oznacza, że stary config nie jest już kompatybilny z nową wersją. Proszę wcześniej usunąć stary adapter, a następnie zainstalować go ponownie, w przeciwnym razie adapter może nie działać prawidłowo!",
+		  "zh-cn": ""
+		},
+		"level": "warn",
+		"buttons": [
+		  "cancel"
+		]
+	  }
 	]
   },
   "protectedNative": [
