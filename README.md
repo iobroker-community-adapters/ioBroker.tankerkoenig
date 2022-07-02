@@ -53,7 +53,7 @@ NodeJS v10 oder höher wird vorausgesetzt.
 * (xXBJXx) add a new state => adapterStatus (indicates whether the adapter executes an automatic request or a manual request)
 * (xXBJXx) add new cutPrice function [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)
 * (xXBJXx) add the feature request: Include discount in price (euro and percent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) and adapter code optimized
-
+* (xXBJXx) add the feature request: JsonTable for the vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)
 
 ### 2.2.0 (2021-11-14)
 * (simatec) Design Fix for Admin Dark/Blue Theme
