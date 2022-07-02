@@ -20,8 +20,15 @@ Der API Schlüssel ist auf der [Seite von Tankerkönig](https://creativecommons.
 
 ### Tankstellen
 Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tankstellen ID nötig. Die ID für jede Tankstelle erhält man auf tankerkoenig.de. Sie ist ebenfalls 36stellig.
-Zusätzlich kann ein eigener Name für die Station hinterlegt werden. Bei der Eingabe können Zeilen frei gelassen werden (um später ein weitere Tankstelle einzufügen oder nach dem Löschen einer Station).
-![alt text](img/tankerkoenigSettingsScreenshot.jpg "Screenshot Settings")
+Zusätzlich kann ein eigener Name für die Station hinterlegt werden.
+![alt text](img/tankerkoenigSettingsScreenshot.png "Screenshot Settings")
+![alt text](img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
+
+Über dieses Fenster werden die neuen Stationen hinzugefügt, man kann direkt in der Karte darunter die Stadions-ID auslesen und in das Feld oben kopieren.
+Unter der Rabatt Optionen kann man zwischen den Rabatt Varianten ⇨ Euro / Prozent auswählen und für welchen Kraftstoffart der Rabatt gilt (Standard sind alle ausgewählt)
+
+![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
+
 
 ### Werte nullen
 Sollte die Verbindung zum Server nicht funktionieren, verhindert das Löschen der Werte in den Datenpunkte (Reset bzw. nullen), dass veraltete Werte vorgehalten werden. Dieser Reset kann in den Adaptereinstellungen ausgeschaltet werden, um flüssigere History-Daten zu erhalten.
@@ -33,14 +40,17 @@ Um Schreibzugriffe im Log (z.B. auf empfindliche SD-Karten) zu minimieren, kann 
 Der Adapter läuft als Daemon (nicht im Schedule Modus) und startet regulär alle fünf Minuten. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert, daher macht eine häufigere Abfrage der Daten keinen Sinn und verursacht nur überflüssigen Datenverkehr und kostet Ressourcen. Größere Intervalle sind jederzeit einstellbar.
 
 ##  Datenpunkte
-Jeder der zehn Kanäle des Feeds produziert für jede der drei Spritsorten E5, E10 und Diesel jeweils drei Datenpunkte:
+Die Datenpunkte werden dynamisch erstellt, das heißt, wen man eine Station anlegt werden Datenpunkte dazu angelegt (Maximal 10 Stationen)
+![alt text](img/tankerkoenigNewDP.png "Screenshot Settings")
+Unter den verschiedenen Kraftstoffart werden die folgenden Datenpunkte:
 * `feed` (Preis mit drei Dezimalstellen als Number)
 * `short` (Preis mit zwei Dezimalstellen (ungerundet) als String)
 * `3rd` (dritte Dezimalstelle des Preises zur Darstellung der Hochzahl in VIS)
 * `combined` (fertig HTML formatiert mit Preis und hochgestellter dritter Dezimalstelle oder ggf. Öffnungsstatus ["closed"/"not found"] zur einfachen Darstellung mit VIS HTML Widget)
-![alt text](img/tankerkoenigDP.jpg "Datenpunkte")
 
-Ausserdem werden noch drei Datenpunkte gespeichert
+Außerdem werden noch fünf Datenpunkte auf in der jeweiligen Station erstellt:
+* `discount` (Rabatt in Euro / Prozent als Number)
+* `discounted` (Zeigt an, ob ein Rabatt aktiv ist oder nicht)
 * `status` (Station geöffnet?)
 * `name` (vom Nutzer vergebener Name der Tankstelle)
 * `station_id` (Tankerkönig ID der Tankstelle)
@@ -50,9 +60,17 @@ Zusätzlich werden noch den die günstigsten Tankstellen aus der Liste in die Ka
 * `chepest.E10`
 * `cheapest.diesel`
 
-Innerhalb dieser Kanäle ist die jeweils günstigste Tankstelle für die genannte Spritsorte angelegt. Bieten mehrere Tankstellen einen Treibstoff zum gleichen Preis an, wird die Station ausgegeben, die in den Einstellungen zuerst/ganz oben eingetragen wurde.
+Auf der Stations ebenen werden weitere fünf Datenpunkte erstellt:
+* `adapterStatus` (zeigt den status vom adapter an mögliche Werte: `idle / automatic request / manual request / requet timeout 1min / write states / request Error / offline`)
+* `json` (JSON Daten der Tankstelle)
+* `jsonTable` (json Tabelle für die vis `nur die json Daten kein Widget`)
 
-Es werden insgesamt 181 Werte geschrieben.
+![alt text](img/jsonTable.png "Screenshot Settings")
+* `lastUpdate` (Zeitpunkt der letzten Aktualisierung)
+* `refresh` (Dies ist ein Button, mit dem man die Daten manuell aktualisieren kann `ACHTUNG` nach einmaligen auslösen ist es für 1 minute nicht mehr möglich die manuelle Aktualisierung auszulösen)
+
+
+Innerhalb dieser Kanäle ist die jeweils günstigste Tankstelle für die genannte Kraftstoffart angelegt. Bieten mehrere Tankstellen einen Treibstoff zum gleichen Preis an, wird die Station ausgegeben, die in den Einstellungen zuerst/ganz oben eingetragen wurde.
 
 ## VIS Nutzung
 Der Datenpunkt combined lässt sich in VIS mit diesem Widget darstellen

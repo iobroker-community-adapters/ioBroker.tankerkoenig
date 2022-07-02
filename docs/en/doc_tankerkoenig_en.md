@@ -19,8 +19,16 @@ The adapter uses the site prices.php which reduces the amount of data to be tran
 The API key can be obtained at [website Tankerkönig](https://creativecommons.tankerkoenig.de/#about). It is a 36 digit code that has to be entered in this field.
 
 ### Stations
-Up to ten different stations can be defined. Therefore the specific station ID can be obtained on tankerkoenig.de. It has 36 digits too. This ID has to be entered in the list. A corresponding name is optional.
-![alt text](img/tankerkoenigSettingsScreenshot.jpg "Screenshot Settings")
+Up to 10 gas stations can be queried. To do this, you need to enter the gas station ID. You can get the ID for each gas station on tankerkoenig.de. It is also 36 digits long.
+In addition, you can enter your own name for the station.
+![alt text](img/tankerkoenigSettingsScreenshot.png "Screenshot Settings")
+![alt text](img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
+
+This window is used to add the new stations, you can read the stadium ID directly in the map below and copy it into the field above.
+Under the discount options you can choose between the discount variants ⇨ Euro / Percent and for which fuel type the discount applies (default are all selected).
+
+![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
+
 
 ### Write null
 In case of a disconnect this option prevents the adapter to store old values. It helps to produce a smoother history chart.
@@ -32,26 +40,36 @@ To reduce log writing (e.g. on SD cards) this option can be selected.
 The adapter runs as a daemon (not in schedule mode) and starts regularly every five minutes. The data of the source feed are updated by the server at tankerkoenig.de only every 4 minutes, therefore a more frequent query of the data makes no sense and causes only superfluous data traffic and costs resources. Larger intervals can be set at any time.
 
 ##  Datapoints
-Each of the ten ten stations have a channel for each fuel type (E5, E10 and diesel) and furthermore each of them has another four datapoints.
-* `feed` (price with three decimals; type number)
-* `short` (price with two decimals; type string)
-* `3rd` (third decimal cann be writen as superscript in VIS)
-* `combined` (ready to use HTML formatted price with a superscripted third decimal and info, whether station is open ["closed"/"not found"] to be displayed in a VIS HTML Widget)
-![alt text](img/tankerkoenigDP.jpg "Datapoints")
+The datapoints are created dynamically, that is, when you create a station, datapoints are created for it (maximum 10 stations).
+![alt text](img/tankerkoenigNewDP.png "Screenshot Settings")
+Under the different fuel types the following datapoints are created:
+* `feed` (price with three decimal places as number)
+* `short` (price with two decimal places (unrounded) as string)
+* `3rd` (third decimal place of the price to represent the superscript in VIS)
+* `combined` (ready HTML formatted with price and superscript third decimal place or if necessary opening status ["closed"/"not found"] for easy display with VIS HTML widget)
 
-Three more datapoints are stored
-* `status` (sation open/closed)
-* `name` (user given name of the station)
-* `station_id` (Tankerkönig ID of that station)
+In addition, five data points are created on in the respective station:
+* `discount` (discount in Euro / percent as number)
+* `discounted` (shows if a discount is active or not)
+* `status` (station open?)
+* `name` (name of the gas station given by the user)
+* `station_id` (Tanker King ID of the gas station)
 
-Additionally the cheapest stations for each fule type are stored
+Additionally the cheapest gas stations from the list are determined in the channels
 * `cheapest.E5`
 * `chepest.E10`
 * `cheapest.diesel`
 
-Within these channels the station with the lowest price for each fule type are stored. In case multiple stations offer the same lowest price, stations a sorted in the order that has been used in the configuration.
+On the station level five more data points are created:
+* `adapterStatus` (shows the status of the adapter possible values: `idle / automatic request / manual request / requet timeout 1min / write states / request Error / offline`)
+* `json` (JSON data of the gas station)
+* `jsonTable` (json table for the vis `only the json data no widget`)
 
-181 datapoints are created.
+![alt text](img/jsonTable.png "Screenshot Settings")
+* `lastUpdate` (time of the last update)
+* `refresh` (This is a button to refresh the data manually `WARNING` after triggering it once it is not possible to trigger the manual refresh for 1 minute)
+
+Within these channels, the most favorable gas station for the named fuel type is created. If several gas stations offer a fuel at the same price, the station that was entered first/at the top in the settings is output.
 
 ## VIS 
 The datapoint 'combined' can be displayed easily in this VIS widget
