@@ -6,6 +6,7 @@
 // you need to create an adapter
 import * as utils from '@iobroker/adapter-core';
 import axios from 'axios';
+import { CreateJsonTable } from './lib/interface/CreateJsonTable';
 
 // Load your modules here, e.g.:
 import { statesObj, priceObj } from './lib/object_definition';
@@ -30,8 +31,6 @@ class Tankerkoenig extends utils.Adapter {
 		});
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
-		//		this.on('objectChange', this.onObjectChange.bind(this));
-		// this.on('message', this.onMessage.bind(this));
 		this.on('unload', this.onUnload.bind(this));
 	}
 
@@ -108,7 +107,8 @@ class Tankerkoenig extends utils.Adapter {
 								val: JSON.stringify(response.data),
 								ack: true,
 							});
-							await this.writeState(response.data.prices);
+							const price = await this.setDiscount(response.data.prices);
+							await this.writeState(price);
 							if (refreshStatusTimeout) clearTimeout(refreshStatusTimeout);
 							refreshStatusTimeout = setTimeout(async () => {
 								await this.setStateAsync(`stations.adapterStatus`, {
@@ -147,18 +147,13 @@ class Tankerkoenig extends utils.Adapter {
 	}
 
 	/**
-	 * @description write the states to the adapter
+	 * @description set the discount to the price if it is configured
 	 */
-	private async writeState(prices: Result): Promise<void> {
+	private async setDiscount(price: Result): Promise<Result> {
 		try {
 			const station = this.config.station;
-			const cheapest_e5: any[] = [];
-			const cheapest_e10: any[] = [];
-			const cheapest_diesel: any[] = [];
-
-			// add the discount to the price if it is configured
 			for (const stationValue of station) {
-				for (const [stationID, pricesValue] of Object.entries(prices)) {
+				for (const [stationID, pricesValue] of Object.entries(price)) {
 					if (stationID === stationValue.station) {
 						if (stationValue.discounted) {
 							stationValue.discountObj.fuelType.map(async (fuelType) => {
@@ -184,6 +179,23 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
+			// return the prices with the discount
+			return price;
+		} catch (error) {
+			this.writeLog(`setDiscount error: ${error} stack: ${error.stack}`, 'error');
+			return price;
+		}
+	}
+
+	/**
+	 * @description write the states to the adapter
+	 */
+	private async writeState(prices: Result): Promise<void> {
+		try {
+			const station = this.config.station;
+			const cheapest_e5: any[] = [];
+			const cheapest_e10: any[] = [];
+			const cheapest_diesel: any[] = [];
 
 			await this.setStateAsync(`stations.adapterStatus`, {
 				val: 'write states',
@@ -495,7 +507,7 @@ class Tankerkoenig extends utils.Adapter {
 
 						if (prices[stationValue.station].status === 'open') {
 							for (const fuelTypesKey in fuelTypes) {
-								if (fuelTypes.hasOwnProperty(key)) {
+								if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
 									if (prices[stationValue.station][fuelTypes[fuelTypesKey]]) {
 										await this.setStateAsync(
 											`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`,
@@ -534,7 +546,7 @@ class Tankerkoenig extends utils.Adapter {
 										);
 									} else {
 										this.writeLog(
-											`There is no ${key} in the ${stationValue.stationname} ID: ${stationValue.station} station.`,
+											`There is no ${fuelTypes[fuelTypesKey]} in the ${stationValue.stationname} ID: ${stationValue.station} station.`,
 											'debug',
 										);
 									}
@@ -579,12 +591,58 @@ class Tankerkoenig extends utils.Adapter {
 						}
 					}
 				}
+
+				// create a JsonTable an write in a state
+				const JsonTable = await this.createJsonTable(prices, station);
+				await this.setStateAsync(`stations.jsonTable`, {
+					val: JSON.stringify(JsonTable),
+					ack: true,
+				});
 			}
 		} catch (error) {
 			this.writeLog(`writeState error: ${error} stack: ${error.stack}`, 'error');
 		}
 	}
 
+	async createJsonTable(
+		price: Result,
+		station: ioBroker.Station[],
+	): Promise<CreateJsonTable[] | undefined> {
+		try {
+			const jsonTable = [];
+			for (const stationV of station) {
+				for (const [stationID, pricesValue] of Object.entries(price)) {
+					if (stationV.station === stationID) {
+						if (typeof pricesValue.e5 !== 'number') {
+							pricesValue.e5 = 0;
+						}
+						if (typeof pricesValue.e10 !== 'number') {
+							pricesValue.e10 = 0;
+						}
+						if (typeof pricesValue.diesel !== 'number') {
+							pricesValue.diesel = 0;
+						}
+
+						jsonTable.push({
+							station: stationV.stationname,
+							status: pricesValue.status,
+							e5: pricesValue.e5,
+							e10: pricesValue.e10,
+							diesel: pricesValue.diesel,
+							discount: stationV.discounted
+								? stationV.discountObj.discountType === 'percent'
+									? `${stationV.discountObj.discount}%`
+									: `${stationV.discountObj.discount}€`
+								: '0',
+						});
+					}
+				}
+			}
+			return jsonTable;
+		} catch (error) {
+			this.writeLog(`createJsonTable error: ${error} stack: ${error.stack}`, 'error');
+		}
+	}
 	/**
 	 * @description This function is used to get the short prices and the 3rd decimal place.
 	 */
@@ -666,7 +724,9 @@ class Tankerkoenig extends utils.Adapter {
 			} else if (discountType === 'absolute') {
 				this.writeLog(`discount in absolute: ${discount}`, 'debug');
 				this.writeLog(`return Price with discount ${price - discount}`, 'debug');
-				return price - discount;
+
+				// return price with 3 decimal places as number
+				return parseFloat(parseFloat(String(price - discount)).toFixed(3));
 			}
 			return price;
 		} catch (error) {
@@ -815,6 +875,20 @@ class Tankerkoenig extends utils.Adapter {
 				common: {
 					name: 'tankerkoenig JSON',
 					desc: 'JSON return from tankerkoenig.de with all prices for all stations',
+					type: `string`,
+					role: `json`,
+					def: '',
+					read: true,
+					write: false,
+				},
+				native: {},
+			});
+
+			await this.setObjectNotExistsAsync(`stations.jsonTable`, {
+				type: 'state',
+				common: {
+					name: 'JSON Table vor Visualization',
+					desc: 'JsonTable vor vis with all prices for all stations',
 					type: `string`,
 					role: `json`,
 					def: '',

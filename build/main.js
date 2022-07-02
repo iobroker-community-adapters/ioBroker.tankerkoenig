@@ -93,7 +93,8 @@ class Tankerkoenig extends utils.Adapter {
               val: JSON.stringify(response.data),
               ack: true
             });
-            await this.writeState(response.data.prices);
+            const price = await this.setDiscount(response.data.prices);
+            await this.writeState(price);
             if (refreshStatusTimeout)
               clearTimeout(refreshStatusTimeout);
             refreshStatusTimeout = setTimeout(async () => {
@@ -125,14 +126,11 @@ class Tankerkoenig extends utils.Adapter {
       this.writeLog(`requestData error: ${error} stack: ${error.stack}`, "error");
     }
   }
-  async writeState(prices) {
+  async setDiscount(price) {
     try {
       const station = this.config.station;
-      const cheapest_e5 = [];
-      const cheapest_e10 = [];
-      const cheapest_diesel = [];
       for (const stationValue of station) {
-        for (const [stationID, pricesValue] of Object.entries(prices)) {
+        for (const [stationID, pricesValue] of Object.entries(price)) {
           if (stationID === stationValue.station) {
             if (stationValue.discounted) {
               stationValue.discountObj.fuelType.map(async (fuelType) => {
@@ -150,6 +148,18 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }
+      return price;
+    } catch (error) {
+      this.writeLog(`setDiscount error: ${error} stack: ${error.stack}`, "error");
+      return price;
+    }
+  }
+  async writeState(prices) {
+    try {
+      const station = this.config.station;
+      const cheapest_e5 = [];
+      const cheapest_e10 = [];
+      const cheapest_diesel = [];
       await this.setStateAsync(`stations.adapterStatus`, {
         val: "write states",
         ack: true
@@ -412,7 +422,7 @@ class Tankerkoenig extends utils.Adapter {
             });
             if (prices[stationValue.station].status === "open") {
               for (const fuelTypesKey in fuelTypes) {
-                if (fuelTypes.hasOwnProperty(key)) {
+                if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
                   if (prices[stationValue.station][fuelTypes[fuelTypesKey]]) {
                     await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`, {
                       val: parseFloat(prices[stationValue.station][fuelTypes[fuelTypesKey]]),
@@ -433,7 +443,7 @@ class Tankerkoenig extends utils.Adapter {
                       ack: true
                     });
                   } else {
-                    this.writeLog(`There is no ${key} in the ${stationValue.stationname} ID: ${stationValue.station} station.`, "debug");
+                    this.writeLog(`There is no ${fuelTypes[fuelTypesKey]} in the ${stationValue.stationname} ID: ${stationValue.station} station.`, "debug");
                   }
                 }
               }
@@ -470,9 +480,45 @@ class Tankerkoenig extends utils.Adapter {
             }
           }
         }
+        const JsonTable = await this.createJsonTable(prices, station);
+        await this.setStateAsync(`stations.jsonTable`, {
+          val: JSON.stringify(JsonTable),
+          ack: true
+        });
       }
     } catch (error) {
       this.writeLog(`writeState error: ${error} stack: ${error.stack}`, "error");
+    }
+  }
+  async createJsonTable(price, station) {
+    try {
+      const jsonTable = [];
+      for (const stationV of station) {
+        for (const [stationID, pricesValue] of Object.entries(price)) {
+          if (stationV.station === stationID) {
+            if (typeof pricesValue.e5 !== "number") {
+              pricesValue.e5 = 0;
+            }
+            if (typeof pricesValue.e10 !== "number") {
+              pricesValue.e10 = 0;
+            }
+            if (typeof pricesValue.diesel !== "number") {
+              pricesValue.diesel = 0;
+            }
+            jsonTable.push({
+              station: stationV.stationname,
+              status: pricesValue.status,
+              e5: pricesValue.e5,
+              e10: pricesValue.e10,
+              diesel: pricesValue.diesel,
+              discount: stationV.discounted ? stationV.discountObj.discountType === "percent" ? `${stationV.discountObj.discount}%` : `${stationV.discountObj.discount}\u20AC` : "0"
+            });
+          }
+        }
+      }
+      return jsonTable;
+    } catch (error) {
+      this.writeLog(`createJsonTable error: ${error} stack: ${error.stack}`, "error");
     }
   }
   async cutPrice(price) {
@@ -522,7 +568,7 @@ class Tankerkoenig extends utils.Adapter {
       } else if (discountType === "absolute") {
         this.writeLog(`discount in absolute: ${discount}`, "debug");
         this.writeLog(`return Price with discount ${price - discount}`, "debug");
-        return price - discount;
+        return parseFloat(parseFloat(String(price - discount)).toFixed(3));
       }
       return price;
     } catch (error) {
@@ -636,6 +682,19 @@ class Tankerkoenig extends utils.Adapter {
         common: {
           name: "tankerkoenig JSON",
           desc: "JSON return from tankerkoenig.de with all prices for all stations",
+          type: `string`,
+          role: `json`,
+          def: "",
+          read: true,
+          write: false
+        },
+        native: {}
+      });
+      await this.setObjectNotExistsAsync(`stations.jsonTable`, {
+        type: "state",
+        common: {
+          name: "JSON Table vor Visualization",
+          desc: "JsonTable vor vis with all prices for all stations",
           type: `string`,
           role: `json`,
           def: "",
