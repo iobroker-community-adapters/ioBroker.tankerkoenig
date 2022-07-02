@@ -9,7 +9,7 @@
 	"sourceRoot": "./src",
 	"noImplicitAny": false,
 	"lib": [
-	  "es2018",
+	  "es2021",
 	  "DOM"
 	],
   },
