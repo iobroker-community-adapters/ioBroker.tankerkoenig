@@ -41,8 +41,7 @@ NodeJS v10 oder höher wird vorausgesetzt.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-
-### __WORK IN PROGRESS__
+### 3.0.0 (2022-07-02)
 * (xXBJXx) BREAKING Adapter code completely revised
 * (xXBJXx) Adapter completely switched to TypeScript
 * (xXBJXx) BREAKING Adapter configurations page switched to React and redesigned
