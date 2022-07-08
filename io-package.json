@@ -1,235 +1,211 @@
 {
   "common": {
-	"name": "tankerkoenig",
-	"version": "3.0.0",
-	"news": {
-	  "3.0.0": {
-		"de": "BREAKING Adapter Code komplett überarbeitet \nAdapter komplett auf TypeScript umgestellt\nBREAKING Adapter-Konfigurationsseite auf React umgestellt und neu gestaltet (alte Konfiguration nicht kompatibel, Stationen müssen neu erstellt werden)\nDependabot Auto-Merge Unterstützung hinzugefügt\nTest- und Freigabeskript hinzugefügt \nDependency aktualisiert\nFeature Request hinzufügen: manuelles Update aller Stationen (eine Anfrage pro Minute erlaubt) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nfüge einen neuen Status => adapterStatus hinzu (zeigt an, ob der Adapter eine automatische oder eine manuelle Anfrage ausführt)\nneue cutPrice Funktion hinzufügen [Ausgabe #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nfüge den Feature Request hinzu: Rabatt in Preis einbeziehen (Euro und Prozent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) und Adapter Code optimiert\nFeature-Request hinzufügen: JsonTable für das Visum [Ausgabe #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"en": "BREAKING Adapter Code komplett überarbeitet \nAdapter komplett auf TypeScript umgestellt \nBREAKING Adapter-Konfigurationsseite auf React umgestellt und neu gestaltet (alte Konfiguration nicht kompatibel, Stationen müssen neu erstellt werden) \nDependabot Auto-Merge Unterstützung hinzugefügt\nTest- und Freigabeskript hinzugefügt \nDependency aktualisiert \nFeature Request hinzufügen: manuelles Update aller Stationen (eine Anfrage pro Minute erlaubt) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53)\nfüge einen neuen Status => adapterStatus hinzu (zeigt an, ob der Adapter eine automatische oder eine manuelle Anfrage ausführt) \nneue cutPrice Funktion hinzufügen [Ausgabe #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nfüge den Feature Request hinzu: Rabatt in Preis einbeziehen (Euro und Prozent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) und Adapter Code optimiert \nFeature-Request hinzufügen: JsonTable für das Visum [Ausgabe #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"ru": "ОБЗОР Код адаптера полностью пересмотрен \nАдаптер полностью переведен на TypeScript\nBREAKING Страница конфигураций адаптера переведена на React и переработана (старые конфигурации несовместимы со станциями, которые должны быть созданы заново)\nдобавлена поддержка автоматического слияния Dependabot\nдобавлен скрипт тестирования и выпуска \nобновление зависимостей\nдобавить запрос на возможность: ручное обновление всех станций (разрешено одно обновление в минуту) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nдобавить новое состояние => adapterStatus (указывает, выполняет ли адаптер автоматический или ручной запрос)\nдобавить новую функцию cutPrice [выпуск #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nдобавить запрос функции: Включать скидку в цену (евро и процент) [выпуск #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) и оптимизирован код адаптера\nдобавлена возможность: JsonTable для vis [выпуск #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"pt": "Código do Adaptador BREAKING completamente revisto \nAdaptador completamente mudado para TypeScript\nBREAKING A página de configurações do adaptador mudou para Reagir e redesenhado (as estações não compatíveis com a configuração antiga devem ser recriadas)\nadicionar o apoio à fusão automática da Dependabot\nadicionar guião de teste e de lançamento \nDependência actualizada\nadicionar pedido de funcionalidade: actualização manual de todas as estações (um pedido por minuto permitido) [edição #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nadicionar um novo estado => adaptadorStatus (indica se o adaptador executa um pedido automático ou um pedido manual)\nadicionar nova função cutPrice [edição #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nadicionar o pedido de recurso: Incluir desconto no preço (euro e percentagem) [edição #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) e código do adaptador optimizado\nadicionar o pedido de recurso: JsonTable para o vis [edição #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"nl": "BREAKING Adapter code volledig herzien \nAdapter volledig overgeschakeld naar TypeScript\nBREAKING Adapter-configuratiepagina overgeschakeld naar React en opnieuw ontworpen (oude configuratie niet compatibel stations moeten opnieuw worden gemaakt)\nvoeg Dependabot auto merge ondersteuning toe\ntest- en vrijgavescript toegevoegd \nAfhankelijkheid bijgewerkt\nfunctieverzoek toevoegen: handmatige update van alle stations (één verzoek per minuut toegestaan) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \neen nieuwe status => adapterStatus toevoegen (geeft aan of de adapter een automatisch verzoek of een handmatig verzoek uitvoert)\nnieuwe functie cutPrice toevoegen [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nfunctieverzoek toevoegen: korting opnemen in prijs (euro en procent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) en adapter code geoptimaliseerd\nvoeg de feature request toe: JsonTable voor de vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"fr": "BREAKING Le code de l'adaptateur a été complètement revu \nAdaptateur complètement passé à TypeScript\nBREAKING La page de configuration de l'adaptateur est passée à React et a été redessinée (les anciennes stations de configuration ne sont pas compatibles et doivent être recréées).\najout du support de la fusion automatique de Dependabot\najout d'un script de test et de release \nMise à jour des dépendances\najout d'une demande de fonctionnalité : mise à jour manuelle de toutes les stations (une demande par minute autorisée) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \najout d'un nouvel état => adapterStatus (indique si l'adaptateur exécute une requête automatique ou une requête manuelle)\najout d'une nouvelle fonction cutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\najoute la demande de fonctionnalité : Inclure la remise dans le prix (euro et pourcentage) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) et code adaptateur optimisé\najout de la demande de fonctionnalité : JsonTable pour les vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"it": "BREAKING Codice dell'adattatore completamente rivisto \nL'adattatore è passato completamente a TypeScript\nBREAKING La pagina delle configurazioni dell'adattatore è passata a React e ridisegnata (le vecchie stazioni di configurazione non sono compatibili e devono essere ricreate)\naggiunto il supporto per l'unione automatica di Dependabot\naggiungere script di test e rilascio \ndipendenze aggiornate\naggiunta richiesta di funzionalità: aggiornamento manuale di tutte le stazioni (è consentita una richiesta al minuto) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \naggiungere un nuovo stato => adapterStatus (indica se l'adattatore esegue una richiesta automatica o una richiesta manuale)\naggiungere la nuova funzione cutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\naggiungere la richiesta di funzionalità: Includere lo sconto nel prezzo (euro e percentuale) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) e ottimizzare il codice dell'adattatore\naggiungere la richiesta di funzionalità: JsonTable per la vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"es": "BREAKING Código del adaptador completamente revisado \nAdaptador completamente cambiado a TypeScript\nBREAKING Página de configuración del adaptador cambiada a React y rediseñada (las antiguas estaciones de configuración no son compatibles y deben ser recreadas)\nañadir soporte de autofusión de Dependabot\nañadir script de prueba y liberación \nDependencia actualizada\nañadir solicitud de función: actualización manual de todas las estaciones (se permite una solicitud por minuto) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nañadir un nuevo estado => adapterStatus (indica si el adaptador ejecuta una petición automática o manual)\nañadir una nueva función cutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nañadir la petición de función: Incluir el descuento en el precio (euro y porcentaje) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) y código del adaptador optimizado\nañadir la petición de función: JsonTable para el vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"pl": "BREAKING Kod adaptera całkowicie zmieniony \nAdapter całkowicie przełączony na TypeScript\nBREAKING Strona konfiguracyjna adaptera przełączona na React i przeprojektowana (stare stacje konfiguracyjne nie są kompatybilne i muszą być odtworzone)\ndodanie obsługi automatycznego scalania Dependabot\ndodanie skryptu testowego i zwalniającego \nZaktualizowane zależności\ndodaj feature request: ręczna aktualizacja wszystkich stacji (dozwolone jedno żądanie na minutę) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \ndodaj nowy stan => adapterStatus (wskazuje, czy adapter wykonuje automatyczne żądanie czy ręczne żądanie)\ndodać nową funkcję CutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\ndodaj żądanie funkcji: Uwzględnienie rabatu w cenie (euro i procent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) oraz optymalizacja kodu adaptera\ndodajemy feature request: JsonTable dla vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
-		"zh-cn": "BREAKING 适配器代码完全修改 \n适配器完全切换到TypeScript\nBREAKING 适配器配置页面切换到React并重新设计（旧的配置不兼容站必须重新创建）。\n增加Dependabot自动合并支持\n添加测试和发布脚本 \n更新依赖关系\n添加功能请求：手动更新所有站点（每分钟允许一个请求）[issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \n增加一个新的状态 => adapterStatus (表示适配器是执行自动请求还是手动请求)\n增加新的cutPrice函数 [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\n添加功能请求。在价格中包括折扣（欧元和百分比）[issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) 和适配器代码优化\n添加功能请求。JsonTable for the vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n"
-		},
-	  "2.2.0": {
-		"en": "Design Fix for Admin Dark/Blue Theme",
-		"de": "Design Fix for Admin Dark/Blue Theme",
-		"ru": "Design Fix for Admin Dark/Blue Theme",
-		"pt": "Design Fix for Admin Dark/Blue Theme",
-		"nl": "Design Fix for Admin Dark/Blue Theme",
-		"fr": "Design Fix for Admin Dark/Blue Theme",
-		"it": "Design Fix for Admin Dark/Blue Theme",
-		"es": "Design Fix for Admin Dark/Blue Theme",
-		"pl": "Design Fix for Admin Dark/Blue Theme",
-		"zh-cn": "Design Fix for Admin Dark/Blue Theme"
-	  },
-	  "2.1.1": {
-		"en": "New adapter category \"vehicle\", NodeJS v16 testing",
-		"de": "Neue Adapterkategorie \"Fahrzeug\", NodeJS v16 Test",
-		"ru": "Новая категория адаптера \"автомобиль\"",
-		"pt": "Nova categoria de adaptador \"veículo\"",
-		"nl": "Nieuwe adapter categorie \"voertuig\"",
-		"fr": "Nouvel adaptateur catégorie \"véhicule\"",
-		"it": "Nuova categoria di adattatori \"veicolo\"",
-		"es": "Nueva categoría de adaptador \"vehículo\"",
-		"pl": "Nowa kategoria adapterów \"pojazd\"",
-		"zh-cn": "新的适配器类别\"车辆\""
-	  },
-	  "2.0.11": {
-		"en": "\"ack flag\" and \"wrong type\" issues coming up due to js-controller upgrade 3.3 were fixed",
-		"de": "Probleme mit \"ack flag\" und \"false type\" aufgrund von js-controller upgrade 3.3 wurden behoben",
-		"ru": "Исправлены проблемы с \"флагом подтверждения\" и \"неправильным типом\", возникающие в связи с обновлением js-controller 3.3.",
-		"pt": "Os problemas de \"ack flag\" e \"tipo incorreto\" que surgiam devido à atualização 3.3 do js-controller foram corrigidos",
-		"nl": "\"ack flag\" en \"verkeerde type\" problemen die aan de orde kwamen als gevolg van de js-controller upgrade 3.3 waren opgelost",
-		"fr": "Les problèmes de «drapeau d'ack» et de «type incorrect» à venir en raison de la mise à jour 3.3 du contrôleur js ont été corrigés",
-		"it": "Sono stati risolti i problemi di \"flag ack\" e \"tipo sbagliato\" dovuti all'aggiornamento 3.3 di js-controller",
-		"es": "Se solucionaron los problemas de \"bandera ack\" y \"tipo incorrecto\" debido a la actualización 3.3 del controlador js",
-		"pl": "Naprawiono problemy z flagą ACK i złym typem pojawiające się w związku z aktualizacją js-controller do wersji 3.3",
-		"zh-cn": "修复了由于js-controller升级3.3而出现的\" ack标志\"和\"错误类型\"问题"
-	  },
-	  "2.0.10": {
-		"en": "\"has no existing object\" issue fixed",
-		"de": "Problem \"hat kein vorhandenes Objekt\" behoben",
-		"ru": "Исправлена проблема \"не имеет существующего объекта\"",
-		"pt": "Problema \"não tem objeto existente\" corrigido",
-		"nl": "\"heeft geen bestaand object\" probleem opgelost",
-		"fr": "Problème \"n'a aucun objet existant\" résolu",
-		"it": "Problema \"non ha oggetto esistente\" risolto",
-		"es": "Problema \"no tiene ningún objeto existente\" solucionado",
-		"pl": "Naprawiono problem \"nie ma istniejącego obiektu\"",
-		"zh-cn": "修复\"没有对象\"的问题"
-	  },
-	  "2.0.9": {
-		"en": "NodeJS 10 or higher required",
-		"de": "NodeJS 10 oder höher erforderlich",
-		"ru": "Требуется NodeJS 10 или выше",
-		"pt": "Necessário NodeJS 10 ou superior",
-		"nl": "NodeJS 10 of hoger vereist",
-		"fr": "NodeJS 10 ou supérieur requis",
-		"it": "Nodo JS 10 o superiore richiesto",
-		"es": "Nodo JS 10 o superior requerido",
-		"pl": "Wymagany NodeJS 10 lub wyższy",
-		"zh-cn": "需要NodeJS 10或更高版本"
-	  },
-	  "2.0.8": {
-		"en": "fixed issue when api reports no data ",
-		"de": "Problem behoben, wenn API keine Daten meldet",
-		"ru": "исправлена проблема, когда API не сообщает данных",
-		"pt": "Foi corrigido um problema quando a API não informa dados",
-		"nl": "opgelost probleem wanneer api geen gegevens rapporteert",
-		"fr": "correction d'un problème lorsque l'api ne signale aucune donnée",
-		"it": "risolto problema quando api non riportava dati",
-		"es": "problema solucionado cuando la API no informa datos",
-		"pl": "naprawiono problem, gdy API nie zgłasza danych",
-		"zh-cn": "修复了api报告无数据时的问题"
-	  },
-	  "2.0.7": {
-		"en": "Catch error if station status reports 'no stations'",
-		"de": "Fangfehler, wenn der Stationsstatus 'keine Stationen' meldet",
-		"ru": "Ошибка перехвата, если статус станции сообщает «нет станций»",
-		"pt": "Erro de captura se o status da estação relatar 'sem estações'",
-		"nl": "Vangstfout als stationstatus 'geen stations' meldt",
-		"fr": "Erreur de capture si l'état de la station signale «aucune station»",
-		"it": "Errore di cattura se lo stato della stazione riporta 'nessuna stazione'",
-		"es": "Error de captura si el estado de la estación informa 'no hay estaciones'",
-		"pl": "Błąd połowu, jeśli status stacji zgłasza „brak stacji”",
-		"zh-cn": "如果站状态报告“无站”，则捕获错误"
-	  },
-	  "1.3.1": {
-		"en": "request issues fixed",
-		"de": "Anforderungsprobleme behoben",
-		"ru": "исправлены проблемы с запросом",
-		"pt": "solicitar problemas corrigidos",
-		"nl": "verzoek problemen opgelost",
-		"fr": "problèmes de demande résolus",
-		"it": "richiedere problemi risolti",
-		"es": "problemas de solicitud solucionados",
-		"pl": "Naprawiono problemy z prośbą",
-		"zh-cn": "请求问题已修复"
-	  }
-	},
-	"titleLang": {
-	  "en": "Tankerkoenig Fuel prices",
-	  "de": "Tankerkönig Spritpreise",
-	  "ru": "Tankerkoenig Цены на топливо",
-	  "pt": "Preços de combustível Tankerkoenig",
-	  "nl": "Tankerkoenig Brandstofprijzen",
-	  "fr": "Prix du carburant Tankerkoenig",
-	  "it": "Prezzi del carburante Tankerkoenig",
-	  "es": "Precios del combustible Tankerkoenig",
-	  "pl": "Tankerkoenig Ceny paliwa",
-	  "zh-cn": "Tankerkoenig燃料价格"
-	},
-	"desc": {
-	  "en": "Tankerkoenig fuel prices",
-	  "de": "Tankerkönig Spritpreise",
-	  "ru": "Tankerkoenig Цены на топливо",
-	  "pt": "Preços de combustível Tankerkoenig",
-	  "nl": "Tankerkoenig Brandstofprijzen",
-	  "fr": "Prix du carburant Tankerkoenig",
-	  "it": "Prezzi del carburante Tankerkoenig",
-	  "es": "Precios del combustible Tankerkoenig",
-	  "pl": "Tankerkoenig Ceny paliwa",
-	  "zh-cn": "Tankerkoenig燃料价格"
-	},
-	"authors": [
-	  "Pix"
-	],
-	"docs": {
-	  "en": "docs/en/doc_tankerkoenig_en.md",
-	  "de": "docs/de/doc_tankerkoenig_de.md"
-	},
-	"keywords": [
-	  "fuel",
-	  "gas",
-	  "tankerkoenig",
-	  "Tankerkönig",
-	  "Sprit",
-	  "Spritpreis",
-	  "Tankstelle",
-	  "Diesel",
-	  "Benzin"
-	],
-	"license": "MIT",
-	"platform": "Javascript/Node.js",
-	"main": "build/main.js",
-	"icon": "tankerkoenig.png",
-	"enabled": false,
-	"extIcon": "https://raw.githubusercontent.com/Pix---/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
-	"readme": "https://github.com/Pix---/ioBroker.tankerkoenig/blob/master/README.md",
-	"allowInit": true,
-	"loglevel": "info",
-	"mode": "daemon",
-	"type": "misc-data",
-	"compact": true,
-	"connectionType": "cloud",
-	"dataSource": "poll",
-	"stopBeforeUpdate": true,
-	"eraseOnUpload": true,
-	"materialize": true,
-	"dependencies": [
-	  {
-		"js-controller": ">=3.0.0"
-	  }
-	],
-	"globalDependencies": [
-	  {
-		"admin": ">=5.3.3"
-	  }
-	],
-	"messages": [
-	  {
-		"condition": {
-		  "operand": "and",
-		  "rules": [
-			"oldVersion<2.1.1",
-			"newVersion>=3.0.0"
-		  ]
-		},
-		"title": {
-		  "en": "Important notice!",
-		  "de": "Wichtiger Hinweis!",
-		  "ru": "Важное замечание!",
-		  "pt": "Notícia importante!",
-		  "nl": "Belangrijke mededeling!",
-		  "fr": "Avis important!",
-		  "it": "Avviso IMPORTANTE!",
-		  "es": "Noticia importante!",
-		  "pl": "Ważna uwaga!",
-		  "zh-cn": "重要通知!"
-		},
-		"text": {
-		  "en": "The adapter has been reprogrammed from scratch, which means that the old config is no longer compatible with the new version. Please delete the old adapter before and then reinstall, otherwise the adapter may not work properly!",
-		  "de": "Der Adapter wurde von Grund auf neu programmiert, das bedeutet, die alte Config ist nicht mehr kompatibel ist mit der neuen Version. Bitte den alten Adapter vorher löschen und dann neu installieren, da sonst der Adapter nicht richtig funktionieren könnte!",
-		  "ru": "Адаптер был перепрограммирован с нуля, что означает, что старый конфиг больше не совместим с новой версией. Пожалуйста, предварительно удалите старый адаптер, а затем установите его заново, иначе адаптер может работать неправильно!",
-		  "pt": "O adaptador foi reprogramado de raiz, o que significa que a configuração antiga já não é compatível com a nova versão. Por favor, apague previamente o adaptador antigo e depois reinstale-o, caso contrário o adaptador pode não funcionar correctamente!",
-		  "nl": "De adapter is helemaal opnieuw geprogrammeerd, wat betekent dat de oude configuratie niet langer compatibel is met de nieuwe versie. Verwijder eerst de oude adapter en installeer hem daarna opnieuw, anders kan de adapter niet goed werken!",
-		  "fr": "L'adaptateur a été reprogrammé à partir de zéro, ce qui signifie que l'ancienne config n'est plus compatible avec la nouvelle version. Veuillez effacer l'ancien adaptateur avant de le réinstaller, sinon l'adaptateur pourrait ne pas fonctionner correctement !",
-		  "it": "L'adattatore è stato riprogrammato da zero, il che significa che la vecchia configurazione non è più compatibile con la nuova versione. Eliminare prima il vecchio adattatore e poi reinstallarlo, altrimenti l'adattatore potrebbe non funzionare correttamente!",
-		  "es": "El adaptador ha sido reprogramado desde cero, lo que significa que la antigua configuración ya no es compatible con la nueva versión. Por favor, borre previamente el adaptador antiguo y vuelva a instalarlo, de lo contrario el adaptador podría no funcionar correctamente.",
-		  "pl": "Adapter został przeprogramowany od podstaw, co oznacza, że stary config nie jest już kompatybilny z nową wersją. Proszę wcześniej usunąć stary adapter, a następnie zainstalować go ponownie, w przeciwnym razie adapter może nie działać prawidłowo!",
-		  "zh-cn": ""
-		},
-		"level": "warn",
-		"buttons": [
-		  "cancel"
-		]
-	  }
-	]
+    "name": "tankerkoenig",
+    "version": "3.0.1",
+    "news": {
+      "3.0.1": {
+        "en": "added datapoints delete function",
+        "de": "datenpunkte löschen funktion",
+        "ru": "добавленные пункты удаления функции",
+        "pt": "adicionado datapoints função de exclusão",
+        "nl": "vertaling:",
+        "fr": "paramètres de données ajoutés supprimer la fonction",
+        "it": "i datapoint aggiunti eliminano la funzione",
+        "es": "puntos de datos añadidos eliminar función",
+        "pl": "dodanie funkcji danych",
+        "zh-cn": "增加数据点删除职能"
+      },
+      "3.0.0": {
+        "de": "BREAKING Adapter Code komplett überarbeitet \nAdapter komplett auf TypeScript umgestellt\nBREAKING Adapter-Konfigurationsseite auf React umgestellt und neu gestaltet (alte Konfiguration nicht kompatibel, Stationen müssen neu erstellt werden)\nDependabot Auto-Merge Unterstützung hinzugefügt\nTest- und Freigabeskript hinzugefügt \nDependency aktualisiert\nFeature Request hinzufügen: manuelles Update aller Stationen (eine Anfrage pro Minute erlaubt) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nfüge einen neuen Status => adapterStatus hinzu (zeigt an, ob der Adapter eine automatische oder eine manuelle Anfrage ausführt)\nneue cutPrice Funktion hinzufügen [Ausgabe #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nfüge den Feature Request hinzu: Rabatt in Preis einbeziehen (Euro und Prozent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) und Adapter Code optimiert\nFeature-Request hinzufügen: JsonTable für das Visum [Ausgabe #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "en": "BREAKING Adapter Code komplett überarbeitet \nAdapter komplett auf TypeScript umgestellt \nBREAKING Adapter-Konfigurationsseite auf React umgestellt und neu gestaltet (alte Konfiguration nicht kompatibel, Stationen müssen neu erstellt werden) \nDependabot Auto-Merge Unterstützung hinzugefügt\nTest- und Freigabeskript hinzugefügt \nDependency aktualisiert \nFeature Request hinzufügen: manuelles Update aller Stationen (eine Anfrage pro Minute erlaubt) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53)\nfüge einen neuen Status => adapterStatus hinzu (zeigt an, ob der Adapter eine automatische oder eine manuelle Anfrage ausführt) \nneue cutPrice Funktion hinzufügen [Ausgabe #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nfüge den Feature Request hinzu: Rabatt in Preis einbeziehen (Euro und Prozent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) und Adapter Code optimiert \nFeature-Request hinzufügen: JsonTable für das Visum [Ausgabe #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "ru": "ОБЗОР Код адаптера полностью пересмотрен \nАдаптер полностью переведен на TypeScript\nBREAKING Страница конфигураций адаптера переведена на React и переработана (старые конфигурации несовместимы со станциями, которые должны быть созданы заново)\nдобавлена поддержка автоматического слияния Dependabot\nдобавлен скрипт тестирования и выпуска \nобновление зависимостей\nдобавить запрос на возможность: ручное обновление всех станций (разрешено одно обновление в минуту) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nдобавить новое состояние => adapterStatus (указывает, выполняет ли адаптер автоматический или ручной запрос)\nдобавить новую функцию cutPrice [выпуск #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nдобавить запрос функции: Включать скидку в цену (евро и процент) [выпуск #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) и оптимизирован код адаптера\nдобавлена возможность: JsonTable для vis [выпуск #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "pt": "Código do Adaptador BREAKING completamente revisto \nAdaptador completamente mudado para TypeScript\nBREAKING A página de configurações do adaptador mudou para Reagir e redesenhado (as estações não compatíveis com a configuração antiga devem ser recriadas)\nadicionar o apoio à fusão automática da Dependabot\nadicionar guião de teste e de lançamento \nDependência actualizada\nadicionar pedido de funcionalidade: actualização manual de todas as estações (um pedido por minuto permitido) [edição #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nadicionar um novo estado => adaptadorStatus (indica se o adaptador executa um pedido automático ou um pedido manual)\nadicionar nova função cutPrice [edição #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nadicionar o pedido de recurso: Incluir desconto no preço (euro e percentagem) [edição #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) e código do adaptador optimizado\nadicionar o pedido de recurso: JsonTable para o vis [edição #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "nl": "BREAKING Adapter code volledig herzien \nAdapter volledig overgeschakeld naar TypeScript\nBREAKING Adapter-configuratiepagina overgeschakeld naar React en opnieuw ontworpen (oude configuratie niet compatibel stations moeten opnieuw worden gemaakt)\nvoeg Dependabot auto merge ondersteuning toe\ntest- en vrijgavescript toegevoegd \nAfhankelijkheid bijgewerkt\nfunctieverzoek toevoegen: handmatige update van alle stations (één verzoek per minuut toegestaan) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \neen nieuwe status => adapterStatus toevoegen (geeft aan of de adapter een automatisch verzoek of een handmatig verzoek uitvoert)\nnieuwe functie cutPrice toevoegen [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nfunctieverzoek toevoegen: korting opnemen in prijs (euro en procent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) en adapter code geoptimaliseerd\nvoeg de feature request toe: JsonTable voor de vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "fr": "BREAKING Le code de l'adaptateur a été complètement revu \nAdaptateur complètement passé à TypeScript\nBREAKING La page de configuration de l'adaptateur est passée à React et a été redessinée (les anciennes stations de configuration ne sont pas compatibles et doivent être recréées).\najout du support de la fusion automatique de Dependabot\najout d'un script de test et de release \nMise à jour des dépendances\najout d'une demande de fonctionnalité : mise à jour manuelle de toutes les stations (une demande par minute autorisée) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \najout d'un nouvel état => adapterStatus (indique si l'adaptateur exécute une requête automatique ou une requête manuelle)\najout d'une nouvelle fonction cutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\najoute la demande de fonctionnalité : Inclure la remise dans le prix (euro et pourcentage) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) et code adaptateur optimisé\najout de la demande de fonctionnalité : JsonTable pour les vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "it": "BREAKING Codice dell'adattatore completamente rivisto \nL'adattatore è passato completamente a TypeScript\nBREAKING La pagina delle configurazioni dell'adattatore è passata a React e ridisegnata (le vecchie stazioni di configurazione non sono compatibili e devono essere ricreate)\naggiunto il supporto per l'unione automatica di Dependabot\naggiungere script di test e rilascio \ndipendenze aggiornate\naggiunta richiesta di funzionalità: aggiornamento manuale di tutte le stazioni (è consentita una richiesta al minuto) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \naggiungere un nuovo stato => adapterStatus (indica se l'adattatore esegue una richiesta automatica o una richiesta manuale)\naggiungere la nuova funzione cutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\naggiungere la richiesta di funzionalità: Includere lo sconto nel prezzo (euro e percentuale) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) e ottimizzare il codice dell'adattatore\naggiungere la richiesta di funzionalità: JsonTable per la vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "es": "BREAKING Código del adaptador completamente revisado \nAdaptador completamente cambiado a TypeScript\nBREAKING Página de configuración del adaptador cambiada a React y rediseñada (las antiguas estaciones de configuración no son compatibles y deben ser recreadas)\nañadir soporte de autofusión de Dependabot\nañadir script de prueba y liberación \nDependencia actualizada\nañadir solicitud de función: actualización manual de todas las estaciones (se permite una solicitud por minuto) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \nañadir un nuevo estado => adapterStatus (indica si el adaptador ejecuta una petición automática o manual)\nañadir una nueva función cutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\nañadir la petición de función: Incluir el descuento en el precio (euro y porcentaje) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) y código del adaptador optimizado\nañadir la petición de función: JsonTable para el vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "pl": "BREAKING Kod adaptera całkowicie zmieniony \nAdapter całkowicie przełączony na TypeScript\nBREAKING Strona konfiguracyjna adaptera przełączona na React i przeprojektowana (stare stacje konfiguracyjne nie są kompatybilne i muszą być odtworzone)\ndodanie obsługi automatycznego scalania Dependabot\ndodanie skryptu testowego i zwalniającego \nZaktualizowane zależności\ndodaj feature request: ręczna aktualizacja wszystkich stacji (dozwolone jedno żądanie na minutę) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \ndodaj nowy stan => adapterStatus (wskazuje, czy adapter wykonuje automatyczne żądanie czy ręczne żądanie)\ndodać nową funkcję CutPrice [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\ndodaj żądanie funkcji: Uwzględnienie rabatu w cenie (euro i procent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) oraz optymalizacja kodu adaptera\ndodajemy feature request: JsonTable dla vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n",
+        "zh-cn": "BREAKING 适配器代码完全修改 \n适配器完全切换到TypeScript\nBREAKING 适配器配置页面切换到React并重新设计（旧的配置不兼容站必须重新创建）。\n增加Dependabot自动合并支持\n添加测试和发布脚本 \n更新依赖关系\n添加功能请求：手动更新所有站点（每分钟允许一个请求）[issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) \n增加一个新的状态 => adapterStatus (表示适配器是执行自动请求还是手动请求)\n增加新的cutPrice函数 [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)\n添加功能请求。在价格中包括折扣（欧元和百分比）[issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) 和适配器代码优化\n添加功能请求。JsonTable for the vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)\n"
+      },
+      "2.2.0": {
+        "en": "Design Fix for Admin Dark/Blue Theme",
+        "de": "Design Fix for Admin Dark/Blue Theme",
+        "ru": "Design Fix for Admin Dark/Blue Theme",
+        "pt": "Design Fix for Admin Dark/Blue Theme",
+        "nl": "Design Fix for Admin Dark/Blue Theme",
+        "fr": "Design Fix for Admin Dark/Blue Theme",
+        "it": "Design Fix for Admin Dark/Blue Theme",
+        "es": "Design Fix for Admin Dark/Blue Theme",
+        "pl": "Design Fix for Admin Dark/Blue Theme",
+        "zh-cn": "Design Fix for Admin Dark/Blue Theme"
+      },
+      "2.1.1": {
+        "en": "New adapter category \"vehicle\", NodeJS v16 testing",
+        "de": "Neue Adapterkategorie \"Fahrzeug\", NodeJS v16 Test",
+        "ru": "Новая категория адаптера \"автомобиль\"",
+        "pt": "Nova categoria de adaptador \"veículo\"",
+        "nl": "Nieuwe adapter categorie \"voertuig\"",
+        "fr": "Nouvel adaptateur catégorie \"véhicule\"",
+        "it": "Nuova categoria di adattatori \"veicolo\"",
+        "es": "Nueva categoría de adaptador \"vehículo\"",
+        "pl": "Nowa kategoria adapterów \"pojazd\"",
+        "zh-cn": "新的适配器类别\"车辆\""
+      },
+      "2.0.11": {
+        "en": "\"ack flag\" and \"wrong type\" issues coming up due to js-controller upgrade 3.3 were fixed",
+        "de": "Probleme mit \"ack flag\" und \"false type\" aufgrund von js-controller upgrade 3.3 wurden behoben",
+        "ru": "Исправлены проблемы с \"флагом подтверждения\" и \"неправильным типом\", возникающие в связи с обновлением js-controller 3.3.",
+        "pt": "Os problemas de \"ack flag\" e \"tipo incorreto\" que surgiam devido à atualização 3.3 do js-controller foram corrigidos",
+        "nl": "\"ack flag\" en \"verkeerde type\" problemen die aan de orde kwamen als gevolg van de js-controller upgrade 3.3 waren opgelost",
+        "fr": "Les problèmes de «drapeau d'ack» et de «type incorrect» à venir en raison de la mise à jour 3.3 du contrôleur js ont été corrigés",
+        "it": "Sono stati risolti i problemi di \"flag ack\" e \"tipo sbagliato\" dovuti all'aggiornamento 3.3 di js-controller",
+        "es": "Se solucionaron los problemas de \"bandera ack\" y \"tipo incorrecto\" debido a la actualización 3.3 del controlador js",
+        "pl": "Naprawiono problemy z flagą ACK i złym typem pojawiające się w związku z aktualizacją js-controller do wersji 3.3",
+        "zh-cn": "修复了由于js-controller升级3.3而出现的\" ack标志\"和\"错误类型\"问题"
+      },
+      "2.0.10": {
+        "en": "\"has no existing object\" issue fixed",
+        "de": "Problem \"hat kein vorhandenes Objekt\" behoben",
+        "ru": "Исправлена проблема \"не имеет существующего объекта\"",
+        "pt": "Problema \"não tem objeto existente\" corrigido",
+        "nl": "\"heeft geen bestaand object\" probleem opgelost",
+        "fr": "Problème \"n'a aucun objet existant\" résolu",
+        "it": "Problema \"non ha oggetto esistente\" risolto",
+        "es": "Problema \"no tiene ningún objeto existente\" solucionado",
+        "pl": "Naprawiono problem \"nie ma istniejącego obiektu\"",
+        "zh-cn": "修复\"没有对象\"的问题"
+      },
+      "2.0.9": {
+        "en": "NodeJS 10 or higher required",
+        "de": "NodeJS 10 oder höher erforderlich",
+        "ru": "Требуется NodeJS 10 или выше",
+        "pt": "Necessário NodeJS 10 ou superior",
+        "nl": "NodeJS 10 of hoger vereist",
+        "fr": "NodeJS 10 ou supérieur requis",
+        "it": "Nodo JS 10 o superiore richiesto",
+        "es": "Nodo JS 10 o superior requerido",
+        "pl": "Wymagany NodeJS 10 lub wyższy",
+        "zh-cn": "需要NodeJS 10或更高版本"
+      }
+    },
+    "titleLang": {
+      "en": "Tankerkoenig Fuel prices",
+      "de": "Tankerkönig Spritpreise",
+      "ru": "Tankerkoenig Цены на топливо",
+      "pt": "Preços de combustível Tankerkoenig",
+      "nl": "Tankerkoenig Brandstofprijzen",
+      "fr": "Prix du carburant Tankerkoenig",
+      "it": "Prezzi del carburante Tankerkoenig",
+      "es": "Precios del combustible Tankerkoenig",
+      "pl": "Tankerkoenig Ceny paliwa",
+      "zh-cn": "Tankerkoenig燃料价格"
+    },
+    "desc": {
+      "en": "Tankerkoenig fuel prices",
+      "de": "Tankerkönig Spritpreise",
+      "ru": "Tankerkoenig Цены на топливо",
+      "pt": "Preços de combustível Tankerkoenig",
+      "nl": "Tankerkoenig Brandstofprijzen",
+      "fr": "Prix du carburant Tankerkoenig",
+      "it": "Prezzi del carburante Tankerkoenig",
+      "es": "Precios del combustible Tankerkoenig",
+      "pl": "Tankerkoenig Ceny paliwa",
+      "zh-cn": "Tankerkoenig燃料价格"
+    },
+    "authors": [
+      "Pix"
+    ],
+    "docs": {
+      "en": "docs/en/doc_tankerkoenig_en.md",
+      "de": "docs/de/doc_tankerkoenig_de.md"
+    },
+    "keywords": [
+      "fuel",
+      "gas",
+      "tankerkoenig",
+      "Tankerkönig",
+      "Sprit",
+      "Spritpreis",
+      "Tankstelle",
+      "Diesel",
+      "Benzin"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "build/main.js",
+    "icon": "tankerkoenig.png",
+    "enabled": false,
+    "extIcon": "https://raw.githubusercontent.com/Pix---/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
+    "readme": "https://github.com/Pix---/ioBroker.tankerkoenig/blob/master/README.md",
+    "allowInit": true,
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "misc-data",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "stopBeforeUpdate": true,
+    "eraseOnUpload": true,
+    "materialize": true,
+    "dependencies": [
+      {
+        "js-controller": ">=3.0.0"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.3.3"
+      }
+    ],
+    "messages": [
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<2.1.1",
+            "newVersion>=3.0.0"
+          ]
+        },
+        "title": {
+          "en": "Important notice!",
+          "de": "Wichtiger Hinweis!",
+          "ru": "Важное замечание!",
+          "pt": "Notícia importante!",
+          "nl": "Belangrijke mededeling!",
+          "fr": "Avis important!",
+          "it": "Avviso IMPORTANTE!",
+          "es": "Noticia importante!",
+          "pl": "Ważna uwaga!",
+          "zh-cn": "重要通知!"
+        },
+        "text": {
+          "en": "The adapter has been reprogrammed from scratch, which means that the old config is no longer compatible with the new version. Please delete the old adapter before and then reinstall, otherwise the adapter may not work properly!",
+          "de": "Der Adapter wurde von Grund auf neu programmiert, das bedeutet, die alte Config ist nicht mehr kompatibel ist mit der neuen Version. Bitte den alten Adapter vorher löschen und dann neu installieren, da sonst der Adapter nicht richtig funktionieren könnte!",
+          "ru": "Адаптер был перепрограммирован с нуля, что означает, что старый конфиг больше не совместим с новой версией. Пожалуйста, предварительно удалите старый адаптер, а затем установите его заново, иначе адаптер может работать неправильно!",
+          "pt": "O adaptador foi reprogramado de raiz, o que significa que a configuração antiga já não é compatível com a nova versão. Por favor, apague previamente o adaptador antigo e depois reinstale-o, caso contrário o adaptador pode não funcionar correctamente!",
+          "nl": "De adapter is helemaal opnieuw geprogrammeerd, wat betekent dat de oude configuratie niet langer compatibel is met de nieuwe versie. Verwijder eerst de oude adapter en installeer hem daarna opnieuw, anders kan de adapter niet goed werken!",
+          "fr": "L'adaptateur a été reprogrammé à partir de zéro, ce qui signifie que l'ancienne config n'est plus compatible avec la nouvelle version. Veuillez effacer l'ancien adaptateur avant de le réinstaller, sinon l'adaptateur pourrait ne pas fonctionner correctement !",
+          "it": "L'adattatore è stato riprogrammato da zero, il che significa che la vecchia configurazione non è più compatibile con la nuova versione. Eliminare prima il vecchio adattatore e poi reinstallarlo, altrimenti l'adattatore potrebbe non funzionare correttamente!",
+          "es": "El adaptador ha sido reprogramado desde cero, lo que significa que la antigua configuración ya no es compatible con la nueva versión. Por favor, borre previamente el adaptador antiguo y vuelva a instalarlo, de lo contrario el adaptador podría no funcionar correctamente.",
+          "pl": "Adapter został przeprogramowany od podstaw, co oznacza, że stary config nie jest już kompatybilny z nową wersją. Proszę wcześniej usunąć stary adapter, a następnie zainstalować go ponownie, w przeciwnym razie adapter może nie działać prawidłowo!",
+          "zh-cn": ""
+        },
+        "level": "warn",
+        "buttons": [
+          "cancel"
+        ]
+      }
+    ]
   },
   "protectedNative": [
-	"apikey"
+    "apikey"
   ],
   "native": {
-	"synctime": 5,
-	"resetValues": false,
-	"noLogs": true,
-	"apikey": "",
-	"station": []
+    "synctime": 5,
+    "resetValues": false,
+    "noLogs": true,
+    "apikey": "",
+    "station": []
   },
   "objects": [],
   "instanceObjects": []
