@@ -72,6 +72,7 @@ class Tankerkoenig extends utils.Adapter {
 		if (this.config.apikey.length === 36) {
 			if (this.config.station.length > 0) {
 				await this.createAllStates(this.config.station);
+				await this.stationDelete(this.config.station);
 				await this.requestData();
 			} else {
 				this.writeLog(`No stations defined`, 'error');
@@ -944,6 +945,31 @@ class Tankerkoenig extends utils.Adapter {
 			// end of create objects
 		} catch (e) {
 			this.writeLog(`Error creating all states: ${e}`, 'error');
+		}
+	}
+
+	/**
+	 * @description Is called when station deleted
+	 */
+	private async stationDelete(station: ioBroker.Station[]): Promise<void> {
+		try {
+			const stationCount: any[] = [];
+			if (station !== undefined) {
+				for (const indexStation in station) {
+					stationCount.push(indexStation);
+				}
+				for (let i = 0; i < 10; i++) {
+					if (stationCount[i] === undefined) {
+						this.writeLog(`delete station ${i}`, 'debug');
+						await this.delObjectAsync(`${this.namespace}.stations.${i}`, { recursive: true });
+					}
+				}
+			} else {
+				this.writeLog(`[ stationDelete ] No stations defined`, 'debug');
+				return;
+			}
+		} catch (error) {
+			this.writeLog(`[ stationDelete ] error: ${error} stack: ${error.stack}`, 'error');
 		}
 	}
 

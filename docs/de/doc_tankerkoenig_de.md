@@ -41,6 +41,7 @@ Der Adapter läuft als Daemon (nicht im Schedule Modus) und startet regulär all
 
 ##  Datenpunkte
 Die Datenpunkte werden dynamisch erstellt, das heißt, wen man eine Station anlegt werden Datenpunkte dazu angelegt (Maximal 10 Stationen)
+Wenn man eine Station löscht, werden auch die nicht mehr benötigten Datenpunkte gelöscht.
 ![alt text](img/tankerkoenigNewDP.png "Screenshot Settings")
 Unter den verschiedenen Kraftstoffart werden die folgenden Datenpunkte:
 * `feed` (Preis mit drei Dezimalstellen als Number)

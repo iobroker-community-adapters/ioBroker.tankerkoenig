@@ -41,6 +41,7 @@ The adapter runs as a daemon (not in schedule mode) and starts regularly every f
 
 ##  Datapoints
 The datapoints are created dynamically, that is, when you create a station, datapoints are created for it (maximum 10 stations).
+When you delete a station, the datapoints that are no longer needed are also deleted.
 ![alt text](img/tankerkoenigNewDP.png "Screenshot Settings")
 Under the different fuel types the following datapoints are created:
 * `feed` (price with three decimal places as number)
