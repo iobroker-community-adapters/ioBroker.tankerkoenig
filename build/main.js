@@ -155,6 +155,15 @@ class Tankerkoenig extends utils.Adapter {
       return price;
     }
   }
+  async oldState(id) {
+    try {
+      const oldState = await this.getStateAsync(id);
+      return oldState ? oldState.val : null;
+    } catch (error) {
+      this.writeLog(`[ oldState ] error: ${error} stack: ${error.stack}`, "error");
+      return null;
+    }
+  }
   async writeState(prices) {
     try {
       const station = this.config.station;
@@ -448,36 +457,36 @@ class Tankerkoenig extends utils.Adapter {
                   }
                 }
               }
-            } else if (prices[stationValue.station].status === "closed") {
-              for (const key2 in fuelTypes) {
-                if (fuelTypes.hasOwnProperty(key2)) {
-                  await this.setStateAsync(`stations.${key2}.${fuelTypes[key2]}.combined`, {
-                    val: `<span class="station_closed">Station Closed</span>`,
+            } else if (prices[stationValue.station].status === "closed" || prices[stationValue.station].status === "no prices" || prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations") {
+              for (const fuelTypesKey in fuelTypes) {
+                if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
+                  await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`, {
+                    val: await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`),
+                    ack: true,
+                    q: 64
+                  });
+                  await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.3rd`, {
+                    val: await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.3rd`),
+                    ack: true,
+                    q: 64
+                  });
+                  await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`, {
+                    val: await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`),
+                    ack: true,
+                    q: 64
+                  });
+                  await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.combined`, {
+                    val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
                     ack: true
                   });
                 }
               }
-              this.writeLog(`${stationValue.stationname} is Closed`, `debug`);
-            } else if (prices[stationValue.station].status === "no prices") {
-              for (const key2 in fuelTypes) {
-                if (fuelTypes.hasOwnProperty(key2)) {
-                  await this.setStateAsync(`stations.${key2}.${fuelTypes[key2]}.combined`, {
-                    val: `<span class="station_no_prices">No Prices</span>`,
-                    ack: true
-                  });
-                }
-              }
-              this.writeLog(`there are no prices at ${stationValue.stationname}`, `warn`);
-            } else if (prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations") {
-              for (const key2 in fuelTypes) {
-                if (fuelTypes.hasOwnProperty(key2)) {
-                  await this.setStateAsync(`stations.${key2}.${fuelTypes[key2]}.combined`, {
-                    val: `<span class="station_notfound">not found</span>`,
-                    ack: true
-                  });
-                }
-              }
-              this.writeLog(`station ${stationValue.stationname} with ID: ${stationValue.station} was not found`, `warn`);
+              if (prices[stationValue.station].status === "closed")
+                this.writeLog(`${stationValue.stationname} is Closed`, `debug`);
+              if (prices[stationValue.station].status === "no prices")
+                this.writeLog(`there are no prices at ${stationValue.stationname}`, `warn`);
+              if (prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations")
+                this.writeLog(`station ${stationValue.stationname} with ID: ${stationValue.station} was not found`, `warn`);
             }
           }
         }
@@ -630,7 +639,7 @@ class Tankerkoenig extends utils.Adapter {
             await this.setObjectNotExistsAsync(`stations.${stationKey}`, {
               type: "channel",
               common: {
-                name: station.stationname
+                name: station.stationname !== "" ? station.stationname : `station ${stationKey}`
               },
               native: {}
             });
@@ -642,7 +651,7 @@ class Tankerkoenig extends utils.Adapter {
                 await this.extendObjectAsync(`stations.${stationKey}`, {
                   type: "channel",
                   common: {
-                    name: station.stationname
+                    name: station.stationname !== "" ? station.stationname : `station ${stationKey}`
                   },
                   native: {}
                 });
