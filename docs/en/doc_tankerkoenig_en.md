@@ -21,7 +21,7 @@ The API key can be obtained at [website Tankerkönig](https://creativecommons.ta
 ### Stations
 Up to 10 gas stations can be queried. To do this, you need to enter the gas station ID. You can get the ID for each gas station on tankerkoenig.de. It is also 36 digits long.
 In addition, you can enter your own name for the station.
-![alt text](img/tankerkoenigSettingsScreenshot.png "Screenshot Settings")
+![alt text](img/tankerkoenigSettingsScreenshot1.png "Screenshot Settings")
 ![alt text](img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
 
 This window is used to add the new stations, you can read the stadium ID directly in the map below and copy it into the field above.
@@ -29,9 +29,10 @@ Under the discount options you can choose between the discount variants ⇨ Euro
 
 ![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
 
+### Invalid prices
+If a gas station does not provide prices for E5, E10 or Diesel, e.g. if the station is closed, the price will not change, instead the state quality will be set to `Quality code 0x40 => Substitute value from device`, the state will then be displayed in orange.
 
-### Write null
-In case of a disconnect this option prevents the adapter to store old values. It helps to produce a smoother history chart.
+![alt text](img/state_quality.png "Screenshot Settings")
 
 ### Minimize log
 To reduce log writing (e.g. on SD cards) this option can be selected.

@@ -21,7 +21,7 @@ Der API Schlüssel ist auf der [Seite von Tankerkönig](https://creativecommons.
 ### Tankstellen
 Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tankstellen ID nötig. Die ID für jede Tankstelle erhält man auf tankerkoenig.de. Sie ist ebenfalls 36stellig.
 Zusätzlich kann ein eigener Name für die Station hinterlegt werden.
-![alt text](img/tankerkoenigSettingsScreenshot.png "Screenshot Settings")
+![alt text](img/tankerkoenigSettingsScreenshot_1.png "Screenshot Settings")
 ![alt text](img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
 
 Über dieses Fenster werden die neuen Stationen hinzugefügt, man kann direkt in der Karte darunter die Stadions-ID auslesen und in das Feld oben kopieren.
@@ -29,9 +29,10 @@ Unter der Rabatt Optionen kann man zwischen den Rabatt Varianten ⇨ Euro / Proz
 
 ![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
 
+### Ungültige Preise
+Wenn eine Tankstelle keine Preise für E5, E10 oder Diesel liefert, z. B. bei einer geschlossenen Station, wird der Preis sich nicht ändern stattdessen wird die state Qualität auf `Qualitätscode 0x40 => Ersatzwert aus Gerät` gesetzt, der state wird dann orange angezeigt.
 
-### Werte nullen
-Sollte die Verbindung zum Server nicht funktionieren, verhindert das Löschen der Werte in den Datenpunkte (Reset bzw. nullen), dass veraltete Werte vorgehalten werden. Dieser Reset kann in den Adaptereinstellungen ausgeschaltet werden, um flüssigere History-Daten zu erhalten.
+![alt text](img/state_quality.png "Screenshot Settings")
 
 ### Log minimieren
 Um Schreibzugriffe im Log (z.B. auf empfindliche SD-Karten) zu minimieren, kann ein Haken gesetzt werden.
