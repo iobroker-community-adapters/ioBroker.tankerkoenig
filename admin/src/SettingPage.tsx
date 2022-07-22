@@ -141,8 +141,8 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 				<ApiKey settings={settings} onChange={(key, value) => onChange(key, value)} />
 				<Spacer text={'spacerInterval'} />
 				<AdapterInterval onChange={onChange} settings={settings} />
-				<Spacer text={'Adapter Price Settings'} />
-				<PriceSettings onChange={onChange} settings={settings} />
+				{/* <Spacer text={'Adapter Price Settings'} /> */}
+				{/* <PriceSettings onChange={onChange} settings={settings} /> */}
 				<Spacer text={'Adapter Log Settings'} />
 				<LogSettings onChange={onChange} settings={settings} />
 			</TabPanel>
