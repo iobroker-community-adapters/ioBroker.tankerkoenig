@@ -41,6 +41,10 @@ NodeJS v10 oder höher wird vorausgesetzt.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+
+### __WORK IN PROGRESS__
+* (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/Pix---/ioBroker.tankerkoenig/issues/79)
+
 ### 3.0.1 (2022-07-08)
 * (xXBJXx) added datapoints delete function
 
