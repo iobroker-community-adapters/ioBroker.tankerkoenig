@@ -713,31 +713,39 @@ class Tankerkoenig extends utils.Adapter {
 	): Promise<CreateJsonTable[] | undefined> {
 		try {
 			const jsonTable = [];
-			for (const stationV of station) {
-				for (const [stationID, pricesValue] of Object.entries(price)) {
-					if (stationV.station === stationID) {
-						if (typeof pricesValue.e5 !== 'number') {
-							pricesValue.e5 = 0;
-						}
-						if (typeof pricesValue.e10 !== 'number') {
-							pricesValue.e10 = 0;
-						}
-						if (typeof pricesValue.diesel !== 'number') {
-							pricesValue.diesel = 0;
-						}
+			for (const key in station) {
+				if (station.hasOwnProperty(key)) {
+					for (const [stationID, pricesValue] of Object.entries(price)) {
+						if (station[key].station === stationID) {
+							if (typeof pricesValue.e5 !== 'number') {
+								pricesValue.e5 = await this.oldState(`stations.${key}.e5.feed`);
+							}
+							if (typeof pricesValue.e10 !== 'number') {
+								pricesValue.e10 = await this.oldState(`stations.${key}.e10.feed`);
+							}
+							if (typeof pricesValue.diesel !== 'number') {
+								pricesValue.diesel = await this.oldState(`stations.${key}.diesel.feed`);
+							}
 
-						jsonTable.push({
-							station: stationV.stationname,
-							status: pricesValue.status,
-							e5: pricesValue.e5,
-							e10: pricesValue.e10,
-							diesel: pricesValue.diesel,
-							discount: stationV.discounted
-								? stationV.discountObj.discountType === 'percent'
-									? `${stationV.discountObj.discount}%`
-									: `${stationV.discountObj.discount}€`
-								: '0',
-						});
+							if (pricesValue.status !== 'open') {
+								pricesValue.e5 = await this.oldState(`stations.${key}.e5.feed`);
+								pricesValue.e10 = await this.oldState(`stations.${key}.e10.feed`);
+								pricesValue.diesel = await this.oldState(`stations.${key}.diesel.feed`);
+							}
+
+							jsonTable.push({
+								station: station[key].stationname,
+								status: pricesValue.status,
+								e5: pricesValue.e5 as number,
+								e10: pricesValue.e10 as number,
+								diesel: pricesValue.diesel as number,
+								discount: station[key].discounted
+									? station[key].discountObj.discountType === 'percent'
+										? `${station[key].discountObj.discount}%`
+										: `${station[key].discountObj.discount}€`
+									: '0',
+							});
+						}
 					}
 				}
 			}
