@@ -7,8 +7,6 @@
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
 **Tests:**
-
-Linux/Mac: [![Travis-CI](http://img.shields.io/travis/Pix---/ioBroker.tankerkoenig/master.svg)](https://travis-ci.org/Pix---/ioBroker.tankerkoenig)
 Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/ioBroker.tankerkoenig?branch=master&svg=true)](https://ci.appveyor.com/project/Pix---/ioBroker-tankerkoenig/)
 
 NodeJS v10 oder höher wird vorausgesetzt.
@@ -42,11 +40,9 @@ NodeJS v10 oder höher wird vorausgesetzt.
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
 
-### __WORK IN PROGRESS__
-* (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/Pix---/ioBroker.tankerkoenig/issues/79)
-
 ### 3.0.1 (2022-07-08)
 * (xXBJXx) added datapoints delete function
+* (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/Pix---/ioBroker.tankerkoenig/issues/79)
 
 ### 3.0.0 (2022-07-02)
 * (xXBJXx) BREAKING Adapter code completely revised

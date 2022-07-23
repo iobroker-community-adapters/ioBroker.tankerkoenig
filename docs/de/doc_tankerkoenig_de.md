@@ -21,7 +21,7 @@ Der API Schlüssel ist auf der [Seite von Tankerkönig](https://creativecommons.
 ### Tankstellen
 Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tankstellen ID nötig. Die ID für jede Tankstelle erhält man auf tankerkoenig.de. Sie ist ebenfalls 36stellig.
 Zusätzlich kann ein eigener Name für die Station hinterlegt werden.
-![alt text](img/tankerkoenigSettingsScreenshot_1.png "Screenshot Settings")
+![alt text](img/tankerkoenigSettingsScreenshot1.png "Screenshot Settings")
 ![alt text](img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
 
 Über dieses Fenster werden die neuen Stationen hinzugefügt, man kann direkt in der Karte darunter die Stadions-ID auslesen und in das Feld oben kopieren.
