@@ -855,14 +855,6 @@ class Tankerkoenig extends utils.Adapter {
 			this.writeLog('all states are now created', 'debug');
 
 			//  create all channel
-			await this.setObjectNotExistsAsync('stations', {
-				type: 'channel',
-				common: {
-					name: 'Gas stations',
-				},
-				native: {},
-			});
-
 			await this.setObjectNotExistsAsync('stations.cheapest', {
 				type: 'channel',
 				common: {
