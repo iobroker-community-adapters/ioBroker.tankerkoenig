@@ -208,5 +208,28 @@
     "station": []
   },
   "objects": [],
-  "instanceObjects": []
+  "instanceObjects": [
+    {
+      "_id": "stations",
+      "type": "channel",
+      "common": {
+        "name": "Gas stations"
+      },
+      "native": {}
+    },
+    {
+      "_id": "stations.adapterStatus",
+      "type": "state",
+      "common": {
+        "name": "adapter status",
+        "desc": "adapter status",
+        "type": "string",
+        "role": "info.status",
+        "def": "idle",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    }
+  ]
 }

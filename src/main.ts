@@ -1030,20 +1030,6 @@ class Tankerkoenig extends utils.Adapter {
 				native: {},
 			});
 
-			await this.setObjectNotExistsAsync(`stations.adapterStatus`, {
-				type: 'state',
-				common: {
-					name: 'adapter status',
-					desc: 'adapter status',
-					type: `string`,
-					role: `info.status`,
-					def: 'idle',
-					read: true,
-					write: false,
-				},
-				native: {},
-			});
-
 			await this.setObjectNotExistsAsync(`stations.refresh`, {
 				type: 'state',
 				common: {
