@@ -7,7 +7,6 @@ import { AlertComponent } from './component/AlertComponent';
 import { ApiKey } from './component/ApiKey';
 import { DownloadUploadButton } from './component/DownloadUploadButton';
 import { LogSettings } from './component/LogSettings';
-import { PriceSettings } from './component/PriceSettings';
 import { Spacer } from './component/Spacer';
 import { StationCard } from './component/StationCard';
 import { EditModal } from './Modal/EditModal';
@@ -141,8 +140,6 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 				<ApiKey settings={settings} onChange={(key, value) => onChange(key, value)} />
 				<Spacer text={'spacerInterval'} />
 				<AdapterInterval onChange={onChange} settings={settings} />
-				<Spacer text={'Adapter Price Settings'} />
-				<PriceSettings onChange={onChange} settings={settings} />
 				<Spacer text={'Adapter Log Settings'} />
 				<LogSettings onChange={onChange} settings={settings} />
 			</TabPanel>
