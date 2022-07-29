@@ -106,7 +106,7 @@ function readData(url) {
     request({
               headers: { 'User-Agent': adapterName + '/' + adapterVersion },
               uri: url
-            }, function (error, response, body) {
+            }, async function (error, response, body) {
         if (!error && response.statusCode === 200) {
             let result;
             writeLog('Typ Body: ' + typeof body + ' >>> Body Inhalt: ' + body, 'debug'); // fertiges JSON als String
@@ -117,7 +117,7 @@ function readData(url) {
                 // JSON check
                 if (result.ok) {
                     writeLog('JSON ok', 'debug');
-                    adapter.setState('json', {ack: true, val: body}); // nur String (also body) speichern
+                    await adapter.setStateAsync('json', {ack: true, val: body}); // nur String (also body) speichern
 
                     //VARIABLEN NIEDRIGSTER PREIS definieren
                     let cheapest_e5;           // wird mal 0 bis 9
@@ -154,31 +154,31 @@ function readData(url) {
                     // Reset
                     if (adapter.config.resetValues) {
                         // billigstes E5
-                        adapter.setState('stations.cheapest.e5.feed',  {ack: true, val: 0});
-                        adapter.setState('stations.cheapest.e5.short', {ack: true, val: ''});
-                        adapter.setState('stations.cheapest.e5.3rd',   {ack: true, val: 0});// dritte stelle
-                        adapter.setState('stations.cheapest.e5.combined',  {ack: true, val: 'keine Daten'});
-                        adapter.setState('stations.cheapest.e5.name', {ack: true, val: ''});
-                        adapter.setState('stations.cheapest.e5.status', {ack: true, val: ''});
-                        adapter.setState('stations.cheapest.e5.station_id', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.e5.feed',  {ack: true, val: 0});
+                        await adapter.setStateAsync('stations.cheapest.e5.short', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.e5.3rd',   {ack: true, val: 0});// dritte stelle
+                        await adapter.setStateAsync('stations.cheapest.e5.combined',  {ack: true, val: 'keine Daten'});
+                        await adapter.setStateAsync('stations.cheapest.e5.name', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.e5.status', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.e5.station_id', {ack: true, val: ''});
 
                         // billigstes E10
-                        adapter.setState('stations.cheapest.e10.feed',  {ack: true, val: 0});
-                        adapter.setState('stations.cheapest.e10.short', {ack: true, val: '0'});
-                        adapter.setState('stations.cheapest.e10.3rd',   {ack: true, val: 0});
-                        adapter.setState('stations.cheapest.e10.combined',  {ack: true, val: 'keine Daten'});
-                        adapter.setState('stations.cheapest.e10.name', {ack: true, val: ''});
-                        adapter.setState('stations.cheapest.e10.status', {ack: true, val: ''});
-                        adapter.setState('stations.cheapest.e10.station_id', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.e10.feed',  {ack: true, val: 0});
+                        await adapter.setStateAsync('stations.cheapest.e10.short', {ack: true, val: '0'});
+                        await adapter.setStateAsync('stations.cheapest.e10.3rd',   {ack: true, val: 0});
+                        await adapter.setStateAsync('stations.cheapest.e10.combined',  {ack: true, val: 'keine Daten'});
+                        await adapter.setStateAsync('stations.cheapest.e10.name', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.e10.status', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.e10.station_id', {ack: true, val: ''});
 
                         // billigster Diesel
-                        adapter.setState('stations.cheapest.diesel.feed',  {ack: true, val: 0});
-                        adapter.setState('stations.cheapest.diesel.short', {ack: true, val: '0'});// zweistellig
-                        adapter.setState('stations.cheapest.diesel.3rd',   {ack: true, val: 0});// dritte stelle
-                        adapter.setState('stations.cheapest.diesel.combined',  {ack: true, val: 'keine Daten'});
-                        adapter.setState('stations.cheapest.diesel.name', {ack: true, val: ''});
-                        adapter.setState('stations.cheapest.diesel.status', {ack: true, val: ''});
-                        adapter.setState('stations.cheapest.diesel.station_id', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.diesel.feed',  {ack: true, val: 0});
+                        await adapter.setStateAsync('stations.cheapest.diesel.short', {ack: true, val: '0'});// zweistellig
+                        await adapter.setStateAsync('stations.cheapest.diesel.3rd',   {ack: true, val: 0});// dritte stelle
+                        await adapter.setStateAsync('stations.cheapest.diesel.combined',  {ack: true, val: 'keine Daten'});
+                        await adapter.setStateAsync('stations.cheapest.diesel.name', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.diesel.status', {ack: true, val: ''});
+                        await adapter.setStateAsync('stations.cheapest.diesel.station_id', {ack: true, val: ''});
                     }
 
                     // alle Stationen durchgehen
@@ -188,48 +188,48 @@ function readData(url) {
 
                         // hier alle States für Status und Preise leeren (0.00 oder 0), falls nicht alle 10 Felder ausgefüllt sind (ohne ack true)
                         if (adapter.config.resetValues) { // Zeile testweise eingefügt
-                            adapter.setState('stations.' + i + '.status',       {ack: true, val: ''});
-                            adapter.setState('stations.' + i + '.e5.feed',      {ack: true, val: 0});
-                            if (i < 2) adapter.setState('stations.' + i + '.e5.feed', {ack: true, val: 0});
-                            adapter.setState('stations.' + i + '.e5.short',     {ack: true, val: '0'});
-                            adapter.setState('stations.' + i + '.e5.3rd',       {ack: true, val: 0});
-                            adapter.setState('stations.' + i + '.e5.combined',  {ack: true, val: ''});
-                            adapter.setState('stations.' + i + '.e10.feed',     {ack: true, val: 0});
-                            if (i < 2) adapter.setState('stations.' + i + '.e10.feed', {ack: true, val: 0});
-                            adapter.setState('stations.' + i + '.e10.short',    {ack: true, val: '0'});
-                            adapter.setState('stations.' + i + '.e10.3rd',      {ack: true, val: 0});
-                            adapter.setState('stations.' + i + '.e10.combined', {ack: true, val: ''});
-                            adapter.setState('stations.' + i + '.diesel.feed',  {ack: true, val: 0});
-                            if (i < 2) adapter.setState('stations.' + i + '.diesel.feed', {ack: true, val: 0});
-                            adapter.setState('stations.' + i + '.diesel.short', {ack: true, val: '0'});
-                            adapter.setState('stations.' + i + '.diesel.3rd',   {ack: true, val: 0});
-                            adapter.setState('stations.' + i + '.diesel.combined', {ack: true, val: ''});
+                            await adapter.setStateAsync('stations.' + i + '.status',       {ack: true, val: ''});
+                            await adapter.setStateAsync('stations.' + i + '.e5.feed',      {ack: true, val: 0});
+                            if (i < 2) await adapter.setStateAsync('stations.' + i + '.e5.feed', {ack: true, val: 0});
+                            await adapter.setStateAsync('stations.' + i + '.e5.short',     {ack: true, val: '0'});
+                            await adapter.setStateAsync('stations.' + i + '.e5.3rd',       {ack: true, val: 0});
+                            await adapter.setStateAsync('stations.' + i + '.e5.combined',  {ack: true, val: ''});
+                            await adapter.setStateAsync('stations.' + i + '.e10.feed',     {ack: true, val: 0});
+                            if (i < 2) await adapter.setStateAsync('stations.' + i + '.e10.feed', {ack: true, val: 0});
+                            await adapter.setStateAsync('stations.' + i + '.e10.short',    {ack: true, val: '0'});
+                            await adapter.setStateAsync('stations.' + i + '.e10.3rd',      {ack: true, val: 0});
+                            await adapter.setStateAsync('stations.' + i + '.e10.combined', {ack: true, val: ''});
+                            await adapter.setStateAsync('stations.' + i + '.diesel.feed',  {ack: true, val: 0});
+                            if (i < 2) await adapter.setStateAsync('stations.' + i + '.diesel.feed', {ack: true, val: 0});
+                            await adapter.setStateAsync('stations.' + i + '.diesel.short', {ack: true, val: '0'});
+                            await adapter.setStateAsync('stations.' + i + '.diesel.3rd',   {ack: true, val: 0});
+                            await adapter.setStateAsync('stations.' + i + '.diesel.combined', {ack: true, val: ''});
                         } // Zeile testweise eingefügt
 
                         if ((stationID.length === 36) && (result.prices[stationID] !== undefined)) { // wenn StationID bekannt, also Settings-Feld gefüllt
                             writeLog('Station ' + stationID + ' ' + stationName + ' wird bearbeitet ...','debug');
                             const status = result.prices[stationID].status;
                             // Namen und Status in jedem Fall schreiben
-                            adapter.setState('stations.' + i + '.name', {ack: true, val: stationName});
-                            adapter.setState('stations.' + i + '.status', {ack: true, val: status});
-                            adapter.setState('stations.' + i + '.station_id', {ack: true, val: stationID});
+                            await adapter.setStateAsync('stations.' + i + '.name', {ack: true, val: stationName});
+                            await adapter.setStateAsync('stations.' + i + '.status', {ack: true, val: status});
+                            await adapter.setStateAsync('stations.' + i + '.station_id', {ack: true, val: stationID});
 
                             // status checken
                             if (status.indexOf('not found') !== -1) {
                                 writeLog('Station ' + stationID + ' nicht gefunden', 'warn');
-                                adapter.setState('stations.' + i + '.e5.combined',     {ack: true, val: '<span class="station_notfound">nicht gefunden</span>'});
-                                adapter.setState('stations.' + i + '.e10.combined',    {ack: true, val: '<span class="station_notfound">nicht gefunden</span>'});
-                                adapter.setState('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_notfound">nicht gefunden</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.e5.combined',     {ack: true, val: '<span class="station_notfound">nicht gefunden</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.e10.combined',    {ack: true, val: '<span class="station_notfound">nicht gefunden</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_notfound">nicht gefunden</span>'});
                             } else if (status.indexOf('no stations') !== -1) {
                                 writeLog('Station ' + stationID + ' ergibt NO STATIONS', 'warn');
-                                adapter.setState('stations.' + i + '.e5.combined',     {ack: true, val: '<span class="station_notfound">Fehler NO STATIONS</span>'});
-                                adapter.setState('stations.' + i + '.e10.combined',    {ack: true, val: '<span class="station_notfound">Fehler NO STATIONS</span>'});
-                                adapter.setState('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_notfound">Fehler NO STATIONS</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.e5.combined',     {ack: true, val: '<span class="station_notfound">Fehler NO STATIONS</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.e10.combined',    {ack: true, val: '<span class="station_notfound">Fehler NO STATIONS</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_notfound">Fehler NO STATIONS</span>'});
                             } else if (status.indexOf('closed') !== -1) {
                                 writeLog('Station ' + stationID + ' ' + stationName +  ' geschlossen', 'debug');
-                                adapter.setState('stations.' + i + '.e5.combined',     {ack: true, val: '<span class="station_closed">geschlossen</span>'});
-                                adapter.setState('stations.' + i + '.e10.combined',    {ack: true, val: '<span class="station_closed">geschlossen</span>'});
-                                adapter.setState('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_closed">geschlossen</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.e5.combined',     {ack: true, val: '<span class="station_closed">geschlossen</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.e10.combined',    {ack: true, val: '<span class="station_closed">geschlossen</span>'});
+                                await adapter.setStateAsync('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_closed">geschlossen</span>'});
 
                             } else if (status.indexOf('open') !== -1) {
 
@@ -239,10 +239,10 @@ function readData(url) {
                                 } else {
                                     const prices = cutPrice(result.prices[stationID].e5);
                                     //adapter.log.debug('In Station ' + stationID + ' ' + stationName + ' kostet E5: ' + result.prices[stationID].e5 + '€');
-                                    adapter.setState('stations.' + i + '.e5.feed',  {ack: true, val: parseFloat(result.prices[stationID].e5)});
-                                    adapter.setState('stations.' + i + '.e5.short', {ack: true, val: prices.priceshort});// zweistellig
-                                    adapter.setState('stations.' + i + '.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                                    adapter.setState('stations.' + i + '.e5.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
+                                    await adapter.setStateAsync('stations.' + i + '.e5.feed',  {ack: true, val: parseFloat(result.prices[stationID].e5)});
+                                    await adapter.setStateAsync('stations.' + i + '.e5.short', {ack: true, val: prices.priceshort});// zweistellig
+                                    await adapter.setStateAsync('stations.' + i + '.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
+                                    await adapter.setStateAsync('stations.' + i + '.e5.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
 
                                     // Niedrigsten Preis E5 ermitteln
                                     writeLog('E5-Preis-Feld ' +  i + ' gefüllt', 'debug');
@@ -260,10 +260,10 @@ function readData(url) {
                                 } else {
                                     const prices = cutPrice(result.prices[stationID].e10);
                                     //adapter.log.debug('In Station ' + stationID + ' ' + stationName + ' kostet E10: ' + result.prices[stationID].e10 + '€');
-                                    adapter.setState('stations.' + i + '.e10.feed', {ack: true, val: parseFloat(result.prices[stationID].e10)});
-                                    adapter.setState('stations.' + i + '.e10.short', {ack: true, val: prices.priceshort});
-                                    adapter.setState('stations.' + i + '.e10.3rd', {ack: true, val: prices.price3rd});
-                                    adapter.setState('stations.' + i + '.e10.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
+                                    await adapter.setStateAsync('stations.' + i + '.e10.feed', {ack: true, val: parseFloat(result.prices[stationID].e10)});
+                                    await adapter.setStateAsync('stations.' + i + '.e10.short', {ack: true, val: prices.priceshort});
+                                    await adapter.setStateAsync('stations.' + i + '.e10.3rd', {ack: true, val: prices.price3rd});
+                                    await adapter.setStateAsync('stations.' + i + '.e10.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
 
                                     /// Niedrigsten Preis E10 ermitteln
                                     writeLog('E10-Preis-Feld ' +  i + ' gefüllt', 'debug');
@@ -281,10 +281,10 @@ function readData(url) {
                                 } else {
                                     const prices = cutPrice(result.prices[stationID].diesel);
                                     //adapter.log.debug('In Station ' + stationID + ' ' + stationName + ' kostet Diesel: ' + result.prices[stationID].diesel + '€');
-                                    adapter.setState('stations.' + i + '.diesel.feed', {ack: true, val: parseFloat(result.prices[stationID].diesel)});
-                                    adapter.setState('stations.' + i + '.diesel.short', {ack: true, val: prices.priceshort});
-                                    adapter.setState('stations.' + i + '.diesel.3rd', {ack: true, val: prices.price3rd});
-                                    adapter.setState('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
+                                    await adapter.setStateAsync('stations.' + i + '.diesel.feed', {ack: true, val: parseFloat(result.prices[stationID].diesel)});
+                                    await adapter.setStateAsync('stations.' + i + '.diesel.short', {ack: true, val: prices.priceshort});
+                                    await adapter.setStateAsync('stations.' + i + '.diesel.3rd', {ack: true, val: prices.price3rd});
+                                    await adapter.setStateAsync('stations.' + i + '.diesel.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
 
                                     // Niedrigsten Preis Diesel ermitteln
                                     writeLog('Diesel-Preis-Feld ' +  i + ' gefüllt', 'debug');
@@ -306,13 +306,13 @@ function readData(url) {
                     if (cheapest_e5_stationid) {
                         let prices = cutPrice(result.prices[cheapest_e5_stationid].e5);
                         writeLog('Billigster E5: ' + cheapest_e5 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e5][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e5_stationid].e5), 'debug');
-                        adapter.setState('stations.cheapest.e5.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e5_stationid].e5)});
-                        adapter.setState('stations.cheapest.e5.short', {ack: true, val: prices.priceshort});// zweistellig
-                        adapter.setState('stations.cheapest.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                        adapter.setState('stations.cheapest.e5.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
-                        adapter.setState('stations.cheapest.e5.name', {ack: true, val: adapter.config.stationsarray[cheapest_e5][1]});
-                        adapter.setState('stations.cheapest.e5.status', {ack: true, val: result.prices[cheapest_e5_stationid].status});
-                        adapter.setState('stations.cheapest.e5.station_id', {ack: true, val: cheapest_e5_stationid});
+                        await adapter.setStateAsync('stations.cheapest.e5.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e5_stationid].e5)});
+                        await adapter.setStateAsync('stations.cheapest.e5.short', {ack: true, val: prices.priceshort});// zweistellig
+                        await adapter.setStateAsync('stations.cheapest.e5.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
+                        await adapter.setStateAsync('stations.cheapest.e5.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
+                        await adapter.setStateAsync('stations.cheapest.e5.name', {ack: true, val: adapter.config.stationsarray[cheapest_e5][1]});
+                        await adapter.setStateAsync('stations.cheapest.e5.status', {ack: true, val: result.prices[cheapest_e5_stationid].status});
+                        await adapter.setStateAsync('stations.cheapest.e5.station_id', {ack: true, val: cheapest_e5_stationid});
                     }
 
                     // billigstes E10
@@ -320,13 +320,13 @@ function readData(url) {
                     if (cheapest_e10_stationid) {
                         let prices = cutPrice(result.prices[cheapest_e10_stationid].e10);
                         writeLog('Billigster E10: ' + cheapest_e10 + '. Tankstelle ' + adapter.config.stationsarray[cheapest_e10][1] + ', Preis: ' + parseFloat(result.prices[cheapest_e10_stationid].e10), 'debug');
-                        adapter.setState('stations.cheapest.e10.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e10_stationid].e10)});
-                        adapter.setState('stations.cheapest.e10.short', {ack: true, val: prices.priceshort});// zweistellig
-                        adapter.setState('stations.cheapest.e10.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                        adapter.setState('stations.cheapest.e10.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
-                        adapter.setState('stations.cheapest.e10.name', {ack: true, val: adapter.config.stationsarray[cheapest_e10][1]});
-                        adapter.setState('stations.cheapest.e10.status', {ack: true, val: result.prices[cheapest_e10_stationid].status});
-                        adapter.setState('stations.cheapest.e10.station_id', {ack: true, val: cheapest_e10_stationid});
+                        await adapter.setStateAsync('stations.cheapest.e10.feed',  {ack: true, val: parseFloat(result.prices[cheapest_e10_stationid].e10)});
+                        await adapter.setStateAsync('stations.cheapest.e10.short', {ack: true, val: prices.priceshort});// zweistellig
+                        await adapter.setStateAsync('stations.cheapest.e10.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
+                        await adapter.setStateAsync('stations.cheapest.e10.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
+                        await adapter.setStateAsync('stations.cheapest.e10.name', {ack: true, val: adapter.config.stationsarray[cheapest_e10][1]});
+                        await adapter.setStateAsync('stations.cheapest.e10.status', {ack: true, val: result.prices[cheapest_e10_stationid].status});
+                        await adapter.setStateAsync('stations.cheapest.e10.station_id', {ack: true, val: cheapest_e10_stationid});
                     }
 
                     // billigster Diesel
@@ -334,13 +334,13 @@ function readData(url) {
                     if (cheapest_diesel_stationid) {
                         let prices = cutPrice(result.prices[cheapest_diesel_stationid].diesel);
                         writeLog('Billigster Diesel: ' + cheapest_diesel + '. Tankstelle ' + adapter.config.stationsarray[cheapest_diesel][1] + ', Preis: ' + parseFloat(result.prices[cheapest_diesel_stationid].diesel), 'debug');
-                        adapter.setState('stations.cheapest.diesel.feed',  {ack: true, val: parseFloat(result.prices[cheapest_diesel_stationid].diesel)});
-                        adapter.setState('stations.cheapest.diesel.short', {ack: true, val: prices.priceshort});// zweistellig
-                        adapter.setState('stations.cheapest.diesel.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
-                        adapter.setState('stations.cheapest.diesel.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
-                        adapter.setState('stations.cheapest.diesel.name', {ack: true, val: adapter.config.stationsarray[cheapest_diesel][1]});
-                        adapter.setState('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});
-                        adapter.setState('stations.cheapest.diesel.station_id', {ack: true, val: cheapest_diesel_stationid});
+                        await adapter.setStateAsync('stations.cheapest.diesel.feed',  {ack: true, val: parseFloat(result.prices[cheapest_diesel_stationid].diesel)});
+                        await adapter.setStateAsync('stations.cheapest.diesel.short', {ack: true, val: prices.priceshort});// zweistellig
+                        await adapter.setStateAsync('stations.cheapest.diesel.3rd',   {ack: true, val: prices.price3rd});// dritte stelle
+                        await adapter.setStateAsync('stations.cheapest.diesel.combined', {ack: true, val: '<span class="station_open">' + prices.priceshort + '<sup style="font-size: 50%">' + prices.price3rd + '</sup> <span class="station_combined_euro">€</span></span>'});
+                        await adapter.setStateAsync('stations.cheapest.diesel.name', {ack: true, val: adapter.config.stationsarray[cheapest_diesel][1]});
+                        await adapter.setStateAsync('stations.cheapest.diesel.status', {ack: true, val: result.prices[cheapest_diesel_stationid].status});
+                        await adapter.setStateAsync('stations.cheapest.diesel.station_id', {ack: true, val: cheapest_diesel_stationid});
                     }
                     // ENDE AUSGABE NIEDRIGSTER PREIS
 
