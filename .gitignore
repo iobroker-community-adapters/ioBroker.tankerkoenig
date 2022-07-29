@@ -1,7 +1,19 @@
+# No dot-directories except github/vscode
+.*/
+!.vscode/
+!.github/
+
+*.code-workspace
 node_modules
-.idea
-tmp
-admin/i18n/flat.txt
-admin/i18n/*/flat.txt
-iob_npm.done
-package-lock.json
+nbproject
+
+# npm package files
+iobroker.*.tgz
+
+Thumbs.db
+
+# NYC coverage files
+coverage
+
+
+.DS_Store

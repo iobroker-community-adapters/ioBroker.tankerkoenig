@@ -35,7 +35,7 @@ markComment: >
   and tell us. Also check that all relevant details, logs and reproduction steps
   are included and update them if needed.
   Thank you for your contributions.
-
+  
   Dieses Problem wurde automatisch als veraltet markiert, da es in letzter Zeit keine Aktivitäten gab.
   Es wird geschlossen, wenn nicht innerhalb der nächsten 7 Tage weitere Aktivitäten stattfinden.
   Bitte überprüft, ob das Problem auch in der aktuellsten Version des Adapters noch relevant ist,
@@ -53,7 +53,7 @@ closeComment: >
   issue if still relevant and make sure to include all relevant details, logs and
   reproduction steps.
   Thank you for your contributions.
-
+  
   Dieses Problem wurde aufgrund von Inaktivität automatisch geschlossen. Bitte öffnet ein
   neues Issue, falls dies noch relevant ist und stellt sicher das alle relevanten Details,
   Logs und Reproduktionsschritte enthalten sind.
