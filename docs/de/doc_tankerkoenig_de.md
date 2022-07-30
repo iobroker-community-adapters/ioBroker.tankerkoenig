@@ -29,6 +29,10 @@ Unter der Rabatt Optionen kann man zwischen den Rabatt Varianten ⇨ Euro / Proz
 
 ![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
 
+### Werte auf 0 setzen
+Aktivieren Sie diese Funktion, wenn die Preise auf 0 gesetzt werden sollen, wenn die Tankstelle geschlossen ist.\
+Wenn die Funktion ausgeschaltet ist, werden die Preise als ungültig gesetzt, siehe unten.
+
 ### Ungültige Preise
 Wenn eine Tankstelle keine Preise für E5, E10 oder Diesel liefert, z. B. bei einer geschlossenen Station, wird der Preis sich nicht ändern stattdessen wird die state Qualität auf `Qualitätscode 0x40 => Ersatzwert aus Gerät` gesetzt, der state wird dann orange angezeigt.
 

@@ -285,8 +285,9 @@ class Tankerkoenig extends utils.Adapter {
               ack: true,
               q: 64
             });
+            const short = await this.oldState(`stations.cheapest.e5.short`);
             await this.setStateAsync(`stations.cheapest.e5.short`, {
-              val: await this.oldState(`stations.cheapest.e5.short`),
+              val: short.toString(),
               ack: true,
               q: 64
             });
@@ -348,8 +349,9 @@ class Tankerkoenig extends utils.Adapter {
               ack: true,
               q: 64
             });
+            const short = await this.oldState(`stations.cheapest.e10.short`);
             await this.setStateAsync(`stations.cheapest.e10.short`, {
-              val: await this.oldState(`stations.cheapest.e10.short`),
+              val: short.toString(),
               ack: true,
               q: 64
             });
@@ -411,8 +413,9 @@ class Tankerkoenig extends utils.Adapter {
               ack: true,
               q: 64
             });
+            const short = await this.oldState(`stations.cheapest.diesel.short`);
             await this.setStateAsync(`stations.cheapest.diesel.short`, {
-              val: await this.oldState(`stations.cheapest.diesel.short`),
+              val: short.toString(),
               ack: true,
               q: 64
             });
@@ -471,8 +474,9 @@ class Tankerkoenig extends utils.Adapter {
                       ack: true
                     });
                   } else {
+                    const short = await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`);
                     await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`, {
-                      val: await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`),
+                      val: short.toString(),
                       ack: true,
                       q: 64
                     });
@@ -483,14 +487,54 @@ class Tankerkoenig extends utils.Adapter {
                     });
                     await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.combined`, {
                       val: `<span class="station_no_prices">No Prices</span>`,
-                      ack: true,
-                      q: 64
+                      ack: true
                     });
                     this.writeLog(`There is no ${fuelTypes[fuelTypesKey]} in the ${stationValue.stationname} ID: ${stationValue.station} station.`, "debug");
                   }
                 }
               }
-            } else if (prices[stationValue.station].status === "closed" || prices[stationValue.station].status === "no prices" || prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations") {
+            } else if (prices[stationValue.station].status === "closed") {
+              if (this.config.resetValues) {
+                for (const fuelTypesKey in fuelTypes) {
+                  if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
+                    await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`, {
+                      val: 0,
+                      ack: true
+                    });
+                    await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`, {
+                      val: "0",
+                      ack: true
+                    });
+                    await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.combined`, {
+                      val: `<span class="station_closed">Station Closed</span>`,
+                      ack: true
+                    });
+                  }
+                }
+              } else {
+                for (const fuelTypesKey in fuelTypes) {
+                  if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
+                    await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`, {
+                      val: await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`),
+                      ack: true,
+                      q: 64
+                    });
+                    const short = await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`);
+                    await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`, {
+                      val: short.toString(),
+                      ack: true,
+                      q: 64
+                    });
+                    await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.combined`, {
+                      val: `<span class="station_closed">Station Closed</span>`,
+                      ack: true
+                    });
+                  }
+                }
+              }
+              if (prices[stationValue.station].status === "closed")
+                this.writeLog(`${stationValue.stationname} is Closed`, `debug`);
+            } else if (prices[stationValue.station].status === "no prices" || prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations") {
               for (const fuelTypesKey in fuelTypes) {
                 if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
                   await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`, {
@@ -498,19 +542,19 @@ class Tankerkoenig extends utils.Adapter {
                     ack: true,
                     q: 64
                   });
+                  const short = await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`);
                   await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`, {
-                    val: await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.short`),
+                    val: short.toString(),
                     ack: true,
                     q: 64
                   });
                   await this.setStateAsync(`stations.${key}.${fuelTypes[fuelTypesKey]}.combined`, {
                     val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
-                    ack: true
+                    ack: true,
+                    q: 0
                   });
                 }
               }
-              if (prices[stationValue.station].status === "closed")
-                this.writeLog(`${stationValue.stationname} is Closed`, `debug`);
               if (prices[stationValue.station].status === "no prices")
                 this.writeLog(`there are no prices at ${stationValue.stationname}`, `warn`);
               if (prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations")

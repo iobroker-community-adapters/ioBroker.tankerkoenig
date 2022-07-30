@@ -41,7 +41,7 @@ export const LogSettings: React.FC<LogSettingsProps> = ({ onChange, settings }):
 							inputProps={{ 'aria-label': 'noLogs' }}
 						/>
 					}
-					label={_('No logs')}
+					label={_('no_logs')}
 				/>
 				<Typography
 					variant="h6"
@@ -51,8 +51,8 @@ export const LogSettings: React.FC<LogSettingsProps> = ({ onChange, settings }):
 						color: orange[500],
 					}}
 				>
-					{_('No logs info')} <br />
-					{_('No logs info2')}
+					{_('no_logs_info')} <br />
+					{_('no_logs_info2')}
 				</Typography>
 			</Stack>
 		</React.Fragment>

@@ -7,9 +7,9 @@
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
 **Tests:**
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/Pix---/ioBroker.tankerkoenig?branch=master&svg=true)](https://ci.appveyor.com/project/Pix---/ioBroker-tankerkoenig/)
+[![Test and Release](https://github.com/Pix---/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/Pix---/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml)
 
-NodeJS v10 oder höher wird vorausgesetzt.
+NodeJS v14 or higher is required.
 
 ## Documentation
 :de: [Dokumentation](/docs/de/doc_tankerkoenig_de.md)
@@ -40,9 +40,10 @@ NodeJS v10 oder höher wird vorausgesetzt.
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
 
-### 3.0.1 (2022-07-08)
+### 3.0.1 (2022-07-30)
 * (xXBJXx) added datapoints delete function
 * (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/Pix---/ioBroker.tankerkoenig/issues/79)
+* (xXBJXx) added function => Set values to 0 when the Station is closed.
 
 ### 3.0.0 (2022-07-02)
 * (xXBJXx) BREAKING Adapter code completely revised

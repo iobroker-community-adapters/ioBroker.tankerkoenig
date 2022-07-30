@@ -10,6 +10,7 @@ import { LogSettings } from './component/LogSettings';
 import { Spacer } from './component/Spacer';
 import { StationCard } from './component/StationCard';
 import { EditModal } from './Modal/EditModal';
+import { PriceSettings } from './component/PriceSettings';
 
 interface SettingPageProps {
 	onChange: (key: keyof ioBroker.AdapterConfig, value: any) => void;
@@ -140,7 +141,9 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 				<ApiKey settings={settings} onChange={(key, value) => onChange(key, value)} />
 				<Spacer text={'spacerInterval'} />
 				<AdapterInterval onChange={onChange} settings={settings} />
-				<Spacer text={'Adapter Log Settings'} />
+				<Spacer text={'price_settings'} />
+				<PriceSettings onChange={onChange} settings={settings} />
+				<Spacer text={'adapter_log_settings'} />
 				<LogSettings onChange={onChange} settings={settings} />
 			</TabPanel>
 			<TabPanel value={value} index={1}>

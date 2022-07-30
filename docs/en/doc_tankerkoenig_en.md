@@ -29,6 +29,10 @@ Under the discount options you can choose between the discount variants ⇨ Euro
 
 ![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
 
+### Set values to 0
+Activate this function if the prices are to be set to 0 when the gas station is closed.\
+If the function is turned off, the prices will be set as invalid, see below.
+
 ### Invalid prices
 If a gas station does not provide prices for E5, E10 or Diesel, e.g. if the station is closed, the price will not change, instead the state quality will be set to `Quality code 0x40 => Substitute value from device`, the state will then be displayed in orange.
 

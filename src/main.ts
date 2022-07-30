@@ -297,31 +297,38 @@ class Tankerkoenig extends utils.Adapter {
 							val: parseFloat(cheapest_e5[0].e5),
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.station_id`, {
 							val: cheapest_e5[0].station,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.name`, {
 							val: stationValue.stationname,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.status`, {
 							val: cheapest_e5[0].status,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.discounted`, {
 							val: stationValue.discounted,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.discount`, {
 							val: stationValue.discountObj.discount,
 							ack: true,
 						});
+
 						const cutPrice = await this.cutPrice(cheapest_e5[0].e5);
 						await this.setStateAsync(`stations.cheapest.e5.3rd`, {
 							val: cutPrice.price3rd,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.short`, {
 							val: cutPrice.priceshort,
 							ack: true,
@@ -332,6 +339,7 @@ class Tankerkoenig extends utils.Adapter {
 							val: combined,
 							ack: true,
 						});
+
 						this.writeLog(
 							`Cheapest gas station for e5: ${stationValue.stationname}  id: ${cheapest_e5[0].station}`,
 							'debug',
@@ -343,11 +351,13 @@ class Tankerkoenig extends utils.Adapter {
 							q: 0x40,
 						});
 
+						const short = await this.oldState(`stations.cheapest.e5.short`);
 						await this.setStateAsync(`stations.cheapest.e5.short`, {
-							val: await this.oldState(`stations.cheapest.e5.short`),
+							val: short.toString(),
 							ack: true,
 							q: 0x40,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.combined`, {
 							val:
 								prices[stationValue.station].status === 'closed'
@@ -360,6 +370,7 @@ class Tankerkoenig extends utils.Adapter {
 									: null,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e5.status`, {
 							val: cheapest_e5[0].status,
 							ack: true,
@@ -374,31 +385,38 @@ class Tankerkoenig extends utils.Adapter {
 							val: parseFloat(cheapest_e10[0].e10),
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.station_id`, {
 							val: cheapest_e10[0].station,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.name`, {
 							val: stationValue.stationname,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.status`, {
 							val: cheapest_e10[0].status,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.discounted`, {
 							val: stationValue.discounted,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.discount`, {
 							val: stationValue.discountObj.discount,
 							ack: true,
 						});
+
 						const cutPrice = await this.cutPrice(cheapest_e10[0].e10);
 						await this.setStateAsync(`stations.cheapest.e10.3rd`, {
 							val: cutPrice.price3rd,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.short`, {
 							val: cutPrice.priceshort,
 							ack: true,
@@ -409,6 +427,7 @@ class Tankerkoenig extends utils.Adapter {
 							val: combined,
 							ack: true,
 						});
+
 						this.writeLog(
 							`Cheapest gas station for e10: ${stationValue.stationname}  id: ${cheapest_e10[0].station}`,
 							'debug',
@@ -420,11 +439,13 @@ class Tankerkoenig extends utils.Adapter {
 							q: 0x40,
 						});
 
+						const short = await this.oldState(`stations.cheapest.e10.short`);
 						await this.setStateAsync(`stations.cheapest.e10.short`, {
-							val: await this.oldState(`stations.cheapest.e10.short`),
+							val: short.toString(),
 							ack: true,
 							q: 0x40,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.combined`, {
 							val:
 								prices[stationValue.station].status === 'closed'
@@ -437,6 +458,7 @@ class Tankerkoenig extends utils.Adapter {
 									: null,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.e10.status`, {
 							val: cheapest_e10[0].status,
 							ack: true,
@@ -451,40 +473,49 @@ class Tankerkoenig extends utils.Adapter {
 							val: parseFloat(cheapest_diesel[0].diesel),
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.station_id`, {
 							val: cheapest_diesel[0].station,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.name`, {
 							val: stationValue.stationname,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.status`, {
 							val: cheapest_diesel[0].status,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.discounted`, {
 							val: stationValue.discounted,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.discount`, {
 							val: stationValue.discountObj.discount,
 							ack: true,
 						});
+
 						const cutPrice = await this.cutPrice(cheapest_diesel[0].diesel);
 						await this.setStateAsync(`stations.cheapest.diesel.3rd`, {
 							val: cutPrice.price3rd,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.short`, {
 							val: cutPrice.priceshort,
 							ack: true,
 						});
+
 						const combined = `<span class="station_open">${cutPrice.priceshort}<sup style="font-size: 50%">${cutPrice.price3rd}</sup> <span class="station_combined_euro">€</span></span>`;
 						await this.setStateAsync(`stations.cheapest.diesel.combined`, {
 							val: combined,
 							ack: true,
 						});
+
 						this.writeLog(
 							`Cheapest gas station for diesel: ${stationValue.stationname}  id: ${cheapest_diesel[0].station}`,
 							'debug',
@@ -495,11 +526,14 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 							q: 0x40,
 						});
+
+						const short = await this.oldState(`stations.cheapest.diesel.short`);
 						await this.setStateAsync(`stations.cheapest.diesel.short`, {
-							val: await this.oldState(`stations.cheapest.diesel.short`),
+							val: short.toString(),
 							ack: true,
 							q: 0x40,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.combined`, {
 							val:
 								prices[stationValue.station].status === 'closed'
@@ -512,6 +546,7 @@ class Tankerkoenig extends utils.Adapter {
 									: null,
 							ack: true,
 						});
+
 						await this.setStateAsync(`stations.cheapest.diesel.status`, {
 							val: cheapest_diesel[0].status,
 							ack: true,
@@ -589,12 +624,13 @@ class Tankerkoenig extends utils.Adapter {
 											},
 										);
 									} else {
+										const short = await this.oldState(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
+										);
 										await this.setStateAsync(
 											`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
 											{
-												val: await this.oldState(
-													`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
-												),
+												val: short.toString(),
 												ack: true,
 												q: 0x40,
 											},
@@ -616,7 +652,6 @@ class Tankerkoenig extends utils.Adapter {
 											{
 												val: `<span class="station_no_prices">No Prices</span>`,
 												ack: true,
-												q: 0x40,
 											},
 										);
 
@@ -627,8 +662,74 @@ class Tankerkoenig extends utils.Adapter {
 									}
 								}
 							}
+						} else if (prices[stationValue.station].status === 'closed') {
+							if (this.config.resetValues) {
+								for (const fuelTypesKey in fuelTypes) {
+									if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
+										await this.setStateAsync(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`,
+											{
+												val: 0,
+												ack: true,
+											},
+										);
+
+										await this.setStateAsync(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
+											{
+												val: '0',
+												ack: true,
+											},
+										);
+
+										await this.setStateAsync(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
+											{
+												val: `<span class="station_closed">Station Closed</span>`,
+												ack: true,
+											},
+										);
+									}
+								}
+							} else {
+								for (const fuelTypesKey in fuelTypes) {
+									if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
+										await this.setStateAsync(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`,
+											{
+												val: await this.oldState(
+													`stations.${key}.${fuelTypes[fuelTypesKey]}.feed`,
+												),
+												ack: true,
+												q: 0x40,
+											},
+										);
+										const short = await this.oldState(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
+										);
+
+										await this.setStateAsync(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
+											{
+												val: short.toString(),
+												ack: true,
+												q: 0x40,
+											},
+										);
+
+										await this.setStateAsync(
+											`stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
+											{
+												val: `<span class="station_closed">Station Closed</span>`,
+												ack: true,
+											},
+										);
+									}
+								}
+							}
+							if (prices[stationValue.station].status === 'closed')
+								this.writeLog(`${stationValue.stationname} is Closed`, `debug`);
 						} else if (
-							prices[stationValue.station].status === 'closed' ||
 							prices[stationValue.station].status === 'no prices' ||
 							prices[stationValue.station].status === 'not found' ||
 							prices[stationValue.station].status === 'no stations'
@@ -646,12 +747,14 @@ class Tankerkoenig extends utils.Adapter {
 										},
 									);
 
+									const short = await this.oldState(
+										`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
+									);
+
 									await this.setStateAsync(
 										`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
 										{
-											val: await this.oldState(
-												`stations.${key}.${fuelTypes[fuelTypesKey]}.short`,
-											),
+											val: short.toString(),
 											ack: true,
 											q: 0x40,
 										},
@@ -670,12 +773,11 @@ class Tankerkoenig extends utils.Adapter {
 													? `<span class="station_not_found">not found</span>`
 													: null,
 											ack: true,
+											q: 0,
 										},
 									);
 								}
 							}
-							if (prices[stationValue.station].status === 'closed')
-								this.writeLog(`${stationValue.stationname} is Closed`, `debug`);
 
 							if (prices[stationValue.station].status === 'no prices')
 								this.writeLog(`there are no prices at ${stationValue.stationname}`, `warn`);

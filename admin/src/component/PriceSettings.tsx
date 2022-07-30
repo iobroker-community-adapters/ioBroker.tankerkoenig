@@ -41,7 +41,7 @@ export const PriceSettings: React.FC<PriceSettingsProps> = ({ onChange, settings
 							onChange={handleChangeResetValues}
 						/>
 					}
-					label={_('Reset values')}
+					label={_('reset_values')}
 				/>
 				<Typography
 					variant="h6"
@@ -51,9 +51,7 @@ export const PriceSettings: React.FC<PriceSettingsProps> = ({ onChange, settings
 						color: orange[500],
 					}}
 				>
-					{_('Reset values info')} <br />
-					{_('Reset values info2')} <br />
-					{_('Reset values info3')}
+					{_('reset_values_info')} <br />
 				</Typography>
 			</Stack>
 		</React.Fragment>
