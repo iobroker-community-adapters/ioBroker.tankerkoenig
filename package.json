@@ -32,7 +32,7 @@
     "gulp": "^4.0.2",
     "mocha": "^9.2.2",
     "chai": "^4.3.6",
-    "@iobroker/testing": "^3.0.2"
+    "@iobroker/testing": "^4.0.0"
   },
   "bugs": {
     "url": "https://github.com/Pix---/ioBroker.tankerkoenig/issues"
