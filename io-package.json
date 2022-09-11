@@ -142,9 +142,9 @@
            "de": "docs/de/doc_tankerkoenig_de.md"
         },
         "license": "MIT",
-        "readme": "https://github.com/Pix---/ioBroker.tankerkoenig/blob/master/README.md",
+        "readme": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/blob/master/README.md",
         "icon": "tankerkoenig.png",
-        "extIcon": "https://raw.githubusercontent.com/Pix---/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
+        "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
         "allowInit": true,
         "type": "misc-data",
         "connectionType": "cloud",
