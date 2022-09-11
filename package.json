@@ -6,10 +6,10 @@
   "contributors": [
     "pix"
   ],
-  "homepage": "https://github.com/Pix---/ioBroker.tankerkoenig",
+  "homepage": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pix---/ioBroker.tankerkoenig"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig"
   },
   "license": "MIT",
   "keywords": [
@@ -35,7 +35,7 @@
     "@iobroker/testing": "^4.0.0"
   },
   "bugs": {
-    "url": "https://github.com/Pix---/ioBroker.tankerkoenig/issues"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues"
   },
   "main": "main.js",
   "scripts": {
