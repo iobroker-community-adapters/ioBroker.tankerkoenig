@@ -151,8 +151,8 @@ NodeJS v10 oder höher wird vorausgesetzt.
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit _error 503_
 * Datapoints for each station should be created after adapter restart, not only after installation
-* Initiate fetching prices manually [#53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53)
-* Include discounts [#50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50)
+* Initiate fetching prices manually [#53](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/53)
+* Include discounts [#50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50)
 
 ## License
 
