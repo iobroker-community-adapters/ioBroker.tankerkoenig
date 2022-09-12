@@ -38,7 +38,7 @@
     "@alcalzone/release-script-plugin-license": "^3.5.9",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@iobroker/adapter-dev": "^1.0.0",
+    "@iobroker/adapter-dev": "^1.0.1",
     "@iobroker/adapter-react": "2.2.4",
     "@iobroker/socket-client": "^1.1.13",
     "@iobroker/testing": "^4.1.0",
