@@ -43,7 +43,7 @@
     "@iobroker/socket-client": "^1.1.13",
     "@iobroker/testing": "^4.1.0",
     "@mui/icons-material": "^5.10.3",
-    "@mui/material": "^5.10.4",
+    "@mui/material": "^5.10.5",
     "@mui/styles": "^5.10.3",
     "@types/chai": "^4.3.3",
     "@types/chai-as-promised": "^7.1.5",
