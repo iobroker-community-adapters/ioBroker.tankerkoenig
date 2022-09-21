@@ -40,9 +40,7 @@
 	"watch": false
   },
   "include": [
-	"src/**/*.ts",
-	"admin/**/*.ts",
-	"admin/**/*.tsx"
+	"src/**/*.ts"
   ],
   "exclude": [
 	"build/**",

@@ -2,12 +2,14 @@
 # ioBroker.tankerkoenig
 
 ![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) ![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig) [![Known Vulnerabilities](https://snyk.io/test/github/Pix---/ioBroker.tankerkoenig/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Pix---/ioBroker.tankerkoenig?targetFile=package.json)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+
+[//]: # ([![Known Vulnerabilities]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig/badge.svg?targetFile=package.json&#41;]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig?targetFile=package.json&#41;)
 
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
 **Tests:**
-[![Test and Release](https://github.com/Pix---/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/Pix---/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml)
+[![Test and Release](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml)
 
 NodeJS v14 or higher is required.
 
@@ -42,7 +44,7 @@ NodeJS v14 or higher is required.
 
 ### 3.0.1 (2022-07-30)
 * (xXBJXx) added datapoints delete function
-* (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/Pix---/ioBroker.tankerkoenig/issues/79)
+* (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)
 * (xXBJXx) added function => Set values to 0 when the Station is closed.
 
 ### 3.0.0 (2022-07-02)
@@ -53,17 +55,17 @@ NodeJS v14 or higher is required.
 * (xXBJXx) add Dependabot auto merge support
 * (xXBJXx) add test and release script 
 * (xXBJXx) Dependency updated
-* (xXBJXx) add feature request: manual update of all stations (one request per minute allowed) [issue #53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53) 
+* (xXBJXx) add feature request: manual update of all stations (one request per minute allowed) [issue #53](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/53) 
 * (xXBJXx) add a new state => adapterStatus (indicates whether the adapter executes an automatic request or a manual request)
-* (xXBJXx) add new cutPrice function [issue #73](https://github.com/Pix---/ioBroker.tankerkoenig/issues/73)
-* (xXBJXx) add the feature request: Include discount in price (euro and percent) [issue #50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50) and adapter code optimized
-* (xXBJXx) add the feature request: JsonTable for the vis [issue #24](https://github.com/Pix---/ioBroker.tankerkoenig/issues/24)
+* (xXBJXx) add new cutPrice function [issue #73](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/73)
+* (xXBJXx) add the feature request: Include discount in price (euro and percent) [issue #50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50) and adapter code optimized
+* (xXBJXx) add the feature request: JsonTable for the vis [issue #24](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/24)
 
 ### 2.2.0 (2021-11-14)
 * (simatec) Design Fix for Admin Dark/Blue Theme
 
 ### 2.1.1 (2021-06-22)
-* (pix) New adapter category "vehicle" [#67](https://github.com/Pix---/ioBroker.tankerkoenig/issues/67)
+* (pix) New adapter category "vehicle" [#67](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/67)
 * (pix) Testing for Nodejs 16
 
 ### 2.0.12 (2021-05-05)
@@ -178,8 +180,8 @@ NodeJS v14 or higher is required.
 * optional price trend through CSS class
 * Catch and display tankerkoenig rate limit _error 503_
 * Datapoints for each station should be created after adapter restart, not only after installation
-* Initiate fetching prices manually [#53](https://github.com/Pix---/ioBroker.tankerkoenig/issues/53)
-* Include discounts [#50](https://github.com/Pix---/ioBroker.tankerkoenig/issues/50)
+* Initiate fetching prices manually [#53](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/53)
+* Include discounts [#50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50)
 
 ## License
 
