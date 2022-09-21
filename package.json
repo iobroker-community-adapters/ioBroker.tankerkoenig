@@ -40,7 +40,7 @@
     "@emotion/styled": "^11.10.4",
     "@iobroker/adapter-dev": "^1.1.0",
     "@iobroker/adapter-react": "2.2.4",
-    "@iobroker/socket-client": "^1.1.13",
+    "@iobroker/socket-client": "^1.1.14",
     "@iobroker/testing": "^4.1.0",
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
