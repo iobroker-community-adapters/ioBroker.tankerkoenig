@@ -8,18 +8,9 @@
 	"sourceMap": true,
 	"sourceRoot": "./src",
 	"noImplicitAny": false,
-	"lib": [
-	  "es2021",
-	  "DOM"
-	],
+	"lib": ["es2021", "DOM"],
+	"jsx": "react"
   },
-  "include": [
-	"./**/*.ts",
-	"./**/*.tsx",
-	"../src/lib/adapter-config.d.ts"
-  ],
-  "exclude": [
-	"./**/*.test.ts",
-	"./**/*.test.tsx"
-  ]
+  "include": ["./**/*.ts", "./**/*.tsx", "../src/lib/adapter-config.d.ts"],
+  "exclude": ["./**/*.test.ts", "./**/*.test.tsx"]
 }
