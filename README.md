@@ -14,30 +14,6 @@ NodeJS v14 or higher is required.
 
 :uk: [Documentation](/docs/en/doc_tankerkoenig_en.md)
 
-[//]: # ()
-[//]: # (:ru: [Документация]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
-[//]: # ()
-[//]: # (:portugal: [Documentação]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
-[//]: # ()
-[//]: # (:netherlands: [Documentatie]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
-[//]: # ()
-[//]: # (:fr: [Documentation]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
-[//]: # ()
-[//]: # (:it: [Documentazione]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
-[//]: # ()
-[//]: # (:es: [Documentación]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
-[//]: # ()
-[//]: # (:poland: [Dokumentacja]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
-[//]: # ()
-[//]: # (:cn: [文档]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
-
 
 ## Changelog
  <!--
@@ -45,6 +21,8 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) release new version from Tankerkoenig
 
 ### 3.0.1 (2022-07-30)
 * (xXBJXx) added datapoints delete function
@@ -191,15 +169,13 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-Copyright (c) 2016-2022 pix
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
