@@ -178,16 +178,6 @@ NodeJS v14 or higher is required.
 ### 0.0.1 (2016-05-31)
 * (pix) Adapter created
 
-## Roadmap
-* Save settings is not possible when no interval was entered
-* State HTML Table
-* State JSON Table for VIS JSON table widget
-* optional price trend through CSS class
-* Catch and display tankerkoenig rate limit _error 503_
-* Datapoints for each station should be created after adapter restart, not only after installation
-* Initiate fetching prices manually [#53](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/53)
-* Include discounts [#50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50)
-
 ## License
 
 The MIT License (MIT)
