@@ -4,8 +4,6 @@
 ![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) ![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 
-[//]: # ([![Known Vulnerabilities]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig/badge.svg?targetFile=package.json&#41;]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig?targetFile=package.json&#41;)
-
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
 
@@ -16,21 +14,29 @@ NodeJS v14 or higher is required.
 
 :uk: [Documentation](/docs/en/doc_tankerkoenig_en.md)
 
-:ru: [Документация](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:ru: [Документация]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
-:portugal: [Documentação](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:portugal: [Documentação]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
-:netherlands: [Documentatie](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:netherlands: [Documentatie]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
-:fr: [Documentation](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:fr: [Documentation]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
-:it: [Documentazione](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:it: [Documentazione]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
-:es: [Documentación](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:es: [Documentación]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
-:poland: [Dokumentacja](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:poland: [Dokumentacja]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
-:cn: [文档](/docs/en/doc_tankerkoenig_en.md)
+[//]: # ()
+[//]: # (:cn: [文档]&#40;/docs/en/doc_tankerkoenig_en.md&#41;)
 
 
 ## Changelog
@@ -44,6 +50,7 @@ NodeJS v14 or higher is required.
 * (xXBJXx) added datapoints delete function
 * (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)
 * (xXBJXx) added function => Set values to 0 when the Station is closed.
+* (xXBJXx) updated dependencies
 
 ### 3.0.0 (2022-07-02)
 * (xXBJXx) BREAKING Adapter code completely revised
@@ -185,7 +192,7 @@ NodeJS v14 or higher is required.
 
 The MIT License (MIT)
 
-Copyright (c) 2016-2022 pix
+Copyright (c) 2016-2022 xXBJXx <issi.dev.iobroker@gmail.com> pix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
