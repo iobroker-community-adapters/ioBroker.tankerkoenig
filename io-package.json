@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "news": {
+      "3.0.2": {
+        "en": "release new version from Tankerkoenig",
+        "de": "neue Version von Tankerkoenig veröffentlichen",
+        "ru": "выпустить новую версию от Tankerkoenig",
+        "pt": "lança nova versão do Tankerkoenig",
+        "nl": "release nieuwe versie van Tankerkoenig",
+        "fr": "publie une nouvelle version de Tankerkoenig",
+        "it": "rilascia una nuova versione da Tankerkoenig",
+        "es": "liberar la nueva versión de Tankerkoenig",
+        "pl": "wydanie nowej wersji z Tankerkoenig",
+        "uk": "випустити нову версію від Tankerkoenig",
+        "zh-cn": "发布Tankerkoenig的新版本"
+      },
       "3.0.1": {
         "de": "Datenpunkte Löschfunktion hinzugefügt\nresetValue-Funktion entfernt und Zustandsqualität implementiert. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)\nFunktion hinzugefügt => Werte auf 0 setzen, wenn die Station geschlossen wird.\nAbhängigkeiten aktualisiert",
         "en": "added function to delete data points\nremoved resetValue function and implemented state quality. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)\nAdded function => set values to 0 when station is closed.\nDependencies updated",
@@ -76,18 +89,6 @@
         "es": "Problema \"no tiene ningún objeto existente\" solucionado",
         "pl": "Naprawiono problem \"nie ma istniejącego obiektu\"",
         "zh-cn": "修复\"没有对象\"的问题"
-      },
-      "2.0.9": {
-        "en": "NodeJS 10 or higher required",
-        "de": "NodeJS 10 oder höher erforderlich",
-        "ru": "Требуется NodeJS 10 или выше",
-        "pt": "Necessário NodeJS 10 ou superior",
-        "nl": "NodeJS 10 of hoger vereist",
-        "fr": "NodeJS 10 ou supérieur requis",
-        "it": "Nodo JS 10 o superiore richiesto",
-        "es": "Nodo JS 10 o superior requerido",
-        "pl": "Wymagany NodeJS 10 lub wyższy",
-        "zh-cn": "需要NodeJS 10或更高版本"
       }
     },
     "titleLang": {
@@ -124,7 +125,6 @@
         "name": "xXBJXx",
         "email": "issi.dev.iobroker@gmail.com"
       }
-
     ],
     "docs": {
       "en": "docs/en/doc_tankerkoenig_en.md",
@@ -205,7 +205,7 @@
         },
         "level": "warn",
         "buttons": [
-         "ok"
+          "ok"
         ]
       }
     ]

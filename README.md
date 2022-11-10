@@ -21,7 +21,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.0.2 (2022-11-10)
 * (xXBJXx) release new version from Tankerkoenig
 
 ### 3.0.1 (2022-07-30)
