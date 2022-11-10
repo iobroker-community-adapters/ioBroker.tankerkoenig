@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/interface/CreateJsonTable.ts"],
+  "sourcesContent": ["export interface CreateJsonTable {\r\n\tstation: string;\r\n\tstatus: string;\r\n\te5: number;\r\n\te10: number;\r\n\tdiesel: number;\r\n\tdiscount: string;\r\n}\r\n"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
+  "names": []
+}
