@@ -1,11 +1,11 @@
 import { Box, Button, Grid, Tab, Tabs, Tooltip } from '@mui/material';
+import { Logo } from 'iobroker-react';
 import { useI18n } from 'iobroker-react/hooks';
 import React, { useState } from 'react';
 import { AdapterInterval } from './component/AdapterInterval';
 import { AddModal } from './Modal/AddModal';
 import { AlertComponent } from './component/AlertComponent';
 import { ApiKey } from './component/ApiKey';
-import { DownloadUploadButton } from './component/DownloadUploadButton';
 import { LogSettings } from './component/LogSettings';
 import { Spacer } from './component/Spacer';
 import { StationCard } from './component/StationCard';
@@ -136,7 +136,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 					<Tab label={_('stationsTab')} {...a11yProps(1)} />
 				</Tabs>
 			</Box>
-			<DownloadUploadButton />
+			<Logo classes={{ logo: 'logo' }} />
 			<TabPanel value={value} index={0}>
 				<ApiKey settings={settings} onChange={(key, value) => onChange(key, value)} />
 				<Spacer text={'spacerInterval'} />
