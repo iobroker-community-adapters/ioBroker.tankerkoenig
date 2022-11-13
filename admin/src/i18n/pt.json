@@ -19,7 +19,7 @@
   "euro": "Euro",
   "fuelType": "Tipo de combustível",
   "good": "Aceite",
-  "helperText": "em minutos (pelo menos 5)",
+  "helperTextInterval": "pelo menos 5",
   "interval": "Tempo entre consultas",
   "intervalInfo": "Os dados da fonte de alimentação são actualizados pelo servidor no tankerkoenig.de apenas a cada 4 minutos. O intervalo de consulta mais curto é, portanto, de 5 minutos, uma vez que uma consulta mais frequente não faz sentido.",
   "intervalInfo2": "Portanto, o intervalo de consulta mais curto é de 5 minutos, uma vez que uma consulta mais frequente não faz sentido.",

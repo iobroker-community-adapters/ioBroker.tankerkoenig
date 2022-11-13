@@ -19,7 +19,7 @@
   "euro": "Euro",
   "fuelType": "Typ paliwa",
   "good": "Zaakceptowano",
-  "helperText": "w minutach (co najmniej 5)",
+  "helperTextInterval": "co najmniej 5",
   "interval": "Czas między kolejnymi zapytaniami",
   "intervalInfo": "Dane źródłowe są aktualizowane przez serwer tankerkoenig.de tylko co 4 minuty. Najkrótszy odstęp czasu między zapytaniami wynosi zatem 5 minut, ponieważ częstsze zapytania nie mają sensu.",
   "intervalInfo2": "Dlatego najkrótszy przedział czasu między kolejnymi zapytaniami wynosi 5 minut, ponieważ częstsze zapytania nie mają sensu.",

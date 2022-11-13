@@ -19,7 +19,7 @@
   "euro": "Euro",
   "fuelType": "Kraftstoffart",
   "good": "Akzeptiert",
-  "helperText": "in Minuten (mindestens 5)",
+  "helperTextInterval": "mindestens 5",
   "interval": "Zeit zwischen den Abfragen",
   "intervalInfo": "Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4 Minuten aktualisiert. Das kürzeste Abfrageintervall beträgt daher 5 Minuten, da eine häufigere Abfrage keinen Sinn macht.",
   "intervalInfo2": "Das kürzeste Abfrageintervall beträgt daher 5 Minuten, da eine häufigere Abfrage keinen Sinn macht.",

@@ -19,7 +19,7 @@
   "euro": "Euro",
   "fuelType": "Tipo di carburante",
   "good": "Accettato",
-  "helperText": "in minuti (almeno 5)",
+  "helperTextInterval": "almeno 5",
   "interval": "Tempo tra le interrogazioni",
   "intervalInfo": "I dati del feed sorgente vengono aggiornati dal server di tankerkoenig.de solo ogni 4 minuti. L'intervallo di interrogazione più breve è quindi di 5 minuti, poiché un'interrogazione più frequente non ha senso.",
   "intervalInfo2": "Pertanto, l'intervallo di interrogazione più breve è di 5 minuti, poiché un'interrogazione più frequente non ha senso.",

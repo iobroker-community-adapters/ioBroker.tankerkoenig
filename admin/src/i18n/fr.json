@@ -19,7 +19,7 @@
   "euro": "Euro",
   "fuelType": "Type de carburant",
   "good": "Accepté",
-  "helperText": "en minutes (au moins 5)",
+  "helperTextInterval": "au moins 5",
   "interval": "Temps entre les requêtes",
   "intervalInfo": "Les données du flux source ne sont mises à jour par le serveur de tankerkoenig.de que toutes les 4 minutes. L'intervalle d'interrogation le plus court est donc de 5 minutes, car une interrogation plus fréquente n'a aucun sens.",
   "intervalInfo2": "Par conséquent, l'intervalle d'interrogation le plus court est de 5 minutes, car une interrogation plus fréquente n'a pas de sens.",
