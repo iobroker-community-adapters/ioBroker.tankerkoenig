@@ -18,6 +18,7 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var object_definition_exports = {};
 __export(object_definition_exports, {
+  priceMinMaxObj: () => priceMinMaxObj,
   priceObj: () => priceObj,
   statesObj: () => statesObj
 });
@@ -134,8 +135,103 @@ const priceObj = {
     native: {}
   }
 };
+const priceMinMaxObj = {
+  "3rd_min": {
+    type: "state",
+    common: {
+      type: "number",
+      role: "state",
+      def: 0,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  "3rd_max": {
+    type: "state",
+    common: {
+      type: "number",
+      role: "state",
+      def: 0,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  combined_min: {
+    type: "state",
+    common: {
+      type: "string",
+      role: "text",
+      def: "",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  combined_max: {
+    type: "state",
+    common: {
+      type: "string",
+      role: "text",
+      def: "",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  short_min: {
+    type: "state",
+    common: {
+      type: "string",
+      role: "text",
+      def: "",
+      unit: "\u20AC",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  short_max: {
+    type: "state",
+    common: {
+      type: "string",
+      role: "text",
+      def: "",
+      unit: "\u20AC",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  feed_min: {
+    type: "state",
+    common: {
+      type: "number",
+      role: "state",
+      def: 0,
+      unit: "\u20AC",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  feed_max: {
+    type: "state",
+    common: {
+      type: "number",
+      role: "state",
+      def: 0,
+      unit: "\u20AC",
+      read: true,
+      write: false
+    },
+    native: {}
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  priceMinMaxObj,
   priceObj,
   statesObj
 });

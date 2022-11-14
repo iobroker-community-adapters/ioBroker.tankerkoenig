@@ -168,6 +168,22 @@ class Tankerkoenig extends utils.Adapter {
       return null;
     }
   }
+  async dayState(id) {
+    try {
+      const dayState = await this.getStateAsync(id);
+      let day;
+      if (dayState) {
+        const date = new Date(dayState.ts);
+        day = date.getDate();
+      } else {
+        day = null;
+      }
+      return day;
+    } catch (error) {
+      this.writeLog(`[ oldState ] error: ${error} stack: ${error.stack}`, "error");
+      return null;
+    }
+  }
   async writeState(prices) {
     try {
       const station = this.config.station;
@@ -464,6 +480,71 @@ class Tankerkoenig extends utils.Adapter {
               val: stationValue.discountObj.discount,
               ack: true
             });
+            for (const fuelTypesKey in fuelTypes) {
+              if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
+                const feedMinDay = await this.dayState(`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`);
+                const now = new Date();
+                this.writeLog(`Day of Today: ${now.getDate()} // Day of ${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min: ${feedMinDay}`, "debug");
+                if (now.getDate() !== feedMinDay) {
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
+                    {
+                      val: 0,
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.3rd_min`,
+                    {
+                      val: 0,
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_min`,
+                    {
+                      val: "0",
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_min`,
+                    {
+                      val: "",
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`,
+                    {
+                      val: 0,
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.3rd_max`,
+                    {
+                      val: 0,
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_max`,
+                    {
+                      val: "0",
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_max`,
+                    {
+                      val: "",
+                      ack: true
+                    }
+                  );
+                }
+              }
+            }
             if (prices[stationValue.station].status === "open") {
               for (const fuelTypesKey in fuelTypes) {
                 if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
@@ -502,6 +583,76 @@ class Tankerkoenig extends utils.Adapter {
                         ack: true
                       }
                     );
+                    const feed_min = await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`);
+                    if ((feed_min >= parseFloat(
+                      prices[stationValue.station][fuelTypes[fuelTypesKey]]
+                    ) || feed_min === 0) && (feed_min !== void 0 || feed_min !== null)) {
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
+                        {
+                          val: parseFloat(
+                            prices[stationValue.station][fuelTypes[fuelTypesKey]]
+                          ),
+                          ack: true
+                        }
+                      );
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.3rd_min`,
+                        {
+                          val: pricesObj.price3rd,
+                          ack: true
+                        }
+                      );
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_min`,
+                        {
+                          val: pricesObj.priceshort,
+                          ack: true
+                        }
+                      );
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_min`,
+                        {
+                          val: combined,
+                          ack: true
+                        }
+                      );
+                    }
+                    const feed_max = await this.oldState(`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`);
+                    if ((feed_max <= parseFloat(
+                      prices[stationValue.station][fuelTypes[fuelTypesKey]]
+                    ) || feed_max === 0) && (feed_max !== void 0 || feed_max !== null)) {
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`,
+                        {
+                          val: parseFloat(
+                            prices[stationValue.station][fuelTypes[fuelTypesKey]]
+                          ),
+                          ack: true
+                        }
+                      );
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.3rd_max`,
+                        {
+                          val: pricesObj.price3rd,
+                          ack: true
+                        }
+                      );
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_max`,
+                        {
+                          val: pricesObj.priceshort,
+                          ack: true
+                        }
+                      );
+                      await this.setStateAsync(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_max`,
+                        {
+                          val: combined,
+                          ack: true
+                        }
+                      );
+                    }
                   } else {
                     const short = await this.oldState(
                       `stations.${key}.${fuelTypes[fuelTypesKey]}.short`
@@ -526,6 +677,62 @@ class Tankerkoenig extends utils.Adapter {
                     );
                     await this.setStateAsync(
                       `stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
+                      {
+                        val: `<span class="station_no_prices">No Prices</span>`,
+                        ack: true
+                      }
+                    );
+                    await this.setStateAsync(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
+                      {
+                        val: await this.oldState(
+                          `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`
+                        ),
+                        ack: true,
+                        q: 64
+                      }
+                    );
+                    const shortmin = await this.oldState(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_min`
+                    );
+                    await this.setStateAsync(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_min`,
+                      {
+                        val: shortmin.toString(),
+                        ack: true,
+                        q: 64
+                      }
+                    );
+                    await this.setStateAsync(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_min`,
+                      {
+                        val: `<span class="station_no_prices">No Prices</span>`,
+                        ack: true
+                      }
+                    );
+                    await this.setStateAsync(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`,
+                      {
+                        val: await this.oldState(
+                          `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`
+                        ),
+                        ack: true,
+                        q: 64
+                      }
+                    );
+                    const shortmax = await this.oldState(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_max`
+                    );
+                    await this.setStateAsync(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_max`,
+                      {
+                        val: shortmax.toString(),
+                        ack: true,
+                        q: 64
+                      }
+                    );
+                    await this.setStateAsync(
+                      `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_max`,
                       {
                         val: `<span class="station_no_prices">No Prices</span>`,
                         ack: true
@@ -627,6 +834,64 @@ class Tankerkoenig extends utils.Adapter {
                   );
                   await this.setStateAsync(
                     `stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
+                    {
+                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+                      ack: true,
+                      q: 0
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
+                    {
+                      val: await this.oldState(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`
+                      ),
+                      ack: true,
+                      q: 64
+                    }
+                  );
+                  const shortmin = await this.oldState(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_min`
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_min`,
+                    {
+                      val: shortmin.toString(),
+                      ack: true,
+                      q: 64
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_min`,
+                    {
+                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+                      ack: true,
+                      q: 0
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`,
+                    {
+                      val: await this.oldState(
+                        `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`
+                      ),
+                      ack: true,
+                      q: 64
+                    }
+                  );
+                  const shortmax = await this.oldState(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_max`
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.short_max`,
+                    {
+                      val: shortmax.toString(),
+                      ack: true,
+                      q: 64
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_max`,
                     {
                       val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
                       ack: true,
@@ -855,6 +1120,30 @@ class Tankerkoenig extends utils.Adapter {
                       common: {
                         ...import_object_definition.priceObj[priceObjKey].common,
                         name: `${fuelTypes[fuelTypesKey]} ${priceObjKey}`
+                      }
+                    }
+                  );
+                }
+              }
+              await this.setObjectNotExistsAsync(
+                `stations.${stationKey}.${fuelTypes[fuelTypesKey]}.minmax`,
+                {
+                  type: "channel",
+                  common: {
+                    name: "Daily Min/Max"
+                  },
+                  native: {}
+                }
+              );
+              for (const priceMinMaxObjKey in import_object_definition.priceMinMaxObj) {
+                if (import_object_definition.priceMinMaxObj.hasOwnProperty(priceMinMaxObjKey)) {
+                  await this.setObjectNotExistsAsync(
+                    `stations.${stationKey}.${fuelTypes[fuelTypesKey]}.minmax.${priceMinMaxObjKey}`,
+                    {
+                      ...import_object_definition.priceMinMaxObj[priceMinMaxObjKey],
+                      common: {
+                        ...import_object_definition.priceMinMaxObj[priceMinMaxObjKey].common,
+                        name: `${fuelTypes[fuelTypesKey]} ${priceMinMaxObjKey}`
                       }
                     }
                   );
