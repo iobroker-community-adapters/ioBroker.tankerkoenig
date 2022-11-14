@@ -4,7 +4,8 @@
 import { Box, FormControl, Grid, Typography } from '@mui/material';
 import { useI18n } from 'iobroker-react/hooks';
 import React from 'react';
-import { NumberInput } from './NumberInput';
+// import { NumberInput } from './NumberInput';
+import { NumberInput } from 'iobroker-react/components';
 
 export interface AdapterIntervalProps {
 	onChange: (key: keyof ioBroker.AdapterConfig, value: any) => void;
@@ -13,8 +14,10 @@ export interface AdapterIntervalProps {
 
 export const AdapterInterval: React.FC<AdapterIntervalProps> = ({ settings, onChange }): JSX.Element => {
 	const { translate: _ } = useI18n();
-	const handeleNumber = (attr: string, value: React.SetStateAction<number | undefined>): void => {
+	const [values, setValues] = React.useState<number>(settings.synctime ?? 5);
+	const handeleNumber = (value: React.SetStateAction<number>): void => {
 		if (typeof value === 'number') {
+			setValues(value);
 			onChange('synctime', value);
 		}
 	};
@@ -45,23 +48,18 @@ export const AdapterInterval: React.FC<AdapterIntervalProps> = ({ settings, onCh
 								min={5}
 								max={999}
 								defaultValue={5}
-								label={'interval'}
-								tooltip={'intervalTooltip'}
-								sx={{ width: '200', textAlignLast: 'center' }}
-								value={settings.synctime}
-								onChange={(value) => handeleNumber('synctime', value)}
-							/>
-							<Typography
-								variant="inherit"
-								color="textSecondary"
+								value={values}
+								label={'Interval'}
 								sx={{
-									pt: 0.5,
-									pl: 0.5,
-									fontSize: '1rem',
+									input: { width: '150', textAlignLast: 'center' },
 								}}
-							>
-								{_('helperText')}
-							</Typography>
+								unit={'min'}
+								onChange={handeleNumber}
+								tooltip={{
+									title: _('intervalTooltip'),
+									arrow: true,
+								}}
+							/>
 						</FormControl>
 					</Grid>
 					<Grid

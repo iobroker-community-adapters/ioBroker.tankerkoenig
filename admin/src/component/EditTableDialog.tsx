@@ -6,7 +6,6 @@ import {
 	Checkbox,
 	FormControl,
 	Grid,
-	InputAdornment,
 	InputLabel,
 	ListItemText,
 	MenuItem,
@@ -19,6 +18,7 @@ import {
 } from '@mui/material';
 import { useI18n } from 'iobroker-react/hooks';
 import React, { useEffect, useState } from 'react';
+import { NumberInput } from 'iobroker-react/components';
 
 export interface RowProps {
 	editRow: (value: ioBroker.Station) => void;
@@ -57,11 +57,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 	const [stationID, setStationID] = useState<string>(oldRow.station);
 	const [name, setName] = useState<string>(oldRow.stationname);
 	const [discountType, setDiscountType] = useState<string>(oldRow.discountObj.discountType);
-	const [discount, setDiscount] = useState<string>(
-		oldRow.discountObj.discountType === 'absolute'
-			? oldRow.discountObj.discount.toFixed(2)
-			: oldRow.discountObj.discount.toFixed(0),
-	);
+	const [discount, setDiscount] = useState<number>(oldRow.discountObj.discount);
 	const [fuelType, setFuelType] = useState<string[]>(oldRow.discountObj.fuelType);
 	const [discounted, setDiscounted] = useState<boolean>(oldRow.discounted);
 
@@ -78,7 +74,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 				name !== oldRow.stationname ||
 				discounted !== oldRow.discounted ||
 				fuelType !== oldRow.discountObj.fuelType ||
-				discount !== oldRow.discountObj.discount.toString(2) ||
+				discount !== oldRow.discountObj.discount ||
 				discountType !== oldRow.discountObj.discountType
 			) {
 				editRow(newEditRow);
@@ -151,9 +147,9 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 		} = event;
 		setDiscountType(value);
 		if (value === 'absolute') {
-			setDiscount('0.00');
+			setDiscount(0);
 		} else {
-			setDiscount('0');
+			setDiscount(0);
 		}
 		setEditRow({
 			...newEditRow,
@@ -173,37 +169,37 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			discounted: JSON.parse(value),
 			discountObj: {
 				...newEditRow.discountObj,
-				discount: parseFloat(parseFloat('0.00').toFixed(2)),
+				discount: 0,
 			},
 		});
 	};
-	const handleChangeDiscount = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+	const handleChangeDiscount = (discountValue: number): void => {
 		if (discountType === 'absolute') {
-			setDiscount(parseFloat(event.target.value).toFixed(2));
+			setDiscount(discountValue);
 			setEditRow({
 				...newEditRow,
 				discountObj: {
 					...newEditRow.discountObj,
-					discount: parseFloat(parseFloat(event.target.value).toFixed(2)),
+					discount: discountValue,
 				},
 			});
 		} else {
-			if (parseFloat(event.target.value) > 100) {
-				setDiscount(parseFloat('100').toFixed(0));
+			if (discountValue > 100) {
+				setDiscount(100);
 				setEditRow({
 					...newEditRow,
 					discountObj: {
 						...newEditRow.discountObj,
-						discount: parseFloat(parseFloat('100').toFixed(0)),
+						discount: 100,
 					},
 				});
 			} else {
-				setDiscount(parseFloat(event.target.value).toFixed(0));
+				setDiscount(discountValue);
 				setEditRow({
 					...newEditRow,
 					discountObj: {
 						...newEditRow.discountObj,
-						discount: parseFloat(parseFloat(event.target.value).toFixed(0)),
+						discount: discountValue,
 					},
 				});
 			}
@@ -351,40 +347,26 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 							<Box sx={{ m: 1, display: 'flex', justifyContent: 'center' }}>
 								{discountType === 'absolute' ? (
 									<FormControl sx={{ m: 1, minWidth: 110, maxWidth: 110 }}>
-										<TextField
-											required
-											type="number"
+										<NumberInput
 											label={_('discount')}
+											required={true}
+											unit={'€'}
+											min={0.0}
+											step={0.01}
 											value={discount}
-											InputProps={{
-												endAdornment: (
-													<InputAdornment position="end">€</InputAdornment>
-												),
-											}}
-											inputProps={{
-												step: '0.01',
-												min: '0.00',
-											}}
 											onChange={handleChangeDiscount}
 										/>
 									</FormControl>
 								) : (
 									<FormControl sx={{ m: 1, minWidth: 110, maxWidth: 110 }}>
-										<TextField
-											required
-											type="number"
+										<NumberInput
 											label={_('discount')}
+											required={true}
+											unit={'%'}
+											min={0}
+											max={100.0}
+											step={1}
 											value={discount}
-											InputProps={{
-												endAdornment: (
-													<InputAdornment position="end">%</InputAdornment>
-												),
-											}}
-											inputProps={{
-												step: '1',
-												min: '0',
-												max: '100',
-											}}
 											onChange={handleChangeDiscount}
 										/>
 									</FormControl>
