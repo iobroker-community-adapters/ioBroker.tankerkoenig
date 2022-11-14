@@ -24,9 +24,7 @@ export const EditModal: React.FC<EditModalProps> = ({
 	const { translate: _ } = useI18n();
 
 	const handleClickAdd = (row: ioBroker.Station | undefined): void => {
-		//		console.log('row', row);
 		if (row) {
-			//			console.log('row', row);
 			newRow(row, index);
 			onClose();
 		}
