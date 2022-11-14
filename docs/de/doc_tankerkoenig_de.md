@@ -1,10 +1,10 @@
 ![Logo](../../admin/tankerkoenig.png)
 # ioBroker.tankerkoenig
 
-![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) ![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) 
+![stable Version](http://iobroker.live/badges/tankerkoenig-stable.svg) 
+[![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
-
-[//]: # ([![Known Vulnerabilities]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig/badge.svg?targetFile=package.json&#41;]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig?targetFile=package.json&#41;)
 
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
@@ -20,15 +20,23 @@ Der Adapter verwendet die Seite `prices.php`, welche beim Quellserver von tanker
 Der API Schlüssel ist auf der [Seite von Tankerkönig](https://creativecommons.tankerkoenig.de/#about) erhältlich. Die 36stellige Zeichenkette muss hier eingetragen werden.
 
 ### Tankstellen
-Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tankstellen ID nötig. Die ID für jede Tankstelle erhält man auf tankerkoenig.de. Sie ist ebenfalls 36stellig.
+Es können bis zu 10 Tankstellen abgefragt werden. Dazu ist die Eingabe der Tankstellen ID nötig. Die ID für jede Tankstelle erhält man auf tankerkoenig.de. Sie ist ebenfalls 
+36-stellig. 
 Zusätzlich kann ein eigener Name für die Station hinterlegt werden.
-![alt text](img/tankerkoenigSettingsScreenshot1.png "Screenshot Settings")
-![alt text](img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
+![alt text](../img/tankerkoenigSettingsScreenshot1.png "Screenshot Settings")
+![alt text](../img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
 
 Über dieses Fenster werden die neuen Stationen hinzugefügt, man kann direkt in der Karte darunter die Stadions-ID auslesen und in das Feld oben kopieren.
+Es gibt 2 Möglichkeiten, die ID in das Feld zu kopieren:
+- Du markierst die ID und kopierst sie mit Strg+C oder du klickst mit der rechten Maustaste auf Kopieren und fügst sie dann in das Feld ein.
+- Du kannst auch auf die Schaltfläche `Copy` klicken, dann wird der gesamte Inhalt kopiert, und du kannst ihn dann entweder direkt in das Feld einfügen. 
+  Oder du klickst auf die Schaltfläche `Paste`, dann wird nur die ID in das Feld eingefügt.
+
+![alt text](../img/tankerkoenigStationFinder_copyId.png "Screenshot Settings")
+
 Unter der Rabatt Optionen kann man zwischen den Rabatt Varianten ⇨ Euro / Prozent auswählen und für welchen Kraftstoffart der Rabatt gilt (Standard sind alle ausgewählt)
 
-![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
+![alt text](../img/tankerkoenigStationFinder.png "Screenshot Settings")
 
 ### Werte auf 0 setzen
 Aktivieren Sie diese Funktion, wenn die Preise auf 0 gesetzt werden sollen, wenn die Tankstelle geschlossen ist.\
@@ -37,7 +45,7 @@ Wenn die Funktion ausgeschaltet ist, werden die Preise als ungültig gesetzt, si
 ### Ungültige Preise
 Wenn eine Tankstelle keine Preise für E5, E10 oder Diesel liefert, z. B. bei einer geschlossenen Station, wird der Preis sich nicht ändern stattdessen wird die state Qualität auf `Qualitätscode 0x40 => Ersatzwert aus Gerät` gesetzt, der state wird dann orange angezeigt.
 
-![alt text](img/state_quality.png "Screenshot Settings")
+![alt text](../img/state_quality.png "Screenshot Settings")
 
 ### Log minimieren
 Um Schreibzugriffe im Log (z.B. auf empfindliche SD-Karten) zu minimieren, kann ein Haken gesetzt werden.
@@ -48,7 +56,7 @@ Der Adapter läuft als Daemon (nicht im Schedule Modus) und startet regulär all
 ##  Datenpunkte
 Die Datenpunkte werden dynamisch erstellt, das heißt, wen man eine Station anlegt werden Datenpunkte dazu angelegt (Maximal 10 Stationen)
 Wenn man eine Station löscht, werden auch die nicht mehr benötigten Datenpunkte gelöscht.
-![alt text](img/tankerkoenigNewDP.png "Screenshot Settings")
+![alt text](../img/tankerkoenigNewDP.png "Screenshot Settings")
 Unter den verschiedenen Kraftstoffart werden die folgenden Datenpunkte:
 * `feed` (Preis mit drei Dezimalstellen als Number)
 * `short` (Preis mit zwei Dezimalstellen (ungerundet) als String)
@@ -72,7 +80,7 @@ Auf der Stations ebenen werden weitere fünf Datenpunkte erstellt:
 * `json` (JSON Daten der Tankstelle)
 * `jsonTable` (json Tabelle für die vis `nur die json Daten kein Widget`)
 
-![alt text](img/jsonTable.png "Screenshot Settings")
+![alt text](../img/jsonTable.png "Screenshot Settings")
 * `lastUpdate` (Zeitpunkt der letzten Aktualisierung)
 * `refresh` (Dies ist ein Button, mit dem man die Daten manuell aktualisieren kann `ACHTUNG` nach einmaligen auslösen ist es für 1 minute nicht mehr möglich die manuelle Aktualisierung auszulösen)
 

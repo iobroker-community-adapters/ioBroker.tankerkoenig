@@ -1,10 +1,10 @@
 ![Logo](../../admin/tankerkoenig.png)
 # ioBroker.tankerkoenig
 
-![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) ![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg)
+![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) 
+[![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
-
-[//]: # ([![Known Vulnerabilities]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig/badge.svg?targetFile=package.json&#41;]&#40;https://snyk.io/test/github/iobroker-community-adapters/ioBroker.tankerkoenig?targetFile=package.json&#41;)
 
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
 
@@ -23,14 +23,20 @@ The API key can be obtained at [website Tankerkönig](https://creativecommons.ta
 ### Stations
 Up to 10 gas stations can be queried. To do this, you need to enter the gas station ID. You can get the ID for each gas station on tankerkoenig.de. It is also 36 digits long.
 In addition, you can enter your own name for the station.
-![alt text](img/tankerkoenigSettingsScreenshot1.png "Screenshot Settings")
-![alt text](img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
+![alt text](../img/tankerkoenigSettingsScreenshot1.png "Screenshot Settings")
+![alt text](../img/tankerkoenigSettingsScreenshot2.png "Screenshot Settings")
 
 This window is used to add the new stations, you can read the stadium ID directly in the map below and copy it into the field above.
+#### Copy station ID
+There are 2 ways to copy the ID into the field:
+- you mark the ID and copy it with Ctrl+C or right click copy and then paste into the field.
+- you can also do it with the button `Copy`, this will copy the whole content, and you can then either paste it directly into the field. 
+  Or you click on the button `Paste` then only the ID will be pasted into the field.
+
+![alt text](../img/tankerkoenigStationFinder_copyId.png "Screenshot Settings")
 Under the discount options you can choose between the discount variants ⇨ Euro / Percent and for which fuel type the discount applies (default are all selected).
 
-![alt text](img/tankerkoenigStationFinder.png "Screenshot Settings")
-
+![alt text](../img/tankerkoenigStationFinder.png "Screenshot Settings")
 ### Set values to 0
 Activate this function if the prices are to be set to 0 when the gas station is closed.\
 If the function is turned off, the prices will be set as invalid, see below.
@@ -38,7 +44,7 @@ If the function is turned off, the prices will be set as invalid, see below.
 ### Invalid prices
 If a gas station does not provide prices for E5, E10 or Diesel, e.g. if the station is closed, the price will not change, instead the state quality will be set to `Quality code 0x40 => Substitute value from device`, the state will then be displayed in orange.
 
-![alt text](img/state_quality.png "Screenshot Settings")
+![alt text](../img/state_quality.png "Screenshot Settings")
 
 ### Minimize log
 To reduce log writing (e.g. on SD cards) this option can be selected.
@@ -49,7 +55,7 @@ The adapter runs as a daemon (not in schedule mode) and starts regularly every f
 ##  Datapoints
 The datapoints are created dynamically, that is, when you create a station, datapoints are created for it (maximum 10 stations).
 When you delete a station, the datapoints that are no longer needed are also deleted.
-![alt text](img/tankerkoenigNewDP.png "Screenshot Settings")
+![alt text](../img/tankerkoenigNewDP.png "Screenshot Settings")
 Under the different fuel types the following datapoints are created:
 * `feed` (price with three decimal places as number)
 * `short` (price with two decimal places (unrounded) as string)
@@ -73,7 +79,7 @@ On the station level five more data points are created:
 * `json` (JSON data of the gas station)
 * `jsonTable` (json table for the vis `only the json data no widget`)
 
-![alt text](img/jsonTable.png "Screenshot Settings")
+![alt text](../img/jsonTable.png "Screenshot Settings")
 * `lastUpdate` (time of the last update)
 * `refresh` (This is a button to refresh the data manually `WARNING` after triggering it once it is not possible to trigger the manual refresh for 1 minute)
 
