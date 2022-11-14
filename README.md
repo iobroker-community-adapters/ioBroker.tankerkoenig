@@ -1,7 +1,9 @@
 ![Logo](admin/tankerkoenig.png)
 # ioBroker.tankerkoenig
 
-![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) ![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) 
+![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) 
+[![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 
 [![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
@@ -21,6 +23,11 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) Ukrainian translation added
+* (xXBJXx) add validation function for ID and Name Input fields
+* (xXBJXx) add copy from clipboard function for ID Input field
+
 ### 3.0.2 (2022-11-10)
 * (xXBJXx) release new version from Tankerkoenig
 
