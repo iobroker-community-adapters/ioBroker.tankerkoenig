@@ -6,6 +6,7 @@ import {
 	Checkbox,
 	FormControl,
 	Grid,
+	IconButton,
 	InputAdornment,
 	InputLabel,
 	ListItemText,
@@ -19,6 +20,9 @@ import {
 } from '@mui/material';
 import { useI18n } from 'iobroker-react/hooks';
 import React, { useEffect, useState } from 'react';
+import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { NumberInput } from 'iobroker-react/components';
 
 export interface RowProps {
 	addRow: (value: ioBroker.Station) => void;
@@ -39,17 +43,17 @@ const fuelTypes = ['e5', 'e10', 'diesel'];
 
 const max = 36;
 const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
+let timeout: NodeJS.Timeout;
 
 export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element => {
 	const { translate: _ } = useI18n();
 	const [stationID, setStationID] = useState<string>('');
 	const [discountType, setDiscountType] = useState<string>('absolute');
-	const [discount, setDiscount] = useState<string>('0.00');
+	const [discount, setDiscount] = useState<number>(0);
 	const [fuelType, setFuelType] = useState<string[]>(['e5', 'e10', 'diesel']);
 	const [discounted, setDiscounted] = useState<boolean>(false);
 
 	const [name, setName] = useState<string>('');
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [error, setError] = useState<boolean>(true);
 	const [newRow, setNewRow] = useState<ioBroker.Station>({
 		station: '',
@@ -61,17 +65,17 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			discountType: 'absolute',
 		},
 	});
-	const [valid, setValid] = useState(true);
+	const [copyValid, setCopyValid] = useState(false);
 
 	useEffect(() => {
 		addRow(newRow);
 	}, [newRow]);
 
-	const handleValidate = (value: string) => {
-		if (value.match(pattern)) {
-			setValid(false);
+	const handleValidate = (id: string) => {
+		if (id.match(pattern)) {
+			setError(false);
 		} else {
-			setValid(true);
+			setError(true);
 		}
 	};
 	const handleChangeName = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
@@ -85,27 +89,14 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 		}
 	};
 
-	const handlePaste = (event: React.ClipboardEvent<HTMLDivElement>) => {
-		const id = event.clipboardData.getData('text');
-		if (id.length > max) {
-			setStationID(id.substring(0, max));
-			setNewRow({ ...newRow, station: id.substring(0, max) });
-		} else {
-			setStationID(id);
-			setNewRow({ ...newRow, station: id });
-		}
-	};
-
 	const handleChangeId = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
 		const newId: string = event.target.value;
 		if (newId !== '') {
 			setStationID(newId);
 			setNewRow({ ...newRow, station: newId });
-			setError(false);
 		} else {
 			setStationID('');
 			setNewRow({ ...newRow, station: '' });
-			setError(true);
 		}
 	};
 
@@ -114,7 +105,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			target: { value },
 		} = event;
 		setFuelType(
-			// On autofill we get a stringified value.
+			// On autofill, we get a stringified value.
 			typeof value === 'string' ? value.split(',') : value,
 		);
 		setNewRow({
@@ -130,7 +121,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			target: { value },
 		} = event;
 		setDiscountType(value);
-		setDiscount('0');
+		setDiscount(0);
 		setNewRow({
 			...newRow,
 			discountObj: {
@@ -139,6 +130,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			},
 		});
 	};
+
 	const handleChangeActivate = (event: SelectChangeEvent) => {
 		const {
 			target: { value },
@@ -149,37 +141,38 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			discounted: JSON.parse(value),
 			discountObj: {
 				...newRow.discountObj,
-				discount: parseFloat(parseFloat('0.00').toFixed(2)),
+				discount: 0,
 			},
 		});
 	};
-	const handleChangeDiscount = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+
+	const handleChangeDiscount = (value: number): void => {
 		if (discountType === 'absolute') {
-			setDiscount(parseFloat(event.target.value).toFixed(2));
+			setDiscount(value);
 			setNewRow({
 				...newRow,
 				discountObj: {
 					...newRow.discountObj,
-					discount: parseFloat(parseFloat(event.target.value).toFixed(2)),
+					discount: value,
 				},
 			});
 		} else {
-			if (parseFloat(event.target.value) > 100) {
-				setDiscount(parseFloat('100').toFixed(0));
+			if (value > 100) {
+				setDiscount(100);
 				setNewRow({
 					...newRow,
 					discountObj: {
 						...newRow.discountObj,
-						discount: parseFloat(parseFloat('100').toFixed(0)),
+						discount: 100,
 					},
 				});
 			} else {
-				setDiscount(parseFloat(event.target.value).toFixed(0));
+				setDiscount(value);
 				setNewRow({
 					...newRow,
 					discountObj: {
 						...newRow.discountObj,
-						discount: parseFloat(parseFloat(event.target.value).toFixed(0)),
+						discount: value,
 					},
 				});
 			}
@@ -189,6 +182,44 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 	useEffect(() => {
 		handleValidate(stationID);
 	}, [stationID]);
+
+	const handlePaste = () => {
+		navigator.clipboard.readText().then((stationData) => {
+			try {
+				const json = JSON.parse(stationData);
+				for (const jsonKey in json) {
+					if (json.hasOwnProperty(jsonKey)) {
+						const element = json[jsonKey];
+						if (element.id) {
+							setStationID(element.id);
+							setNewRow({ ...newRow, station: element.id });
+							setCopyValid(true);
+						}
+					}
+				}
+			} catch (e) {
+				if (stationData.length > max) {
+					setStationID(stationData.substring(0, max));
+					setNewRow({ ...newRow, station: stationData.substring(0, max) });
+				} else {
+					setStationID(stationData);
+					setNewRow({ ...newRow, station: stationData });
+				}
+			}
+		});
+	};
+
+	// reset copyValid
+	useEffect(() => {
+		if (copyValid) {
+			if (timeout) clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				setCopyValid(false);
+			}, 3000);
+		} else {
+			return;
+		}
+	}, [copyValid]);
 
 	return (
 		<React.Fragment>
@@ -201,58 +232,65 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 					alignItems: 'center',
 					justifyContent: 'space-around',
 					display: 'flex',
-					flexWrap: 'nowrap',
-					flexDirection: 'row',
-				}}
-			>
-				<Tooltip title={_('tooltipStationName')} arrow placement={'top'}>
-					<TextField
-						required
-						label={_('StationName')}
-						value={name}
-						type={'text'}
-						sx={{
-							width: '40ch',
-						}}
-						placeholder={_('shell_city')}
-						inputProps={{
-							maxLength: 20,
-						}}
-						onChange={(event) => {
-							handleChangeName(event);
-						}}
-					/>
-				</Tooltip>
-			</Grid>
-			<Grid
-				container
-				spacing={3}
-				sx={{
-					marginTop: '0',
-					paddingBottom: '15px',
-					alignItems: 'center',
-					justifyContent: 'space-around',
-					display: 'flex',
-					flexWrap: 'nowrap',
+					flexWrap: 'wrap',
 					flexDirection: 'row',
 				}}
 			>
 				<React.Fragment>
+					<Tooltip title={_('tooltipStationName')} arrow placement={'top'}>
+						<TextField
+							required
+							label={_('StationName')}
+							value={name}
+							error={name.length <= 0}
+							color="success"
+							type={'text'}
+							margin={'normal'}
+							sx={{
+								width: '40ch',
+							}}
+							placeholder={_('shell_city')}
+							inputProps={{
+								maxLength: 20,
+							}}
+							onChange={(event) => {
+								handleChangeName(event);
+							}}
+						/>
+					</Tooltip>
 					<FormControl variant="outlined">
 						<Tooltip title={_('tooltipStationID')} arrow>
 							<TextField
 								required
 								variant="outlined"
-								error={valid}
+								error={error}
 								color="success"
 								label={_('station_id')}
 								value={stationID}
 								type="text"
 								placeholder="ab345678-ab34-ab34-ab34-ab3456789012"
 								sx={{ width: '47ch', margin: 1 }}
-								helperText={!valid ? _('good') : _('wrong')}
+								helperText={!error ? _('good') : _('wrong')}
 								inputProps={{
 									maxLength: 36,
+									style: { textAlign: 'center' },
+								}}
+								InputProps={{
+									endAdornment: (
+										<InputAdornment position="end">
+											<IconButton
+												aria-label="paste the content of the clipboard"
+												onClick={handlePaste}
+												edge="end"
+											>
+												{copyValid ? (
+													<CheckCircleOutlineIcon color="success" />
+												) : (
+													<ContentPasteGoIcon />
+												)}
+											</IconButton>
+										</InputAdornment>
+									),
 								}}
 								onPaste={handlePaste}
 								onChange={handleChangeId}
@@ -261,7 +299,6 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 					</FormControl>
 				</React.Fragment>
 			</Grid>
-
 			<Grid
 				container
 				spacing={3}
@@ -328,40 +365,26 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 							<Box sx={{ m: 1, display: 'flex', justifyContent: 'center' }}>
 								{discountType === 'absolute' ? (
 									<FormControl sx={{ m: 1, minWidth: 110, maxWidth: 110 }}>
-										<TextField
-											required
-											type="number"
+										<NumberInput
 											label={_('discount')}
+											required={true}
+											unit={'€'}
+											min={0.0}
+											step={0.01}
 											value={discount}
-											InputProps={{
-												endAdornment: (
-													<InputAdornment position="end">€</InputAdornment>
-												),
-											}}
-											inputProps={{
-												step: '0.01',
-												min: '0.00',
-											}}
 											onChange={handleChangeDiscount}
 										/>
 									</FormControl>
 								) : (
 									<FormControl sx={{ m: 1, minWidth: 110, maxWidth: 110 }}>
-										<TextField
-											required
-											type="number"
+										<NumberInput
 											label={_('discount')}
+											required={true}
+											unit={'%'}
+											min={0}
+											max={100.0}
+											step={1}
 											value={discount}
-											InputProps={{
-												endAdornment: (
-													<InputAdornment position="end">%</InputAdornment>
-												),
-											}}
-											inputProps={{
-												step: '1',
-												min: '0',
-												max: '100',
-											}}
 											onChange={handleChangeDiscount}
 										/>
 									</FormControl>
