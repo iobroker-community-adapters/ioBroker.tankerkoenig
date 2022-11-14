@@ -19,7 +19,6 @@
   "euro": "Euro",
   "fuelType": "Type brandstof",
   "good": "Geaccepteerd",
-  "helperTextInterval": "minstens 5",
   "interval": "Tijd tussen opzoekingen",
   "intervalInfo": "De gegevens van de bronfeed worden door de server van tankerkoenig.de slechts om de 4 minuten bijgewerkt. Het kortste opvraaginterval is daarom 5 minuten, omdat een frequentere opvraag geen zin heeft.",
   "intervalInfo2": "Daarom is het kortste query-interval 5 minuten, aangezien een frequentere query geen zin heeft.",

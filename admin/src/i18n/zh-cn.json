@@ -19,7 +19,6 @@
   "euro": "欧元",
   "fuelType": "燃料类型",
   "good": "已接受",
-  "helperTextInterval": "至少有5个",
   "interval": "查询间隔时间",
   "intervalInfo": "源资料的数据由tankerkoenig.de的服务器每4分钟才更新一次。因此，最短的查询时间间隔是5分钟，因为更频繁的查询没有意义。",
   "intervalInfo2": "因此，最短的查询时间间隔是5分钟，因为更频繁的查询没有意义。",

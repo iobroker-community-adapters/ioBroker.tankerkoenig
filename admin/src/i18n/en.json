@@ -19,7 +19,6 @@
   "euro": "Euro",
   "fuelType": "Fuel type",
   "good": "Accepted",
-  "helperTextInterval": "at least 5",
   "interval": "Time between queries",
   "intervalInfo": "The data of the source feed is updated by the server at tankerkoenig.de only every 4 minutes. The shortest query interval is therefore 5 minutes, as a more frequent query makes no sense.",
   "intervalInfo2": "Therefore, the shortest query interval is 5 minutes, since a more frequent query does not make sense.",

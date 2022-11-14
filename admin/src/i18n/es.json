@@ -19,7 +19,6 @@
   "euro": "Euro",
   "fuelType": "Tipo de combustible",
   "good": "Aceptado",
-  "helperTextInterval": "al menos 5",
   "interval": "Tiempo entre consultas",
   "intervalInfo": "Los datos de la fuente se actualizan en el servidor de tankerkoenig.de sólo cada 4 minutos. Por lo tanto, el intervalo de consulta más corto es de 5 minutos, ya que una consulta más frecuente no tiene sentido.",
   "intervalInfo2": "Por lo tanto, el intervalo de consulta más corto es de 5 minutos, ya que una consulta más frecuente no tiene sentido.",
