@@ -204,7 +204,7 @@ class Tankerkoenig extends utils.Adapter {
 	/**
 	 * @description request day of state
 	 */
-	 private async dayState(id: string): Promise<any> {
+	private async dayState(id: string): Promise<any> {
 		try {
 			const dayState = await this.getStateAsync(id);
 			let day;
@@ -213,7 +213,7 @@ class Tankerkoenig extends utils.Adapter {
 				day = date.getDate();
 			} else {
 				day = null;
-			} 
+			}
 			return day;
 		} catch (error) {
 			this.writeLog(`[ oldState ] error: ${error} stack: ${error.stack}`, 'error');
@@ -601,7 +601,7 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 
-						// Reset min/max at new day 
+						// Reset min/max at new day
 						for (const fuelTypesKey in fuelTypes) {
 							if (fuelTypes.hasOwnProperty(fuelTypesKey)) {
 								const feedMinDay = await this.dayState(`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`);

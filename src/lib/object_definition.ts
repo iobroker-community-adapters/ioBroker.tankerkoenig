@@ -109,7 +109,7 @@ export const priceObj: { [key: string]: any } = {
 			write: false,
 		},
 		native: {},
-	}
+	},
 };
 
 export const priceMinMaxObj: { [key: string]: any } = {
@@ -204,5 +204,5 @@ export const priceMinMaxObj: { [key: string]: any } = {
 			write: false,
 		},
 		native: {},
-	}
+	},
 };
