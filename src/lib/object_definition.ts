@@ -111,3 +111,98 @@ export const priceObj: { [key: string]: any } = {
 		native: {},
 	},
 };
+
+export const priceMinMaxObj: { [key: string]: any } = {
+	'3rd_min': {
+		type: 'state',
+		common: {
+			type: 'number',
+			role: 'state',
+			def: 0,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	'3rd_max': {
+		type: 'state',
+		common: {
+			type: 'number',
+			role: 'state',
+			def: 0,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	combined_min: {
+		type: 'state',
+		common: {
+			type: 'string',
+			role: 'text',
+			def: '',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	combined_max: {
+		type: 'state',
+		common: {
+			type: 'string',
+			role: 'text',
+			def: '',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	short_min: {
+		type: 'state',
+		common: {
+			type: 'string',
+			role: 'text',
+			def: '',
+			unit: '€',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	short_max: {
+		type: 'state',
+		common: {
+			type: 'string',
+			role: 'text',
+			def: '',
+			unit: '€',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	feed_min: {
+		type: 'state',
+		common: {
+			type: 'number',
+			role: 'state',
+			def: 0,
+			unit: '€',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	feed_max: {
+		type: 'state',
+		common: {
+			type: 'number',
+			role: 'state',
+			def: 0,
+			unit: '€',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+};
