@@ -607,8 +607,6 @@ class Tankerkoenig extends utils.Adapter {
 								const feedMinDay = await this.dayState(`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`);
 								const now = new Date();
 
-								this.writeLog(`Day of Today: ${now.getDate()} // Day of ${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min: ${feedMinDay}`, 'debug');
-
 								if (now.getDate() !== feedMinDay) {
 									await this.setStateAsync(
 										`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
@@ -673,6 +671,9 @@ class Tankerkoenig extends utils.Adapter {
 											ack: true,
 										},
 									);
+
+									this.writeLog(`Min/Max prices have been reset, because we have an new day. Today: ${now.getDate()} // Day of ${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min: ${feedMinDay}`, 'debug');
+
 								}
 							}
 						}
@@ -726,6 +727,9 @@ class Tankerkoenig extends utils.Adapter {
 										if ( (feed_min >= parseFloat(
 											prices[stationValue.station][fuelTypes[fuelTypesKey]]) || feed_min === 0) && (feed_min !== undefined || feed_min !== null) ) {
 
+											this.writeLog(`New minimum price for ${key}.${fuelTypes[fuelTypesKey]}: ${parseFloat(
+												prices[stationValue.station][fuelTypes[fuelTypesKey]])}`, 'debug');
+											
 											await this.setStateAsync(
 												`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
 												{
@@ -766,6 +770,9 @@ class Tankerkoenig extends utils.Adapter {
 										if ( (feed_max <= parseFloat(
 											prices[stationValue.station][fuelTypes[fuelTypesKey]]) || feed_max === 0) && (feed_max !== undefined || feed_max !== null) ) {
 
+											this.writeLog(`New maximum price for ${key}.${fuelTypes[fuelTypesKey]}: ${parseFloat(
+												prices[stationValue.station][fuelTypes[fuelTypesKey]])}`, 'debug');
+											
 											await this.setStateAsync(
 												`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`,
 												{
