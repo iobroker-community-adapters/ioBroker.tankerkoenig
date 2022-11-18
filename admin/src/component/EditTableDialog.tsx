@@ -6,6 +6,8 @@ import {
 	Checkbox,
 	FormControl,
 	Grid,
+	IconButton,
+	InputAdornment,
 	InputLabel,
 	ListItemText,
 	MenuItem,
@@ -19,6 +21,8 @@ import {
 import { useI18n } from 'iobroker-react/hooks';
 import React, { useEffect, useState } from 'react';
 import { NumberInput } from 'iobroker-react/components';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
 
 export interface RowProps {
 	editRow: (value: ioBroker.Station) => void;
@@ -39,6 +43,7 @@ const MenuProps = {
 const max = 36;
 const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
 const fuelTypes = ['e5', 'e10', 'diesel'];
+let timeout: NodeJS.Timeout;
 
 export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.Element => {
 	if (!oldRow) {
@@ -65,6 +70,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 	const [error, setError] = useState<boolean>(true);
 	const [valid, setValid] = useState(true);
 	const [newEditRow, setEditRow] = useState<ioBroker.Station>(oldRow);
+	const [copyValid, setCopyValid] = useState(false);
 
 	useEffect(() => {
 		// check if a change was made to the newRow
@@ -98,17 +104,6 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 		} else {
 			setName('');
 			setEditRow({ ...newEditRow, stationname: '' });
-		}
-	};
-
-	const handlePaste = (event: React.ClipboardEvent<HTMLDivElement>) => {
-		const id = event.clipboardData.getData('text');
-		if (id.length > max) {
-			setStationID(id.substring(0, max));
-			setEditRow({ ...newEditRow, station: id.substring(0, max) });
-		} else {
-			setStationID(id);
-			setEditRow({ ...newEditRow, station: id });
 		}
 	};
 
@@ -210,6 +205,44 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 		handleValidate(stationID);
 	}, [stationID]);
 
+	const handlePaste = () => {
+		navigator.clipboard.readText().then((stationData) => {
+			try {
+				const json = JSON.parse(stationData);
+				for (const jsonKey in json) {
+					if (json.hasOwnProperty(jsonKey)) {
+						const element = json[jsonKey];
+						if (element.id) {
+							setStationID(element.id);
+							setEditRow({ ...newEditRow, station: element.id });
+							setCopyValid(true);
+						}
+					}
+				}
+			} catch (e) {
+				if (stationData.length > max) {
+					setStationID(stationData.substring(0, max));
+					setEditRow({ ...newEditRow, station: stationData.substring(0, max) });
+				} else {
+					setStationID(stationData);
+					setEditRow({ ...newEditRow, station: stationData });
+				}
+			}
+		});
+	};
+
+	// reset copyValid
+	useEffect(() => {
+		if (copyValid) {
+			if (timeout) clearTimeout(timeout);
+			timeout = setTimeout(() => {
+				setCopyValid(false);
+			}, 3000);
+		} else {
+			return;
+		}
+	}, [copyValid]);
+
 	return (
 		<React.Fragment>
 			<Grid
@@ -284,6 +317,23 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 								helperText={!valid ? _('good') : _('wrong')}
 								inputProps={{
 									maxLength: 36,
+								}}
+								InputProps={{
+									endAdornment: (
+										<InputAdornment position="end">
+											<IconButton
+												aria-label="paste the content of the clipboard"
+												onClick={handlePaste}
+												edge="end"
+											>
+												{copyValid ? (
+													<CheckCircleOutlineIcon color="success" />
+												) : (
+													<ContentPasteGoIcon />
+												)}
+											</IconButton>
+										</InputAdornment>
+									),
 								}}
 								onPaste={handlePaste}
 								onChange={handleChangeId}
