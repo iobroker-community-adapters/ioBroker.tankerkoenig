@@ -18,7 +18,7 @@ The adapter uses the site prices.php which reduces the amount of data to be tran
 
 ## Configuration
 ### API key
-The API key can be obtained at [website Tankerkönig](https://creativecommons.tankerkoenig.de/#about). It is a 36 digit code that has to be entered in this field.
+The API key can be obtained at [website Tankerkönig](https://creativecommons.tankerkoenig.de/#about). It is a 36-digit code that has to be entered in this field.
 
 ### Stations
 Up to 10 gas stations can be queried. To do this, you need to enter the gas station ID. You can get the ID for each gas station on tankerkoenig.de. It is also 36 digits long.
@@ -31,7 +31,9 @@ This window is used to add the new stations, you can read the stadium ID directl
 There are 2 ways to copy the ID into the field:
 - you mark the ID and copy it with Ctrl+C or right click copy and then paste into the field.
 - you can also do it with the button `Copy`, this will copy the whole content, and you can then either paste it directly into the field. 
-  Or you click on the button `Paste` then only the ID will be pasted into the field.
+  Or you click on the button `Paste` then only the ID will be pasted into the field. 
+
+**But for this you have to allow the browser to access the clipboard.**
 
 ![alt text](../img/tankerkoenigStationFinder_copyId.png "Screenshot Settings")
 Under the discount options you can choose between the discount variants ⇨ Euro / Percent and for which fuel type the discount applies (default are all selected).
@@ -54,13 +56,15 @@ The adapter runs as a daemon (not in schedule mode) and starts regularly every f
 
 ##  Datapoints
 The datapoints are created dynamically, that is, when you create a station, datapoints are created for it (maximum 10 stations).
-When you delete a station, the datapoints that are no longer needed are also deleted.
 ![alt text](../img/tankerkoenigNewDP.png "Screenshot Settings")
 Under the different fuel types the following datapoints are created:
 * `feed` (price with three decimal places as number)
 * `short` (price with two decimal places (unrounded) as string)
 * `3rd` (third decimal place of the price to represent the superscript in VIS)
-* `combined` (ready HTML formatted with price and superscript third decimal place or if necessary opening status ["closed"/"not found"] for easy display with VIS HTML widget)
+* `combined` (ready HTML formatted with price and superscript third decimal place or if necessary opening status [`closed`/`not found`] for easy display with VIS HTML widget)
+
+Under each fuel type there is another folder `minmax` in which the data points for the min and max prices of the gas station are created. They are stored only for
+one day and will be set to 0 and refilled the next day.
 
 In addition, five data points are created on in the respective station:
 * `discount` (discount in Euro / percent as number)
