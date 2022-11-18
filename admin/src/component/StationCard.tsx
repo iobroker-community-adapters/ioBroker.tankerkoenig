@@ -381,7 +381,7 @@ export const StationCard: React.FC<StationCardProps> = ({
 				}}
 			>
 				<React.Fragment>
-					<Tooltip title={_('editModal')}>
+					<Tooltip title={_('editModal')} arrow enterNextDelay={500} enterDelay={500}>
 						<IconButton
 							onClick={() => {
 								editModal({ open: true, index, oldRow: item });
@@ -392,7 +392,7 @@ export const StationCard: React.FC<StationCardProps> = ({
 							<Edit />
 						</IconButton>
 					</Tooltip>
-					<Tooltip title={_('delete')}>
+					<Tooltip title={_('delete')} arrow enterNextDelay={500} enterDelay={500}>
 						<IconButton
 							sx={{
 								color: red[500],

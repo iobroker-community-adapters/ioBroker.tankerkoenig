@@ -164,7 +164,13 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 						open={editModal.open}
 						onClose={() => setEditModal({ index: null, open: false })}
 					/>
-					<Tooltip title={_('tooltipAddStation')} arrow placement={'top'}>
+					<Tooltip
+						title={_('tooltipAddStation')}
+						arrow
+						placement={'top'}
+						enterNextDelay={500}
+						enterDelay={500}
+					>
 						<Button
 							variant="contained"
 							size="large"

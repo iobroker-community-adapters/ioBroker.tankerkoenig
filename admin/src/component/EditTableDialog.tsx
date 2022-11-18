@@ -225,7 +225,13 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 					flexDirection: 'row',
 				}}
 			>
-				<Tooltip title={_('tooltipStationName')} arrow placement={'top'}>
+				<Tooltip
+					title={_('tooltipStationName')}
+					arrow
+					placement={'top'}
+					enterNextDelay={500}
+					enterDelay={500}
+				>
 					<TextField
 						required
 						label={_('StationName')}
@@ -259,7 +265,12 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			>
 				<React.Fragment>
 					<FormControl variant="outlined">
-						<Tooltip title={_('tooltipStationID')} arrow>
+						<Tooltip
+							title={_('tooltipStationID')}
+							arrow={true}
+							enterNextDelay={500}
+							enterDelay={500}
+						>
 							<TextField
 								required
 								variant="outlined"

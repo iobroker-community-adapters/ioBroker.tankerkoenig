@@ -58,7 +58,13 @@ export const ApiKey: React.FC<ApiKeyProps> = ({ settings, onChange }): JSX.Eleme
 
 	return (
 		<React.Fragment>
-			<Tooltip title={_('tooltipApiKey')} arrow placement={'right'}>
+			<Tooltip
+				title={_('tooltipApiKey')}
+				arrow
+				placement={'right'}
+				enterNextDelay={500}
+				enterDelay={500}
+			>
 				<FormControl error={error} color={valid ? 'success' : 'error'} variant="standard">
 					<TextField
 						error={error}

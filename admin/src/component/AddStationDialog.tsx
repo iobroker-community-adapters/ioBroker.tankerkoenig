@@ -237,7 +237,13 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 				}}
 			>
 				<React.Fragment>
-					<Tooltip title={_('tooltipStationName')} arrow placement={'top'}>
+					<Tooltip
+						title={_('tooltipStationName')}
+						arrow
+						placement={'top'}
+						enterNextDelay={500}
+						enterDelay={500}
+					>
 						<TextField
 							required
 							label={_('StationName')}
@@ -259,7 +265,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 						/>
 					</Tooltip>
 					<FormControl variant="outlined">
-						<Tooltip title={_('tooltipStationID')} arrow>
+						<Tooltip title={_('tooltipStationID')} arrow enterNextDelay={500} enterDelay={500}>
 							<TextField
 								required
 								variant="outlined"
