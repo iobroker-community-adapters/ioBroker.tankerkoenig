@@ -28,12 +28,12 @@ NodeJS v14 or higher is required.
 * (xXBJXx) add validation function for ID and Name Input fields
 * (xXBJXx) add copy from clipboard function for ID Input field
 * (Schmakus) added daily min/max prices to all stations and fuel types
+* (xXBJXx) update documentation because of new min/max datapoints
 
 ### 3.0.2 (2022-11-10)
 * (xXBJXx) release new version from Tankerkoenig
 
 ### 3.0.1 (2022-07-30)
-* (xXBJXx) added datapoints delete function
 * (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)
 * (xXBJXx) added function => Set values to 0 when the Station is closed.
 * (xXBJXx) updated dependencies
