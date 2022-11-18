@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "news": {
+      "3.0.3": {
+        "en": "Ukrainian translation added\nadd validation function for ID and Name Input fields\nadd copy from clipboard function for ID Input field\nadded daily min/max prices to all stations and fuel types\nupdate documentation because of new min/max datapoints",
+        "de": "Ukrainische Übersetzung hinzugefügt\nValidierungsfunktion für die Eingabefelder ID und Name hinzugefügt\nFunktion zum Kopieren aus der Zwischenablage für das ID-Eingabefeld hinzugefügt\nTägliche Min-/Max-Preise für alle Tankstellen und Kraftstoffarten hinzugefügt\nDokumentation wegen neuer Min/Max-Datenpunkte aktualisiert",
+        "ru": "Добавлен украинский перевод\nдобавлена функция валидации для полей ввода ID и Name\nдобавлена функция копирования из буфера обмена для поля ввода ID\nдобавлены ежедневные мин/макс цены для всех станций и типов топлива\nобновление документации в связи с новыми точками данных min/max",
+        "pt": "Adicionada tradução ucraniana\nadicionar função de validação para os campos ID e Name Input\nadicionar cópia da função da área de transferência para o campo ID Input\nadicionou preços min/max diários a todas as estações e tipos de combustível\nactualizar documentação por causa de novos datapoints min/max",
+        "nl": "Oekraïense vertaling toegevoegd\nvalidatiefunctie toegevoegd voor ID- en Naam-invoervelden\nkopieerfunctie van klembord toegevoegd voor ID-invoerveld\ndagelijkse min/max-prijzen toegevoegd voor alle stations en brandstoftypen\ndocumentatie bijgewerkt vanwege nieuwe min/max datapunten",
+        "fr": "Ajout d'une traduction en ukrainien\najout d'une fonction de validation pour les champs de saisie ID et Name\najout d'une fonction de copie du presse-papiers pour le champ de saisie ID\najout de prix quotidiens min/max pour toutes les stations et tous les types de carburant\nmise à jour de la documentation en raison des nouveaux points de données min/max",
+        "it": "Aggiunta della traduzione in ucraino\naggiunta funzione di convalida per i campi di input ID e Nome\naggiunta funzione di copia dagli appunti per il campo di inserimento ID\naggiunti i prezzi min/max giornalieri per tutte le stazioni e i tipi di carburante\naggiornamento della documentazione a causa dei nuovi dati min/max",
+        "es": "Se ha añadido la traducción al ucraniano\nañadir función de validación para los campos de entrada ID y Nombre\nañadir la función de copiar desde el portapapeles para el campo de entrada ID\nañadido precios diarios mín/máx a todas las estaciones y tipos de combustible\nactualización de la documentación debido a los nuevos puntos de datos mínimos y máximos",
+        "pl": "Dodano tłumaczenie na język ukraiński\ndodaj funkcję sprawdzania poprawności dla pól wejściowych ID i Nazwa\ndodanie funkcji kopiowania ze schowka dla pola wejściowego ID\ndodano dzienne ceny minimalne/maksymalne dla wszystkich stacji i rodzajów paliwa\naktualizacja dokumentacji z powodu nowych punktów danych min/max",
+        "uk": "Додано український переклад\nдодано функцію перевірки для полів введення ідентифікатора та імені\nдодано функцію копіювання з буфера обміну для поля введення ID\nдодано щоденні мінімальні/максимальні ціни для всіх АЗС та типів палива\nоновлено документацію у зв'язку з появою нових мінімальних/максимальних цін",
+        "zh-cn": "增加乌克兰语翻译\n为ID和姓名输入栏增加验证功能\n为ID输入字段增加了从剪贴板上复制的功能\n为所有加油站和燃料类型添加每日最低/最高价格\n根据新的最小/最大数据点更新文档"
+      },
       "3.0.2": {
         "en": "release new version from Tankerkoenig",
         "de": "neue Version von Tankerkoenig veröffentlichen",
@@ -77,18 +90,6 @@
         "es": "Se solucionaron los problemas de \"bandera ack\" y \"tipo incorrecto\" debido a la actualización 3.3 del controlador js",
         "pl": "Naprawiono problemy z flagą ACK i złym typem pojawiające się w związku z aktualizacją js-controller do wersji 3.3",
         "zh-cn": "修复了由于js-controller升级3.3而出现的\" ack标志\"和\"错误类型\"问题"
-      },
-      "2.0.10": {
-        "en": "\"has no existing object\" issue fixed",
-        "de": "Problem \"hat kein vorhandenes Objekt\" behoben",
-        "ru": "Исправлена проблема \"не имеет существующего объекта\"",
-        "pt": "Problema \"não tem objeto existente\" corrigido",
-        "nl": "\"heeft geen bestaand object\" probleem opgelost",
-        "fr": "Problème \"n'a aucun objet existant\" résolu",
-        "it": "Problema \"non ha oggetto esistente\" risolto",
-        "es": "Problema \"no tiene ningún objeto existente\" solucionado",
-        "pl": "Naprawiono problem \"nie ma istniejącego obiektu\"",
-        "zh-cn": "修复\"没有对象\"的问题"
       }
     },
     "titleLang": {

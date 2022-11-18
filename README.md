@@ -23,7 +23,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.0.3 (2022-11-18)
 * (xXBJXx) Ukrainian translation added
 * (xXBJXx) add validation function for ID and Name Input fields
 * (xXBJXx) add copy from clipboard function for ID Input field
