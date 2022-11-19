@@ -159,6 +159,7 @@
     "stopBeforeUpdate": true,
     "eraseOnUpload": true,
     "materialize": true,
+    "messagebox": true,
     "dependencies": [
       {
         "js-controller": ">=3.0.0"
@@ -169,12 +170,13 @@
         "admin": ">=5.3.3"
       }
     ],
+    "tier": 3,
     "messages": [
       {
         "condition": {
           "operand": "and",
           "rules": [
-            "oldVersion<2.1.1",
+            "oldVersion<3.0.0",
             "newVersion>=3.0.0"
           ]
         },
@@ -192,24 +194,42 @@
           "zh-cn": "重要通知!"
         },
         "text": {
-          "en": "The adapter has been reprogrammed from scratch, which means that the old config is no longer compatible with the new version. Please delete the old adapter before and then reinstall, otherwise the adapter may not work properly!",
-          "de": "Der Adapter wurde von Grund auf neu programmiert, das bedeutet, die alte Config ist nicht mehr kompatibel ist mit der neuen Version. Bitte den alten Adapter vorher löschen und dann neu installieren, da sonst der Adapter nicht richtig funktionieren könnte!",
-          "ru": "Адаптер был перепрограммирован с нуля, что означает, что старый конфиг больше не совместим с новой версией. Пожалуйста, предварительно удалите старый адаптер, а затем установите его заново, иначе адаптер может работать неправильно!",
-          "pt": "O adaptador foi reprogramado de raiz, o que significa que a configuração antiga já não é compatível com a nova versão. Por favor, apague previamente o adaptador antigo e depois reinstale-o, caso contrário o adaptador pode não funcionar correctamente!",
-          "nl": "De adapter is helemaal opnieuw geprogrammeerd, wat betekent dat de oude configuratie niet langer compatibel is met de nieuwe versie. Verwijder eerst de oude adapter en installeer hem daarna opnieuw, anders kan de adapter niet goed werken!",
-          "fr": "L'adaptateur a été reprogrammé à partir de zéro, ce qui signifie que l'ancienne config n'est plus compatible avec la nouvelle version. Veuillez effacer l'ancien adaptateur avant de le réinstaller, sinon l'adaptateur pourrait ne pas fonctionner correctement !",
-          "it": "L'adattatore è stato riprogrammato da zero, il che significa che la vecchia configurazione non è più compatibile con la nuova versione. Eliminare prima il vecchio adattatore e poi reinstallarlo, altrimenti l'adattatore potrebbe non funzionare correttamente!",
-          "es": "El adaptador ha sido reprogramado desde cero, lo que significa que la antigua configuración ya no es compatible con la nueva versión. Por favor, borre previamente el adaptador antiguo y vuelva a instalarlo, de lo contrario el adaptador podría no funcionar correctamente.",
-          "pl": "Adapter został przeprogramowany od podstaw, co oznacza, że stary config nie jest już kompatybilny z nową wersją. Proszę wcześniej usunąć stary adapter, a następnie zainstalować go ponownie, w przeciwnym razie adapter może nie działać prawidłowo!",
-          "uk": "Адаптер був перепрограмований з нуля, що означає, що старий конфіг більше не сумісний з новою версією. Будь ласка, видаліть старий адаптер, а потім встановіть його заново, інакше адаптер може працювати неправильно!",
-          "zh-cn": ""
+          "en": "The adapter has been reprogrammed from scratch, which means the old config is no longer compatible with the new version. The stations must all be created again.",
+          "de": "Der Adapter wurde von Grund auf neu programmiert, was bedeutet, dass die alte Konfiguration nicht mehr mit der neuen Version kompatibel ist. Die Stationen müssen alle neu erstellt werden.",
+          "ru": "Адаптер был перепрограммирован с нуля, а значит, старый конфиг больше не совместим с новой версией. Все станции должны быть созданы заново.",
+          "pt": "O adaptador foi reprogramado do zero, o que significa que a configuração antiga já não é compatível com a nova versão. As estações devem ser todas criadas novamente.",
+          "nl": "De adapter is helemaal opnieuw geprogrammeerd, waardoor de oude config niet meer compatibel is met de nieuwe versie. De stations moeten allemaal opnieuw worden aangemaakt.",
+          "fr": "L'adaptateur a été reprogrammé à partir de zéro, ce qui signifie que l'ancienne configuration n'est plus compatible avec la nouvelle version. Les stations doivent toutes être créées à nouveau.",
+          "it": "L'adattatore è stato riprogrammato da zero, il che significa che la vecchia configurazione non è più compatibile con la nuova versione. Le stazioni devono essere create di nuovo.",
+          "es": "El adaptador ha sido reprogramado desde cero, lo que significa que la antigua configuración ya no es compatible con la nueva versión. Hay que volver a crear todas las estaciones.",
+          "pl": "Adapter został przeprogramowany od nowa, co oznacza, że stara konfiguracja nie jest już kompatybilna z nową wersją. Wszystkie stacje muszą być utworzone od nowa.",
+          "uk": "Адаптер було перепрограмовано з нуля, а це означає, що стара конфігурація більше не сумісна з новою версією. Всі станції повинні бути створені заново.",
+          "zh-cn": "适配器已经从头开始重新编程，这意味着旧的配置不再与新版本兼容。这些站必须全部重新创建。"
+        },
+        "link": "https://forum.iobroker.net/topic/60140/tankerk%C3%B6nig-adapter-komplett-umbau",
+        "linkText": {
+          "en": "please read forum post before update",
+          "de": "Bitte lese den Forenbeitrag vor dem Update",
+          "ru": "пожалуйста, прочитайте сообщение на форуме перед обновлением",
+          "pt": "por favor lê a mensagem do fórum antes de actualizares",
+          "nl": "lees a.u.b. de forumpost vóór de update",
+          "fr": "S'il te plaît, lis le post du forum avant la mise à jour",
+          "it": "Leggi il post del forum prima di aggiornare",
+          "es": "por favor, lee el post del foro antes de actualizar",
+          "pl": "przeczytaj post na forum przed aktualizacją",
+          "uk": "будь ласка, прочитайте повідомлення на форумі перед оновленням",
+          "zh-cn": "更新前请阅读论坛帖子"
         },
         "level": "warn",
         "buttons": [
-          "ok"
+          "agree",
+          "cancel"
         ]
       }
-    ]
+    ],
+    "adminUI": {
+      "config": "materialize"
+    }
   },
   "protectedNative": [
     "apikey"
