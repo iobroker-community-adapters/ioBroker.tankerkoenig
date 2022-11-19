@@ -107,3 +107,5 @@
 
 ### 0.0.1 (2016-05-31)
 * (pix) Adapter created
+## 2.2.0 (2021-11-14)
+* (simatec) Design Fix for Admin Dark/Blue Theme

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.0.3",
+    "version": "3.0.4",
     "news": {
+      "3.0.4": {
+        "en": "moved misc-data type to vehicle type \nfixed messages rules and added new messages for Adapter Update\nupdate dependencies\nadded lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "de": "Typ Sonstige Daten zum Typ Fahrzeug verschoben \nNachrichtenregeln korrigiert und neue Nachrichten für Adapter Update hinzugefügt\nAbhängigkeiten aktualisieren\nlastUpdate_min / lastUpdate_max DP hinzugefügt [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "ru": "переместил тип misc-data в тип автомобиля \nисправлены правила сообщений и добавлены новые сообщения для Adapter Update\nобновление зависимостей\nдобавлены lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "pt": "moveu o tipo de dados errados para o tipo de veículo \nregras de mensagens fixas e adição de novas mensagens para a Actualização do Adaptador\nactualiza as dependências\nadicionado lastUpdate_min / lastUpdate_max DP [edição #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "nl": "misc-data type verplaatst naar voertuigtype \nberichtenregels hersteld en nieuwe berichten toegevoegd voor Adapter Update\nafhankelijkheden bijgewerkt\nlastUpdate_min / lastUpdate_max DP toegevoegd [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "fr": "a déplacé le type de données diverses vers le type de véhicule \na fixé les règles des messages et ajouté de nouveaux messages pour Adapter Update\nMise à jour des dépendances\najout de lastUpdate_min / lastUpdate_max DP [problème #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "it": "spostato il tipo misc-data al tipo veicolo \naggiustato le regole dei messaggi e aggiunto nuovi messaggi per l'aggiornamento dell'adattatore\naggiornamento delle dipendenze\naggiunto lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "es": "se ha movido el tipo de datos varios al tipo de vehículo \narreglar las reglas de los mensajes y añadir nuevos mensajes para la actualización del adaptador\nactualizar las dependencias\nse ha añadido lastUpdate_min / lastUpdate_max DP [asunto #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "pl": "przeniesienie typu misc-data do typu pojazdu \npoprawiono zasady dotyczące wiadomości i dodano nowe wiadomości dla aktualizacji Adaptera\nzaktualizować zależności\ndodano lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "uk": "перенесено тип misc-data до типу транспортного засобу \nвиправлено правила повідомлень та додано нові повідомлення для оновлення адаптерів\nоновили залежності\nдодано lastUpdate_min / lastUpdate_max DP [випуск #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
+        "zh-cn": "将杂项数据类型移至车辆类型 \n修复了信息规则并为适配器更新添加了新的信息\n更新依赖性\n添加lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)"
+      },
       "3.0.3": {
         "en": "Ukrainian translation added\nadd validation function for ID and Name Input fields\nadd copy from clipboard function for ID Input field\nadded daily min/max prices to all stations and fuel types\nupdate documentation because of new min/max datapoints",
         "de": "Ukrainische Übersetzung hinzugefügt\nValidierungsfunktion für die Eingabefelder ID und Name hinzugefügt\nFunktion zum Kopieren aus der Zwischenablage für das ID-Eingabefeld hinzugefügt\nTägliche Min-/Max-Preise für alle Tankstellen und Kraftstoffarten hinzugefügt\nDokumentation wegen neuer Min/Max-Datenpunkte aktualisiert",
@@ -78,18 +91,6 @@
         "es": "Nueva categoría de adaptador \"vehículo\"",
         "pl": "Nowa kategoria adapterów \"pojazd\"",
         "zh-cn": "新的适配器类别\"车辆\""
-      },
-      "2.0.11": {
-        "en": "\"ack flag\" and \"wrong type\" issues coming up due to js-controller upgrade 3.3 were fixed",
-        "de": "Probleme mit \"ack flag\" und \"false type\" aufgrund von js-controller upgrade 3.3 wurden behoben",
-        "ru": "Исправлены проблемы с \"флагом подтверждения\" и \"неправильным типом\", возникающие в связи с обновлением js-controller 3.3.",
-        "pt": "Os problemas de \"ack flag\" e \"tipo incorreto\" que surgiam devido à atualização 3.3 do js-controller foram corrigidos",
-        "nl": "\"ack flag\" en \"verkeerde type\" problemen die aan de orde kwamen als gevolg van de js-controller upgrade 3.3 waren opgelost",
-        "fr": "Les problèmes de «drapeau d'ack» et de «type incorrect» à venir en raison de la mise à jour 3.3 du contrôleur js ont été corrigés",
-        "it": "Sono stati risolti i problemi di \"flag ack\" e \"tipo sbagliato\" dovuti all'aggiornamento 3.3 di js-controller",
-        "es": "Se solucionaron los problemas de \"bandera ack\" y \"tipo incorrecto\" debido a la actualización 3.3 del controlador js",
-        "pl": "Naprawiono problemy z flagą ACK i złym typem pojawiające się w związku z aktualizacją js-controller do wersji 3.3",
-        "zh-cn": "修复了由于js-controller升级3.3而出现的\" ack标志\"和\"错误类型\"问题"
       }
     },
     "titleLang": {

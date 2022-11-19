@@ -23,11 +23,12 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.0.4 (2022-11-19)
 * (xXBJXx) moved misc-data type to vehicle type 
 * (xXBJXx) fixed messages rules and added new messages for Adapter Update
 * (xXBJXx) update dependencies
 * (xXBJXx) added lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)
+
 ### 3.0.3 (2022-11-18)
 * (xXBJXx) Ukrainian translation added
 * (xXBJXx) add validation function for ID and Name Input fields
@@ -56,9 +57,6 @@ NodeJS v14 or higher is required.
 * (xXBJXx) add new cutPrice function [issue #73](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/73)
 * (xXBJXx) add the feature request: Include discount in price (euro and percent) [issue #50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50) and adapter code optimized
 * (xXBJXx) add the feature request: JsonTable for the vis [issue #24](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/24)
-
-### 2.2.0 (2021-11-14)
-* (simatec) Design Fix for Admin Dark/Blue Theme
 
 ## License
 
