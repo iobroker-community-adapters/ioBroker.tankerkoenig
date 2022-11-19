@@ -23,6 +23,11 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) moved misc-data type to vehicle type 
+* (xXBJXx) fixed messages rules and added new messages for Adapter Update
+* (xXBJXx) update dependencies
+* (xXBJXx) added lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)
 ### 3.0.3 (2022-11-18)
 * (xXBJXx) Ukrainian translation added
 * (xXBJXx) add validation function for ID and Name Input fields
