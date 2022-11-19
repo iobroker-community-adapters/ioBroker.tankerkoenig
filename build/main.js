@@ -593,6 +593,17 @@ class Tankerkoenig extends utils.Adapter {
                     if ((feed_min >= parseFloat(
                       prices[stationValue.station][fuelTypes[fuelTypesKey]]
                     ) || feed_min === 0) && (feed_min !== void 0 || feed_min !== null)) {
+                      if (feed_min > parseFloat(
+                        prices[stationValue.station][fuelTypes[fuelTypesKey]]
+                      )) {
+                        await this.setStateAsync(
+                          `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.lastUpdate_min`,
+                          {
+                            val: Date.now(),
+                            ack: true
+                          }
+                        );
+                      }
                       this.writeLog(
                         `New minimum price for ${key}.${fuelTypes[fuelTypesKey]}: ${parseFloat(
                           prices[stationValue.station][fuelTypes[fuelTypesKey]]
@@ -636,6 +647,17 @@ class Tankerkoenig extends utils.Adapter {
                     if ((feed_max <= parseFloat(
                       prices[stationValue.station][fuelTypes[fuelTypesKey]]
                     ) || feed_max === 0) && (feed_max !== void 0 || feed_max !== null)) {
+                      if (feed_max < parseFloat(
+                        prices[stationValue.station][fuelTypes[fuelTypesKey]]
+                      )) {
+                        await this.setStateAsync(
+                          `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.lastUpdate_max`,
+                          {
+                            val: Date.now(),
+                            ack: true
+                          }
+                        );
+                      }
                       this.writeLog(
                         `New maximum price for ${key}.${fuelTypes[fuelTypesKey]}: ${parseFloat(
                           prices[stationValue.station][fuelTypes[fuelTypesKey]]

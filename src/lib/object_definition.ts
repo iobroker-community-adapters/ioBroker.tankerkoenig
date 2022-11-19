@@ -205,4 +205,26 @@ export const priceMinMaxObj: { [key: string]: any } = {
 		},
 		native: {},
 	},
+	lastUpdate_min: {
+		type: 'state',
+		common: {
+			type: `number`,
+			role: `value.time`,
+			def: 0,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	lastUpdate_max: {
+		type: 'state',
+		common: {
+			type: `number`,
+			role: `value.time`,
+			def: 0,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
 };

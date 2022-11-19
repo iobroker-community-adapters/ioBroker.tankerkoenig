@@ -227,6 +227,28 @@ const priceMinMaxObj = {
       write: false
     },
     native: {}
+  },
+  lastUpdate_min: {
+    type: "state",
+    common: {
+      type: `number`,
+      role: `value.time`,
+      def: 0,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  lastUpdate_max: {
+    type: "state",
+    common: {
+      type: `number`,
+      role: `value.time`,
+      def: 0,
+      read: true,
+      write: false
+    },
+    native: {}
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

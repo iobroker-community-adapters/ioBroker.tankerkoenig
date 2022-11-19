@@ -32,6 +32,7 @@ class Tankerkoenig extends utils.Adapter {
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
 		this.on('unload', this.onUnload.bind(this));
+		// this.on('message', this.onMessage.bind(this));
 	}
 
 	/**
@@ -108,6 +109,7 @@ class Tankerkoenig extends utils.Adapter {
 								ack: true,
 							});
 							const price = await this.setDiscount(response.data.prices);
+
 							await this.writeState(price);
 							if (refreshStatusTimeout) clearTimeout(refreshStatusTimeout);
 							refreshStatusTimeout = setTimeout(async () => {
@@ -607,7 +609,6 @@ class Tankerkoenig extends utils.Adapter {
 									`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
 								);
 								const now = new Date();
-
 								if (now.getDate() !== feedMinDay) {
 									await this.setStateAsync(
 										`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
@@ -672,7 +673,6 @@ class Tankerkoenig extends utils.Adapter {
 											ack: true,
 										},
 									);
-
 									this.writeLog(
 										`Min/Max prices have been reset, because we have an new day. Today: ${now.getDate()} // Day of ${key}.${
 											fuelTypes[fuelTypesKey]
@@ -730,7 +730,6 @@ class Tankerkoenig extends utils.Adapter {
 										const feed_min = await this.oldState(
 											`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
 										);
-
 										if (
 											(feed_min >=
 												parseFloat(
@@ -739,6 +738,21 @@ class Tankerkoenig extends utils.Adapter {
 												feed_min === 0) &&
 											(feed_min !== undefined || feed_min !== null)
 										) {
+											if (
+												feed_min >
+												parseFloat(
+													prices[stationValue.station][fuelTypes[fuelTypesKey]],
+												)
+											) {
+												await this.setStateAsync(
+													`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.lastUpdate_min`,
+													{
+														val: Date.now(),
+														ack: true,
+													},
+												);
+											}
+
 											this.writeLog(
 												`New minimum price for ${key}.${
 													fuelTypes[fuelTypesKey]
@@ -795,6 +809,20 @@ class Tankerkoenig extends utils.Adapter {
 												feed_max === 0) &&
 											(feed_max !== undefined || feed_max !== null)
 										) {
+											if (
+												feed_max <
+												parseFloat(
+													prices[stationValue.station][fuelTypes[fuelTypesKey]],
+												)
+											) {
+												await this.setStateAsync(
+													`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.lastUpdate_max`,
+													{
+														val: Date.now(),
+														ack: true,
+													},
+												);
+											}
 											this.writeLog(
 												`New maximum price for ${key}.${
 													fuelTypes[fuelTypesKey]
@@ -803,7 +831,6 @@ class Tankerkoenig extends utils.Adapter {
 												)}`,
 												'debug',
 											);
-
 											await this.setStateAsync(
 												`stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_max`,
 												{
@@ -1572,6 +1599,28 @@ class Tankerkoenig extends utils.Adapter {
 			callback();
 		}
 	}
+
+	/**
+	 * If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
+	 * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
+	 * Using this method requires "common.messagebox" property to be set to true in io-package.json
+	 */
+	// private async onMessage(obj: ioBroker.Message): Promise<void> {
+	// 	try {
+	// 		if (typeof obj === 'object' && obj.message) {
+	// 			if (obj.command === 'send') {
+	// 				// e.g. send email or pushover or whatever
+	// 				this.log.info('send command');
+	//
+	//
+	// 				// Send response in callback if required
+	// 				if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
+	// 			}
+	// 		}
+	// 	} catch (e) {
+	// 		this.writeLog(`Error onMessage: ${e}`, 'error');
+	// 	}
+	// }
 
 	/**
 	 * @description Is called if a subscribed state changes
