@@ -152,7 +152,7 @@
     "allowInit": true,
     "loglevel": "info",
     "mode": "daemon",
-    "type": "misc-data",
+    "type": "vehicle",
     "compact": true,
     "connectionType": "cloud",
     "dataSource": "poll",
