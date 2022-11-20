@@ -23,7 +23,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.0.5 (2022-11-20)
 *(xXBJXx) fixed sort bug for cheapest station
 
 ### 3.0.4 (2022-11-19)
@@ -46,20 +46,6 @@ NodeJS v14 or higher is required.
 * (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)
 * (xXBJXx) added function => Set values to 0 when the Station is closed.
 * (xXBJXx) updated dependencies
-
-### 3.0.0 (2022-07-02)
-* (xXBJXx) BREAKING Adapter code completely revised
-* (xXBJXx) Adapter completely switched to TypeScript
-* (xXBJXx) BREAKING Adapter configurations page switched to React and redesigned
-  (old config not compatible stations must be recreated)
-* (xXBJXx) add Dependabot auto merge support
-* (xXBJXx) add test and release script 
-* (xXBJXx) Dependency updated
-* (xXBJXx) add feature request: manual update of all stations (one request per minute allowed) [issue #53](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/53) 
-* (xXBJXx) add a new state => adapterStatus (indicates whether the adapter executes an automatic request or a manual request)
-* (xXBJXx) add new cutPrice function [issue #73](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/73)
-* (xXBJXx) add the feature request: Include discount in price (euro and percent) [issue #50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50) and adapter code optimized
-* (xXBJXx) add the feature request: JsonTable for the vis [issue #24](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/24)
 
 ## License
 

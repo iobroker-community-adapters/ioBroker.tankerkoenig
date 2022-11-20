@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "news": {
+      "3.0.5": {
+        "en": "fixed sort bug for cheapest gas station",
+        "de": "Sortierfehler für billigste Tankstelle behoben",
+        "ru": "Исправлена ошибка сортировки для самой дешевой заправки",
+        "pt": "bug de sort fixo para gaseificação mais barata",
+        "nl": "sorteerfout voor goedkoopste tankstation opgelost",
+        "fr": "Correction d'un bug de tri pour la station-service la moins chère",
+        "it": "risolto il bug dell'ordinamento per la stazione di servizio più economica",
+        "es": "Se ha corregido el error de ordenación de la estación de servicio más barata",
+        "pl": "naprawiony błąd sortowania dla najtańszej stacji benzynowej",
+        "uk": "виправлено помилку сортування для найдешевшої АЗС",
+        "zh-cn": "修复了最便宜的加油站的排序错误"
+      },
       "3.0.4": {
         "en": "moved misc-data type to vehicle type \nfixed messages rules and added new messages for Adapter Update\nupdate dependencies\nadded lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
         "de": "Typ Sonstige Daten zum Typ Fahrzeug verschoben \nNachrichtenregeln korrigiert und neue Nachrichten für Adapter Update hinzugefügt\nAbhängigkeiten aktualisieren\nlastUpdate_min / lastUpdate_max DP hinzugefügt [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
@@ -79,18 +92,6 @@
         "es": "Design Fix for Admin Dark/Blue Theme",
         "pl": "Design Fix for Admin Dark/Blue Theme",
         "zh-cn": "Design Fix for Admin Dark/Blue Theme"
-      },
-      "2.1.1": {
-        "en": "New adapter category \"vehicle\", NodeJS v16 testing",
-        "de": "Neue Adapterkategorie \"Fahrzeug\", NodeJS v16 Test",
-        "ru": "Новая категория адаптера \"автомобиль\"",
-        "pt": "Nova categoria de adaptador \"veículo\"",
-        "nl": "Nieuwe adapter categorie \"voertuig\"",
-        "fr": "Nouvel adaptateur catégorie \"véhicule\"",
-        "it": "Nuova categoria di adattatori \"veicolo\"",
-        "es": "Nueva categoría de adaptador \"vehículo\"",
-        "pl": "Nowa kategoria adapterów \"pojazd\"",
-        "zh-cn": "新的适配器类别\"车辆\""
       }
     },
     "titleLang": {
