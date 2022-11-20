@@ -186,9 +186,12 @@ class Tankerkoenig extends utils.Adapter {
   async writeState(prices) {
     try {
       const station = this.config.station;
+      let openStationsE5 = [];
       const cheapest_e5 = [];
       const cheapest_e10 = [];
+      let openStationsE10 = [];
       const cheapest_diesel = [];
+      let openStationsDiesel = [];
       await this.setStateAsync(`stations.adapterStatus`, {
         val: "write states",
         ack: true
@@ -200,25 +203,24 @@ class Tankerkoenig extends utils.Adapter {
             if (typeof pricesValue.e5 !== "undefined") {
               if (pricesValue.e5) {
                 cheapest_e5.push({ ...pricesValue, station: stationID });
-                cheapest_e5.sort((a, b) => {
-                  return a.e5 - b.e5;
-                });
+                openStationsE5 = cheapest_e5.filter((station2) => station2.status === "open");
+                openStationsE5.sort((a, b) => a.e5 - b.e5);
               }
             }
             if (typeof pricesValue.e10 !== "undefined") {
               if (pricesValue.e10) {
                 cheapest_e10.push({ ...pricesValue, station: stationID });
-                cheapest_e10.sort((a, b) => {
-                  return a.e10 - b.e10;
-                });
+                openStationsE10 = cheapest_e10.filter((station2) => station2.status === "open");
+                openStationsE10.sort((a, b) => a.e10 - b.e10);
               }
             }
             if (typeof pricesValue.diesel !== "undefined") {
               if (pricesValue.diesel) {
                 cheapest_diesel.push({ ...pricesValue, station: stationID });
-                cheapest_diesel.sort((a, b) => {
-                  return a.diesel - b.diesel;
-                });
+                openStationsDiesel = cheapest_diesel.filter(
+                  (station2) => station2.status === "open"
+                );
+                openStationsDiesel.sort((a, b) => a.diesel - b.diesel);
               }
             }
           } else {
@@ -256,15 +258,27 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
       for (const [key, stationValue] of Object.entries(station)) {
-        if (stationValue.station === cheapest_e5[0].station) {
+        const newE5 = openStationsE5.length > 0 ? openStationsE5 : cheapest_e5;
+        const newE10 = openStationsE10.length > 0 ? openStationsE10 : cheapest_e10;
+        const newDiesel = openStationsDiesel.length > 0 ? openStationsDiesel : cheapest_diesel;
+        this.writeLog(` cheapest e5: ${newE5[0].e5} at ${newE5[0].station} array: ${newE5}`, "debug");
+        this.writeLog(
+          ` cheapest e10: ${newE10[0].e10} at ${newE10[0].station} array: ${newE10}`,
+          "debug"
+        );
+        this.writeLog(
+          ` cheapest diesel: ${newDiesel[0].diesel} at ${newDiesel[0].station} array: ${newDiesel}`,
+          "debug"
+        );
+        if (stationValue.station === newE5[0].station) {
           this.writeLog(`write the cheapest e5 to the states`, "debug");
-          if (cheapest_e5[0].status === "open") {
+          if (newE5[0].status === "open") {
             await this.setStateAsync(`stations.cheapest.e5.feed`, {
-              val: parseFloat(cheapest_e5[0].e5),
+              val: parseFloat(newE5[0].e5),
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e5.station_id`, {
-              val: cheapest_e5[0].station,
+              val: newE5[0].station,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e5.name`, {
@@ -272,7 +286,7 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e5.status`, {
-              val: cheapest_e5[0].status,
+              val: newE5[0].status,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e5.discounted`, {
@@ -283,7 +297,7 @@ class Tankerkoenig extends utils.Adapter {
               val: stationValue.discountObj.discount,
               ack: true
             });
-            const cutPrice = await this.cutPrice(cheapest_e5[0].e5);
+            const cutPrice = await this.cutPrice(newE5[0].e5);
             await this.setStateAsync(`stations.cheapest.e5.3rd`, {
               val: cutPrice.price3rd,
               ack: true
@@ -298,7 +312,7 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             this.writeLog(
-              `Cheapest gas station for e5: ${stationValue.stationname}  id: ${cheapest_e5[0].station}`,
+              `Cheapest gas station for e5: ${stationValue.stationname}  id: ${newE5[0].station}`,
               "debug"
             );
           } else {
@@ -318,20 +332,20 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e5.status`, {
-              val: cheapest_e5[0].status,
+              val: newE5[0].status,
               ack: true
             });
           }
         }
-        if (stationValue.station === cheapest_e10[0].station) {
+        if (stationValue.station === newE10[0].station) {
           this.writeLog(`write the cheapest e10 to the states`, "debug");
-          if (cheapest_e10[0].status === "open") {
+          if (newE10[0].status === "open") {
             await this.setStateAsync(`stations.cheapest.e10.feed`, {
-              val: parseFloat(cheapest_e10[0].e10),
+              val: parseFloat(newE10[0].e10),
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e10.station_id`, {
-              val: cheapest_e10[0].station,
+              val: newE10[0].station,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e10.name`, {
@@ -339,7 +353,7 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e10.status`, {
-              val: cheapest_e10[0].status,
+              val: newE10[0].status,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e10.discounted`, {
@@ -350,7 +364,7 @@ class Tankerkoenig extends utils.Adapter {
               val: stationValue.discountObj.discount,
               ack: true
             });
-            const cutPrice = await this.cutPrice(cheapest_e10[0].e10);
+            const cutPrice = await this.cutPrice(newE10[0].e10);
             await this.setStateAsync(`stations.cheapest.e10.3rd`, {
               val: cutPrice.price3rd,
               ack: true
@@ -365,7 +379,7 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             this.writeLog(
-              `Cheapest gas station for e10: ${stationValue.stationname}  id: ${cheapest_e10[0].station}`,
+              `Cheapest gas station for e10: ${stationValue.stationname}  id: ${newE10[0].station}`,
               "debug"
             );
           } else {
@@ -385,20 +399,20 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e10.status`, {
-              val: cheapest_e10[0].status,
+              val: newE10[0].status,
               ack: true
             });
           }
         }
-        if (stationValue.station === cheapest_diesel[0].station) {
+        if (stationValue.station === newDiesel[0].station) {
           this.writeLog(`write the cheapest diesel to the states`, "debug");
-          if (cheapest_diesel[0].status === "open") {
+          if (newDiesel[0].status === "open") {
             await this.setStateAsync(`stations.cheapest.diesel.feed`, {
-              val: parseFloat(cheapest_diesel[0].diesel),
+              val: parseFloat(newDiesel[0].diesel),
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.diesel.station_id`, {
-              val: cheapest_diesel[0].station,
+              val: newDiesel[0].station,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.diesel.name`, {
@@ -406,7 +420,7 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.diesel.status`, {
-              val: cheapest_diesel[0].status,
+              val: newDiesel[0].status,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.diesel.discounted`, {
@@ -417,7 +431,7 @@ class Tankerkoenig extends utils.Adapter {
               val: stationValue.discountObj.discount,
               ack: true
             });
-            const cutPrice = await this.cutPrice(cheapest_diesel[0].diesel);
+            const cutPrice = await this.cutPrice(newDiesel[0].diesel);
             await this.setStateAsync(`stations.cheapest.diesel.3rd`, {
               val: cutPrice.price3rd,
               ack: true
@@ -432,7 +446,7 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             this.writeLog(
-              `Cheapest gas station for diesel: ${stationValue.stationname}  id: ${cheapest_diesel[0].station}`,
+              `Cheapest gas station for diesel: ${stationValue.stationname}  id: ${newDiesel[0].station}`,
               "debug"
             );
           } else {
@@ -452,7 +466,7 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.diesel.status`, {
-              val: cheapest_diesel[0].status,
+              val: newDiesel[0].status,
               ack: true
             });
           }

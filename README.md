@@ -23,6 +23,9 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+*(xXBJXx) fixed sort bug for cheapest station
+
 ### 3.0.4 (2022-11-19)
 * (xXBJXx) moved misc-data type to vehicle type 
 * (xXBJXx) fixed messages rules and added new messages for Adapter Update
