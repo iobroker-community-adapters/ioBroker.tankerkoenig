@@ -23,11 +23,15 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+
+### __WORK IN PROGRESS__
+* (xXBJXx) Added new option to adjust the text in the combined data point [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)
+
 ### 3.0.5 (2022-11-20)
-*(xXBJXx) fixed sort bug for cheapest station
+* (xXBJXx) fixed sort bug for cheapest station
 
 ### 3.0.4 (2022-11-19)
-* (xXBJXx) moved misc-data type to vehicle type 
+* (xXBJXx) moved misc-data type to vehicle type
 * (xXBJXx) fixed messages rules and added new messages for Adapter Update
 * (xXBJXx) update dependencies
 * (xXBJXx) added lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)

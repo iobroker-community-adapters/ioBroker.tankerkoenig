@@ -9,6 +9,11 @@ declare global {
 			noLogs: boolean;
 			apikey: string;
 			station: Station[];
+			combinedOptions: {
+				closed: string;
+				noPrice: string;
+				notFound: string;
+			};
 		}
 
 		interface Station {

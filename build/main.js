@@ -328,7 +328,7 @@ class Tankerkoenig extends utils.Adapter {
               q: 64
             });
             await this.setStateAsync(`stations.cheapest.e5.combined`, {
-              val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+              val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">${this.config.combinedOptions.closed}</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">${this.config.combinedOptions.notFound}</span>` : null,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e5.status`, {
@@ -395,7 +395,7 @@ class Tankerkoenig extends utils.Adapter {
               q: 64
             });
             await this.setStateAsync(`stations.cheapest.e10.combined`, {
-              val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+              val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">${this.config.combinedOptions.closed}</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">${this.config.combinedOptions.notFound}</span>` : null,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e10.status`, {
@@ -462,7 +462,7 @@ class Tankerkoenig extends utils.Adapter {
               q: 64
             });
             await this.setStateAsync(`stations.cheapest.diesel.combined`, {
-              val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+              val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">${this.config.combinedOptions.closed}</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">${this.config.combinedOptions.notFound}</span>` : null,
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.diesel.status`, {
@@ -504,6 +504,20 @@ class Tankerkoenig extends utils.Adapter {
                     `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.feed_min`,
                     {
                       val: 0,
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.lastUpdate_min`,
+                    {
+                      val: Date.now(),
+                      ack: true
+                    }
+                  );
+                  await this.setStateAsync(
+                    `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.lastUpdate_max`,
+                    {
+                      val: Date.now(),
                       ack: true
                     }
                   );
@@ -734,7 +748,7 @@ class Tankerkoenig extends utils.Adapter {
                     await this.setStateAsync(
                       `stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
                       {
-                        val: `<span class="station_no_prices">No Prices</span>`,
+                        val: `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>`,
                         ack: true
                       }
                     );
@@ -762,7 +776,7 @@ class Tankerkoenig extends utils.Adapter {
                     await this.setStateAsync(
                       `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_min`,
                       {
-                        val: `<span class="station_no_prices">No Prices</span>`,
+                        val: `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>`,
                         ack: true
                       }
                     );
@@ -790,7 +804,7 @@ class Tankerkoenig extends utils.Adapter {
                     await this.setStateAsync(
                       `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_max`,
                       {
-                        val: `<span class="station_no_prices">No Prices</span>`,
+                        val: `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>`,
                         ack: true
                       }
                     );
@@ -822,7 +836,7 @@ class Tankerkoenig extends utils.Adapter {
                     await this.setStateAsync(
                       `stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
                       {
-                        val: `<span class="station_closed">Station Closed</span>`,
+                        val: `<span class="station_closed">${this.config.combinedOptions.closed}</span>`,
                         ack: true
                       }
                     );
@@ -855,7 +869,7 @@ class Tankerkoenig extends utils.Adapter {
                     await this.setStateAsync(
                       `stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
                       {
-                        val: `<span class="station_closed">Station Closed</span>`,
+                        val: `<span class="station_closed">${this.config.combinedOptions.closed}</span>`,
                         ack: true
                       }
                     );
@@ -891,7 +905,7 @@ class Tankerkoenig extends utils.Adapter {
                   await this.setStateAsync(
                     `stations.${key}.${fuelTypes[fuelTypesKey]}.combined`,
                     {
-                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">${this.config.combinedOptions.closed}</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">${this.config.combinedOptions.notFound}</span>` : null,
                       ack: true,
                       q: 0
                     }
@@ -920,7 +934,7 @@ class Tankerkoenig extends utils.Adapter {
                   await this.setStateAsync(
                     `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_min`,
                     {
-                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">${this.config.combinedOptions.closed}</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">${this.config.combinedOptions.notFound}</span>` : null,
                       ack: true,
                       q: 0
                     }
@@ -949,7 +963,7 @@ class Tankerkoenig extends utils.Adapter {
                   await this.setStateAsync(
                     `stations.${key}.${fuelTypes[fuelTypesKey]}.minmax.combined_max`,
                     {
-                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">Station Closed</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">No Prices</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">not found</span>` : null,
+                      val: prices[stationValue.station].status === "closed" ? `<span class="station_closed">${this.config.combinedOptions.closed}</span>` : prices[stationValue.station].status === "no prices" ? `<span class="station_no_prices">${this.config.combinedOptions.noPrice}</span>` : prices[stationValue.station].status === "not found" || prices[stationValue.station].status === "no stations" ? `<span class="station_not_found">${this.config.combinedOptions.notFound}</span>` : null,
                       ack: true,
                       q: 0
                     }
@@ -997,9 +1011,10 @@ class Tankerkoenig extends utils.Adapter {
                 pricesValue.e10 = await this.oldState(`stations.${key}.e10.feed`);
                 pricesValue.diesel = await this.oldState(`stations.${key}.diesel.feed`);
               }
+              const status = pricesValue.status === "open" ? "open" : pricesValue.status === "closed" ? this.config.combinedOptions.closed : pricesValue.status === "no prices" ? this.config.combinedOptions.noPrice : pricesValue.status === "not found" || pricesValue.status === "no stations" ? this.config.combinedOptions.notFound : "";
               jsonTable.push({
                 station: station[key].stationname,
-                status: pricesValue.status,
+                status,
                 e5: pricesValue.e5,
                 e10: pricesValue.e10,
                 diesel: pricesValue.diesel,

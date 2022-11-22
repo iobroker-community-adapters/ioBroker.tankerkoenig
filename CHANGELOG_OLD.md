@@ -1,4 +1,22 @@
 # Older changes
+
+## 3.0.0 (2022-07-02)
+* (xXBJXx) BREAKING Adapter code completely revised
+* (xXBJXx) Adapter completely switched to TypeScript
+* (xXBJXx) BREAKING Adapter configurations page switched to React and redesigned
+  (old config not compatible stations must be recreated)
+* (xXBJXx) add Dependabot auto merge support
+* (xXBJXx) add test and release script 
+* (xXBJXx) Dependency updated
+* (xXBJXx) add feature request: manual update of all stations (one request per minute allowed) [issue #53](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/53) 
+* (xXBJXx) add a new state => adapterStatus (indicates whether the adapter executes an automatic request or a manual request)
+* (xXBJXx) add new cutPrice function [issue #73](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/73)
+* (xXBJXx) add the feature request: Include discount in price (euro and percent) [issue #50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50) and adapter code optimized
+* (xXBJXx) add the feature request: JsonTable for the vis [issue #24](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/24)
+
+## 2.2.0 (2021-11-14)
+* (simatec) Design Fix for Admin Dark/Blue Theme
+
 ### 2.1.1 (2021-06-22)
 * (pix) New adapter category "vehicle" [#67](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/67)
 * (pix) Testing for Nodejs 16
@@ -107,19 +125,3 @@
 
 ### 0.0.1 (2016-05-31)
 * (pix) Adapter created
-## 3.0.0 (2022-07-02)
-* (xXBJXx) BREAKING Adapter code completely revised
-* (xXBJXx) Adapter completely switched to TypeScript
-* (xXBJXx) BREAKING Adapter configurations page switched to React and redesigned
-  (old config not compatible stations must be recreated)
-* (xXBJXx) add Dependabot auto merge support
-* (xXBJXx) add test and release script 
-* (xXBJXx) Dependency updated
-* (xXBJXx) add feature request: manual update of all stations (one request per minute allowed) [issue #53](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/53) 
-* (xXBJXx) add a new state => adapterStatus (indicates whether the adapter executes an automatic request or a manual request)
-* (xXBJXx) add new cutPrice function [issue #73](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/73)
-* (xXBJXx) add the feature request: Include discount in price (euro and percent) [issue #50](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/50) and adapter code optimized
-* (xXBJXx) add the feature request: JsonTable for the vis [issue #24](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/24)
-
-## 2.2.0 (2021-11-14)
-* (simatec) Design Fix for Admin Dark/Blue Theme

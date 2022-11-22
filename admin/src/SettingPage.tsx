@@ -11,6 +11,7 @@ import { StationCard } from './component/StationCard';
 import { EditModal } from './Modal/EditModal';
 import { PriceSettings } from './component/PriceSettings';
 import { Logo } from 'iobroker-react';
+import { VisCombinedOptions } from './component/VisCombinedOptions';
 
 interface SettingPageProps {
 	onChange: (key: keyof ioBroker.AdapterConfig, value: any) => void;
@@ -141,6 +142,8 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 				<ApiKey settings={settings} onChange={(key, value) => onChange(key, value)} />
 				<Spacer text={'spacerInterval'} />
 				<AdapterInterval onChange={onChange} settings={settings} />
+				<Spacer text={'combined_settings'} />
+				<VisCombinedOptions onChange={onChange} settings={settings} />
 				<Spacer text={'price_settings'} />
 				<PriceSettings onChange={onChange} settings={settings} />
 				<Spacer text={'adapter_log_settings'} />
