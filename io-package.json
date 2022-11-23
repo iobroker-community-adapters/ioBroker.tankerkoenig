@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.0.5",
+    "version": "3.0.6",
     "news": {
+      "3.0.6": {
+        "en": "Added new option to adjust the text in the combined data point [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "de": "Neue Option zur Anpassung des Textes im combined Datenpunkt hinzugefügt [Ausgabe #95] (https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "ru": "Добавлена новая опция для настройки текста в combined точке данных [выпуск #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "pt": "Adicionada nova opção para ajustar o texto no combined data point [edição #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "nl": "Nieuwe optie toegevoegd om de tekst in het combined datapunt aan te passen [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "fr": "Ajout d'une nouvelle option pour ajuster le texte dans le point de données combined [problème #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "it": "Aggiunta una nuova opzione per regolare il testo del punto dati combined [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "es": "Se ha añadido una nueva opción para ajustar el texto en el punto de datos combined [edición #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "pl": "Dodano nową opcję dostosowania tekstu w punkcie danych combined [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "uk": "Додано нову опцію для коригування тексту в combined точці даних [випуск #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
+        "zh-cn": "增加了新的选项来调整 combined 数据点中的文字[issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)"
+      },
       "3.0.5": {
         "en": "fixed sort bug for cheapest gas station",
         "de": "Sortierfehler für billigste Tankstelle behoben",

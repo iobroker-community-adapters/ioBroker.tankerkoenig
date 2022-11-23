@@ -23,8 +23,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-
-### __WORK IN PROGRESS__
+### 3.0.6 (2022-11-23)
 * (xXBJXx) Added new option to adjust the text in the combined data point [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)
 
 ### 3.0.5 (2022-11-20)
@@ -45,11 +44,6 @@ NodeJS v14 or higher is required.
 
 ### 3.0.2 (2022-11-10)
 * (xXBJXx) release new version from Tankerkoenig
-
-### 3.0.1 (2022-07-30)
-* (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)
-* (xXBJXx) added function => Set values to 0 when the Station is closed.
-* (xXBJXx) updated dependencies
 
 ## License
 
