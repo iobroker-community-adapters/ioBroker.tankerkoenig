@@ -74,8 +74,13 @@ class Tankerkoenig extends utils.Adapter {
       this.writeLog(`request start now`, "debug");
       const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station.map((station) => station.station).join(",")}&apikey=${this.config.apikey}`;
       await import_axios.default.get(url, {
-        headers: { "User-Agent": `${this.name} ${this.version}` }
+        headers: {
+          "User-Agent": `${this.name} ${this.version}`,
+          "Accept-Encoding": "identity",
+          Accept: "application/json"
+        }
       }).then(async (response) => {
+        console.log(`axios response data: `, response);
         if (response.status === 200) {
           this.writeLog(
             `type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,

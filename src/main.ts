@@ -95,14 +95,20 @@ class Tankerkoenig extends utils.Adapter {
 
 			await axios
 				.get(url, {
-					headers: { 'User-Agent': `${this.name} ${this.version}` },
+					headers: {
+						'User-Agent': `${this.name} ${this.version}`,
+						'Accept-Encoding': 'identity',
+						Accept: 'application/json',
+					},
 				})
 				.then(async (response) => {
+					console.log(`axios response data: `, response);
 					if (response.status === 200) {
 						this.writeLog(
 							`type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
 							'debug',
 						);
+
 						if (response.data.ok) {
 							await this.setStateAsync('stations.json', {
 								val: JSON.stringify(response.data),
