@@ -11,7 +11,7 @@
 
 NodeJS v14 or higher is required.
 
-## Update from 2.x.x to 3.x.x English
+## Update from 2.x.x to 3.0.x English
 There are 2 variants:
 1. uninstall adapter completely and reinstall (recommended) Procedure:
    1. you go to the Adapter UI and save your `API-Key` and if you want the `Stadium ID`.
@@ -34,7 +34,7 @@ There are 2 variants:
    the data points that were logged before.
 
 
-## Update von 2.x.x auf 3.x.x Deutsch
+## Update von 2.x.x auf 3.0.x Deutsch
 Es gibt 2 Varianten:
 1. Deinstalliere den Adapter komplett und installiere ihn neu (empfohlen) Vorgehensweise:
 	1. du gehst zur Adapter UI und speicherst deinen `API-Key` und wenn du willst die `Stadium ID`.
@@ -68,7 +68,7 @@ Es gibt 2 Varianten:
  -->
 ### __WORK IN PROGRESS__
 * (xXBJXx) removed noLog option because the adapter log output was strongly optimized
-* (xXBJXx) optimized sorting of the stations for Cheapest Station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)
+* (xXBJXx) Optimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)
 
 ### 3.0.6 (2022-11-23)
 * (xXBJXx) Added new option to adjust the text in the combined data point [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)
