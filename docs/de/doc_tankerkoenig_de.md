@@ -49,9 +49,6 @@ Wenn eine Tankstelle keine Preise für E5, E10 oder Diesel liefert, z. B. bei e
 
 ![alt text](../img/state_quality.png "Screenshot Settings")
 
-### Log minimieren
-Um Schreibzugriffe im Log (z.B. auf empfindliche SD-Karten) zu minimieren, kann ein Haken gesetzt werden.
-
 ## Aktivierung
 Der Adapter läuft als Daemon (nicht im Schedule Modus) und startet regulär alle fünf Minuten. Die Daten des Quellfeeds werden vom Server bei tankerkoenig.de nur alle 4min aktualisiert, daher macht eine häufigere Abfrage der Daten keinen Sinn und verursacht nur überflüssigen Datenverkehr und kostet Ressourcen. Größere Intervalle sind jederzeit einstellbar.
 

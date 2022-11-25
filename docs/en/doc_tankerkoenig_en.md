@@ -48,9 +48,6 @@ If a gas station does not provide prices for E5, E10 or Diesel, e.g. if the stat
 
 ![alt text](../img/state_quality.png "Screenshot Settings")
 
-### Minimize log
-To reduce log writing (e.g. on SD cards) this option can be selected.
-
 ## Activation
 The adapter runs as a daemon (not in schedule mode) and starts regularly every five minutes. The data of the source feed are updated by the server at tankerkoenig.de only every 4 minutes, therefore a more frequent query of the data makes no sense and causes only superfluous data traffic and costs resources. Larger intervals can be set at any time.
 
