@@ -123,7 +123,9 @@ class Tankerkoenig extends utils.Adapter {
 				})
 				.then(async (response) => {
 					console.log(`axios response data:`, response);
+
 					// response = dummyData; // for testing
+
 					if (response.status === 200) {
 						this.writeLog(
 							`type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
@@ -353,9 +355,52 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
-			console.log('newE5: ', openStationsE5);
-			console.log('newE10: ', openStationsE10);
-			console.log('newDiesel: ', openStationsDiesel);
+
+			// filter all stations with the same price
+			const allCheapestE5: object[] = [];
+			const allCheapestE10: object[] = [];
+			const allCheapestDiesel: object[] = [];
+			const filterE5 = openStationsE5.filter((station) => station.e5 === openStationsE5[0].e5);
+			const filterE10 = openStationsE10.filter((station) => station.e10 === openStationsE10[0].e10);
+			const filterDiesel = openStationsDiesel.filter(
+				(station) => station.diesel === openStationsDiesel[0].diesel,
+			);
+
+			for (const filterE5Key in filterE5) {
+				if (filterE5.hasOwnProperty(filterE5Key)) {
+					for (const stationKey in station) {
+						if (station.hasOwnProperty(stationKey)) {
+							if (filterE5[filterE5Key].station === station[stationKey].station) {
+								allCheapestE5.push({ name: station[stationKey].stationname });
+							}
+						}
+					}
+				}
+			}
+
+			for (const filterE10Key in filterE10) {
+				if (filterE10.hasOwnProperty(filterE10Key)) {
+					for (const stationKey in station) {
+						if (station.hasOwnProperty(stationKey)) {
+							if (filterE10[filterE10Key].station === station[stationKey].station) {
+								allCheapestE10.push({ name: station[stationKey].stationname });
+							}
+						}
+					}
+				}
+			}
+
+			for (const filterDieselKey in filterDiesel) {
+				if (filterDiesel.hasOwnProperty(filterDieselKey)) {
+					for (const stationKey in station) {
+						if (station.hasOwnProperty(stationKey)) {
+							if (filterDiesel[filterDieselKey].station === station[stationKey].station) {
+								allCheapestDiesel.push({ name: station[stationKey].stationname });
+							}
+						}
+					}
+				}
+			}
 
 			// write all prices to the states
 			for (const [key, stationValue] of Object.entries(station)) {
@@ -421,6 +466,11 @@ class Tankerkoenig extends utils.Adapter {
 
 						await this.setStateAsync(`stations.cheapest.e5.short`, {
 							val: cutPrice.priceshort,
+							ack: true,
+						});
+
+						await this.setStateAsync(`stations.cheapest.e5.cheapest_stations`, {
+							val: JSON.stringify(allCheapestE5),
 							ack: true,
 						});
 
@@ -512,6 +562,11 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 
+						await this.setStateAsync(`stations.cheapest.e10.cheapest_stations`, {
+							val: JSON.stringify(allCheapestE10),
+							ack: true,
+						});
+
 						const combined = `<span class="station_open">${cutPrice.priceshort}<sup style="font-size: 50%">${cutPrice.price3rd}</sup> <span class="station_combined_euro">€</span></span>`;
 						await this.setStateAsync(`stations.cheapest.e10.combined`, {
 							val: combined,
@@ -597,6 +652,11 @@ class Tankerkoenig extends utils.Adapter {
 
 						await this.setStateAsync(`stations.cheapest.diesel.short`, {
 							val: cutPrice.priceshort,
+							ack: true,
+						});
+
+						await this.setStateAsync(`stations.cheapest.diesel.cheapest_stations`, {
+							val: JSON.stringify(allCheapestDiesel),
 							ack: true,
 						});
 

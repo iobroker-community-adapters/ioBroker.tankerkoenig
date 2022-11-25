@@ -48,6 +48,19 @@ const statesObj = {
     },
     native: {}
   },
+  cheapest_stations: {
+    type: "state",
+    common: {
+      name: "all Cheapest Stations",
+      desc: "all Cheapest Stations as Array",
+      type: "string",
+      role: "json",
+      def: "",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
   station_id: {
     type: "state",
     common: {

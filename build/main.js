@@ -275,9 +275,47 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }
-      console.log("newE5: ", openStationsE5);
-      console.log("newE10: ", openStationsE10);
-      console.log("newDiesel: ", openStationsDiesel);
+      const allCheapestE5 = [];
+      const allCheapestE10 = [];
+      const allCheapestDiesel = [];
+      const filterE5 = openStationsE5.filter((station2) => station2.e5 === openStationsE5[0].e5);
+      const filterE10 = openStationsE10.filter((station2) => station2.e10 === openStationsE10[0].e10);
+      const filterDiesel = openStationsDiesel.filter(
+        (station2) => station2.diesel === openStationsDiesel[0].diesel
+      );
+      for (const filterE5Key in filterE5) {
+        if (filterE5.hasOwnProperty(filterE5Key)) {
+          for (const stationKey in station) {
+            if (station.hasOwnProperty(stationKey)) {
+              if (filterE5[filterE5Key].station === station[stationKey].station) {
+                allCheapestE5.push({ name: station[stationKey].stationname });
+              }
+            }
+          }
+        }
+      }
+      for (const filterE10Key in filterE10) {
+        if (filterE10.hasOwnProperty(filterE10Key)) {
+          for (const stationKey in station) {
+            if (station.hasOwnProperty(stationKey)) {
+              if (filterE10[filterE10Key].station === station[stationKey].station) {
+                allCheapestE10.push({ name: station[stationKey].stationname });
+              }
+            }
+          }
+        }
+      }
+      for (const filterDieselKey in filterDiesel) {
+        if (filterDiesel.hasOwnProperty(filterDieselKey)) {
+          for (const stationKey in station) {
+            if (station.hasOwnProperty(stationKey)) {
+              if (filterDiesel[filterDieselKey].station === station[stationKey].station) {
+                allCheapestDiesel.push({ name: station[stationKey].stationname });
+              }
+            }
+          }
+        }
+      }
       for (const [key, stationValue] of Object.entries(station)) {
         const newE5 = openStationsE5.length > 0 ? openStationsE5 : cheapest_e5;
         const newE10 = openStationsE10.length > 0 ? openStationsE10 : cheapest_e10;
@@ -330,6 +368,10 @@ class Tankerkoenig extends utils.Adapter {
             });
             await this.setStateAsync(`stations.cheapest.e5.short`, {
               val: cutPrice.priceshort,
+              ack: true
+            });
+            await this.setStateAsync(`stations.cheapest.e5.cheapest_stations`, {
+              val: JSON.stringify(allCheapestE5),
               ack: true
             });
             const combined = `<span class="station_open">${cutPrice.priceshort}<sup style="font-size: 50%">${cutPrice.price3rd}</sup> <span class="station_combined_euro">\u20AC</span></span>`;
@@ -399,6 +441,10 @@ class Tankerkoenig extends utils.Adapter {
               val: cutPrice.priceshort,
               ack: true
             });
+            await this.setStateAsync(`stations.cheapest.e10.cheapest_stations`, {
+              val: JSON.stringify(allCheapestE10),
+              ack: true
+            });
             const combined = `<span class="station_open">${cutPrice.priceshort}<sup style="font-size: 50%">${cutPrice.price3rd}</sup> <span class="station_combined_euro">\u20AC</span></span>`;
             await this.setStateAsync(`stations.cheapest.e10.combined`, {
               val: combined,
@@ -464,6 +510,10 @@ class Tankerkoenig extends utils.Adapter {
             });
             await this.setStateAsync(`stations.cheapest.diesel.short`, {
               val: cutPrice.priceshort,
+              ack: true
+            });
+            await this.setStateAsync(`stations.cheapest.diesel.cheapest_stations`, {
+              val: JSON.stringify(allCheapestDiesel),
               ack: true
             });
             const combined = `<span class="station_open">${cutPrice.priceshort}<sup style="font-size: 50%">${cutPrice.price3rd}</sup> <span class="station_combined_euro">\u20AC</span></span>`;
