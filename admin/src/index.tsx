@@ -41,9 +41,6 @@ const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 	if (settings.synctime === undefined) {
 		settings.synctime = 5;
 	}
-	if (settings.noLogs === undefined) {
-		settings.noLogs = true;
-	}
 	if (settings.resetValues === undefined) {
 		settings.resetValues = false;
 	}

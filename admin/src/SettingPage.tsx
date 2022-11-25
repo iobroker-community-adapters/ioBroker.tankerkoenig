@@ -5,7 +5,6 @@ import { AdapterInterval } from './component/AdapterInterval';
 import { AddModal } from './Modal/AddModal';
 import { AlertComponent } from './component/AlertComponent';
 import { ApiKey } from './component/ApiKey';
-import { LogSettings } from './component/LogSettings';
 import { Spacer } from './component/Spacer';
 import { StationCard } from './component/StationCard';
 import { EditModal } from './Modal/EditModal';
@@ -146,8 +145,6 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 				<VisCombinedOptions onChange={onChange} settings={settings} />
 				<Spacer text={'price_settings'} />
 				<PriceSettings onChange={onChange} settings={settings} />
-				<Spacer text={'adapter_log_settings'} />
-				<LogSettings onChange={onChange} settings={settings} />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<Grid

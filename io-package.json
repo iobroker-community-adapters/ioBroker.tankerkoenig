@@ -201,7 +201,6 @@
   "native": {
     "synctime": 5,
     "resetValues": false,
-    "noLogs": true,
     "apikey": "",
     "station": [],
     "combinedOptions": {

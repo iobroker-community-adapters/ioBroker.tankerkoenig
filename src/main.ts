@@ -19,7 +19,6 @@ let refreshStatusTimeout: NodeJS.Timeout | null = null;
 
 // Global variables here
 let refreshStatus = false;
-const optionNoLog = false;
 let sync_milliseconds = 5 * 60 * 1000; // 5min
 const fuelTypes: string[] = ['e5', 'e10', 'diesel'];
 
@@ -50,7 +49,7 @@ class Tankerkoenig extends utils.Adapter {
 				adapterObj.common.mode = 'daemon';
 				await this.setForeignObjectAsync(adapterObj._id, adapterObj);
 			} else {
-				this.log.debug('Adapter is already running in daemon mode');
+				this.writeLog('Adapter is already in daemon mode', 'info');
 			}
 		}
 
@@ -64,7 +63,10 @@ class Tankerkoenig extends utils.Adapter {
 			sync_milliseconds = 300000; //5 * 60 * 1000 is set as the minimum interval
 			this.log.warn(`Sync time was too short (${this.config.synctime}). New sync time is 5 min`);
 		}
-		this.log.info(`Sync time set to ${this.config.synctime} minutes or ${sync_milliseconds} ms`);
+		this.writeLog(
+			`Sync time set to ${this.config.synctime} minutes or ${this.sync_milliseconds} ms`,
+			'info',
+		);
 
 		// add to sync_milliseconds a random number between 0 and 1000 to avoid that all adapters start at the same time
 		sync_milliseconds += Math.floor(Math.random() * 100);
@@ -1611,17 +1613,11 @@ class Tankerkoenig extends utils.Adapter {
 	 */
 	private writeLog(logtext: string, logtype: 'silly' | 'info' | 'debug' | 'warn' | 'error'): void {
 		try {
-			if (!optionNoLog) {
-				// Ausgabe bei info, debug und error
-				if (logtype === 'silly') this.log.silly(logtext);
-				if (logtype === 'info') this.log.info(logtext);
-				if (logtype === 'debug') this.log.debug(logtext);
-				if (logtype === 'warn') this.log.warn(logtext);
-				if (logtype === 'error') this.log.error(logtext);
-			} else {
-				// Ausgabe nur bei error
-				if (logtype === 'error') this.log.error(logtext);
-			}
+			if (logtype === 'silly') this.log.silly(logtext);
+			if (logtype === 'info') this.log.info(logtext);
+			if (logtype === 'debug') this.log.debug(logtext);
+			if (logtype === 'warn') this.log.warn(logtext);
+			if (logtype === 'error') this.log.error(logtext);
 		} catch (error) {
 			this.log.error(`writeLog error: ${error} , stack: ${error.stack}`);
 		}
