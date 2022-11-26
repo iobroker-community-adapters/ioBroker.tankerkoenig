@@ -9,7 +9,7 @@ import axios from 'axios';
 import { CreateJsonTable } from './lib/interface/CreateJsonTable';
 
 // Load your modules here, e.g.:
-import { priceMinMaxObj, priceObj, statesObj } from './lib/object_definition';
+import { cheapestObj, priceMinMaxObj, priceObj, statesObj } from './lib/object_definition';
 import { Result } from './lib/interface/resultInterface';
 
 // Global variables here
@@ -356,15 +356,22 @@ class Tankerkoenig extends utils.Adapter {
 				}
 			}
 
+			const newE5 = openStationsE5.length > 0 ? openStationsE5 : cheapest_e5;
+			const newE10 = openStationsE10.length > 0 ? openStationsE10 : cheapest_e10;
+			const newDiesel = openStationsDiesel.length > 0 ? openStationsDiesel : cheapest_diesel;
+
 			// filter all stations with the same price
 			const allCheapestE5: object[] = [];
 			const allCheapestE10: object[] = [];
 			const allCheapestDiesel: object[] = [];
-			const filterE5 = openStationsE5.filter((station) => station.e5 === openStationsE5[0].e5);
-			const filterE10 = openStationsE10.filter((station) => station.e10 === openStationsE10[0].e10);
-			const filterDiesel = openStationsDiesel.filter(
-				(station) => station.diesel === openStationsDiesel[0].diesel,
-			);
+			const filterE5 = newE5.filter((station) => station.e5 === newE5[0].e5);
+			this.writeLog(` filterE5 ${JSON.stringify(filterE5)}`, 'debug');
+
+			const filterE10 = newE10.filter((station) => station.e10 === newE10[0].e10);
+			this.writeLog(` filterE10 ${JSON.stringify(filterE10)}`, 'debug');
+
+			const filterDiesel = newDiesel.filter((station) => station.diesel === newDiesel[0].diesel);
+			this.writeLog(` filterDiesel ${JSON.stringify(filterDiesel)}`, 'debug');
 
 			for (const filterE5Key in filterE5) {
 				if (filterE5.hasOwnProperty(filterE5Key)) {
@@ -377,6 +384,7 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
+			this.writeLog(`allCheapestE5: ${JSON.stringify(allCheapestE5)}`, 'debug');
 
 			for (const filterE10Key in filterE10) {
 				if (filterE10.hasOwnProperty(filterE10Key)) {
@@ -389,6 +397,7 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
+			this.writeLog(`allCheapestE10: ${JSON.stringify(allCheapestE10)}`, 'debug');
 
 			for (const filterDieselKey in filterDiesel) {
 				if (filterDiesel.hasOwnProperty(filterDieselKey)) {
@@ -401,13 +410,10 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
+			this.writeLog(`allCheapestDiesel: ${JSON.stringify(allCheapestDiesel)}`, 'debug');
 
 			// write all prices to the states
 			for (const [key, stationValue] of Object.entries(station)) {
-				const newE5 = openStationsE5.length > 0 ? openStationsE5 : cheapest_e5;
-				const newE10 = openStationsE10.length > 0 ? openStationsE10 : cheapest_e10;
-				const newDiesel = openStationsDiesel.length > 0 ? openStationsDiesel : cheapest_diesel;
-
 				this.writeLog(
 					` cheapest e5: ${newE5[0].e5} at ${newE5[0].station} array: ${JSON.stringify(newE5)}`,
 					'debug',
@@ -1535,6 +1541,18 @@ class Tankerkoenig extends utils.Adapter {
 						},
 						native: {},
 					});
+				}
+			}
+			for (const cheapestObjKey in cheapestObj) {
+				if (cheapestObj.hasOwnProperty(cheapestObjKey)) {
+					for (const fuelTypesKey in this.fuelTypes) {
+						if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
+							await this.setObjectNotExistsAsync(
+								`stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${cheapestObjKey}`,
+								cheapestObj[cheapestObjKey],
+							);
+						}
+					}
 				}
 			}
 			for (const statesObjKey in statesObj) {

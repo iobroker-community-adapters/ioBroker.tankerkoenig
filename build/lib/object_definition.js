@@ -18,6 +18,7 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var object_definition_exports = {};
 __export(object_definition_exports, {
+  cheapestObj: () => cheapestObj,
   priceMinMaxObj: () => priceMinMaxObj,
   priceObj: () => priceObj,
   statesObj: () => statesObj
@@ -42,19 +43,6 @@ const statesObj = {
       name: "Station Name",
       type: "string",
       role: "text",
-      def: "",
-      read: true,
-      write: false
-    },
-    native: {}
-  },
-  cheapest_stations: {
-    type: "state",
-    common: {
-      name: "all Cheapest Stations",
-      desc: "all Cheapest Stations as Array",
-      type: "string",
-      role: "json",
       def: "",
       read: true,
       write: false
@@ -94,6 +82,21 @@ const statesObj = {
       type: `number`,
       role: `value`,
       def: 0,
+      read: true,
+      write: false
+    },
+    native: {}
+  }
+};
+const cheapestObj = {
+  cheapest_stations: {
+    type: "state",
+    common: {
+      name: "all Cheapest Stations",
+      desc: "all Cheapest Stations as Array",
+      type: "string",
+      role: "json",
+      def: "",
       read: true,
       write: false
     },
@@ -266,6 +269,7 @@ const priceMinMaxObj = {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  cheapestObj,
   priceMinMaxObj,
   priceObj,
   statesObj

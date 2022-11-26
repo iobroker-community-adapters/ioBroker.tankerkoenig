@@ -275,14 +275,18 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }
+      const newE5 = openStationsE5.length > 0 ? openStationsE5 : cheapest_e5;
+      const newE10 = openStationsE10.length > 0 ? openStationsE10 : cheapest_e10;
+      const newDiesel = openStationsDiesel.length > 0 ? openStationsDiesel : cheapest_diesel;
       const allCheapestE5 = [];
       const allCheapestE10 = [];
       const allCheapestDiesel = [];
-      const filterE5 = openStationsE5.filter((station2) => station2.e5 === openStationsE5[0].e5);
-      const filterE10 = openStationsE10.filter((station2) => station2.e10 === openStationsE10[0].e10);
-      const filterDiesel = openStationsDiesel.filter(
-        (station2) => station2.diesel === openStationsDiesel[0].diesel
-      );
+      const filterE5 = newE5.filter((station2) => station2.e5 === newE5[0].e5);
+      this.writeLog(` filterE5 ${JSON.stringify(filterE5)}`, "debug");
+      const filterE10 = newE10.filter((station2) => station2.e10 === newE10[0].e10);
+      this.writeLog(` filterE10 ${JSON.stringify(filterE10)}`, "debug");
+      const filterDiesel = newDiesel.filter((station2) => station2.diesel === newDiesel[0].diesel);
+      this.writeLog(` filterDiesel ${JSON.stringify(filterDiesel)}`, "debug");
       for (const filterE5Key in filterE5) {
         if (filterE5.hasOwnProperty(filterE5Key)) {
           for (const stationKey in station) {
@@ -294,6 +298,7 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }
+      this.writeLog(`allCheapestE5: ${JSON.stringify(allCheapestE5)}`, "debug");
       for (const filterE10Key in filterE10) {
         if (filterE10.hasOwnProperty(filterE10Key)) {
           for (const stationKey in station) {
@@ -305,6 +310,7 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }
+      this.writeLog(`allCheapestE10: ${JSON.stringify(allCheapestE10)}`, "debug");
       for (const filterDieselKey in filterDiesel) {
         if (filterDiesel.hasOwnProperty(filterDieselKey)) {
           for (const stationKey in station) {
@@ -316,10 +322,8 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }
+      this.writeLog(`allCheapestDiesel: ${JSON.stringify(allCheapestDiesel)}`, "debug");
       for (const [key, stationValue] of Object.entries(station)) {
-        const newE5 = openStationsE5.length > 0 ? openStationsE5 : cheapest_e5;
-        const newE10 = openStationsE10.length > 0 ? openStationsE10 : cheapest_e10;
-        const newDiesel = openStationsDiesel.length > 0 ? openStationsDiesel : cheapest_diesel;
         this.writeLog(
           ` cheapest e5: ${newE5[0].e5} at ${newE5[0].station} array: ${JSON.stringify(newE5)}`,
           "debug"
@@ -1182,6 +1186,18 @@ class Tankerkoenig extends utils.Adapter {
             },
             native: {}
           });
+        }
+      }
+      for (const cheapestObjKey in import_object_definition.cheapestObj) {
+        if (import_object_definition.cheapestObj.hasOwnProperty(cheapestObjKey)) {
+          for (const fuelTypesKey in this.fuelTypes) {
+            if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
+              await this.setObjectNotExistsAsync(
+                `stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${cheapestObjKey}`,
+                import_object_definition.cheapestObj[cheapestObjKey]
+              );
+            }
+          }
         }
       }
       for (const statesObjKey in import_object_definition.statesObj) {
