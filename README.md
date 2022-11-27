@@ -66,7 +66,7 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.1.0 (2022-11-27)
 * (xXBJXx) removed noLog option because the adapter log output was strongly optimized
 * (xXBJXx) Optimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)
 * (xXBJXx) add new state `cheapest_stations` for the cheapest gas station [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)
@@ -89,9 +89,6 @@ Es gibt 2 Varianten:
 * (xXBJXx) add copy from clipboard function for ID Input field
 * (Schmakus) added daily min/max prices to all stations and fuel types
 * (xXBJXx) update documentation because of new min/max datapoints
-
-### 3.0.2 (2022-11-10)
-* (xXBJXx) release new version from Tankerkoenig
 
 ## License
 

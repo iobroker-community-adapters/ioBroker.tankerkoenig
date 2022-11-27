@@ -1,4 +1,7 @@
 # Older changes
+## 3.0.2 (2022-11-10)
+* (xXBJXx) release new version from Tankerkoenig
+
 ## 3.0.1 (2022-07-30)
 * (xXBJXx) resetValue function removed and state quality implemented. [issue #79](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/79)
 * (xXBJXx) added function => Set values to 0 when the Station is closed.
