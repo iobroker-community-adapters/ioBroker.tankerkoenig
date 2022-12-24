@@ -23,6 +23,7 @@ class Tankerkoenig extends utils.Adapter {
 	private refreshStatusTimeout: NodeJS.Timeout | null;
 
 	// constructor of the adapter
+	private stationDetails: any[];
 	public constructor(options: Partial<utils.AdapterOptions> = {}) {
 		super({
 			...options,
@@ -42,6 +43,7 @@ class Tankerkoenig extends utils.Adapter {
 		this.requestTimeout = null;
 		this.refreshTimeout = null;
 		this.refreshStatusTimeout = null;
+		this.stationDetails = [];
 	}
 
 	/**
@@ -88,6 +90,7 @@ class Tankerkoenig extends utils.Adapter {
 		// check if api key is set and Station is set
 		if (this.config.apikey.length === 36) {
 			if (this.config.station.length > 0) {
+				await this.requestDetails();
 				await this.createAllStates(this.config.station);
 				await this.requestData();
 			} else {
@@ -95,6 +98,48 @@ class Tankerkoenig extends utils.Adapter {
 			}
 		} else {
 			this.writeLog(`No Api Key is specified`, 'error');
+		}
+	}
+
+	private async requestDetails(): Promise<void> {
+		try {
+			this.writeLog(`start Requesting station details`, 'debug');
+			this.stationDetails = [];
+			const station = this.config.station;
+			for (const stationKey in station) {
+				if (Object.prototype.hasOwnProperty.call(station, stationKey)) {
+					const stationId = station[stationKey];
+					const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${stationId.station}&apikey=${this.config.apikey}`;
+					const config = {
+						headers: {
+							'User-Agent': `${this.name} ${this.version}`,
+							'Accept-Encoding': 'identity',
+							Accept: 'application/json',
+						},
+					};
+					const response = await axios.get(url, config);
+					if (response.status === 200) {
+						this.writeLog(`Requesting station details successful`, 'debug');
+						const result: Result = response.data;
+						this.writeLog(`Result: ${JSON.stringify(result)}`, 'debug');
+						if (result.ok) {
+							const details = {
+								station: result.station.id,
+								street: result.station.street,
+								houseNumber: result.station.houseNumber,
+								place: result.station.place,
+								postCode: result.station.postCode,
+								lat: result.station.lat,
+								lng: result.station.lng,
+							};
+							this.writeLog(`Details: ${JSON.stringify(details)}`, 'debug');
+							this.stationDetails.push(details);
+						}
+					}
+				}
+			}
+		} catch (error) {
+			this.writeLog(`[ requestDetails ] error: ${error} stack: ${error.stack}`, 'error');
 		}
 	}
 
@@ -110,7 +155,6 @@ class Tankerkoenig extends utils.Adapter {
 			const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station
 				.map((station) => station.station)
 				.join(',')}&apikey=${this.config.apikey}`; // API key is included in the configuration Demo 00000000-0000-0000-0000-000000000002
-			// .join(',')}&apikey=00000000-0000-0000-0000-000000000002`; // API key is included in the configuration Demo 00000000-0000-0000-0000-000000000002
 
 			// request data from tankerkoenig
 			await axios
@@ -414,6 +458,19 @@ class Tankerkoenig extends utils.Adapter {
 
 			// write all prices to the states
 			for (const [key, stationValue] of Object.entries(station)) {
+				if (this.stationDetails.length > 0) {
+					for (const [, stationDetailValue] of Object.entries(this.stationDetails)) {
+						if (stationValue.station === stationDetailValue.station) {
+							stationValue.place = stationDetailValue.place;
+							stationValue.street = stationDetailValue.street;
+							stationValue.postCode = stationDetailValue.postCode;
+							stationValue.houseNumber = stationDetailValue.houseNumber;
+							stationValue.lat = stationDetailValue.lat;
+							stationValue.lng = stationDetailValue.lng;
+						}
+					}
+				}
+
 				this.writeLog(
 					` cheapest e5: ${newE5[0].e5} at ${newE5[0].station} array: ${JSON.stringify(newE5)}`,
 					'debug',
@@ -522,6 +579,34 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 					}
+					await this.setStateAsync(`stations.cheapest.e5.street`, {
+						val: stationValue.street,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.fullStreet`, {
+						val: `${stationValue.street} ${stationValue.houseNumber}`,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.place`, {
+						val: stationValue.place,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.postCode`, {
+						val: stationValue.postCode,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.houseNumber`, {
+						val: stationValue.houseNumber,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.lat`, {
+						val: stationValue.lat,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.lng`, {
+						val: stationValue.lng,
+						ack: true,
+					});
 				}
 
 				if (stationValue.station === newE10[0].station) {
@@ -615,6 +700,34 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 					}
+					await this.setStateAsync(`stations.cheapest.e10.street`, {
+						val: stationValue.street,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.fullStreet`, {
+						val: `${stationValue.street} ${stationValue.houseNumber}`,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.place`, {
+						val: stationValue.place,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.postCode`, {
+						val: stationValue.postCode,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.houseNumber`, {
+						val: stationValue.houseNumber,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.lat`, {
+						val: stationValue.lat,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.lng`, {
+						val: stationValue.lng,
+						ack: true,
+					});
 				}
 
 				if (stationValue.station === newDiesel[0].station) {
@@ -708,6 +821,34 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 					}
+					await this.setStateAsync(`stations.cheapest.diesel.street`, {
+						val: stationValue.street,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.fullStreet`, {
+						val: `${stationValue.street} ${stationValue.houseNumber}`,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.place`, {
+						val: stationValue.place,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.postCode`, {
+						val: stationValue.postCode,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.houseNumber`, {
+						val: stationValue.houseNumber,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.lat`, {
+						val: stationValue.lat,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.lng`, {
+						val: stationValue.lng,
+						ack: true,
+					});
 				}
 
 				// write all available stations to state
@@ -734,6 +875,34 @@ class Tankerkoenig extends utils.Adapter {
 						});
 						await this.setStateAsync(`stations.${key}.discount`, {
 							val: stationValue.discountObj.discount,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.street`, {
+							val: stationValue.street,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.fullStreet`, {
+							val: `${stationValue.street} ${stationValue.houseNumber}`,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.place`, {
+							val: stationValue.place,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.postCode`, {
+							val: stationValue.postCode,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.houseNumber`, {
+							val: stationValue.houseNumber,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.lat`, {
+							val: stationValue.lat,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.lng`, {
+							val: stationValue.lng,
 							ack: true,
 						});
 
@@ -1588,13 +1757,32 @@ class Tankerkoenig extends utils.Adapter {
 				if (parseFloat(stationKey) <= 9) {
 					if (stations.hasOwnProperty(stationKey)) {
 						const station: { station: string; stationname: string } = stations[stationKey];
+						let stationName = '';
+						if (this.stationDetails.length > 0) {
+							for (const [, stationDetailValue] of Object.entries(this.stationDetails)) {
+								if (stationDetailValue.station === station.station) {
+									if (
+										!stationDetailValue.street ||
+										!stationDetailValue.place ||
+										!stationDetailValue.houseNumber ||
+										!stationDetailValue.postCode
+									) {
+										stationName = station.stationname;
+									} else {
+										if (station.stationname !== '') {
+											stationName = `${station.stationname} (${stationDetailValue.street} ${stationDetailValue.houseNumber}, ${stationDetailValue.postCode} ${stationDetailValue.place})`;
+										} else {
+											stationName = `station ${stationKey} ${stationDetailValue.street} ${stationDetailValue.houseNumber}, ${stationDetailValue.postCode} ${stationDetailValue.place}`;
+										}
+									}
+								}
+							}
+						}
+
 						await this.setObjectNotExistsAsync(`stations.${stationKey}`, {
 							type: 'channel',
 							common: {
-								name:
-									station.stationname !== ''
-										? station.stationname
-										: `station ${stationKey}`,
+								name: stationName,
 							},
 							native: {},
 						});
@@ -1607,10 +1795,7 @@ class Tankerkoenig extends utils.Adapter {
 								await this.extendObjectAsync(`stations.${stationKey}`, {
 									type: 'channel',
 									common: {
-										name:
-											station.stationname !== ''
-												? station.stationname
-												: `station ${stationKey}`,
+										name: stationName,
 									},
 									native: {},
 								});

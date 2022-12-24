@@ -24,6 +24,12 @@ declare global {
 				fuelType: string[];
 				discountType: string;
 			};
+			place?: string;
+			postCode?: number;
+			street?: string;
+			houseNumber?: string;
+			lat?: number;
+			lng?: number;
 		}
 	}
 }

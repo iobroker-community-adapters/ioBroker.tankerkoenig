@@ -66,6 +66,10 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) added detailed information for the station in the object (street, city, etc.)
+* (xXBJXx) added address information for the station in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))
+
 ### 3.1.0 (2022-11-27)
 * (xXBJXx) removed noLog option because the adapter log output was strongly optimized
 * (xXBJXx) Optimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)

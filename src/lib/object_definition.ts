@@ -61,6 +61,90 @@ export const statesObj: { [key: string]: any } = {
 		},
 		native: {},
 	},
+	lat: {
+		type: 'state',
+		common: {
+			name: 'Latitude',
+			type: 'number',
+			role: 'value',
+			def: 0,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	lng: {
+		type: 'state',
+		common: {
+			name: 'Longitude',
+			type: 'number',
+			role: 'value',
+			def: 0,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	street: {
+		type: 'state',
+		common: {
+			name: 'Street',
+			type: 'string',
+			role: 'text',
+			def: '',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	fullStreet: {
+		type: 'state',
+		common: {
+			name: 'Full Street',
+			type: 'string',
+			role: 'text',
+			def: '',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	houseNumber: {
+		type: 'state',
+		common: {
+			name: 'House Number',
+			type: 'string',
+			role: 'text',
+			def: '',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	postCode: {
+		type: 'state',
+		common: {
+			name: 'Post Code',
+			type: 'number',
+			role: 'value',
+			def: 0,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	place: {
+		type: 'state',
+		common: {
+			name: 'city',
+			type: 'string',
+			role: 'text',
+			def: '',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
 };
 
 export const cheapestObj: { [key: string]: any } = {
