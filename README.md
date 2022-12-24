@@ -66,8 +66,8 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
-* (xXBJXx) added detailed information for the station in the object (street, city, etc.)
+### 3.2.0 (2022-12-24)
+* (xXBJXx) added detailed information for the station in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)
 * (xXBJXx) added address information for the station in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))
 
 ### 3.1.0 (2022-11-27)
@@ -86,13 +86,6 @@ Es gibt 2 Varianten:
 * (xXBJXx) fixed messages rules and added new messages for Adapter Update
 * (xXBJXx) update dependencies
 * (xXBJXx) added lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)
-
-### 3.0.3 (2022-11-18)
-* (xXBJXx) Ukrainian translation added
-* (xXBJXx) add validation function for ID and Name Input fields
-* (xXBJXx) add copy from clipboard function for ID Input field
-* (Schmakus) added daily min/max prices to all stations and fuel types
-* (xXBJXx) update documentation because of new min/max datapoints
 
 ## License
 

@@ -1,4 +1,11 @@
 # Older changes
+## 3.0.3 (2022-11-18)
+* (xXBJXx) Ukrainian translation added
+* (xXBJXx) add validation function for ID and Name Input fields
+* (xXBJXx) add copy from clipboard function for ID Input field
+* (Schmakus) added daily min/max prices to all stations and fuel types
+* (xXBJXx) update documentation because of new min/max datapoints
+
 ## 3.0.2 (2022-11-10)
 * (xXBJXx) release new version from Tankerkoenig
 

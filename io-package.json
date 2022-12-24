@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "news": {
+      "3.2.0": {
+        "en": "added detailed information for the station in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nadded address information for the station in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "de": "Detaillierte Informationen für den Bahnhof im Objekt hinzugefügt (Straße, Stadt, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nAdressinformationen für die Station im Objekt Name hinzugefügt (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "ru": "добавлена подробная информация о станции в объекте (улица, город и т.д.) [выпуск #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nдобавлена адресная информация для станции в объекте Название (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "pt": "acrescentou informações detalhadas para a estação no objecto (rua, cidade, etc.) [edição #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\ninformações adicionais de endereço da estação no nome do objecto (Musterstraße 1, 12345 Musterstadt)",
+        "nl": "gedetailleerde informatie toegevoegd voor het station in het object (straat, stad, enz.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nadresinformatie toegevoegd voor het station in het object Naam (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "fr": "ajout d'informations détaillées sur la station dans l'objet (rue, ville, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\najout d'informations sur l'adresse de la station dans l'objet Nom (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "it": "aggiunte informazioni dettagliate per la stazione nell'oggetto (via, città, ecc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\naggiunte informazioni sull'indirizzo della stazione nell'oggetto Nome (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "es": "añadida información detallada para la estación en el objeto (calle, ciudad, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nañadida información de la dirección de la estación en el objeto Nombre (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "pl": "dodano szczegółowe informacje dla stacji w obiekcie (ulica, miasto, itd.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\ndodano informacje adresowe dla stacji w obiekcie Nazwa (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "uk": "додано детальну інформацію для станції в об'єкті (вулиця, місто і т.д.) [випуск #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nдодано адресну інформацію для станції в об'єкті Назва (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "zh-cn": "在对象中添加了车站的详细信息（街道、城市等）[issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\n在对象名称中添加了车站的地址信息（Shell (Musterstraße 1, 12345 Musterstadt)）。"
+      },
       "3.1.0": {
         "en": "removed noLog option because the adapter log output was strongly optimized\nOptimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nadd new state `cheapest_stations` for the cheapest gas station [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
         "de": "noLog-Option entfernt, da die Log-Ausgabe des Adapters stark optimiert wurde\nOptimierte Sortierung der billigsten Tankstelle [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nneuen Status `cheapest_stations` für die billigste Tankstelle hinzugefügt [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
