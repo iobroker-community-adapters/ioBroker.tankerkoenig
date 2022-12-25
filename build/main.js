@@ -103,7 +103,10 @@ class Tankerkoenig extends utils.Adapter {
                 place: result.station.place,
                 postCode: result.station.postCode,
                 lat: result.station.lat,
-                lng: result.station.lng
+                lng: result.station.lng,
+                openingTimes: result.station.openingTimes,
+                overrideOpeningTimes: result.station.overrides,
+                wholeDay: result.station.wholeDay
               };
               this.writeLog(`Details: ${JSON.stringify(details)}`, "debug");
               this.stationDetails.push(details);
@@ -376,6 +379,9 @@ class Tankerkoenig extends utils.Adapter {
               stationValue.houseNumber = stationDetailValue.houseNumber;
               stationValue.lat = stationDetailValue.lat;
               stationValue.lng = stationDetailValue.lng;
+              stationValue.openingTimes = stationDetailValue.openingTimes.length > 0 ? stationDetailValue.openingTimes : "no data";
+              stationValue.overrideOpeningTimes = stationDetailValue.overrideOpeningTimes.length > 0 ? stationDetailValue.overrideOpeningTimes : "no data";
+              stationValue.wholeDay = stationDetailValue.wholeDay;
             }
           }
         }
@@ -491,6 +497,18 @@ class Tankerkoenig extends utils.Adapter {
             val: stationValue.lng,
             ack: true
           });
+          await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+            val: stationValue.openingTimes === "no data" ? "no data" : JSON.stringify(stationValue.openingTimes),
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e5.overrideOpeningTimes`, {
+            val: stationValue.overrideOpeningTimes === "no data" ? "no data" : JSON.stringify(stationValue.overrideOpeningTimes),
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e5.wholeDay`, {
+            val: stationValue.wholeDay,
+            ack: true
+          });
         }
         if (stationValue.station === newE10[0].station) {
           this.writeLog(`write the cheapest e10 to the states`, "debug");
@@ -588,6 +606,18 @@ class Tankerkoenig extends utils.Adapter {
           });
           await this.setStateAsync(`stations.cheapest.e10.lng`, {
             val: stationValue.lng,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+            val: stationValue.openingTimes === "no data" ? "no data" : JSON.stringify(stationValue.openingTimes),
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e10.overrideOpeningTimes`, {
+            val: stationValue.overrideOpeningTimes === "no data" ? "no data" : JSON.stringify(stationValue.overrideOpeningTimes),
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e10.wholeDay`, {
+            val: stationValue.wholeDay,
             ack: true
           });
         }
@@ -689,6 +719,18 @@ class Tankerkoenig extends utils.Adapter {
             val: stationValue.lng,
             ack: true
           });
+          await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+            val: stationValue.openingTimes === "no data" ? "no data" : JSON.stringify(stationValue.openingTimes),
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.diesel.overrideOpeningTimes`, {
+            val: stationValue.overrideOpeningTimes === "no data" ? "no data" : JSON.stringify(stationValue.overrideOpeningTimes),
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.diesel.wholeDay`, {
+            val: stationValue.wholeDay,
+            ack: true
+          });
         }
         for (const [pricesKey] of Object.entries(prices)) {
           if (stationValue.station === pricesKey) {
@@ -738,6 +780,18 @@ class Tankerkoenig extends utils.Adapter {
             });
             await this.setStateAsync(`stations.${key}.lng`, {
               val: stationValue.lng,
+              ack: true
+            });
+            await this.setStateAsync(`stations.${key}.openingTimes`, {
+              val: stationValue.openingTimes === "no data" ? "no data" : JSON.stringify(stationValue.openingTimes),
+              ack: true
+            });
+            await this.setStateAsync(`stations.${key}.overrideOpeningTimes`, {
+              val: stationValue.overrideOpeningTimes === "no data" ? "no data" : JSON.stringify(stationValue.overrideOpeningTimes),
+              ack: true
+            });
+            await this.setStateAsync(`stations.${key}.wholeDay`, {
+              val: stationValue.wholeDay,
               ack: true
             });
             for (const fuelTypesKey in this.fuelTypes) {
@@ -1424,7 +1478,11 @@ class Tankerkoenig extends utils.Adapter {
             objects = await this.getObjectAsync(`stations.${stationKey}`);
             if (objects !== null && objects !== void 0) {
               const { common } = objects;
-              if (common.name !== station.stationname) {
+              if (common.name !== stationName) {
+                this.writeLog(
+                  `station name changed from ${common.name} to ${stationName}`,
+                  "debug"
+                );
                 await this.extendObjectAsync(`stations.${stationKey}`, {
                   type: "channel",
                   common: {

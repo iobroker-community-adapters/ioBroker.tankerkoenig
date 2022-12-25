@@ -66,9 +66,13 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) Added opening Times for the gas stations
+* (xXBJXx) fixed rename function
+
 ### 3.2.0 (2022-12-24)
-* (xXBJXx) added detailed information for the station in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)
-* (xXBJXx) added address information for the station in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))
+* (xXBJXx) added detailed information for the gas stations in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)
+* (xXBJXx) added address information for the gas stations in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))
 
 ### 3.1.0 (2022-11-27)
 * (xXBJXx) removed noLog option because the adapter log output was strongly optimized

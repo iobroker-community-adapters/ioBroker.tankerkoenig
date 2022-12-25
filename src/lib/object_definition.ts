@@ -65,6 +65,7 @@ export const statesObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			name: 'Latitude',
+			desc: 'Shows the latitude of the station',
 			type: 'number',
 			role: 'value',
 			def: 0,
@@ -77,6 +78,7 @@ export const statesObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			name: 'Longitude',
+			desc: 'Shows the longitude of the station',
 			type: 'number',
 			role: 'value',
 			def: 0,
@@ -89,6 +91,7 @@ export const statesObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			name: 'Street',
+			desc: 'Street of the station',
 			type: 'string',
 			role: 'text',
 			def: '',
@@ -101,6 +104,7 @@ export const statesObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			name: 'Full Street',
+			desc: 'Street + House Number',
 			type: 'string',
 			role: 'text',
 			def: '',
@@ -113,6 +117,7 @@ export const statesObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			name: 'House Number',
+			desc: 'House number of the station',
 			type: 'string',
 			role: 'text',
 			def: '',
@@ -125,6 +130,7 @@ export const statesObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			name: 'Post Code',
+			desc: 'Post Code of the station',
 			type: 'number',
 			role: 'value',
 			def: 0,
@@ -137,9 +143,49 @@ export const statesObj: { [key: string]: any } = {
 		type: 'state',
 		common: {
 			name: 'city',
+			decr: 'City of the station',
 			type: 'string',
 			role: 'text',
 			def: '',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	openingTimes: {
+		type: 'state',
+		common: {
+			name: 'Opening Times',
+			desc: 'Shows the opening times of the station',
+			type: 'string',
+			role: 'json',
+			def: 'no data',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	overrideOpeningTimes: {
+		type: 'state',
+		common: {
+			name: 'Override Opening Times',
+			desc: 'Shows whether the opening times are overridden at this station',
+			type: 'string',
+			role: 'json',
+			def: 'no data',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	wholeDay: {
+		type: 'state',
+		common: {
+			name: 'Whole Day',
+			desc: 'Shows whether the station is open 24/7',
+			type: 'boolean',
+			role: 'indicator',
+			def: false,
 			read: true,
 			write: false,
 		},

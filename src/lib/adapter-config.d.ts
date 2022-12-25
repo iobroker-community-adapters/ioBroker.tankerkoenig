@@ -30,6 +30,9 @@ declare global {
 			houseNumber?: string;
 			lat?: number;
 			lng?: number;
+			openingTimes?: any[] | string;
+			overrideOpeningTimes?: any[] | string;
+			wholeDay?: boolean;
 		}
 	}
 }
