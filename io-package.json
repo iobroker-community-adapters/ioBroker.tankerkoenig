@@ -1,20 +1,33 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "news": {
+      "3.2.1": {
+        "en": "Added opening Times for the gas stations\nRenaming function extended",
+        "de": "Öffnungszeiten für die Tankstellen hinzugefügt\nUmbenennung Funktion erweitert",
+        "ru": "Добавлены часы работы автозаправочных станций\nРасширена функция переименования",
+        "pt": "Adicionado o horário de abertura das estações de serviço\nFunção de renomeação alargada",
+        "nl": "Openingstijden voor de benzinestations toegevoegd\nHernoemingsfunctie uitgebreid",
+        "fr": "Ajout des heures d'ouverture des stations-service\nFonction de renommage étendue",
+        "it": "Aggiunti gli orari di apertura delle stazioni di servizio\nEstensione della funzione di ridenominazione",
+        "es": "Añadido el horario de apertura de las gasolineras\nAmpliada la función de cambio de nombre",
+        "pl": "Dodano godziny otwarcia dla stacji benzynowych\nRozszerzona funkcja zmiany nazwy",
+        "uk": "Додано графік роботи АЗС\nРозширено функцію перейменування",
+        "zh-cn": "增加了加油站的开放时间\n扩展了重命名功能"
+      },
       "3.2.0": {
-        "en": "added detailed information for the station in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nadded address information for the station in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "de": "Detaillierte Informationen für den Bahnhof im Objekt hinzugefügt (Straße, Stadt, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nAdressinformationen für die Station im Objekt Name hinzugefügt (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "ru": "добавлена подробная информация о станции в объекте (улица, город и т.д.) [выпуск #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nдобавлена адресная информация для станции в объекте Название (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "pt": "acrescentou informações detalhadas para a estação no objecto (rua, cidade, etc.) [edição #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\ninformações adicionais de endereço da estação no nome do objecto (Musterstraße 1, 12345 Musterstadt)",
-        "nl": "gedetailleerde informatie toegevoegd voor het station in het object (straat, stad, enz.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nadresinformatie toegevoegd voor het station in het object Naam (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "fr": "ajout d'informations détaillées sur la station dans l'objet (rue, ville, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\najout d'informations sur l'adresse de la station dans l'objet Nom (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "it": "aggiunte informazioni dettagliate per la stazione nell'oggetto (via, città, ecc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\naggiunte informazioni sull'indirizzo della stazione nell'oggetto Nome (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "es": "añadida información detallada para la estación en el objeto (calle, ciudad, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nañadida información de la dirección de la estación en el objeto Nombre (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "pl": "dodano szczegółowe informacje dla stacji w obiekcie (ulica, miasto, itd.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\ndodano informacje adresowe dla stacji w obiekcie Nazwa (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "uk": "додано детальну інформацію для станції в об'єкті (вулиця, місто і т.д.) [випуск #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\nдодано адресну інформацію для станції в об'єкті Назва (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "zh-cn": "在对象中添加了车站的详细信息（街道、城市等）[issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)\n在对象名称中添加了车站的地址信息（Shell (Musterstraße 1, 12345 Musterstadt)）。"
+        "en": "Added detailed information for the gas station in the object (street, city, etc.) Issue #98\nAddress information for the gas station in the object Name added (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "de": "Detaillierte Informationen für die Tankstelle im Objekt hinzugefügt (Straße, Ort, etc.) Ausgabe #98\nAdressinformationen für die Tankstelle im Objekt Name hinzugefügt (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "ru": "Добавлена подробная информация для автозаправочной станции в объекте (улица, город и т.д.) Выпуск #98\nДобавлена адресная информация для АЗС в объекте Название (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "pt": "Adicionada informação detalhada para a estação de serviço no objecto (rua, cidade, etc.) Edição #98\nInformações sobre o endereço da estação de serviço no objecto Nome acrescentado (Musterstraße 1, 12345 Musterstadt)",
+        "nl": "Gedetailleerde informatie toegevoegd voor het tankstation in het object (straat, stad, enz.) Issue #98\nAdresinformatie voor het tankstation in het object Naam toegevoegd (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "fr": "Ajout d'informations détaillées pour la station-service dans l'objet (rue, ville, etc.) Issue #98\nAjout d'informations sur l'adresse de la station-service dans l'objet Nom ajouté (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "it": "Aggiunte informazioni dettagliate per la stazione di servizio nell'oggetto (via, città, ecc.) Problema #98\nAggiunte informazioni sull'indirizzo della stazione di servizio nell'oggetto Nome (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "es": "Añadida información detallada de la gasolinera en el objeto (calle, ciudad, etc.) Edición nº 98\nInformación de la dirección de la gasolinera en el objeto Nombre añadido (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "pl": "Dodano szczegółowe informacje dla stacji benzynowej w obiekcie (ulica, miasto, itp.) Issue #98\nDodano informacje adresowe dla stacji benzynowej w obiekcie Nazwa dodana (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "uk": "Додана детальна інформація для АЗС в об'єкті (вулиця, місто і т.д.) Випуск #98\nДодано адресну інформацію для АЗС в об'єкті Назва (Shell (Musterstraße 1, 12345 Musterstadt))",
+        "zh-cn": "添加对象中加油站的详细信息（街道、城市等） 问题#98\n添加了对象中的加油站的地址信息 名称（壳牌（Musterstraße 1, 12345 Musterstadt））。"
       },
       "3.1.0": {
         "en": "removed noLog option because the adapter log output was strongly optimized\nOptimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nadd new state `cheapest_stations` for the cheapest gas station [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",

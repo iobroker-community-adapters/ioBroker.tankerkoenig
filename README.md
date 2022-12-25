@@ -66,9 +66,9 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.2.1 (2022-12-25)
 * (xXBJXx) Added opening Times for the gas stations
-* (xXBJXx) fixed rename function
+* (xXBJXx) Renaming function extended
 
 ### 3.2.0 (2022-12-24)
 * (xXBJXx) added detailed information for the gas stations in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)
@@ -84,12 +84,6 @@ Es gibt 2 Varianten:
 
 ### 3.0.5 (2022-11-20)
 * (xXBJXx) fixed sort bug for cheapest station
-
-### 3.0.4 (2022-11-19)
-* (xXBJXx) moved misc-data type to vehicle type
-* (xXBJXx) fixed messages rules and added new messages for Adapter Update
-* (xXBJXx) update dependencies
-* (xXBJXx) added lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)
 
 ## License
 
