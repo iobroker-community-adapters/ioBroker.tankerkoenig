@@ -1,4 +1,7 @@
 # Older changes
+## 3.0.5 (2022-11-20)
+* (xXBJXx) fixed sort bug for cheapest station
+
 ## 3.0.4 (2022-11-19)
 * (xXBJXx) moved misc-data type to vehicle type
 * (xXBJXx) fixed messages rules and added new messages for Adapter Update

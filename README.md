@@ -66,7 +66,7 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.2.2 (2022-12-26)
 * (xXBJXx) Added encryption of the API key
 * (xXBJXx) added better error messages for the data request
 * (xXBJXx) dependency update
@@ -86,9 +86,6 @@ Es gibt 2 Varianten:
 
 ### 3.0.6 (2022-11-23)
 * (xXBJXx) Added new option to adjust the text in the combined data point [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)
-
-### 3.0.5 (2022-11-20)
-* (xXBJXx) fixed sort bug for cheapest station
 
 ## License
 
