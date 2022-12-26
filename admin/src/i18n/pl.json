@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "Klucz API można uzyskać na stronie",
+  "API_Key_Label": "Klucz API Tankerkönig (36 cyfr)",
+  "API_Key_Link": "Klucz API można uzyskać na stronie",
+  "API_Key_Tooltip": "36-cyfrowy klucz API, który można otrzymać na stronie tankerkoenig.de",
   "StationName": "Nazwa stacji",
   "activate": "Włączone",
   "adapter_log_settings": "Ustawienia wyjścia dziennika adaptera",
@@ -43,9 +45,7 @@
   "stationFinder": "Wyszukiwarka stacji benzynowych",
   "station_id": "Identyfikator stacji",
   "stationsTab": "Stacje",
-  "tankerkoenig API": "tankerkoenig Klucz API (36 cyfr)",
   "tooltipAddStation": "Otwiera okno umożliwiające dodanie nowej stacji.",
-  "tooltipApiKey": "36-cyfrowy klucz API, który można uzyskać na stronie tankerkoenig.de.",
   "tooltipStationID": "Identyfikator stacji można znaleźć na stronie tankerkoenig.de lub na dole mapy.",
   "tooltipStationName": "Nazwę stacji można nadać dowolnie (maks. 20 znaków). Zaleca się wpisanie nazwy stacji benzynowej, np. SHELL. Nazwa ta będzie używana jako nazwa punktów danych. ",
   "update": "Aktualizacja",

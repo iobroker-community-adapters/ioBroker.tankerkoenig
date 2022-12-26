@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "U kunt de API sleutel krijgen op de pagina",
+  "API_Key_Label": "Tankerkönig API sleutel (36 cijfers)",
+  "API_Key_Link": "U kunt de API sleutel krijgen op de pagina",
+  "API_Key_Tooltip": "Een API-sleutel van 36 cijfers, die u kunt krijgen op de site tankerkoenig.de.",
   "StationName": "Naam station",
   "activate": "Ingeschakeld",
   "adapter_log_settings": "Instellingen uitvoeradapterlog",
@@ -43,9 +45,7 @@
   "stationFinder": "Benzinestation zoeker",
   "station_id": "Station ID",
   "stationsTab": "Stations",
-  "tankerkoenig API": "tankerkoenig API sleutel (36 cijfers)",
   "tooltipAddStation": "Opent een venster om een nieuw station toe te voegen.",
-  "tooltipApiKey": "Een 36-cijferige API-sleutel, die kan worden verkregen op de website tankerkoenig.de.",
   "tooltipStationID": "Station ID is te vinden op de tankerkoenig.de pagina of onderaan de kaart.",
   "tooltipStationName": "Naam van het station kunt u vrij toekennen (MAX. 20 tekens). Het is aanbevolen de naam van het tankstation in te voeren, bv. SHELL. Deze naam zal worden gebruikt als naam voor de datapunten. ",
   "update": "Update",

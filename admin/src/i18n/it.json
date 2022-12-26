@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "È possibile ottenere la chiave API alla pagina",
+  "API_Key_Label": "Chiave API Tankerkönig (36 cifre)",
+  "API_Key_Link": "È possibile ottenere la chiave API alla pagina",
+  "API_Key_Tooltip": "Una chiave API di 36 cifre, che si può ottenere sul sito tankerkoenig.de",
   "StationName": "Nome della stazione",
   "activate": "Acceso",
   "adapter_log_settings": "Impostazioni di uscita del registro dell'adattatore",
@@ -43,9 +45,7 @@
   "stationFinder": "Trova distributore di benzina",
   "station_id": "ID stazione",
   "stationsTab": "Stazioni",
-  "tankerkoenig API": "chiave API di tankerkoenig (36 cifre)",
   "tooltipAddStation": "Apre una finestra per aggiungere una nuova stazione.",
-  "tooltipApiKey": "Una chiave API a 36 cifre, che può essere ottenuta dal sito web tankerkoenig.de.",
   "tooltipStationID": "L'ID della stazione si trova sulla pagina tankerkoenig.de o in fondo alla mappa.",
   "tooltipStationName": "Il nome della stazione può essere assegnato liberamente (MAX. 20 caratteri). Si consiglia di inserire il nome della stazione di servizio, ad esempio SHELL. Questo nome verrà utilizzato come nome per i punti dati. ",
   "update": "Aggiornamento",

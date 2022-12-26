@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "你可以在页面上获得API密钥",
+  "API_Key_Label": "Tankerkönig API密钥（36位）。",
+  "API_Key_Link": "你可以在页面上获得API密钥",
+  "API_Key_Tooltip": "一个36位数的API密钥，你可以在tankerkoenig.de网站上获得。",
   "StationName": "车站名称",
   "activate": "开启了",
   "adapter_log_settings": "适配器日志输出设置",
@@ -43,9 +45,7 @@
   "stationFinder": "加油站搜索器",
   "station_id": "车站ID",
   "stationsTab": "站台",
-  "tankerkoenig API": "tankerkoenig API密钥（36位）。",
   "tooltipAddStation": "打开一个窗口，添加一个新站。",
-  "tooltipApiKey": "一个36位数的API密钥，可从tankerkoenig.de网站获得。",
   "tooltipStationID": "车站ID可以在tankerkoenig.de页面或地图底部找到。",
   "tooltipStationName": "加油站名称，你可以自由指定（最大20个字符）。 建议输入加油站的名称，如SHELL。 这个名称将被用作数据点的名称。 ",
   "update": "更新",

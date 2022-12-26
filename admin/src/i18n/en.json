@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "You can get the API key on the page",
+  "API_Key_Label": "tankerkoenig API key (36 digits)",
+  "API_Key_Link": "You can get the API key on the page",
+  "API_Key_Tooltip": "A 36-digit API key, which you can get on the tankerkoenig.de site",
   "StationName": "Station Name",
   "activate": "Switched on",
   "adapter_log_settings": "Adapter Log output Settings",
@@ -43,9 +45,7 @@
   "stationFinder": "Gas station finder",
   "station_id": "Station ID",
   "stationsTab": "Stations",
-  "tankerkoenig API": "tankerkoenig API key (36 digits)",
   "tooltipAddStation": "Opens a window to add a new station.",
-  "tooltipApiKey": "A 36-digit API key, which you can get on the tankerkoenig.de site",
   "tooltipStationID": "Stations ID can be found on the page of tankerkoenig.de or below on the map",
   "tooltipStationName": "Station name you can freely assign (MAX. 20 characters). It is recommended to enter the name of the gas station, e.g. SHELL. This name will be used as name for the data points. ",
   "update": "Update",

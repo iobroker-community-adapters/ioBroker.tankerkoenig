@@ -34,15 +34,15 @@ class Tankerkoenig extends utils.Adapter {
 		this.on('unload', this.onUnload.bind(this));
 		// this.on('message', this.onMessage.bind(this));
 
-		// -----------------  Global variables -----------------
-		this.fuelTypes = ['e5', 'e10', 'diesel'];
-		this.sync_milliseconds = 5 * 60 * 1000; // 5min
-		this.refreshStatus = false;
-
 		// -----------------  Timeout variables -----------------
 		this.requestTimeout = null;
 		this.refreshTimeout = null;
 		this.refreshStatusTimeout = null;
+
+		// -----------------  Global variables -----------------
+		this.fuelTypes = ['e5', 'e10', 'diesel'];
+		this.sync_milliseconds = 5 * 60 * 1000; // 5min
+		this.refreshStatus = false;
 		this.stationDetails = [];
 	}
 
@@ -88,7 +88,8 @@ class Tankerkoenig extends utils.Adapter {
 		this.sync_milliseconds += Math.floor(Math.random() * 100);
 
 		// check if api key is set and Station is set
-		if (this.config.apikey.length === 36) {
+
+		if (this.decrypt(this.config.apikey).length === 36) {
 			if (this.config.station.length > 0) {
 				await this.requestDetails();
 				await this.createAllStates(this.config.station);
@@ -101,6 +102,9 @@ class Tankerkoenig extends utils.Adapter {
 		}
 	}
 
+	/**
+	 * @description request details of the station from tankerkoenig api
+	 */
 	private async requestDetails(): Promise<void> {
 		try {
 			this.writeLog(`start Requesting station details`, 'debug');
@@ -109,10 +113,12 @@ class Tankerkoenig extends utils.Adapter {
 			for (const stationKey in station) {
 				if (Object.prototype.hasOwnProperty.call(station, stationKey)) {
 					const stationId = station[stationKey];
-					const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${stationId.station}&apikey=${this.config.apikey}`;
+					const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${
+						stationId.station
+					}&apikey=${this.decrypt(this.config.apikey)}`;
 					const config = {
 						headers: {
-							'User-Agent': `${this.name} ${this.version}`,
+							'User-Agent': `${this.name} / ${this.version}`,
 							'Accept-Encoding': 'identity',
 							Accept: 'application/json',
 						},
@@ -142,7 +148,53 @@ class Tankerkoenig extends utils.Adapter {
 				}
 			}
 		} catch (error) {
-			this.writeLog(`[ requestDetails ] error: ${error} stack: ${error.stack}`, 'error');
+			if (error.response) {
+				if (error.response.status === 400) {
+					this.writeLog(
+						`[ requestDetails ${axios.VERSION} ] >> Bad request << error: ${error.response.data.message}`,
+						'error',
+					);
+					console.log(`Bad request`);
+				} else if (error.response.status === 401) {
+					this.writeLog(
+						`[ requestDetails ${axios.VERSION} ] >> Unauthorized << error: ${error.response.data.message}`,
+						'error',
+					);
+					console.log(`Unauthorized`);
+				} else if (error.response.status === 500) {
+					console.log(`Internal server error`);
+					this.writeLog(
+						`[ requestDetails ${axios.VERSION} ] >> Internal server error << error: ${error.response.data.message}`,
+						'error',
+					);
+				} else if (error.response.status === 502) {
+					console.log(`Bad gateway`);
+					this.writeLog(
+						`[ requestDetails ${axios.VERSION} ] >> Bad gateway << error: ${error.response.data.message}`,
+						'error',
+					);
+				} else if (error.response.status === 503) {
+					console.log(`Service unavailable`);
+					this.writeLog(
+						`[ requestDetails ${axios.VERSION} ] >> Service unavailable << error: ${error.response.data.message}`,
+						'error',
+					);
+				} else if (error.response.status === 504) {
+					console.log(`Gateway timeout`);
+					this.writeLog(
+						`[ requestDetails ${axios.VERSION} ] >> Gateway timeout << error: ${error.response.data.message}`,
+						'error',
+					);
+				} else {
+					this.writeLog(`error.response: ${JSON.stringify(error.response)}`, 'error');
+					console.log(`error.response: ${JSON.stringify(error.response)}`);
+				}
+			} else {
+				this.writeLog(
+					`[ requestDetails ${axios.VERSION} ] error: ${error} stack: ${error.stack}`,
+					'error',
+				);
+			}
 		}
 	}
 
@@ -157,13 +209,13 @@ class Tankerkoenig extends utils.Adapter {
 			// create the url for the request
 			const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station
 				.map((station) => station.station)
-				.join(',')}&apikey=${this.config.apikey}`; // API key is included in the configuration Demo 00000000-0000-0000-0000-000000000002
+				.join(',')}&apikey=${this.decrypt(this.config.apikey)}`; // API key is included in the configuration Demo 00000000-0000-0000-0000-000000000002
 
 			// request data from tankerkoenig
 			await axios
 				.get(url, {
 					headers: {
-						'User-Agent': `${this.name} ${this.version}`,
+						'User-Agent': `${this.name} / ${this.version}`,
 						'Accept-Encoding': 'identity',
 						Accept: 'application/json',
 					},
@@ -206,7 +258,54 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				})
 				.catch(async (error) => {
-					this.writeLog(`Error: ${error.message} >>> Stack: ${error.stack}`, 'error');
+					if (error.response) {
+						if (error.response.status === 400) {
+							this.writeLog(
+								`[ requestData ${axios.VERSION} ] >> Bad request << error: ${error.response.data.message}`,
+								'error',
+							);
+							console.log(`Bad request`);
+						} else if (error.response.status === 401) {
+							this.writeLog(
+								`[ requestData ${axios.VERSION} ] >> Unauthorized << error: ${error.response.data.message}`,
+								'error',
+							);
+							console.log(`Unauthorized`);
+						} else if (error.response.status === 500) {
+							console.log(`Internal server error`);
+							this.writeLog(
+								`[ requestData ${axios.VERSION} ] >> Internal server error << error: ${error.response.data.message}`,
+								'error',
+							);
+						} else if (error.response.status === 502) {
+							console.log(`Bad gateway`);
+							this.writeLog(
+								`[ requestData ${axios.VERSION} ] >> Bad gateway << error: ${error.response.data.message}`,
+								'error',
+							);
+						} else if (error.response.status === 503) {
+							console.log(`Service unavailable`);
+							this.writeLog(
+								`[ requestData ${axios.VERSION} ] >> Service unavailable << error: ${error.response.data.message}`,
+								'error',
+							);
+						} else if (error.response.status === 504) {
+							console.log(`Gateway timeout`);
+							this.writeLog(
+								`[ requestData ${axios.VERSION} ] >> Gateway timeout << error: ${error.response.data.message}`,
+								'error',
+							);
+						} else {
+							this.writeLog(`error.response: ${JSON.stringify(error.response)}`, 'error');
+							console.log(`error.response: ${JSON.stringify(error.response)}`);
+						}
+					} else {
+						this.writeLog(
+							`[ requestData ${axios.VERSION} ] Error Code ${error.code} Error: ${error.message} >>> Stack: ${error.stack}`,
+							'error',
+						);
+					}
+
 					await this.setStateAsync(`stations.adapterStatus`, {
 						val: 'request Error',
 						ack: true,
@@ -226,7 +325,7 @@ class Tankerkoenig extends utils.Adapter {
 				await this.requestData();
 			}, this.sync_milliseconds);
 		} catch (error) {
-			this.writeLog(`requestData error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(`[ requestData ${axios.VERSION} ] error: ${error} stack: ${error.stack}`, 'error');
 		}
 	}
 
@@ -1693,19 +1792,6 @@ class Tankerkoenig extends utils.Adapter {
 			if (typeof price === 'boolean') {
 				price = 0;
 			}
-			/** old version still leave in case something is wrong
-			 * this.writeLog(`price: ${price}`, 'debug');
-			 * let temp = price * 100; // 100x price now with one decimal place
-			 * const temp2 = price * 1000; // 1000x price without decimal place
-			 * temp = Math.floor(temp); // Decimal place (.x) is truncated
-			 * temp = temp / 100; // two decimal places remain
-			 * const price_short = temp.toFixed(2); // Output price with 2 decimal places (truncated)
-			 * const price_3rd_digit = temp2 % 10; // Determine third decimal place individually
-			 * return {
-			 * 	priceshort: price_short, // als String wg. Nullen z.B. 1.10 statt 1.1
-			 * 	price3rd: price_3rd_digit,
-			 * };
-			 */
 
 			// new cutPrice version Will still be tested
 			this.writeLog(`price: ${price}`, 'debug');

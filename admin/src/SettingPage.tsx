@@ -13,6 +13,7 @@ import { Logo } from 'iobroker-react';
 import { VisCombinedOptions } from './component/VisCombinedOptions';
 
 interface SettingPageProps {
+	secret: string;
 	onChange: (key: keyof ioBroker.AdapterConfig, value: any) => void;
 	settings: ioBroker.AdapterConfig;
 }
@@ -29,25 +30,25 @@ function TabPanel(props: TabPanelProps) {
 		<div
 			role="tabpanel"
 			hidden={value !== index}
-			id={`simple-tabpanel-${index}`}
-			aria-labelledby={`simple-tab-${index}`}
+			id={`tankerkoenig-tabpanel-${index}`}
+			aria-labelledby={`tankerkoenig-tab-${index}`}
 			{...other}
 		>
-			{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+			{value === index && <Box sx={{ p: 4, mt: '115px' }}>{children}</Box>}
 		</div>
 	);
 }
 
 function a11yProps(index: number) {
 	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
+		id: `tankerkoenig-tab-${index}`,
+		'aria-controls': `tankerkoenig-tabpanel-${index}`,
 	};
 }
 
 let newRow: any = [];
 
-export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }): JSX.Element => {
+export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, secret }): JSX.Element => {
 	const { translate: _ } = useI18n();
 	const [value, setValue] = React.useState(0);
 	const [open, setOpen] = useState(false);
@@ -117,34 +118,59 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings }):
 		<React.Fragment>
 			<Box
 				sx={{
-					borderBottom: 1,
-					borderColor: 'divider',
-					bgcolor: 'background.paper',
-					marginTop: '-20px',
+					width: '100%',
+					position: 'fixed',
+					zIndex: 999,
+					marginTop: '0',
+					paddingRight: '70px',
 				}}
 			>
-				<Tabs
-					value={value}
-					indicatorColor="secondary"
-					textColor="inherit"
-					variant="fullWidth"
-					scrollButtons="auto"
-					allowScrollButtonsMobile
-					onChange={handleChange}
+				<Box
+					sx={{
+						borderBottom: 1,
+						borderColor: 'divider',
+						bgcolor: 'background.paper',
+						marginTop: '-20px',
+					}}
 				>
-					<Tab label={_('settingsTab')} {...a11yProps(0)} />
-					<Tab label={_('stationsTab')} {...a11yProps(1)} />
-				</Tabs>
+					<Tabs
+						value={value}
+						indicatorColor="secondary"
+						textColor="inherit"
+						variant="fullWidth"
+						scrollButtons="auto"
+						allowScrollButtonsMobile
+						onChange={handleChange}
+					>
+						<Tab label={_('settingsTab')} {...a11yProps(0)} />
+						<Tab label={_('stationsTab')} {...a11yProps(1)} />
+					</Tabs>
+				</Box>
+				<Box
+					sx={{
+						bgcolor: 'background.paper',
+					}}
+				>
+					<Logo classes={{ logo: 'logo' }} />
+				</Box>
 			</Box>
-			<Logo classes={{ logo: 'logo' }} />
+			{/*<Logo classes={{ logo: 'logo' }} />*/}
 			<TabPanel value={value} index={0}>
-				<ApiKey settings={settings} onChange={(key, value) => onChange(key, value)} />
+				{/*<Box sx={{ width: '100%', padding: '0 20px 0 20px' }}>*/}
+				<React.StrictMode>
+					<ApiKey
+						secret={secret}
+						settings={settings}
+						onChange={(key, value) => onChange(key, value)}
+					/>
+				</React.StrictMode>
 				<Spacer text={'spacerInterval'} />
 				<AdapterInterval onChange={onChange} settings={settings} />
 				<Spacer text={'combined_settings'} />
 				<VisCombinedOptions onChange={onChange} settings={settings} />
 				<Spacer text={'price_settings'} />
 				<PriceSettings onChange={onChange} settings={settings} />
+				{/*</Box>*/}
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<Grid

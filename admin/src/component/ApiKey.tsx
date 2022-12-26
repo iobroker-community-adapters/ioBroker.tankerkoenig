@@ -1,44 +1,40 @@
 /**
  * Created by alex-issi on 04.06.22
  */
-import { FormControl, Link, TextField, Tooltip, Typography } from '@mui/material';
-import { useI18n } from 'iobroker-react/hooks';
-import React, { useEffect, useState } from 'react';
+import { Link, Typography } from '@mui/material';
+import { useGlobals, useI18n, useIoBrokerObject } from 'iobroker-react/hooks';
+import React, { useEffect, useMemo, useState } from 'react';
+import { PasswordInput } from 'iobroker-react';
+import { decrypt, encrypt } from 'iobroker-react/lib/shared/tools';
 
 export interface ApiKeyProps {
+	secret: string;
 	settings: ioBroker.AdapterConfig;
 	onChange: (key: keyof ioBroker.AdapterConfig, value: any) => void;
-	//props
 }
 
-const max = 36;
 const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
 
-export const ApiKey: React.FC<ApiKeyProps> = ({ settings, onChange }): JSX.Element => {
-	const { translate: _ } = useI18n();
+export const ApiKey: React.FC<ApiKeyProps> = ({ secret, settings, onChange }): JSX.Element => {
+	const { translate: t } = useI18n();
+	const { namespace } = useGlobals();
+	const [instanceObj, , setInstanceObj] = useIoBrokerObject(`system.adapter.${namespace}`);
 	const [apiKey, setApiKey] = useState(settings.apikey);
 	const [error, setError] = useState(true);
 	const [valid, setValid] = useState(false);
 
-	const handleChange = (event: { target: { value: React.SetStateAction<string> } }) => {
-		setApiKey(event.target.value);
-	};
-
-	const handlePaste = (event: React.ClipboardEvent<HTMLDivElement>) => {
-		const apiKey = event.clipboardData.getData('text');
-		if (apiKey.length > max) {
-			setApiKey(apiKey.substring(0, max));
-		} else {
-			setApiKey(apiKey);
-		}
+	const handleChange = (value: string) => {
+		setApiKey(value);
 	};
 
 	const handleValidate = (value: string) => {
 		if (value) {
 			if (value.match(pattern)) {
-				setValid(true);
-				setError(false);
-				onChange('apikey', value);
+				if (secret) {
+					setValid(true);
+					setError(false);
+					onChange('apikey', encrypt(secret, value));
+				}
 			} else {
 				setValid(false);
 				setError(true);
@@ -52,51 +48,84 @@ export const ApiKey: React.FC<ApiKeyProps> = ({ settings, onChange }): JSX.Eleme
 		}
 	};
 
+	/*
+	 * added in Version 3.2.2
+	 */
+	const encryptOldApiKey = async () => {
+		if (secret) {
+			console.log('API key is not encrypted');
+			console.log('Encryption is started');
+			if (instanceObj) {
+				const newSettings: Record<string, any> = { ...instanceObj.native };
+				setApiKey(settings.apikey);
+				newSettings.apikey = encrypt(secret, newSettings.apikey);
+				const newInstanceObj = {
+					...instanceObj,
+					native: newSettings,
+				};
+				console.log('writing new settings');
+				await setInstanceObj(newInstanceObj);
+				console.log('API key is encrypted');
+			}
+		}
+	};
+
+	useMemo(() => {
+		if (secret) {
+			setApiKey(decrypt(secret, apiKey));
+		}
+	}, [secret]);
+
 	useEffect(() => {
+		if (settings.apikey && settings.apikey.match(pattern)) {
+			encryptOldApiKey();
+		}
 		handleValidate(apiKey);
 	}, [apiKey]);
 
 	return (
 		<React.Fragment>
-			<Tooltip
-				title={_('tooltipApiKey')}
-				arrow
-				placement={'right'}
-				enterNextDelay={500}
-				enterDelay={500}
-			>
-				<FormControl error={error} color={valid ? 'success' : 'error'} variant="standard">
-					<TextField
-						error={error}
-						color={valid ? 'success' : 'error'}
-						value={apiKey}
-						id="apiKey-input"
-						label={_('tankerkoenig API')}
-						variant="standard"
-						onPaste={handlePaste}
-						onChange={handleChange}
-						helperText={error ? _('wrong') : _('good')}
-						placeholder={'ab345678-ab34-ab34-ab34-ab3456789012'}
-						inputProps={{ maxLength: 36 }}
-						InputProps={{
-							style: {
-								fontSize: '1.7rem',
-							},
-						}}
-						sx={{
-							width: '40ch',
-							fontSize: '1.7rem',
-						}}
-					/>
-				</FormControl>
-			</Tooltip>
+			<PasswordInput
+				label={t('API_Key_Label')}
+				variant={'standard'}
+				value={apiKey}
+				onChange={(value) => {
+					handleChange(value);
+				}}
+				error={error}
+				placeholder={'ab345678-ab34-ab34-ab34-ab3456789012'}
+				helperText={error ? t('wrong') : t('good')}
+				colors={{
+					color: valid ? 'success' : 'error',
+				}}
+				sx={{
+					input: {
+						width: '40ch',
+						fontSize: 'x-large',
+						textAlignLast: 'center',
+					},
+					inputLabel: {
+						fontSize: 'large',
+					},
+				}}
+				inputProps={{
+					maxLength: 36,
+				}}
+				tooltip={{
+					title: t('API_Key_Tooltip'),
+					placement: 'top',
+					arrow: true,
+					enterDelay: 200,
+					enterNextDelay: 200,
+				}}
+			/>
 			<Typography
 				variant="body2"
 				sx={{
 					fontSize: '1.3rem',
 				}}
 			>
-				{_('APIKeyLink')}{' '}
+				{t('API_Key_Link')}{' '}
 				<Link href="https://creativecommons.tankerkoenig.de/#register" target="_blank">
 					Tankerkönig.de
 				</Link>

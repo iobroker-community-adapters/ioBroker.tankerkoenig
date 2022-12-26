@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "Vous pouvez obtenir la clé API sur la page",
+  "API_Key_Label": "Clé API Tankerkönig (36 chiffres)",
+  "API_Key_Link": "Vous pouvez obtenir la clé API sur la page",
+  "API_Key_Tooltip": "Une clé API à 36 chiffres, que vous pouvez obtenir sur le site tankerkoenig.de",
   "StationName": "Nom de la station",
   "activate": "Allumé",
   "adapter_log_settings": "Paramètres de sortie du journal de l'adaptateur",
@@ -43,9 +45,7 @@
   "stationFinder": "Recherche de stations-service",
   "station_id": "ID de la station",
   "stationsTab": "Stations",
-  "tankerkoenig API": "tankerkoenig Clé API (36 chiffres)",
   "tooltipAddStation": "Ouvre une fenêtre pour ajouter une nouvelle station.",
-  "tooltipApiKey": "Une clé API de 36 caractères, que l'on peut obtenir sur le site tankerkoenig.de",
   "tooltipStationID": "Vous pouvez trouver l'ID de la station sur le site tankerkoenig.de ou sur la carte ci-dessous.",
   "tooltipStationName": "Nom de la station que vous pouvez attribuer librement (MAX. 20 caractères). Il est recommandé d'entrer le nom de la station-service, par exemple SHELL. Ce nom sera utilisé comme nom pour les points de données. ",
   "update": "Mise à jour",

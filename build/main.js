@@ -29,12 +29,12 @@ class Tankerkoenig extends utils.Adapter {
     this.on("ready", this.onReady.bind(this));
     this.on("stateChange", this.onStateChange.bind(this));
     this.on("unload", this.onUnload.bind(this));
-    this.fuelTypes = ["e5", "e10", "diesel"];
-    this.sync_milliseconds = 5 * 60 * 1e3;
-    this.refreshStatus = false;
     this.requestTimeout = null;
     this.refreshTimeout = null;
     this.refreshStatusTimeout = null;
+    this.fuelTypes = ["e5", "e10", "diesel"];
+    this.sync_milliseconds = 5 * 60 * 1e3;
+    this.refreshStatus = false;
     this.stationDetails = [];
   }
   async onReady() {
@@ -62,7 +62,7 @@ class Tankerkoenig extends utils.Adapter {
       "info"
     );
     this.sync_milliseconds += Math.floor(Math.random() * 100);
-    if (this.config.apikey.length === 36) {
+    if (this.decrypt(this.config.apikey).length === 36) {
       if (this.config.station.length > 0) {
         await this.requestDetails();
         await this.createAllStates(this.config.station);
@@ -82,10 +82,10 @@ class Tankerkoenig extends utils.Adapter {
       for (const stationKey in station) {
         if (Object.prototype.hasOwnProperty.call(station, stationKey)) {
           const stationId = station[stationKey];
-          const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${stationId.station}&apikey=${this.config.apikey}`;
+          const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${stationId.station}&apikey=${this.decrypt(this.config.apikey)}`;
           const config = {
             headers: {
-              "User-Agent": `${this.name} ${this.version}`,
+              "User-Agent": `${this.name} / ${this.version}`,
               "Accept-Encoding": "identity",
               Accept: "application/json"
             }
@@ -115,7 +115,53 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
     } catch (error) {
-      this.writeLog(`[ requestDetails ] error: ${error} stack: ${error.stack}`, "error");
+      if (error.response) {
+        if (error.response.status === 400) {
+          this.writeLog(
+            `[ requestDetails ${import_axios.default.VERSION} ] >> Bad request << error: ${error.response.data.message}`,
+            "error"
+          );
+          console.log(`Bad request`);
+        } else if (error.response.status === 401) {
+          this.writeLog(
+            `[ requestDetails ${import_axios.default.VERSION} ] >> Unauthorized << error: ${error.response.data.message}`,
+            "error"
+          );
+          console.log(`Unauthorized`);
+        } else if (error.response.status === 500) {
+          console.log(`Internal server error`);
+          this.writeLog(
+            `[ requestDetails ${import_axios.default.VERSION} ] >> Internal server error << error: ${error.response.data.message}`,
+            "error"
+          );
+        } else if (error.response.status === 502) {
+          console.log(`Bad gateway`);
+          this.writeLog(
+            `[ requestDetails ${import_axios.default.VERSION} ] >> Bad gateway << error: ${error.response.data.message}`,
+            "error"
+          );
+        } else if (error.response.status === 503) {
+          console.log(`Service unavailable`);
+          this.writeLog(
+            `[ requestDetails ${import_axios.default.VERSION} ] >> Service unavailable << error: ${error.response.data.message}`,
+            "error"
+          );
+        } else if (error.response.status === 504) {
+          console.log(`Gateway timeout`);
+          this.writeLog(
+            `[ requestDetails ${import_axios.default.VERSION} ] >> Gateway timeout << error: ${error.response.data.message}`,
+            "error"
+          );
+        } else {
+          this.writeLog(`error.response: ${JSON.stringify(error.response)}`, "error");
+          console.log(`error.response: ${JSON.stringify(error.response)}`);
+        }
+      } else {
+        this.writeLog(
+          `[ requestDetails ${import_axios.default.VERSION} ] error: ${error} stack: ${error.stack}`,
+          "error"
+        );
+      }
     }
   }
   async requestData() {
@@ -123,10 +169,10 @@ class Tankerkoenig extends utils.Adapter {
       if (this.requestTimeout)
         clearTimeout(this.requestTimeout);
       this.writeLog(`request start now`, "debug");
-      const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station.map((station) => station.station).join(",")}&apikey=${this.config.apikey}`;
+      const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station.map((station) => station.station).join(",")}&apikey=${this.decrypt(this.config.apikey)}`;
       await import_axios.default.get(url, {
         headers: {
-          "User-Agent": `${this.name} ${this.version}`,
+          "User-Agent": `${this.name} / ${this.version}`,
           "Accept-Encoding": "identity",
           Accept: "application/json"
         }
@@ -158,7 +204,53 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }).catch(async (error) => {
-        this.writeLog(`Error: ${error.message} >>> Stack: ${error.stack}`, "error");
+        if (error.response) {
+          if (error.response.status === 400) {
+            this.writeLog(
+              `[ requestData ${import_axios.default.VERSION} ] >> Bad request << error: ${error.response.data.message}`,
+              "error"
+            );
+            console.log(`Bad request`);
+          } else if (error.response.status === 401) {
+            this.writeLog(
+              `[ requestData ${import_axios.default.VERSION} ] >> Unauthorized << error: ${error.response.data.message}`,
+              "error"
+            );
+            console.log(`Unauthorized`);
+          } else if (error.response.status === 500) {
+            console.log(`Internal server error`);
+            this.writeLog(
+              `[ requestData ${import_axios.default.VERSION} ] >> Internal server error << error: ${error.response.data.message}`,
+              "error"
+            );
+          } else if (error.response.status === 502) {
+            console.log(`Bad gateway`);
+            this.writeLog(
+              `[ requestData ${import_axios.default.VERSION} ] >> Bad gateway << error: ${error.response.data.message}`,
+              "error"
+            );
+          } else if (error.response.status === 503) {
+            console.log(`Service unavailable`);
+            this.writeLog(
+              `[ requestData ${import_axios.default.VERSION} ] >> Service unavailable << error: ${error.response.data.message}`,
+              "error"
+            );
+          } else if (error.response.status === 504) {
+            console.log(`Gateway timeout`);
+            this.writeLog(
+              `[ requestData ${import_axios.default.VERSION} ] >> Gateway timeout << error: ${error.response.data.message}`,
+              "error"
+            );
+          } else {
+            this.writeLog(`error.response: ${JSON.stringify(error.response)}`, "error");
+            console.log(`error.response: ${JSON.stringify(error.response)}`);
+          }
+        } else {
+          this.writeLog(
+            `[ requestData ${import_axios.default.VERSION} ] Error Code ${error.code} Error: ${error.message} >>> Stack: ${error.stack}`,
+            "error"
+          );
+        }
         await this.setStateAsync(`stations.adapterStatus`, {
           val: "request Error",
           ack: true
@@ -175,7 +267,7 @@ class Tankerkoenig extends utils.Adapter {
         await this.requestData();
       }, this.sync_milliseconds);
     } catch (error) {
-      this.writeLog(`requestData error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(`[ requestData ${import_axios.default.VERSION} ] error: ${error} stack: ${error.stack}`, "error");
     }
   }
   async setDiscount(price) {

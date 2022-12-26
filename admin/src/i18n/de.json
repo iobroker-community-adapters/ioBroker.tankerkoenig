@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "Sie erhalten den API Schlüssel auf der Seite",
+  "API_Key_Label": "Tankerkönig API Schlüssel (36 Stellen)",
+  "API_Key_Link": "Sie erhalten den API Schlüssel auf der Seite",
+  "API_Key_Tooltip": "Einen 36-stelligen API-Schlüssel, den Sie auf der Seite tankerkoenig.de erhalten können",
   "StationName": "Name der Station",
   "activate": "Eingeschaltet",
   "adapter_log_settings": "Adapter Log-Ausgabe Einstellungen",
@@ -43,9 +45,7 @@
   "stationFinder": "Tankstellenfinder",
   "station_id": "Station ID",
   "stationsTab": "Stationen",
-  "tankerkoenig API": "Tankerkönig API-Schlüssel (36 Ziffern)",
   "tooltipAddStation": "Öffnet ein Fenster, um eine neue Station hinzuzufügen.",
-  "tooltipApiKey": "Ein 36-stelliger API Key, den man auf der Seite tankerkoenig.de bekommen können",
   "tooltipStationID": "Stations ID kann man auf der Seite von tankerkoenig.de finden oder unten auf der Karte",
   "tooltipStationName": "Stationsname könnt ihr frei vergeben (MAX. 20 Zeichen). Empfohlen wird, den Namen der Tankstelle anzugeben, z.B. SHELL. Dieser Name wird bei den Datenpunkten als Name verwendet. ",
   "update": "Aktualisieren",

@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "Отримати ключ API можна на сторінці",
+  "API_Key_Label": "Ключ API Tankerkönig (36 цифр)",
+  "API_Key_Link": "Отримати ключ API можна на сторінці",
+  "API_Key_Tooltip": "36-значний ключ API, який можна отримати на сайті tankerkoenig.de",
   "StationName": "Назва станції",
   "activate": "Увімкнено",
   "adapter_log_settings": "Адаптер виводу журналу Налаштування виводу журналу",
@@ -43,9 +45,7 @@
   "stationFinder": "Пошук АЗС",
   "station_id": "Ідентифікатор станції",
   "stationsTab": "Станції",
-  "tankerkoenig API": "ключ API tankerkoenig (36 цифр)",
   "tooltipAddStation": "Відкриває вікно для додавання нової станції.",
-  "tooltipApiKey": "36-значний ключ API, який можна отримати на сайті tankerkoenig.de",
   "tooltipStationID": "Ідентифікатор станції можна знайти на сторінці tankerkoenig.de або нижче на карті",
   "tooltipStationName": "Назва АЗС може бути довільною (макс. 20 символів). Рекомендується вводити назву АЗС, наприклад, SHELL. Ця назва буде використовуватися як назва для точок даних. ",
   "update": "Оновлення",

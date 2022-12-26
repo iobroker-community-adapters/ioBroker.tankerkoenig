@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "Puede obtener la clave API en la página",
+  "API_Key_Label": "Clave API de Tankerkönig (36 dígitos)",
+  "API_Key_Link": "Puede obtener la clave API en la página",
+  "API_Key_Tooltip": "Una clave API de 36 dígitos, que puede obtener en el sitio tankerkoenig.de",
   "StationName": "Nombre de la estación",
   "activate": "Encendido",
   "adapter_log_settings": "Ajustes de la salida del registro del adaptador",
@@ -43,9 +45,7 @@
   "stationFinder": "Buscador de gasolineras",
   "station_id": "Identificación de la estación",
   "stationsTab": "Estaciones",
-  "tankerkoenig API": "clave API de tankerkoenig (36 dígitos)",
   "tooltipAddStation": "Abre una ventana para añadir una nueva estación.",
-  "tooltipApiKey": "Una clave API de 36 dígitos, que puede obtenerse en el sitio web tankerkoenig.de.",
   "tooltipStationID": "La identificación de la estación se puede encontrar en la página de tankerkoenig.de o en la parte inferior del mapa.",
   "tooltipStationName": "Nombre de la estación que puede asignar libremente (MÁX. 20 caracteres). Se recomienda introducir el nombre de la estación de servicio, por ejemplo SHELL. Este nombre se utilizará como nombre para los puntos de datos. ",
   "update": "Actualiza",

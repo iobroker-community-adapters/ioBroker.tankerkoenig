@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "Pode obter a chave API na página",
+  "API_Key_Label": "Chave API Tankerkönig (36 dígitos)",
+  "API_Key_Link": "Pode obter a chave API na página",
+  "API_Key_Tooltip": "Uma chave API de 36 dígitos, que pode obter no site tankerkoenig.de",
   "StationName": "Nome da estação",
   "activate": "Ligado em",
   "adapter_log_settings": "Adaptador Configurações de saída de registo",
@@ -43,9 +45,7 @@
   "stationFinder": "Localizador de estações de serviço",
   "station_id": "Identificação da estação",
   "stationsTab": "Estações",
-  "tankerkoenig API": "chave API do petroleiro (36 dígitos)",
   "tooltipAddStation": "Abre uma janela para adicionar uma nova estação.",
-  "tooltipApiKey": "Uma chave API de 36 dígitos, que pode ser obtida a partir do website tankerkoenig.de.",
   "tooltipStationID": "A identificação da estação pode ser encontrada na página do tankerkoenig.de ou na parte inferior do mapa.",
   "tooltipStationName": "Nome da estação que pode atribuir livremente (MAX. 20 caracteres). Recomenda-se a introdução do nome da estação de serviço, por exemplo, SHELL. Este nome será utilizado como nome para os pontos de dados. ",
   "update": "Actualização",

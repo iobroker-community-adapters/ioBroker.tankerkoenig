@@ -1,7 +1,7 @@
 // UI elements are imported from Material-UI
 // import from iobroker-react docu page => https://github.com/AlCalzone/iobroker-react
 import { SettingsApp } from 'iobroker-react/app';
-import { useSettings } from 'iobroker-react/hooks';
+import { useIoBrokerObject, useSettings } from 'iobroker-react/hooks';
 import type { Translations } from 'iobroker-react/i18n';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,10 +25,15 @@ const SettingsPageContent: React.FC = React.memo(() => {
 			[option]: value,
 		}));
 	};
-
+	const [systemConfigObj] = useIoBrokerObject('system.config');
+	const secret = systemConfigObj?.native?.secret;
 	return (
 		<React.Fragment>
-			<SettingPage settings={settings} onChange={(option?, value?) => handleChange(option, value)} />
+			<SettingPage
+				secret={secret}
+				settings={settings}
+				onChange={(option?, value?) => handleChange(option, value)}
+			/>
 		</React.Fragment>
 	);
 });

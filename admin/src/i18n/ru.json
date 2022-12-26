@@ -1,5 +1,7 @@
 {
-  "APIKeyLink": "Вы можете получить ключ API на странице",
+  "API_Key_Label": "API-ключ Tankerkönig (36 цифр)",
+  "API_Key_Link": "Вы можете получить ключ API на странице",
+  "API_Key_Tooltip": "36-значный ключ API, который вы можете получить на сайте tankerkoenig.de",
   "StationName": "Название станции",
   "activate": "Включено",
   "adapter_log_settings": "Настройки вывода журнала адаптера",
@@ -43,9 +45,7 @@
   "stationFinder": "Localizador de estações de serviço",
   "station_id": "Идентификатор станции",
   "stationsTab": "Станции",
-  "tankerkoenig API": "ключ API tankerkoenig (36 цифр)",
   "tooltipAddStation": "Открывает окно для добавления новой станции.",
-  "tooltipApiKey": "36-значный API-ключ, который можно получить на сайте tankerkoenig.de.",
   "tooltipStationID": "Идентификатор станции можно найти на странице tankerkoenig.de или внизу карты.",
   "tooltipStationName": "Название станции вы можете задать произвольно (МАКС. 20 символов). Рекомендуется ввести название заправки, например, SHELL. Это название будет использоваться в качестве имени для точек данных. ",
   "update": "Обновить",
