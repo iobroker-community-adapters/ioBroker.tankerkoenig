@@ -66,6 +66,9 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) Data retrieval from the server optimized
+
 ### 3.2.2 (2022-12-26)
 * (xXBJXx) Added encryption of the API key
 * (xXBJXx) added better error messages for the data request

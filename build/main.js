@@ -66,7 +66,6 @@ class Tankerkoenig extends utils.Adapter {
       if (this.config.station.length > 0) {
         await this.requestDetails();
         await this.createAllStates(this.config.station);
-        await this.requestData();
       } else {
         this.writeLog(`No stations defined`, "error");
       }
@@ -79,6 +78,7 @@ class Tankerkoenig extends utils.Adapter {
       this.writeLog(`start Requesting station details`, "debug");
       this.stationDetails = [];
       const station = this.config.station;
+      let price = {};
       for (const stationKey in station) {
         if (Object.prototype.hasOwnProperty.call(station, stationKey)) {
           const stationId = station[stationKey];
@@ -94,7 +94,10 @@ class Tankerkoenig extends utils.Adapter {
           if (response.status === 200) {
             this.writeLog(`Requesting station details successful`, "debug");
             const result = response.data;
-            this.writeLog(`Result: ${JSON.stringify(result)}`, "debug");
+            this.writeLog(
+              `[ requestDetails axios: ${import_axios.default.VERSION} ] Result: ${JSON.stringify(result)}`,
+              "debug"
+            );
             if (result.ok) {
               const details = {
                 station: result.station.id,
@@ -108,154 +111,25 @@ class Tankerkoenig extends utils.Adapter {
                 overrideOpeningTimes: result.station.overrides,
                 wholeDay: result.station.wholeDay
               };
-              this.writeLog(`Details: ${JSON.stringify(details)}`, "debug");
+              const prices2 = {
+                status: result.station.isOpen ? "open" : "closed",
+                e5: result.station.e5,
+                e10: result.station.e10,
+                diesel: result.station.diesel
+              };
+              price = { ...price, [stationId.station]: prices2 };
+              this.writeLog(
+                `Details: ${JSON.stringify(details)} >>> Price: ${prices2}`,
+                "debug"
+              );
               this.stationDetails.push(details);
             }
           }
         }
       }
-    } catch (error) {
-      if (error.response) {
-        if (error.response.status === 400) {
-          this.writeLog(
-            `[ requestDetails ${import_axios.default.VERSION} ] >> Bad request << error: ${error.response.data.message}`,
-            "error"
-          );
-          console.log(`Bad request`);
-        } else if (error.response.status === 401) {
-          this.writeLog(
-            `[ requestDetails ${import_axios.default.VERSION} ] >> Unauthorized << error: ${error.response.data.message}`,
-            "error"
-          );
-          console.log(`Unauthorized`);
-        } else if (error.response.status === 500) {
-          console.log(`Internal server error`);
-          this.writeLog(
-            `[ requestDetails ${import_axios.default.VERSION} ] >> Internal server error << error: ${error.response.data.message}`,
-            "error"
-          );
-        } else if (error.response.status === 502) {
-          console.log(`Bad gateway`);
-          this.writeLog(
-            `[ requestDetails ${import_axios.default.VERSION} ] >> Bad gateway << error: ${error.response.data.message}`,
-            "error"
-          );
-        } else if (error.response.status === 503) {
-          console.log(`Service unavailable`);
-          this.writeLog(
-            `[ requestDetails ${import_axios.default.VERSION} ] >> Service unavailable << error: ${error.response.data.message}`,
-            "error"
-          );
-        } else if (error.response.status === 504) {
-          console.log(`Gateway timeout`);
-          this.writeLog(
-            `[ requestDetails ${import_axios.default.VERSION} ] >> Gateway timeout << error: ${error.response.data.message}`,
-            "error"
-          );
-        } else {
-          this.writeLog(`error.response: ${JSON.stringify(error.response)}`, "error");
-          console.log(`error.response: ${JSON.stringify(error.response)}`);
-        }
-      } else {
-        this.writeLog(
-          `[ requestDetails ${import_axios.default.VERSION} ] error: ${error} stack: ${error.stack}`,
-          "error"
-        );
-      }
-    }
-  }
-  async requestData() {
-    try {
-      if (this.requestTimeout)
-        clearTimeout(this.requestTimeout);
-      this.writeLog(`request start now`, "debug");
-      const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station.map((station) => station.station).join(",")}&apikey=${this.decrypt(this.config.apikey)}`;
-      await import_axios.default.get(url, {
-        headers: {
-          "User-Agent": `${this.name} / ${this.version}`,
-          "Accept-Encoding": "identity",
-          Accept: "application/json"
-        }
-      }).then(async (response) => {
-        console.log(`axios response data:`, response);
-        if (response.status === 200) {
-          this.writeLog(
-            `type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
-            "debug"
-          );
-          console.log(
-            `type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`
-          );
-          if (response.data.ok) {
-            await this.setStateAsync("stations.json", {
-              val: JSON.stringify(response.data),
-              ack: true
-            });
-            const price = await this.setDiscount(response.data.prices);
-            await this.writeState(price);
-            if (this.refreshStatusTimeout)
-              clearTimeout(this.refreshStatusTimeout);
-            this.refreshStatusTimeout = setTimeout(async () => {
-              await this.setStateAsync(`stations.adapterStatus`, {
-                val: "idle",
-                ack: true
-              });
-            }, 2e3);
-          }
-        }
-      }).catch(async (error) => {
-        if (error.response) {
-          if (error.response.status === 400) {
-            this.writeLog(
-              `[ requestData ${import_axios.default.VERSION} ] >> Bad request << error: ${error.response.data.message}`,
-              "error"
-            );
-            console.log(`Bad request`);
-          } else if (error.response.status === 401) {
-            this.writeLog(
-              `[ requestData ${import_axios.default.VERSION} ] >> Unauthorized << error: ${error.response.data.message}`,
-              "error"
-            );
-            console.log(`Unauthorized`);
-          } else if (error.response.status === 500) {
-            console.log(`Internal server error`);
-            this.writeLog(
-              `[ requestData ${import_axios.default.VERSION} ] >> Internal server error << error: ${error.response.data.message}`,
-              "error"
-            );
-          } else if (error.response.status === 502) {
-            console.log(`Bad gateway`);
-            this.writeLog(
-              `[ requestData ${import_axios.default.VERSION} ] >> Bad gateway << error: ${error.response.data.message}`,
-              "error"
-            );
-          } else if (error.response.status === 503) {
-            console.log(`Service unavailable`);
-            this.writeLog(
-              `[ requestData ${import_axios.default.VERSION} ] >> Service unavailable << error: ${error.response.data.message}`,
-              "error"
-            );
-          } else if (error.response.status === 504) {
-            console.log(`Gateway timeout`);
-            this.writeLog(
-              `[ requestData ${import_axios.default.VERSION} ] >> Gateway timeout << error: ${error.response.data.message}`,
-              "error"
-            );
-          } else {
-            this.writeLog(`error.response: ${JSON.stringify(error.response)}`, "error");
-            console.log(`error.response: ${JSON.stringify(error.response)}`);
-          }
-        } else {
-          this.writeLog(
-            `[ requestData ${import_axios.default.VERSION} ] Error Code ${error.code} Error: ${error.message} >>> Stack: ${error.stack}`,
-            "error"
-          );
-        }
-        await this.setStateAsync(`stations.adapterStatus`, {
-          val: "request Error",
-          ack: true
-        });
-      });
+      const prices = await this.setDiscount(price);
+      console.log(prices);
+      await this.writeState(prices);
       await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
       this.writeLog(`last update: ${new Date().toString()}`, "debug");
       this.requestTimeout = setTimeout(async () => {
@@ -267,7 +141,100 @@ class Tankerkoenig extends utils.Adapter {
         await this.requestData();
       }, this.sync_milliseconds);
     } catch (error) {
-      this.writeLog(`[ requestData ${import_axios.default.VERSION} ] error: ${error} stack: ${error.stack}`, "error");
+      if (error.response) {
+        if (error.response.status === 503) {
+          this.writeLog(
+            `[ requestDetails axios: ${import_axios.default.VERSION} ] Code: ${error.response.status} Message: >> ${error.response.statusText} Rate Limit Exceeded << Data: ${JSON.stringify(error.response.data)}`,
+            "error"
+          );
+        } else {
+          this.writeLog(
+            `[ requestData axios: ${import_axios.default.VERSION} ] error.response: Code: ${error.response.status}  Message: ${error.response.statusText} Data: ${JSON.stringify(
+              error.response.data
+            )} `,
+            "error"
+          );
+        }
+      } else {
+        this.writeLog(
+          `[ requestDetails axios: ${import_axios.default.VERSION} ] error: ${error} stack: ${error.stack}`,
+          "error"
+        );
+      }
+    }
+  }
+  async requestData() {
+    try {
+      if (this.requestTimeout)
+        clearTimeout(this.requestTimeout);
+      this.writeLog(`request start now`, "debug");
+      const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station.map((station) => station.station).join(",")}&apikey=${this.decrypt(this.config.apikey)}`;
+      const config = {
+        headers: {
+          "User-Agent": `${this.name} / ${this.version}`,
+          "Accept-Encoding": "identity",
+          Accept: "application/json"
+        }
+      };
+      const response = await import_axios.default.get(url, config);
+      console.log(`[ requestData axios: ${import_axios.default.VERSION} ] response data:`, response);
+      if (response.status === 200) {
+        this.writeLog(
+          `[ requestData axios: ${import_axios.default.VERSION} ] type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
+          "debug"
+        );
+        if (response.data.ok) {
+          await this.setStateAsync("stations.json", {
+            val: JSON.stringify(response.data),
+            ack: true
+          });
+          const price = await this.setDiscount(response.data.prices);
+          await this.writeState(price);
+          if (this.refreshStatusTimeout)
+            clearTimeout(this.refreshStatusTimeout);
+          this.refreshStatusTimeout = setTimeout(async () => {
+            await this.setStateAsync(`stations.adapterStatus`, {
+              val: "idle",
+              ack: true
+            });
+          }, 2e3);
+        }
+      }
+      await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
+      this.writeLog(`last update: ${new Date().toString()}`, "debug");
+      this.requestTimeout = setTimeout(async () => {
+        this.writeLog(`request timeout start new request`, "debug");
+        await this.setStateAsync(`stations.adapterStatus`, {
+          val: "automatic request",
+          ack: true
+        });
+        await this.requestData();
+      }, this.sync_milliseconds);
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 503) {
+          this.writeLog(
+            `[ requestDetails axios: ${import_axios.default.VERSION} ] Code: ${error.response.status} Message: >> ${error.response.statusText} Rate Limit Exceeded << Data: ${JSON.stringify(error.response.data)}`,
+            "error"
+          );
+        } else {
+          this.writeLog(
+            `[ requestData axios: ${import_axios.default.VERSION} ] error.response: Code: ${error.response.status}  Message: ${error.response.statusText} Data: ${JSON.stringify(
+              error.response.data
+            )} `,
+            "error"
+          );
+        }
+      } else {
+        this.writeLog(
+          `[ requestData axios: ${import_axios.default.VERSION} ] Error Code ${error.code} Error: ${error.message} >>> Stack: ${error.stack}`,
+          "error"
+        );
+      }
+      await this.setStateAsync(`stations.adapterStatus`, {
+        val: "request Error",
+        ack: true
+      });
     }
   }
   async setDiscount(price) {
@@ -302,7 +269,7 @@ class Tankerkoenig extends utils.Adapter {
       }
       return price;
     } catch (error) {
-      this.writeLog(`setDiscount error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(`[ setDiscount ] error: ${error} stack: ${error.stack}`, "error");
       return price;
     }
   }
@@ -327,7 +294,7 @@ class Tankerkoenig extends utils.Adapter {
       }
       return day;
     } catch (error) {
-      this.writeLog(`[ oldState ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(`[ dayState ] error: ${error} stack: ${error.stack}`, "error");
       return null;
     }
   }
@@ -1380,7 +1347,7 @@ class Tankerkoenig extends utils.Adapter {
         });
       }
     } catch (error) {
-      this.writeLog(`writeState error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(`[ writeState ] error: ${error} stack: ${error.stack}`, "error");
     }
   }
   async createJsonTable(price, station) {
@@ -1405,12 +1372,24 @@ class Tankerkoenig extends utils.Adapter {
                 pricesValue.diesel = await this.oldState(`stations.${key}.diesel.feed`);
               }
               const status = pricesValue.status === "open" ? "open" : pricesValue.status === "closed" ? this.config.combinedOptions.closed : pricesValue.status === "no prices" ? this.config.combinedOptions.noPrice : pricesValue.status === "not found" || pricesValue.status === "no stations" ? this.config.combinedOptions.notFound : "";
+              let e5 = pricesValue.e5;
+              let e10 = pricesValue.e10;
+              let diesel = pricesValue.diesel;
+              if (typeof pricesValue.e5 === "number") {
+                e5 = parseFloat(pricesValue.e5.toFixed(3));
+              }
+              if (typeof pricesValue.e10 === "number") {
+                e10 = parseFloat(pricesValue.e10.toFixed(3));
+              }
+              if (typeof pricesValue.diesel === "number") {
+                diesel = parseFloat(pricesValue.diesel.toFixed(3));
+              }
               jsonTable.push({
                 station: station[key].stationname,
                 status,
-                e5: pricesValue.e5,
-                e10: pricesValue.e10,
-                diesel: pricesValue.diesel,
+                e5,
+                e10,
+                diesel,
                 discount: station[key].discounted ? station[key].discountObj.discountType === "percent" ? `${station[key].discountObj.discount}%` : `${station[key].discountObj.discount}\u20AC` : "0"
               });
             }
@@ -1419,7 +1398,7 @@ class Tankerkoenig extends utils.Adapter {
       }
       return jsonTable;
     } catch (error) {
-      this.writeLog(`createJsonTable error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(`[ createJsonTable ] error: ${error} stack: ${error.stack}`, "error");
     }
   }
   async cutPrice(price) {
@@ -1446,7 +1425,7 @@ class Tankerkoenig extends utils.Adapter {
         price3rd
       };
     } catch (error) {
-      this.writeLog(`cutPrice error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(`[ cutPrice ] error: ${error} stack: ${error.stack}`, "error");
       return { priceshort: "0", price3rd: 0 };
     }
   }
@@ -1468,15 +1447,23 @@ class Tankerkoenig extends utils.Adapter {
           `return Price with discount ${price - parseFloat(newPrice.toFixed(2))}`,
           "debug"
         );
-        return price - parseFloat(newPrice.toFixed(2));
+        let discountedPrice = price - parseFloat(newPrice.toFixed(2));
+        if (discountedPrice.toString().split(".")[1].length > 3) {
+          discountedPrice = parseFloat(discountedPrice.toFixed(3));
+        }
+        return discountedPrice;
       } else if (discountType === "absolute") {
         this.writeLog(`discount in absolute: ${discount}`, "debug");
         this.writeLog(`return Price with discount ${price - discount}`, "debug");
-        return parseFloat(parseFloat(String(price - discount)).toFixed(3));
+        let discountedPrice = parseFloat(parseFloat(String(price - discount)).toFixed(3));
+        if (discountedPrice.toString().split(".")[1].length > 3) {
+          discountedPrice = parseFloat(discountedPrice.toFixed(3));
+        }
+        return discountedPrice;
       }
       return price;
     } catch (error) {
-      this.writeLog(`addDiscount error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(`[ addDiscount ] error: ${error} stack: ${error.stack}`, "error");
       return parseFloat(price);
     }
   }
