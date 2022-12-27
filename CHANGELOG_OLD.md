@@ -1,4 +1,7 @@
 # Older changes
+## 3.0.6 (2022-11-23)
+* (xXBJXx) Added new option to adjust the text in the combined data point [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)
+
 ## 3.0.5 (2022-11-20)
 * (xXBJXx) fixed sort bug for cheapest station
 

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.2.2",
+    "version": "3.2.3",
     "news": {
+      "3.2.3": {
+        "en": "the detailed request for the station data has been removed, see [issue #99]\nadded new input field for the address of the station in the adapter settings",
+        "de": "die detaillierte Abfrage der Stationsdaten wurde entfernt, siehe [issue #99]\nneues Eingabefeld für die Adresse der Station in den Adaptereinstellungen hinzugefügt",
+        "ru": "убран подробный запрос данных о станции, см. [выпуск #99].\nдобавлено новое поле для ввода адреса станции в настройках адаптера",
+        "pt": "o pedido pormenorizado dos dados da estação foi retirado, ver [edição nº 99]\nadicionado novo campo de entrada para o endereço da estação nas definições do adaptador",
+        "nl": "het gedetailleerde verzoek om de stationsgegevens is verwijderd, zie [issue #99]\nnieuw invoerveld toegevoegd voor het adres van het station in de adapterinstellingen",
+        "fr": "la demande détaillée des données de la station a été supprimée, voir [issue #99].\nAjout d'un nouveau champ de saisie pour l'adresse de la station dans les paramètres de l'adaptateur.",
+        "it": "la richiesta dettagliata dei dati della stazione è stata rimossa, vedi [issue #99].\naggiunto un nuovo campo di inserimento per l'indirizzo della stazione nelle impostazioni dell'adattatore",
+        "es": "se ha eliminado la solicitud detallada de los datos de la estación, véase [cuestión nº 99]\nse ha añadido un nuevo campo de entrada para la dirección de la estación en los ajustes del adaptador",
+        "pl": "usunięto szczegółowe zapytanie o dane stacji, patrz [issue #99]\ndodano nowe pole wprowadzania adresu stacji w ustawieniach adaptera",
+        "uk": "прибрано детальний запит даних станції, див. [випуск #99]\nдодано нове поле для введення адреси станції у налаштуваннях адаптера",
+        "zh-cn": "删除了对站点数据的详细要求，见[issue #99]。\n在适配器设置中增加了新的站点地址输入字段"
+      },
       "3.2.2": {
         "en": "Added encryption of the API key\nadded better error messages for the data request\ndependency update",
         "de": "Verschlüsselung des API-Schlüssels hinzugefügt\nBessere Fehlermeldungen für die Datenabfrage hinzugefügt\nAktualisierung der Abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "naprawiony błąd sortowania dla najtańszej stacji benzynowej",
         "uk": "виправлено помилку сортування для найдешевшої АЗС",
         "zh-cn": "修复了最便宜的加油站的排序错误"
-      },
-      "3.0.4": {
-        "en": "moved misc-data type to vehicle type \nfixed messages rules and added new messages for Adapter Update\nupdate dependencies\nadded lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "de": "Typ Sonstige Daten zum Typ Fahrzeug verschoben \nNachrichtenregeln korrigiert und neue Nachrichten für Adapter Update hinzugefügt\nAbhängigkeiten aktualisieren\nlastUpdate_min / lastUpdate_max DP hinzugefügt [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "ru": "переместил тип misc-data в тип автомобиля \nисправлены правила сообщений и добавлены новые сообщения для Adapter Update\nобновление зависимостей\nдобавлены lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "pt": "moveu o tipo de dados errados para o tipo de veículo \nregras de mensagens fixas e adição de novas mensagens para a Actualização do Adaptador\nactualiza as dependências\nadicionado lastUpdate_min / lastUpdate_max DP [edição #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "nl": "misc-data type verplaatst naar voertuigtype \nberichtenregels hersteld en nieuwe berichten toegevoegd voor Adapter Update\nafhankelijkheden bijgewerkt\nlastUpdate_min / lastUpdate_max DP toegevoegd [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "fr": "a déplacé le type de données diverses vers le type de véhicule \na fixé les règles des messages et ajouté de nouveaux messages pour Adapter Update\nMise à jour des dépendances\najout de lastUpdate_min / lastUpdate_max DP [problème #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "it": "spostato il tipo misc-data al tipo veicolo \naggiustato le regole dei messaggi e aggiunto nuovi messaggi per l'aggiornamento dell'adattatore\naggiornamento delle dipendenze\naggiunto lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "es": "se ha movido el tipo de datos varios al tipo de vehículo \narreglar las reglas de los mensajes y añadir nuevos mensajes para la actualización del adaptador\nactualizar las dependencias\nse ha añadido lastUpdate_min / lastUpdate_max DP [asunto #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "pl": "przeniesienie typu misc-data do typu pojazdu \npoprawiono zasady dotyczące wiadomości i dodano nowe wiadomości dla aktualizacji Adaptera\nzaktualizować zależności\ndodano lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "uk": "перенесено тип misc-data до типу транспортного засобу \nвиправлено правила повідомлень та додано нові повідомлення для оновлення адаптерів\nоновили залежності\nдодано lastUpdate_min / lastUpdate_max DP [випуск #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)",
-        "zh-cn": "将杂项数据类型移至车辆类型 \n修复了信息规则并为适配器更新添加了新的信息\n更新依赖性\n添加lastUpdate_min / lastUpdate_max DP [issue #91](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/91)"
       }
     },
     "titleLang": {
