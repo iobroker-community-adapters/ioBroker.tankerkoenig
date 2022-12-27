@@ -87,12 +87,10 @@ class Tankerkoenig extends utils.Adapter {
 		// add to sync_milliseconds a random number between 0 and 1000 to avoid that all adapters start at the same time
 		this.sync_milliseconds += Math.floor(Math.random() * 100);
 
-		// check if api key is set and Station is set
-
 		if (this.decrypt(this.config.apikey).length === 36) {
 			if (this.config.station.length > 0) {
 				await this.requestDetails();
-				await this.createAllStates(this.config.station);
+				// await this.createAllStates(this.config.station);
 			} else {
 				this.writeLog(`No stations defined`, 'error');
 			}
@@ -156,7 +154,7 @@ class Tankerkoenig extends utils.Adapter {
 							price = { ...price, [stationId.station]: prices };
 
 							this.writeLog(
-								`Details: ${JSON.stringify(details)} >>> Price: ${prices}`,
+								`Details: ${JSON.stringify(details)} >>> Price: ${JSON.stringify(prices)}`,
 								'debug',
 							);
 							this.stationDetails.push(details);
@@ -166,7 +164,8 @@ class Tankerkoenig extends utils.Adapter {
 			}
 			const prices = await this.setDiscount(price);
 
-			console.log(prices);
+			// console.log(prices);
+			await this.createAllStates(this.config.station);
 			await this.writeState(prices);
 
 			await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
@@ -222,8 +221,7 @@ class Tankerkoenig extends utils.Adapter {
 			// create the url for the request
 			const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station
 				.map((station) => station.station)
-				.join(',')}&apikey=${this.decrypt(this.config.apikey)}`; // API key is included in the configuration Demo 00000000-0000-0000-0000-000000000002
-
+				.join(',')}&apikey=${this.decrypt(this.config.apikey)}`;
 			const config = {
 				headers: {
 					'User-Agent': `${this.name} / ${this.version}`,

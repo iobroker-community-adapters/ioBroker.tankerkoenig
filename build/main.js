@@ -65,7 +65,6 @@ class Tankerkoenig extends utils.Adapter {
     if (this.decrypt(this.config.apikey).length === 36) {
       if (this.config.station.length > 0) {
         await this.requestDetails();
-        await this.createAllStates(this.config.station);
       } else {
         this.writeLog(`No stations defined`, "error");
       }
@@ -119,7 +118,7 @@ class Tankerkoenig extends utils.Adapter {
               };
               price = { ...price, [stationId.station]: prices2 };
               this.writeLog(
-                `Details: ${JSON.stringify(details)} >>> Price: ${prices2}`,
+                `Details: ${JSON.stringify(details)} >>> Price: ${JSON.stringify(prices2)}`,
                 "debug"
               );
               this.stationDetails.push(details);
@@ -128,7 +127,7 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
       const prices = await this.setDiscount(price);
-      console.log(prices);
+      await this.createAllStates(this.config.station);
       await this.writeState(prices);
       await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
       this.writeLog(`last update: ${new Date().toString()}`, "debug");
