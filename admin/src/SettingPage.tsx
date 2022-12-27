@@ -103,7 +103,6 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 		if (index !== null) {
 			newRows[index] = value;
 		}
-		console.log(newRows);
 		onChange('station', newRows);
 	};
 
@@ -154,9 +153,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 					<Logo classes={{ logo: 'logo' }} />
 				</Box>
 			</Box>
-			{/*<Logo classes={{ logo: 'logo' }} />*/}
 			<TabPanel value={value} index={0}>
-				{/*<Box sx={{ width: '100%', padding: '0 20px 0 20px' }}>*/}
 				<React.StrictMode>
 					<ApiKey
 						secret={secret}
@@ -181,6 +178,14 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 						flexDirection: 'column',
 						justifyContent: 'space-around',
 						alignItems: 'center',
+						bgcolor: 'background.paper',
+						position: 'fixed',
+						marginTop: '-40px',
+						marginLeft: '-33px',
+						zIndex: 999,
+						height: '60px',
+						width: '100%',
+						paddingRight: '70px',
 					}}
 				>
 					<EditModal
@@ -232,7 +237,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 				<Grid
 					container
 					spacing={2}
-					sx={{ marginTop: '10px', display: 'flex', justifyContent: 'center' }}
+					sx={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
 				>
 					{settings.station.map((row, index) => {
 						return (

@@ -68,6 +68,7 @@ Es gibt 2 Varianten:
  -->
 ### __WORK IN PROGRESS__
 * (xXBJXx) Data retrieval from the server optimized
+* (xXBJXx) added new input field for the address of the station in the adapter settings
 
 ### 3.2.2 (2022-12-26)
 * (xXBJXx) Added encryption of the API key

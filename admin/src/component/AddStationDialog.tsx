@@ -58,6 +58,9 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 	const [newRow, setNewRow] = useState<ioBroker.Station>({
 		station: '',
 		stationname: '',
+		street: '',
+		city: '',
+		postCode: '',
 		discounted: false,
 		discountObj: {
 			discount: 0,
@@ -66,6 +69,9 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 		},
 	});
 	const [copyValid, setCopyValid] = useState(false);
+	const [street, setStreet] = useState<string>('');
+	const [city, setCity] = useState<string>('');
+	const [postCode, setPostCode] = useState<string>('');
 
 	useEffect(() => {
 		addRow(newRow);
@@ -78,6 +84,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			setError(true);
 		}
 	};
+
 	const handleChangeName = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
 		const newName: string = event.target.value;
 		if (newName !== '') {
@@ -86,6 +93,39 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 		} else {
 			setName('');
 			setNewRow({ ...newRow, stationname: '' });
+		}
+	};
+
+	const handleChangeCity = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+		const newCity: string = event.target.value;
+		if (newCity !== '') {
+			setCity(newCity);
+			setNewRow({ ...newRow, city: newCity });
+		} else {
+			setCity('');
+			setNewRow({ ...newRow, city: '' });
+		}
+	};
+
+	const handleChangePostCode = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+		const newPostCode: string = event.target.value;
+		if (newPostCode !== '') {
+			setPostCode(newPostCode);
+			setNewRow({ ...newRow, postCode: newPostCode.toString() });
+		} else {
+			setPostCode('');
+			setNewRow({ ...newRow, postCode: '' });
+		}
+	};
+
+	const handleChangeStreet = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+		const newStreet: string = event.target.value;
+		if (newStreet !== '') {
+			setStreet(newStreet);
+			setNewRow({ ...newRow, street: newStreet });
+		} else {
+			setStreet('');
+			setNewRow({ ...newRow, street: '' });
 		}
 	};
 
@@ -116,6 +156,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			},
 		});
 	};
+
 	const handleChangeDiscountType = (event: SelectChangeEvent) => {
 		const {
 			target: { value },
@@ -192,7 +233,19 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 						const element = json[jsonKey];
 						if (element.id) {
 							setStationID(element.id);
-							setNewRow({ ...newRow, station: element.id });
+							setPostCode(element.post_code);
+							setCity(element.place);
+							const street = `${element.street} ${
+								element.house_number ? element.house_number : ''
+							}`;
+							setStreet(street);
+							setNewRow({
+								...newRow,
+								station: element.id,
+								postCode: element.post_code,
+								city: element.place,
+								street,
+							});
 							setCopyValid(true);
 						}
 					}
@@ -233,7 +286,8 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 					justifyContent: 'space-around',
 					display: 'flex',
 					flexWrap: 'wrap',
-					flexDirection: 'row',
+					flexDirection: 'column',
+					marginLeft: '10px',
 				}}
 			>
 				<React.Fragment>
@@ -255,9 +309,12 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 							sx={{
 								width: '40ch',
 							}}
-							placeholder={_('shell_city')}
+							placeholder={_('stationNamePlaceholder')}
 							inputProps={{
 								maxLength: 20,
+								style: {
+									textAlign: 'center',
+								},
 							}}
 							onChange={(event) => {
 								handleChangeName(event);
@@ -284,11 +341,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position="end">
-											<IconButton
-												aria-label="paste the content of the clipboard"
-												onClick={handlePaste}
-												edge="end"
-											>
+											<IconButton onClick={handlePaste} edge="end">
 												{copyValid ? (
 													<CheckCircleOutlineIcon color="success" />
 												) : (
@@ -303,6 +356,96 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 							/>
 						</Tooltip>
 					</FormControl>
+					<Typography variant="h6" component="div" textAlign={'center'}>
+						{_('stationLocation')}
+					</Typography>
+					<Box
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							flexWrap: 'wrap',
+							justifyContent: 'center',
+							marginBottom: '20px',
+						}}
+					>
+						<React.Fragment>
+							<Tooltip
+								title={_('tooltipStationName')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('stationStreet')}
+									value={street}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '25ch',
+										marginRight: '10px',
+									}}
+									inputProps={{
+										style: { textAlign: 'center' },
+									}}
+									placeholder={'Zedernweg 93'}
+									onChange={(event) => {
+										handleChangeStreet(event);
+									}}
+								/>
+							</Tooltip>
+							<Tooltip
+								title={_('tooltipStationName')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('stationCity')}
+									value={city}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '25ch',
+										marginRight: '10px',
+									}}
+									inputProps={{
+										style: { textAlign: 'center' },
+									}}
+									placeholder={'Wünnenberg'}
+									onChange={(event) => {
+										handleChangeCity(event);
+									}}
+								/>
+							</Tooltip>
+							<Tooltip
+								title={_('tooltipStationName')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('stationZip')}
+									value={postCode}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '15ch',
+									}}
+									placeholder={'10910'}
+									inputProps={{
+										maxLength: 6,
+										style: { textAlign: 'center' },
+									}}
+									onChange={(event) => {
+										handleChangePostCode(event);
+									}}
+								/>
+							</Tooltip>
+						</React.Fragment>
+					</Box>
 				</React.Fragment>
 			</Grid>
 			<Grid
@@ -312,6 +455,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 					flexDirection: 'column',
 					justifyContent: 'center',
 					alignItems: 'center',
+					marginLeft: '10px',
 				}}
 			>
 				<Typography variant="h6" gutterBottom align="center">

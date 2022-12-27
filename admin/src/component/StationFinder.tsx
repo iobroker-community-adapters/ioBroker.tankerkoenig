@@ -14,6 +14,10 @@ export const StationFinder = (): JSX.Element => {
 				alignItems={'center'}
 				sx={{
 					width: '100%',
+					display: 'flex',
+					justifyContent: 'center',
+					marginLeft: '10px',
+					flexDirection: 'column',
 				}}
 			>
 				<Typography gutterBottom sx={{ fontWeight: 'bold', fontSize: '22px' }} align={'center'}>

@@ -19,9 +19,18 @@ export interface AddModalProps {
 	open: boolean;
 	onClose: () => void;
 }
+
 let resetTimeout: NodeJS.Timeout;
 export const AddModal: React.FC<AddModalProps> = ({ newRow, open, onClose, currentRows }): JSX.Element => {
-	const [row, setRow] = useState<ioBroker.Station>();
+	const [row, setRow] = useState<ioBroker.Station>({
+		city: '',
+		discountObj: { discount: 0, discountType: '', fuelType: [] },
+		discounted: false,
+		postCode: '',
+		station: '',
+		stationname: '',
+		street: '',
+	});
 	const [validConfig, setValidConfig] = useState<{
 		valid: boolean;
 		message: string;
@@ -31,11 +40,11 @@ export const AddModal: React.FC<AddModalProps> = ({ newRow, open, onClose, curre
 		alert: false,
 		message: '',
 	});
-
 	const { translate: _ } = useI18n();
 
 	const handleClickAdd = (): void => {
 		if (row) {
+			row.postCode = row.postCode.toString();
 			newRow(row);
 			onClose();
 		}
@@ -97,7 +106,15 @@ export const AddModal: React.FC<AddModalProps> = ({ newRow, open, onClose, curre
 					alignItems: 'center',
 				}}
 			></Grid>
-			<Dialog open={open} onClose={handleClose}>
+			<Dialog
+				open={open}
+				onClose={handleClose}
+				sx={{
+					'& .MuiDialog-paper': {
+						maxWidth: '650px',
+					},
+				}}
+			>
 				<DialogTitle
 					sx={{
 						textAlignLast: 'center',
@@ -112,6 +129,7 @@ export const AddModal: React.FC<AddModalProps> = ({ newRow, open, onClose, curre
 						flexWrap: 'wrap',
 						flexDirection: 'row',
 						justifyContent: 'center',
+						// padding: '0px',
 					}}
 				>
 					{validConfig.alert && !validConfig.valid ? (

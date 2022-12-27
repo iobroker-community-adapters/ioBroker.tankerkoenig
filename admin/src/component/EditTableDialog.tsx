@@ -50,6 +50,9 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 		oldRow = oldRow || {
 			station: '',
 			stationname: '',
+			street: '',
+			city: '',
+			postCode: '',
 			discounted: false,
 			discountObj: {
 				discount: 0,
@@ -61,13 +64,14 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 	const { translate: _ } = useI18n();
 	const [stationID, setStationID] = useState<string>(oldRow.station);
 	const [name, setName] = useState<string>(oldRow.stationname);
+	const [street, setStreet] = useState<string>(oldRow.street || '');
+	const [city, setCity] = useState<string>(oldRow.city || '');
+	const [postCode, setPostCode] = useState<string>(oldRow.postCode || '');
 	const [discountType, setDiscountType] = useState<string>(oldRow.discountObj.discountType);
 	const [discount, setDiscount] = useState<number>(oldRow.discountObj.discount);
 	const [fuelType, setFuelType] = useState<string[]>(oldRow.discountObj.fuelType);
 	const [discounted, setDiscounted] = useState<boolean>(oldRow.discounted);
-
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [error, setError] = useState<boolean>(true);
+	const [, setError] = useState<boolean>(true);
 	const [valid, setValid] = useState(true);
 	const [newEditRow, setEditRow] = useState<ioBroker.Station>(oldRow);
 	const [copyValid, setCopyValid] = useState(false);
@@ -78,6 +82,9 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			if (
 				stationID !== oldRow.station ||
 				name !== oldRow.stationname ||
+				street !== oldRow.street ||
+				city !== oldRow.city ||
+				postCode !== oldRow.postCode ||
 				discounted !== oldRow.discounted ||
 				fuelType !== oldRow.discountObj.fuelType ||
 				discount !== oldRow.discountObj.discount ||
@@ -120,6 +127,39 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 		}
 	};
 
+	const handleChangeStreet = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+		const newStreet: string = event.target.value;
+		if (newStreet !== '') {
+			setStreet(newStreet);
+			setEditRow({ ...newEditRow, street: newStreet });
+		} else {
+			setStreet('');
+			setEditRow({ ...newEditRow, street: '' });
+		}
+	};
+
+	const handleChangeCity = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+		const newCity: string = event.target.value;
+		if (newCity !== '') {
+			setCity(newCity);
+			setEditRow({ ...newEditRow, city: newCity });
+		} else {
+			setCity('');
+			setEditRow({ ...newEditRow, city: '' });
+		}
+	};
+
+	const handleChangePostCode = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
+		const newPostCode: string = event.target.value;
+		if (newPostCode !== '') {
+			setPostCode(newPostCode);
+			setEditRow({ ...newEditRow, postCode: newPostCode });
+		} else {
+			setPostCode('');
+			setEditRow({ ...newEditRow, postCode: '' });
+		}
+	};
+
 	const handleChangeFuelType = (event: SelectChangeEvent<typeof fuelTypes>) => {
 		const {
 			target: { value },
@@ -136,6 +176,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			},
 		});
 	};
+
 	const handleChangeDiscountType = (event: SelectChangeEvent) => {
 		const {
 			target: { value },
@@ -154,6 +195,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			},
 		});
 	};
+
 	const handleChangeActivate = (event: SelectChangeEvent) => {
 		const {
 			target: { value },
@@ -168,6 +210,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			},
 		});
 	};
+
 	const handleChangeDiscount = (discountValue: number): void => {
 		if (discountType === 'absolute') {
 			setDiscount(discountValue);
@@ -204,7 +247,6 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 	useEffect(() => {
 		handleValidate(stationID);
 	}, [stationID]);
-
 	const handlePaste = () => {
 		navigator.clipboard.readText().then((stationData) => {
 			try {
@@ -214,7 +256,19 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 						const element = json[jsonKey];
 						if (element.id) {
 							setStationID(element.id);
-							setEditRow({ ...newEditRow, station: element.id });
+							setPostCode(element.post_code);
+							setCity(element.place);
+							const street = `${element.street} ${
+								element.house_number ? element.house_number : ''
+							}`;
+							setStreet(street);
+							setEditRow({
+								...newEditRow,
+								station: element.id,
+								postCode: element.post_code,
+								city: element.place,
+								street,
+							});
 							setCopyValid(true);
 						}
 					}
@@ -254,49 +308,40 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 					alignItems: 'center',
 					justifyContent: 'space-around',
 					display: 'flex',
-					flexWrap: 'nowrap',
-					flexDirection: 'row',
-				}}
-			>
-				<Tooltip
-					title={_('tooltipStationName')}
-					arrow
-					placement={'top'}
-					enterNextDelay={500}
-					enterDelay={500}
-				>
-					<TextField
-						required
-						label={_('StationName')}
-						value={name}
-						type={'text'}
-						sx={{
-							width: '40ch',
-						}}
-						placeholder={_('shell_city')}
-						inputProps={{
-							maxLength: 20,
-						}}
-						onChange={(event) => {
-							handleChangeName(event);
-						}}
-					/>
-				</Tooltip>
-			</Grid>
-			<Grid
-				container
-				spacing={3}
-				sx={{
-					marginTop: '0',
-					paddingBottom: '15px',
-					alignItems: 'center',
-					justifyContent: 'space-around',
-					display: 'flex',
-					flexWrap: 'nowrap',
-					flexDirection: 'row',
+					flexWrap: 'wrap',
+					flexDirection: 'column',
+					marginLeft: '10px',
 				}}
 			>
 				<React.Fragment>
+					<Tooltip
+						title={_('tooltipStationName')}
+						arrow
+						placement={'top'}
+						enterNextDelay={500}
+						enterDelay={500}
+					>
+						<TextField
+							required
+							label={_('StationName')}
+							value={name}
+							type={'text'}
+							margin={'normal'}
+							sx={{
+								width: '40ch',
+							}}
+							placeholder={_('stationNamePlaceholder')}
+							inputProps={{
+								maxLength: 20,
+								style: {
+									textAlign: 'center',
+								},
+							}}
+							onChange={(event) => {
+								handleChangeName(event);
+							}}
+						/>
+					</Tooltip>
 					<FormControl variant="outlined">
 						<Tooltip
 							title={_('tooltipStationID')}
@@ -317,15 +362,14 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 								helperText={!valid ? _('good') : _('wrong')}
 								inputProps={{
 									maxLength: 36,
+									style: {
+										textAlign: 'center',
+									},
 								}}
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position="end">
-											<IconButton
-												aria-label="paste the content of the clipboard"
-												onClick={handlePaste}
-												edge="end"
-											>
+											<IconButton onClick={handlePaste} edge="end">
 												{copyValid ? (
 													<CheckCircleOutlineIcon color="success" />
 												) : (
@@ -340,6 +384,96 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 							/>
 						</Tooltip>
 					</FormControl>
+					<Typography variant="h6" component="div" textAlign={'center'}>
+						{_('stationLocation')}
+					</Typography>
+					<Box
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							flexWrap: 'wrap',
+							justifyContent: 'center',
+							marginBottom: '20px',
+						}}
+					>
+						<React.Fragment>
+							<Tooltip
+								title={_('tooltipStationStreet')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('stationStreet')}
+									value={street}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '25ch',
+										marginRight: '10px',
+									}}
+									inputProps={{
+										style: { textAlign: 'center' },
+									}}
+									placeholder={'Zedernweg 93'}
+									onChange={(event) => {
+										handleChangeStreet(event);
+									}}
+								/>
+							</Tooltip>
+							<Tooltip
+								title={_('tooltipStationCity')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('stationCity')}
+									value={city}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '25ch',
+										marginRight: '10px',
+									}}
+									inputProps={{
+										style: { textAlign: 'center' },
+									}}
+									placeholder={'Wünnenberg'}
+									onChange={(event) => {
+										handleChangeCity(event);
+									}}
+								/>
+							</Tooltip>
+							<Tooltip
+								title={_('tooltipStationZip')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('stationZip')}
+									value={postCode}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '15ch',
+									}}
+									placeholder={'10910'}
+									inputProps={{
+										maxLength: 6,
+										style: { textAlign: 'center' },
+									}}
+									onChange={(event) => {
+										handleChangePostCode(event);
+									}}
+								/>
+							</Tooltip>
+						</React.Fragment>
+					</Box>
 				</React.Fragment>
 			</Grid>
 			<Grid

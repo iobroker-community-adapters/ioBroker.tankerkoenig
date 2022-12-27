@@ -45,7 +45,15 @@ export const EditModal: React.FC<EditModalProps> = ({
 					alignItems: 'center',
 				}}
 			></Grid>
-			<Dialog open={open} onClose={handleClose}>
+			<Dialog
+				open={open}
+				onClose={handleClose}
+				sx={{
+					'& .MuiDialog-paper': {
+						maxWidth: '650px',
+					},
+				}}
+			>
 				<DialogTitle
 					sx={{
 						textAlignLast: 'center',

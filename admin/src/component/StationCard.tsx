@@ -72,9 +72,9 @@ export const StationCard: React.FC<StationCardProps> = ({
 				margin: '10px',
 				padding: '10px',
 				width: '480px',
-				height: '500px',
+				height: '560px',
 				maxWidth: '500px',
-				maxHeight: '500px',
+				maxHeight: '560px',
 				borderRadius: '20px',
 				boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
 				color: handleBackgroundColor().color,
@@ -121,7 +121,8 @@ export const StationCard: React.FC<StationCardProps> = ({
 			</CardContent>
 			<CardContent
 				sx={{
-					height: '122px',
+					// height: '122px',
+					height: '180px',
 					paddingTop: '0px',
 					paddingBottom: '0px',
 					borderRight: '2.5px solid',
@@ -139,9 +140,10 @@ export const StationCard: React.FC<StationCardProps> = ({
 				<Box
 					sx={{
 						width: '100%',
-						height: '75%',
+						height: '100%',
 						display: 'flex',
 						justifyContent: 'space-around',
+						alignContent: 'center',
 						flexWrap: 'wrap',
 						alignItems: 'center',
 						flexDirection: 'row',
@@ -168,6 +170,28 @@ export const StationCard: React.FC<StationCardProps> = ({
 					>
 						{item.station}
 					</Typography>
+					{item.street ? (
+						<React.Fragment>
+							<Typography
+								variant={'h6'}
+								textAlign={'center'}
+								sx={{
+									fontSize: '1.1rem',
+								}}
+							>
+								{_('stationLocation')}
+							</Typography>
+							<Typography
+								variant={'h6'}
+								sx={{
+									fontWeight: 'bold',
+									fontSize: '1.1rem',
+								}}
+							>
+								{item.street}, {item.postCode} {item.city}
+							</Typography>
+						</React.Fragment>
+					) : null}
 				</Box>
 			</CardContent>
 			<CardContent
