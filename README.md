@@ -6,9 +6,6 @@
 [![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 
-[![NPM](https://nodei.co/npm/iobroker.tankerkoenig.png?downloads=true)](https://nodei.co/npm/iobroker.tankerkoenig/)
-
-
 NodeJS v14 or higher is required.
 
 ## Update from 2.x.x to 3.0.x English
@@ -67,7 +64,7 @@ Es gibt 2 Varianten:
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
 ### __WORK IN PROGRESS__
-* (xXBJXx) Data retrieval from the server optimized
+* (xXBJXx) the detailed request for the station data has been removed, see [issue #99](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/99)
 * (xXBJXx) added new input field for the address of the station in the adapter settings
 
 ### 3.2.2 (2022-12-26)
