@@ -1,0 +1,6 @@
+name: "CodeQL config"
+
+# don't scan compiled JS files
+paths-ignore:
+  - build/
+  - admin/build/
