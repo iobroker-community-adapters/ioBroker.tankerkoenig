@@ -44,7 +44,6 @@ export const AddModal: React.FC<AddModalProps> = ({ newRow, open, onClose, curre
 
 	const handleClickAdd = (): void => {
 		if (row) {
-			row.postCode = row.postCode.toString();
 			newRow(row);
 			onClose();
 		}

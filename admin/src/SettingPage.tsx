@@ -90,6 +90,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 	//add row
 	const handleAdd = (value: ioBroker.Station): void => {
 		newRow = [...settings.station];
+		value.postCode = value.postCode.toString();
 		newRow.push(value);
 		onChange('station', newRow);
 	};
@@ -99,6 +100,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 		if (settings.station.length === 0) {
 			settings.station = [];
 		}
+		value.postCode = value.postCode.toString();
 		const newRows = [...settings.station];
 		if (index !== null) {
 			newRows[index] = value;
