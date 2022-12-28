@@ -957,7 +957,7 @@ class Tankerkoenig extends utils.Adapter {
 													],
 												) ||
 												feed_min === 0) &&
-											(feed_min !== undefined || feed_min !== null)
+											(feed_min !== undefined || true)
 										) {
 											if (
 												feed_min >
@@ -1036,7 +1036,7 @@ class Tankerkoenig extends utils.Adapter {
 													],
 												) ||
 												feed_max === 0) &&
-											(feed_max !== undefined || feed_max !== null)
+											(feed_max !== undefined || true)
 										) {
 											if (
 												feed_max <

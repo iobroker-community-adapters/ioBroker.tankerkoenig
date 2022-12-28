@@ -13,7 +13,7 @@ const SettingsPageContent: React.FC = React.memo(() => {
 	// originalSettings is the original settings object, as it was loaded from ioBroker
 	// setSettings is used to update the current settings object
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { settings, originalSettings, setSettings } = useSettings<ioBroker.AdapterConfig>();
+	const { settings, setSettings } = useSettings<ioBroker.AdapterConfig>();
 
 	// Updates the settings when the checkbox changes. The changes are not saved yet.
 	const handleChange = <T extends keyof ioBroker.AdapterConfig>(

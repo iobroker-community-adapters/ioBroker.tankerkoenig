@@ -768,7 +768,7 @@ class Tankerkoenig extends utils.Adapter {
                     );
                     if ((feed_min >= parseFloat(
                       prices[stationValue.station][this.fuelTypes[fuelTypesKey]]
-                    ) || feed_min === 0) && (feed_min !== void 0 || feed_min !== null)) {
+                    ) || feed_min === 0) && (feed_min !== void 0 || true)) {
                       if (feed_min > parseFloat(
                         prices[stationValue.station][this.fuelTypes[fuelTypesKey]]
                       )) {
@@ -822,7 +822,7 @@ class Tankerkoenig extends utils.Adapter {
                     );
                     if ((feed_max <= parseFloat(
                       prices[stationValue.station][this.fuelTypes[fuelTypesKey]]
-                    ) || feed_max === 0) && (feed_max !== void 0 || feed_max !== null)) {
+                    ) || feed_max === 0) && (feed_max !== void 0 || true)) {
                       if (feed_max < parseFloat(
                         prices[stationValue.station][this.fuelTypes[fuelTypesKey]]
                       )) {
