@@ -173,6 +173,11 @@
         "admin": ">=5.3.3"
       }
     ],
+    "plugins": {
+      "sentry": {
+        "dsn": "https://a9e6413d06b64e7e8e8fb892dfd7532e@sentry.iobroker.net/228"
+      }
+    },
     "tier": 3,
     "messages": [
       {

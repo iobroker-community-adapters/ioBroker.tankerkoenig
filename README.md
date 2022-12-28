@@ -7,8 +7,7 @@
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg?logo=npm)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Test and Release](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml)
 
-
-
+**This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
 
 NodeJS v14 or higher is required.
 
@@ -67,6 +66,10 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+
+### __WORK IN PROGRESS__
+* (Apollon77) Added Sentry for crash reporting
+
 ### 3.2.5 (2022-12-28)
 * (xXBJXx) Problem with entering the postal code in the UI fixed
 

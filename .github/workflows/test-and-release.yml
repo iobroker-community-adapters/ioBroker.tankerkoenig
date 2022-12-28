@@ -22,9 +22,9 @@ jobs:
   # Performs quick checks before the expensive test runs
   check-and-lint:
     if: contains(github.event.head_commit.message, '[skip ci]') == false
-    
+
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: ioBroker/testing-action-check@v1
         with:
@@ -33,17 +33,17 @@ jobs:
           # install-command: 'npm install'
           type-checking: true
           lint: true
-  
+
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
     if: contains(github.event.head_commit.message, '[skip ci]') == false
-    
+
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
-    
+
     steps:
       - uses: ioBroker/testing-action-adapter@v1
         with:
@@ -87,10 +87,9 @@ jobs:
           # To enable create a API-Token in Sentry (User settings, API keys)
           # Enter this token as a GitHub secret (with name SENTRY_AUTH_TOKEN) in the repository options
           # Then uncomment and customize the following block:
-          sentry: false
+          sentry: true
           sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
           sentry-project: "iobroker-tankerkoenig"
           sentry-version-prefix: "iobroker.tankerkoenig"
           sentry-sourcemap-paths: "build/ admin/build/"
-          # If your sentry project is linked to a GitHub repository, you can enable the following option
-          # sentry-github-integration: true
+          sentry-github-integration: true
