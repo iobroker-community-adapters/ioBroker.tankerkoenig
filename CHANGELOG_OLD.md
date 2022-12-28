@@ -1,4 +1,8 @@
 # Older changes
+## 3.2.0 (2022-12-24)
+* (xXBJXx) added detailed information for the gas stations in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)
+* (xXBJXx) added address information for the gas stations in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))
+
 ## 3.1.0 (2022-11-27)
 * (xXBJXx) removed noLog option because the adapter log output was strongly optimized
 * (xXBJXx) Optimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)
