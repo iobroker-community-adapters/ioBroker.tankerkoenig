@@ -1,10 +1,14 @@
 ![Logo](admin/tankerkoenig.png)
 # ioBroker.tankerkoenig
 
-![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg) 
-![Number of Installations](http://iobroker.live/badges/tankerkoenig-stable.svg) 
-[![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+![Number of Installations](http://iobroker.live/badges/tankerkoenig-installed.svg)
+![ioBroker stable release](http://iobroker.live/badges/tankerkoenig-stable.svg)
+[![NPM version](http://img.shields.io/npm/v/iobroker.tankerkoenig.svg?logo=npm)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg?logo=npm)](https://www.npmjs.com/package/iobroker.tankerkoenig)
+[![Test and Release](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml)
+
+
+
 
 NodeJS v14 or higher is required.
 
@@ -63,6 +67,9 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) fixed type "number" but received type "string" [Issue # 100](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/100)
+
 ### 3.2.3 (2022-12-27)
 * (xXBJXx) the detailed request for the station data has been removed, see [issue #99](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/99)
 * (xXBJXx) added new input field for the address of the station in the adapter settings
