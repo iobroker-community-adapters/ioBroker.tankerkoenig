@@ -1,4 +1,9 @@
 # Older changes
+## 3.1.0 (2022-11-27)
+* (xXBJXx) removed noLog option because the adapter log output was strongly optimized
+* (xXBJXx) Optimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)
+* (xXBJXx) add new state `cheapest_stations` for the cheapest gas station [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)
+
 ## 3.0.6 (2022-11-23)
 * (xXBJXx) Added new option to adjust the text in the combined data point [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)
 

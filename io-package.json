@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.2.3",
+    "version": "3.2.4",
     "news": {
+      "3.2.4": {
+        "en": "Problem with setting objects => type \"Number\" set, but type \"String\" obtained [Problem #100] fixed.",
+        "de": "Problem beim Setzen von Objekten => Typ \"Zahl\" gesetzt, aber Typ \"String\" erhalten [Problem #100] behoben.",
+        "ru": "Проблема с установкой объектов => тип \"Число\" установлен, но получен тип \"Строка\" [Проблема #100] исправлена.",
+        "pt": "Problema com a definição de objectos => tipo \"Number\" definido, mas tipo \"String\" obtido [Problema #100] corrigido.",
+        "nl": "Probleem met het instellen van objecten => type \"Getal\" ingesteld, maar type \"String\" verkregen [Probleem #100] opgelost.",
+        "fr": "Problème de paramétrage des objets => type \"Number\" défini, mais type \"String\" obtenu [Problème #100] corrigé.",
+        "it": "Problema di impostazione degli oggetti => tipo \"Numero\" impostato, ma tipo \"Stringa\" ottenuto [Problema #100] risolto.",
+        "es": "Problema con la configuración de objetos => tipo \"Número\" establecido, pero tipo \"Cadena\" obtenido [Problema #100] solucionado.",
+        "pl": "Problem z ustawianiem obiektów => typ \"Number\" ustawiony, ale typ \"String\" uzyskany [Problem #100] naprawiony.",
+        "uk": "Виправлено проблему із встановленням об'єктів => тип \"Число\" встановлено, але отримано тип \"Рядок\" [Проблема #100].",
+        "zh-cn": "设置对象的问题=>设置了 \"Number \"类型，但获得了 \"String \"类型[问题#100]修复。"
+      },
       "3.2.3": {
         "en": "the detailed request for the station data has been removed, see [issue #99]\nadded new input field for the address of the station in the adapter settings",
         "de": "die detaillierte Abfrage der Stationsdaten wurde entfernt, siehe [issue #99]\nneues Eingabefeld für die Adresse der Station in den Adaptereinstellungen hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Dodano nową opcję dostosowania tekstu w punkcie danych combined [issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
         "uk": "Додано нову опцію для коригування тексту в combined точці даних [випуск #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)",
         "zh-cn": "增加了新的选项来调整 combined 数据点中的文字[issue #95](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/95)"
-      },
-      "3.0.5": {
-        "en": "fixed sort bug for cheapest gas station",
-        "de": "Sortierfehler für billigste Tankstelle behoben",
-        "ru": "Исправлена ошибка сортировки для самой дешевой заправки",
-        "pt": "bug de sort fixo para gaseificação mais barata",
-        "nl": "sorteerfout voor goedkoopste tankstation opgelost",
-        "fr": "Correction d'un bug de tri pour la station-service la moins chère",
-        "it": "risolto il bug dell'ordinamento per la stazione di servizio più economica",
-        "es": "Se ha corregido el error de ordenación de la estación de servicio más barata",
-        "pl": "naprawiony błąd sortowania dla najtańszej stacji benzynowej",
-        "uk": "виправлено помилку сортування для найдешевшої АЗС",
-        "zh-cn": "修复了最便宜的加油站的排序错误"
       }
     },
     "titleLang": {
