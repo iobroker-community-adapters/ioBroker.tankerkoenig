@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.2.5",
+    "version": "3.3.0",
     "news": {
+      "3.3.0": {
+        "en": "Added Sentry for crash reporting\nAdded detailed request when creating stations in the UI",
+        "de": "Sentry zur Meldung von Abstürzen hinzugefügt\nDetaillierte Anfrage beim Erstellen von Stationen in der UI hinzugefügt",
+        "ru": "Добавлена функция Sentry для сообщения об авариях\nДобавлен детальный запрос при создании станций в пользовательском интерфейсе",
+        "pt": "Adicionado Sentinela para relatórios de crash\nAdicionado pedido detalhado ao criar estações na UI",
+        "nl": "Sentry voor crashmelding toegevoegd\nGedetailleerd verzoek toegevoegd bij het aanmaken van stations in de UI",
+        "fr": "Ajout de Sentry pour le rapport de crash\nAjout d'une demande détaillée lors de la création de stations dans l'interface utilisateur",
+        "it": "Aggiunta la funzione Sentry per la segnalazione degli incidenti\nAggiunta richiesta dettagliata durante la creazione di stazioni nell'interfaccia utente",
+        "es": "Añadido Sentry para la notificación de fallos\nAñadida solicitud detallada al crear estaciones en la interfaz de usuario",
+        "pl": "Dodano Sentry do raportowania o awariach\nDodano szczegółowe zapytanie podczas tworzenia stacji w UI",
+        "uk": "Додано Sentry для повідомлення про аварії\nДодано детальний запит при створенні станцій в інтерфейсі користувача",
+        "zh-cn": "增加了用于崩溃报告的哨兵\n在用户界面中创建站点时增加了详细请求"
+      },
       "3.2.5": {
         "en": "Problem with entering the postal code in the UI fixed",
         "de": "Problem bei der Eingabe der Postleitzahl in der Benutzeroberfläche behoben",
@@ -80,19 +93,6 @@
         "pl": "Dodano szczegółowe informacje dla stacji benzynowej w obiekcie (ulica, miasto, itp.) Issue #98\nDodano informacje adresowe dla stacji benzynowej w obiekcie Nazwa dodana (Shell (Musterstraße 1, 12345 Musterstadt))",
         "uk": "Додана детальна інформація для АЗС в об'єкті (вулиця, місто і т.д.) Випуск #98\nДодано адресну інформацію для АЗС в об'єкті Назва (Shell (Musterstraße 1, 12345 Musterstadt))",
         "zh-cn": "添加对象中加油站的详细信息（街道、城市等） 问题#98\n添加了对象中的加油站的地址信息 名称（壳牌（Musterstraße 1, 12345 Musterstadt））。"
-      },
-      "3.1.0": {
-        "en": "removed noLog option because the adapter log output was strongly optimized\nOptimized sorting of the cheapest gas station [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nadd new state `cheapest_stations` for the cheapest gas station [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "de": "noLog-Option entfernt, da die Log-Ausgabe des Adapters stark optimiert wurde\nOptimierte Sortierung der billigsten Tankstelle [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nneuen Status `cheapest_stations` für die billigste Tankstelle hinzugefügt [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "ru": "удалена опция noLog, поскольку вывод журнала адаптера был сильно оптимизирован\nОптимизирована сортировка самой дешевой заправки [выпуск #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nдобавлено новое состояние `cheapest_stations` для самой дешевой автозаправочной станции [выпуск #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "pt": "removeu a opção noLog porque a saída do log do adaptador foi fortemente optimizada\nSeparação optimizada da estação de serviço mais barata [edição #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nadiciona novas estações de serviço de estado `cheapest_stations` para a estação de serviço mais barata [edição #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "nl": "noLog optie verwijderd omdat de logboekuitvoer van de adapter sterk geoptimaliseerd was\nSortering van het goedkoopste tankstation geoptimaliseerd [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nnieuwe staat `goedkoopste_stations` toegevoegd voor het goedkoopste tankstation [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "fr": "rimosso l'opzione noLog perché l'output del log dell'adattatore era fortemente ottimizzato\nOttimizzato l'ordinamento della stazione di servizio più economica [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\naggiunto il nuovo stato `cheapest_stations` per la stazione di servizio più economica [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "it": "rimosso l'opzione noLog perché l'uscita del registro dell'adattatore è stata fortemente ottimizzata\nOttimizzazione della stazione di servizio più economica [problema #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\naggiungere nuove statistiche per la stazione a gas più economica [problema #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/problems/93)",
-        "es": "eliminada la opción noLog porque la salida del registro del adaptador estaba muy optimizada\nOptimizada la ordenación de la gasolinera más barata [problema #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nañadir un nuevo estado `puestos_más_baratos` para la gasolinera más barata [problema #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "pl": "usunięcie opcji noLog, ponieważ wyjście dziennika adaptera było mocno zoptymalizowane\nZoptymalizowano sortowanie najtańszych stacji benzynowych [issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\ndodanie nowego stanu `cheapest_stations` dla najtańszych stacji benzynowych [issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "uk": "видалено опцію noLog, оскільки виведення логу адаптера було сильно оптимізовано\nоптимізовано сортування найдешевших АЗС [випуск #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\nдодано новий стан `cheapest_stations` для найдешевшої АЗС [випуск #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)",
-        "zh-cn": "移除noLog选项，因为适配器的日志输出已被强烈优化。\n优化了最便宜的加油站的排序[issue #96](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/96)\n为最便宜的加油站添加新的状态`cheapest_stations`[issue #93](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/93)"
       }
     },
     "titleLang": {

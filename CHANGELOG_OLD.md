@@ -1,4 +1,8 @@
 # Older changes
+## 3.2.1 (2022-12-25)
+* (xXBJXx) Added opening Times for the gas stations
+* (xXBJXx) Renaming function extended
+
 ## 3.2.0 (2022-12-24)
 * (xXBJXx) added detailed information for the gas stations in the object (street, city, etc.) [issue #98](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/98)
 * (xXBJXx) added address information for the gas stations in the object Name (Shell (Musterstraße 1, 12345 Musterstadt))
