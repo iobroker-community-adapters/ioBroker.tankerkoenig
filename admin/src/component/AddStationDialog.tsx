@@ -2,6 +2,8 @@
  * Created by issi on 31.10.21
  */
 import {
+	Alert,
+	AlertTitle,
 	Box,
 	Checkbox,
 	FormControl,
@@ -9,6 +11,7 @@ import {
 	IconButton,
 	InputAdornment,
 	InputLabel,
+	LinearProgress,
 	ListItemText,
 	MenuItem,
 	OutlinedInput,
@@ -18,11 +21,12 @@ import {
 	Tooltip,
 	Typography,
 } from '@mui/material';
-import { useI18n } from 'iobroker-react/hooks';
+import { useConnection, useGlobals, useI18n } from 'iobroker-react/hooks';
 import React, { useEffect, useState } from 'react';
 import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { NumberInput } from 'iobroker-react/components';
+import { requestDetail, RequestDetailProps } from '../lib/DetailRequest';
 
 export interface RowProps {
 	addRow: (value: ioBroker.Station) => void;
@@ -44,15 +48,22 @@ const fuelTypes = ['e5', 'e10', 'diesel'];
 const max = 36;
 const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
 let timeout: NodeJS.Timeout;
-
+let loadingTimer: NodeJS.Timeout;
+let alertTimeout: NodeJS.Timeout;
 export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element => {
 	const { translate: _ } = useI18n();
+	const { namespace } = useGlobals();
+	const connection = useConnection();
+	const [alert, setAlert] = React.useState({
+		message: '',
+		open: false,
+	});
+	const [loading, setLoading] = React.useState(false);
 	const [stationID, setStationID] = useState<string>('');
 	const [discountType, setDiscountType] = useState<string>('absolute');
 	const [discount, setDiscount] = useState<number>(0);
 	const [fuelType, setFuelType] = useState<string[]>(['e5', 'e10', 'diesel']);
 	const [discounted, setDiscounted] = useState<boolean>(false);
-
 	const [name, setName] = useState<string>('');
 	const [error, setError] = useState<boolean>(true);
 	const [newRow, setNewRow] = useState<ioBroker.Station>({
@@ -60,7 +71,8 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 		stationname: '',
 		street: '',
 		city: '',
-		postCode: '',
+		postCode: 0,
+		houseNumber: '',
 		discounted: false,
 		discountObj: {
 			discount: 0,
@@ -71,15 +83,54 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 	const [copyValid, setCopyValid] = useState(false);
 	const [street, setStreet] = useState<string>('');
 	const [city, setCity] = useState<string>('');
-	const [postCode, setPostCode] = useState<string>('');
+	const [postCode, setPostCode] = useState<number>(0);
+	const [houseNumber, setHouseNumber] = useState<string>('');
 
 	useEffect(() => {
 		addRow(newRow);
 	}, [newRow]);
 
-	const handleValidate = (id: string) => {
+	const handleDetailRequest = async (
+		id: string,
+		typ: string,
+	): Promise<RequestDetailProps['data'] | undefined> => {
+		const detailResult = await requestDetail(connection, namespace, typ, id);
+		if (detailResult) {
+			if (detailResult.alert.status === 'error') {
+				setAlert({
+					message: detailResult.alert.message,
+					open: true,
+				});
+				setLoading(detailResult.loading);
+				return undefined;
+			} else {
+				setAlert({
+					message: '',
+					open: false,
+				});
+				setLoading(detailResult.loading);
+				return detailResult.data;
+			}
+		} else {
+			return undefined;
+		}
+	};
+
+	const handleValidate = async (id: string) => {
 		if (id.match(pattern)) {
 			setError(false);
+			const result = await handleDetailRequest(id, 'detailRequest');
+			if (result) {
+				setNewRow({
+					...newRow,
+					station: id,
+					...result,
+				});
+				setCity(result.city);
+				setHouseNumber(result.houseNumber);
+				setPostCode(result.postCode);
+				setStreet(result.street);
+			}
 		} else {
 			setError(true);
 		}
@@ -110,11 +161,11 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 	const handleChangePostCode = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
 		const newPostCode: string = event.target.value;
 		if (newPostCode !== '') {
-			setPostCode(newPostCode);
-			setNewRow({ ...newRow, postCode: newPostCode.toString() });
+			setPostCode(parseInt(newPostCode));
+			setNewRow({ ...newRow, postCode: parseInt(newPostCode) });
 		} else {
-			setPostCode('');
-			setNewRow({ ...newRow, postCode: '' });
+			setPostCode(0);
+			setNewRow({ ...newRow, postCode: 0 });
 		}
 	};
 
@@ -126,6 +177,19 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 		} else {
 			setStreet('');
 			setNewRow({ ...newRow, street: '' });
+		}
+	};
+
+	const handleChangeHouseNumber = (
+		event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+	): void => {
+		const newHouseNumber: string = event.target.value;
+		if (newHouseNumber !== '') {
+			setHouseNumber(newHouseNumber);
+			setNewRow({ ...newRow, houseNumber: newHouseNumber });
+		} else {
+			setHouseNumber('');
+			setNewRow({ ...newRow, houseNumber: '' });
 		}
 	};
 
@@ -221,6 +285,20 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 	};
 
 	useEffect(() => {
+		if (loading) {
+			console.log('loading');
+			if (loadingTimer) clearTimeout(loadingTimer);
+			loadingTimer = setTimeout(() => {
+				setLoading(false);
+				console.log('loading done');
+			}, 5000);
+		} else {
+			console.log('not loading');
+			if (loadingTimer) clearTimeout(loadingTimer);
+		}
+	}, [loading]);
+
+	useEffect(() => {
 		handleValidate(stationID);
 	}, [stationID]);
 
@@ -232,19 +310,15 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 					if (json.hasOwnProperty(jsonKey)) {
 						const element = json[jsonKey];
 						if (element.id) {
+							setAlert({
+								open: false,
+								message: '',
+							});
 							setStationID(element.id);
-							setPostCode(element.post_code);
-							setCity(element.place);
-							const street = `${element.street} ${
-								element.house_number ? element.house_number : ''
-							}`;
-							setStreet(street);
+							setLoading(true);
 							setNewRow({
 								...newRow,
 								station: element.id,
-								postCode: element.post_code,
-								city: element.place,
-								street,
 							});
 							setCopyValid(true);
 						}
@@ -273,6 +347,19 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			return;
 		}
 	}, [copyValid]);
+
+	useEffect(() => {
+		//reset alert in 3 seconds
+		if (alert.open) {
+			if (alertTimeout) clearTimeout(alertTimeout);
+			alertTimeout = setTimeout(() => {
+				setAlert({
+					open: false,
+					message: '',
+				});
+			}, 5000);
+		}
+	}, [alert]);
 
 	return (
 		<React.Fragment>
@@ -356,6 +443,17 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 							/>
 						</Tooltip>
 					</FormControl>
+					{loading ? (
+						<Box sx={{ width: '80%', height: '10px' }}>
+							<LinearProgress />
+						</Box>
+					) : null}
+					{alert.open ? (
+						<Alert severity="warning">
+							<AlertTitle>Warning</AlertTitle>
+							{alert.message}
+						</Alert>
+					) : null}
 					<Typography variant="h6" component="div" textAlign={'center'}>
 						{_('stationLocation')}
 					</Typography>
@@ -395,6 +493,31 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 								/>
 							</Tooltip>
 							<Tooltip
+								title={_('tooltipStationHouseNumber')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('houseNumber')}
+									value={houseNumber}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '15ch',
+										marginRight: '10px',
+									}}
+									inputProps={{
+										style: { textAlign: 'center' },
+									}}
+									placeholder={'7'}
+									onChange={(event) => {
+										handleChangeHouseNumber(event);
+									}}
+								/>
+							</Tooltip>
+							<Tooltip
 								title={_('tooltipStationName')}
 								arrow
 								placement={'top'}
@@ -428,8 +551,8 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 							>
 								<TextField
 									label={_('stationZip')}
-									value={postCode}
-									type={'text'}
+									value={postCode.toString()}
+									type={'number'}
 									margin={'normal'}
 									sx={{
 										width: '15ch',
@@ -437,6 +560,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 									placeholder={'10910'}
 									inputProps={{
 										maxLength: 6,
+										min: 0,
 										style: { textAlign: 'center' },
 									}}
 									onChange={(event) => {

@@ -2,6 +2,8 @@
  * Created by issi on 31.10.21
  */
 import {
+	Alert,
+	AlertTitle,
 	Box,
 	Checkbox,
 	FormControl,
@@ -9,6 +11,7 @@ import {
 	IconButton,
 	InputAdornment,
 	InputLabel,
+	LinearProgress,
 	ListItemText,
 	MenuItem,
 	OutlinedInput,
@@ -18,11 +21,12 @@ import {
 	Tooltip,
 	Typography,
 } from '@mui/material';
-import { useI18n } from 'iobroker-react/hooks';
+import { useConnection, useGlobals, useI18n } from 'iobroker-react/hooks';
 import React, { useEffect, useState } from 'react';
 import { NumberInput } from 'iobroker-react/components';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
+import { requestDetail, RequestDetailProps } from '../lib/DetailRequest';
 
 export interface RowProps {
 	editRow: (value: ioBroker.Station) => void;
@@ -44,7 +48,8 @@ const max = 36;
 const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
 const fuelTypes = ['e5', 'e10', 'diesel'];
 let timeout: NodeJS.Timeout;
-
+let loadingTimer: NodeJS.Timeout;
+let alertTimeout: NodeJS.Timeout;
 export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.Element => {
 	if (!oldRow) {
 		oldRow = oldRow || {
@@ -52,7 +57,8 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			stationname: '',
 			street: '',
 			city: '',
-			postCode: '',
+			postCode: 0,
+			houseNumber: '',
 			discounted: false,
 			discountObj: {
 				discount: 0,
@@ -62,11 +68,19 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 		};
 	}
 	const { translate: _ } = useI18n();
+	const { namespace } = useGlobals();
+	const connection = useConnection();
+	const [alert, setAlert] = React.useState({
+		message: '',
+		open: false,
+	});
+	const [loading, setLoading] = React.useState(false);
 	const [stationID, setStationID] = useState<string>(oldRow.station);
 	const [name, setName] = useState<string>(oldRow.stationname);
 	const [street, setStreet] = useState<string>(oldRow.street || '');
 	const [city, setCity] = useState<string>(oldRow.city || '');
-	const [postCode, setPostCode] = useState<string>(oldRow.postCode || '');
+	const [postCode, setPostCode] = useState<number>(oldRow.postCode || 0);
+	const [houseNumber, setHouseNumber] = useState<string>(oldRow.houseNumber || '');
 	const [discountType, setDiscountType] = useState<string>(oldRow.discountObj.discountType);
 	const [discount, setDiscount] = useState<number>(oldRow.discountObj.discount);
 	const [fuelType, setFuelType] = useState<string[]>(oldRow.discountObj.fuelType);
@@ -85,6 +99,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 				street !== oldRow.street ||
 				city !== oldRow.city ||
 				postCode !== oldRow.postCode ||
+				houseNumber !== oldRow.houseNumber ||
 				discounted !== oldRow.discounted ||
 				fuelType !== oldRow.discountObj.fuelType ||
 				discount !== oldRow.discountObj.discount ||
@@ -94,9 +109,45 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			}
 		}
 	}, [newEditRow]);
-
-	const handleValidate = (value: string) => {
-		if (value.match(pattern)) {
+	const handleDetailRequest = async (
+		id: string,
+		typ: string,
+	): Promise<RequestDetailProps['data'] | undefined> => {
+		const detailResult = await requestDetail(connection, namespace, typ, id);
+		if (detailResult) {
+			if (detailResult.alert.status === 'error') {
+				setAlert({
+					message: detailResult.alert.message,
+					open: true,
+				});
+				setLoading(detailResult.loading);
+				return undefined;
+			} else {
+				setAlert({
+					message: '',
+					open: false,
+				});
+				setLoading(detailResult.loading);
+				return detailResult.data;
+			}
+		} else {
+			return undefined;
+		}
+	};
+	const handleValidate = async (id: string) => {
+		if (id.match(pattern)) {
+			const result = await handleDetailRequest(id, 'detailRequest');
+			if (result) {
+				setEditRow({
+					...newEditRow,
+					station: id,
+					...result,
+				});
+				setCity(result.city);
+				setHouseNumber(result.houseNumber);
+				setPostCode(result.postCode);
+				setStreet(result.street);
+			}
 			setValid(false);
 		} else {
 			setValid(true);
@@ -152,11 +203,23 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 	const handleChangePostCode = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
 		const newPostCode: string = event.target.value;
 		if (newPostCode !== '') {
-			setPostCode(newPostCode);
-			setEditRow({ ...newEditRow, postCode: newPostCode });
+			setPostCode(parseInt(newPostCode));
+			setEditRow({ ...newEditRow, postCode: parseInt(newPostCode) });
 		} else {
-			setPostCode('');
-			setEditRow({ ...newEditRow, postCode: '' });
+			setPostCode(0);
+			setEditRow({ ...newEditRow, postCode: 0 });
+		}
+	};
+	const handleChangeHouseNumber = (
+		event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+	): void => {
+		const newHouseNumber: string = event.target.value;
+		if (newHouseNumber !== '') {
+			setHouseNumber(newHouseNumber);
+			setEditRow({ ...newEditRow, houseNumber: newHouseNumber });
+		} else {
+			setHouseNumber('');
+			setEditRow({ ...newEditRow, houseNumber: '' });
 		}
 	};
 
@@ -245,8 +308,23 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 	};
 
 	useEffect(() => {
+		if (loading) {
+			console.log('loading');
+			if (loadingTimer) clearTimeout(loadingTimer);
+			loadingTimer = setTimeout(() => {
+				console.log('loading finished');
+				setLoading(false);
+			}, 5000);
+		} else {
+			console.log('not loading');
+			if (loadingTimer) clearTimeout(loadingTimer);
+		}
+	}, [loading]);
+
+	useEffect(() => {
 		handleValidate(stationID);
 	}, [stationID]);
+
 	const handlePaste = () => {
 		navigator.clipboard.readText().then((stationData) => {
 			try {
@@ -255,19 +333,14 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 					if (json.hasOwnProperty(jsonKey)) {
 						const element = json[jsonKey];
 						if (element.id) {
+							setAlert({
+								open: false,
+								message: '',
+							});
 							setStationID(element.id);
-							setPostCode(element.post_code);
-							setCity(element.place);
-							const street = `${element.street} ${
-								element.house_number ? element.house_number : ''
-							}`;
-							setStreet(street);
 							setEditRow({
 								...newEditRow,
 								station: element.id,
-								postCode: element.post_code,
-								city: element.place,
-								street,
 							});
 							setCopyValid(true);
 						}
@@ -296,6 +369,19 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 			return;
 		}
 	}, [copyValid]);
+
+	useEffect(() => {
+		//reset alert in 3 seconds
+		if (alert.open) {
+			if (alertTimeout) clearTimeout(alertTimeout);
+			alertTimeout = setTimeout(() => {
+				setAlert({
+					open: false,
+					message: '',
+				});
+			}, 5000);
+		}
+	}, [alert]);
 
 	return (
 		<React.Fragment>
@@ -384,6 +470,17 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 							/>
 						</Tooltip>
 					</FormControl>
+					{loading ? (
+						<Box sx={{ width: '80%', height: '10px' }}>
+							<LinearProgress />
+						</Box>
+					) : null}
+					{alert.open ? (
+						<Alert severity="warning">
+							<AlertTitle>Warning</AlertTitle>
+							{alert.message}
+						</Alert>
+					) : null}
 					<Typography variant="h6" component="div" textAlign={'center'}>
 						{_('stationLocation')}
 					</Typography>
@@ -419,6 +516,31 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 									placeholder={'Zedernweg 93'}
 									onChange={(event) => {
 										handleChangeStreet(event);
+									}}
+								/>
+							</Tooltip>
+							<Tooltip
+								title={_('tooltipStationHouseNumber')}
+								arrow
+								placement={'top'}
+								enterNextDelay={500}
+								enterDelay={500}
+							>
+								<TextField
+									label={_('houseNumber')}
+									value={houseNumber}
+									type={'text'}
+									margin={'normal'}
+									sx={{
+										width: '15ch',
+										marginRight: '10px',
+									}}
+									inputProps={{
+										style: { textAlign: 'center' },
+									}}
+									placeholder={'7'}
+									onChange={(event) => {
+										handleChangeHouseNumber(event);
 									}}
 								/>
 							</Tooltip>

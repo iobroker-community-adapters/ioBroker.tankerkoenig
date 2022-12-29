@@ -29,6 +29,7 @@ class Tankerkoenig extends utils.Adapter {
     this.on("ready", this.onReady.bind(this));
     this.on("stateChange", this.onStateChange.bind(this));
     this.on("unload", this.onUnload.bind(this));
+    this.on("message", this.onMessage.bind(this));
     this.startRequestTimeout = null;
     this.requestTimeout = null;
     this.refreshTimeout = null;
@@ -38,44 +39,51 @@ class Tankerkoenig extends utils.Adapter {
     this.refreshStatus = false;
   }
   async onReady() {
-    const adapterObj = await this.getForeignObjectAsync(
-      `system.adapter.${this.namespace}`
-    );
-    if (adapterObj) {
-      if (adapterObj.common.mode !== "daemon") {
-        adapterObj.common.mode = "daemon";
-        await this.setForeignObjectAsync(adapterObj._id, adapterObj);
-      } else {
-        this.writeLog("Adapter is already in daemon mode", "info");
-      }
-    }
-    this.sync_milliseconds = typeof this.config.synctime === "number" ? this.config.synctime * 1e3 * 60 : parseInt(this.config.synctime, 10) * 1e3 * 60;
-    if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 5 * 60 * 1e3) {
-      this.sync_milliseconds = 3e5;
-      this.writeLog(
-        `Sync time was too short (${this.config.synctime}). New sync time is 5 min`,
-        "warn"
+    try {
+      const adapterObj = await this.getForeignObjectAsync(
+        `system.adapter.${this.namespace}`
       );
-    }
-    this.writeLog(
-      `Sync time set to ${this.config.synctime} minutes or ${this.sync_milliseconds} ms`,
-      "info"
-    );
-    this.sync_milliseconds += Math.floor(Math.random() * 100);
-    if (this.decrypt(this.config.apikey).length === 36) {
-      if (this.config.station.length > 0) {
-        if (this.startRequestTimeout)
-          clearTimeout(this.startRequestTimeout);
-        await this.createAllStates(this.config.station);
-        this.startRequestTimeout = setTimeout(async () => {
-          this.writeLog("Start first request", "info");
-          await this.requestData();
-        }, 1e3);
-      } else {
-        this.writeLog(`No stations defined`, "error");
+      if (adapterObj) {
+        if (adapterObj.common.mode !== "daemon") {
+          adapterObj.common.mode = "daemon";
+          await this.setForeignObjectAsync(adapterObj._id, adapterObj);
+        } else {
+          this.writeLog("Adapter is already in daemon mode", "info");
+        }
       }
-    } else {
-      this.writeLog(`No Api Key is specified`, "error");
+      this.sync_milliseconds = typeof this.config.synctime === "number" ? this.config.synctime * 1e3 * 60 : parseInt(this.config.synctime, 10) * 1e3 * 60;
+      if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 5 * 60 * 1e3) {
+        this.sync_milliseconds = 3e5;
+        this.writeLog(
+          `Sync time was too short (${this.config.synctime}). New sync time is 5 min`,
+          "warn"
+        );
+      }
+      this.writeLog(
+        `Sync time set to ${this.config.synctime} minutes or ${this.sync_milliseconds} ms`,
+        "info"
+      );
+      this.sync_milliseconds += Math.floor(Math.random() * 100);
+      if (this.decrypt(this.config.apikey).length === 36) {
+        if (this.config.station.length > 0) {
+          if (this.startRequestTimeout)
+            clearTimeout(this.startRequestTimeout);
+          await this.createAllStates(this.config.station);
+          this.startRequestTimeout = setTimeout(async () => {
+            this.writeLog("Start first request", "info");
+            await this.requestData();
+          }, 1e3);
+        } else {
+          this.writeLog(`No stations defined`, "error");
+        }
+      } else {
+        this.writeLog(`No Api Key is specified`, "error");
+      }
+    } catch (error) {
+      this.writeLog(
+        `[ Adapter V:${this.version} onReady ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
     }
   }
   async requestData() {
@@ -87,15 +95,17 @@ class Tankerkoenig extends utils.Adapter {
       const config = {
         headers: {
           "User-Agent": `${this.name} / ${this.version}`,
-          "Accept-Encoding": "identity",
           Accept: "application/json"
         }
       };
       const response = await import_axios.default.get(url, config);
-      console.log(`[ requestData axios: ${import_axios.default.VERSION} ] response data:`, response);
+      console.log(
+        `[ Adapter V:${this.version} requestData axios: ${import_axios.default.VERSION} ] response data:`,
+        response
+      );
       if (response.status === 200) {
         this.writeLog(
-          `[ requestData axios: ${import_axios.default.VERSION} ] type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
+          `[ Adapter V:${this.version} requestData axios: ${import_axios.default.VERSION} ] type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
           "debug"
         );
         if (response.data.ok) {
@@ -113,6 +123,15 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
           }, 2e3);
+        } else {
+          this.writeLog(
+            `[ Adapter V:${this.version} requestData  axios: ${import_axios.default.VERSION} ] response not ok`,
+            "error"
+          );
+          this.writeLog(
+            `[ Adapter V:${this.version} requestData  axios: ${import_axios.default.VERSION} ] response data: ${JSON.stringify(response.data)}`,
+            "error"
+          );
         }
       }
       await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
@@ -134,15 +153,13 @@ class Tankerkoenig extends utils.Adapter {
           );
         } else {
           this.writeLog(
-            `[ requestData axios: ${import_axios.default.VERSION} ] error.response: Code: ${error.response.status}  Message: ${error.response.statusText} Data: ${JSON.stringify(
-              error.response.data
-            )} `,
+            `[ Adapter V:${this.version} requestData axios: ${import_axios.default.VERSION} ] error.response: Code: ${error.response.status}  Message: ${error.response.statusText} Data: ${JSON.stringify(error.response.data)} `,
             "error"
           );
         }
       } else {
         this.writeLog(
-          `[ requestData axios: ${import_axios.default.VERSION} ] Error Code ${error.code} Error: ${error.message} >>> Stack: ${error.stack}`,
+          `[ Adapter V:${this.version} requestData axios: ${import_axios.default.VERSION} ] Error: ${error} Error Code ${error.code} Error Message ${error.message} >>> Stack: ${error.stack}`,
           "error"
         );
       }
@@ -184,7 +201,10 @@ class Tankerkoenig extends utils.Adapter {
       }
       return price;
     } catch (error) {
-      this.writeLog(`[ setDiscount ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} setDiscount ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
       return price;
     }
   }
@@ -193,7 +213,10 @@ class Tankerkoenig extends utils.Adapter {
       const oldState = await this.getStateAsync(id);
       return oldState ? oldState.val : null;
     } catch (error) {
-      this.writeLog(`[ oldState ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} oldState ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
       return null;
     }
   }
@@ -209,7 +232,10 @@ class Tankerkoenig extends utils.Adapter {
       }
       return day;
     } catch (error) {
-      this.writeLog(`[ dayState ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} dayState ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
       return null;
     }
   }
@@ -437,9 +463,75 @@ class Tankerkoenig extends utils.Adapter {
             ack: true
           });
           await this.setStateAsync(`stations.cheapest.e5.postCode`, {
-            val: stationValue.postCode,
+            val: stationValue.postCode.toString(),
             ack: true
           });
+          await this.setStateAsync(`stations.cheapest.e5.houseNumber`, {
+            val: stationValue.houseNumber,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e5.latitude`, {
+            val: stationValue.latitude,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e5.longitude`, {
+            val: stationValue.longitude,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e5.wholeDay`, {
+            val: stationValue.wholeDay,
+            ack: true
+          });
+          if (stationValue.openingTimes) {
+            if (stationValue.openingTimes.length > 0) {
+              if (stationValue.openingTimes !== "noData") {
+                await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+                  val: JSON.stringify(stationValue.openingTimes),
+                  ack: true
+                });
+              } else {
+                await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+                val: "no Data",
+                ack: true
+              });
+            }
+          } else {
+            await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+              val: "no data",
+              ack: true
+            });
+          }
+          if (stationValue.overrides) {
+            if (stationValue.overrides.length > 0) {
+              if (stationValue.overrides !== "noData") {
+                await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+                  val: JSON.stringify(stationValue.overrides),
+                  ack: true
+                });
+              } else {
+                await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+                val: "no Data",
+                ack: true
+              });
+            }
+          } else {
+            await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+              val: "no data",
+              ack: true
+            });
+          }
         }
         if (stationValue.station === newE10[0].station) {
           this.writeLog(`write the cheapest e10 to the states`, "debug");
@@ -520,9 +612,75 @@ class Tankerkoenig extends utils.Adapter {
             ack: true
           });
           await this.setStateAsync(`stations.cheapest.e10.postCode`, {
-            val: stationValue.postCode,
+            val: stationValue.postCode.toString(),
             ack: true
           });
+          await this.setStateAsync(`stations.cheapest.e10.houseNumber`, {
+            val: stationValue.houseNumber,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e10.latitude`, {
+            val: stationValue.latitude,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e10.longitude`, {
+            val: stationValue.longitude,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.e10.wholeDay`, {
+            val: stationValue.wholeDay,
+            ack: true
+          });
+          if (stationValue.openingTimes) {
+            if (stationValue.openingTimes.length > 0) {
+              if (stationValue.openingTimes !== "noData") {
+                await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+                  val: JSON.stringify(stationValue.openingTimes),
+                  ack: true
+                });
+              } else {
+                await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+                val: "no Data",
+                ack: true
+              });
+            }
+          } else {
+            await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+              val: "no data",
+              ack: true
+            });
+          }
+          if (stationValue.overrides) {
+            if (stationValue.overrides.length > 0) {
+              if (stationValue.overrides !== "noData") {
+                await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+                  val: JSON.stringify(stationValue.overrides),
+                  ack: true
+                });
+              } else {
+                await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+                val: "no Data",
+                ack: true
+              });
+            }
+          } else {
+            await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+              val: "no data",
+              ack: true
+            });
+          }
         }
         if (stationValue.station === newDiesel[0].station) {
           this.writeLog(`write the cheapest diesel to the states`, "debug");
@@ -603,9 +761,75 @@ class Tankerkoenig extends utils.Adapter {
             ack: true
           });
           await this.setStateAsync(`stations.cheapest.diesel.postCode`, {
-            val: stationValue.postCode,
+            val: stationValue.postCode.toString(),
             ack: true
           });
+          await this.setStateAsync(`stations.cheapest.diesel.houseNumber`, {
+            val: stationValue.houseNumber,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.diesel.latitude`, {
+            val: stationValue.latitude,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.diesel.longitude`, {
+            val: stationValue.longitude,
+            ack: true
+          });
+          await this.setStateAsync(`stations.cheapest.diesel.wholeDay`, {
+            val: stationValue.wholeDay,
+            ack: true
+          });
+          if (stationValue.openingTimes) {
+            if (stationValue.openingTimes.length > 0) {
+              if (stationValue.openingTimes !== "noData") {
+                await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+                  val: JSON.stringify(stationValue.openingTimes),
+                  ack: true
+                });
+              } else {
+                await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+                val: "no Data",
+                ack: true
+              });
+            }
+          } else {
+            await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+              val: "no data",
+              ack: true
+            });
+          }
+          if (stationValue.overrides) {
+            if (stationValue.overrides.length > 0) {
+              if (stationValue.overrides !== "noData") {
+                await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+                  val: JSON.stringify(stationValue.overrides),
+                  ack: true
+                });
+              } else {
+                await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+                val: "no Data",
+                ack: true
+              });
+            }
+          } else {
+            await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+              val: "no data",
+              ack: true
+            });
+          }
         }
         for (const [pricesKey] of Object.entries(prices)) {
           if (stationValue.station === pricesKey) {
@@ -638,9 +862,75 @@ class Tankerkoenig extends utils.Adapter {
               ack: true
             });
             await this.setStateAsync(`stations.${key}.postCode`, {
-              val: stationValue.postCode,
+              val: stationValue.postCode.toString(),
               ack: true
             });
+            await this.setStateAsync(`stations.${key}.houseNumber`, {
+              val: stationValue.houseNumber,
+              ack: true
+            });
+            await this.setStateAsync(`stations.${key}.latitude`, {
+              val: stationValue.latitude,
+              ack: true
+            });
+            await this.setStateAsync(`stations.${key}.longitude`, {
+              val: stationValue.longitude,
+              ack: true
+            });
+            await this.setStateAsync(`stations.${key}.wholeDay`, {
+              val: stationValue.wholeDay,
+              ack: true
+            });
+            if (stationValue.openingTimes) {
+              if (stationValue.openingTimes.length > 0) {
+                if (stationValue.openingTimes !== "noData") {
+                  await this.setStateAsync(`stations.${key}.openingTimes`, {
+                    val: JSON.stringify(stationValue.openingTimes),
+                    ack: true
+                  });
+                } else {
+                  await this.setStateAsync(`stations.${key}.openingTimes`, {
+                    val: "no Data",
+                    ack: true
+                  });
+                }
+              } else {
+                await this.setStateAsync(`stations.${key}.openingTimes`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.${key}.openingTimes`, {
+                val: "no data",
+                ack: true
+              });
+            }
+            if (stationValue.overrides) {
+              if (stationValue.overrides.length > 0) {
+                if (stationValue.overrides !== "noData") {
+                  await this.setStateAsync(`stations.${key}.overrides`, {
+                    val: JSON.stringify(stationValue.overrides),
+                    ack: true
+                  });
+                } else {
+                  await this.setStateAsync(`stations.${key}.overrides`, {
+                    val: "no Data",
+                    ack: true
+                  });
+                }
+              } else {
+                await this.setStateAsync(`stations.${key}.overrides`, {
+                  val: "no Data",
+                  ack: true
+                });
+              }
+            } else {
+              await this.setStateAsync(`stations.${key}.overrides`, {
+                val: "no data",
+                ack: true
+              });
+            }
             for (const fuelTypesKey in this.fuelTypes) {
               if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
                 const feedMinDay = await this.dayState(
@@ -1135,7 +1425,10 @@ class Tankerkoenig extends utils.Adapter {
         });
       }
     } catch (error) {
-      this.writeLog(`[ writeState ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} writeState ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
     }
   }
   async createJsonTable(price, station) {
@@ -1186,7 +1479,10 @@ class Tankerkoenig extends utils.Adapter {
       }
       return jsonTable;
     } catch (error) {
-      this.writeLog(`[ createJsonTable ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} createJsonTable ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
     }
   }
   async cutPrice(price) {
@@ -1213,7 +1509,10 @@ class Tankerkoenig extends utils.Adapter {
         price3rd
       };
     } catch (error) {
-      this.writeLog(`[ cutPrice ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} cutPrice ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
       return { priceshort: "0", price3rd: 0 };
     }
   }
@@ -1251,7 +1550,10 @@ class Tankerkoenig extends utils.Adapter {
       }
       return price;
     } catch (error) {
-      this.writeLog(`[ addDiscount ] error: ${error} stack: ${error.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} addDiscount ] error: ${error} stack: ${error.stack}`,
+        "error"
+      );
       return parseFloat(price);
     }
   }
@@ -1319,20 +1621,20 @@ class Tankerkoenig extends utils.Adapter {
           if (stations.hasOwnProperty(stationKey)) {
             const station = stations[stationKey];
             let stationName = "";
-            if (station.street && station.city && station.postCode) {
-              if (station.street.length > 0 && station.city.length > 0 && station.postCode.length > 0) {
+            if (station.street && station.houseNumber && station.city && station.postCode) {
+              if (station.street.length > 0 && station.houseNumber.length > 0 && station.city.length > 0 && station.postCode.toString().length > 0) {
                 stationName = `${station.stationname} (${station.street}, ${station.postCode} ${station.city})`;
               } else if (station.street.length > 0 && station.city.length > 0) {
                 stationName = `${station.stationname} (${station.street}, ${station.city})`;
-              } else if (station.street.length > 0 && station.postCode.length > 0) {
+              } else if (station.street.length > 0 && station.postCode.toString().length > 0) {
                 stationName = `${station.stationname} (${station.street}, ${station.postCode})`;
-              } else if (station.city.length > 0 && station.postCode.length > 0) {
+              } else if (station.city.length > 0 && station.postCode.toString().length > 0) {
                 stationName = `${station.stationname} (${station.postCode} ${station.city})`;
               } else if (station.street.length > 0) {
                 stationName = `${station.stationname} (${station.street})`;
               } else if (station.city.length > 0) {
                 stationName = `${station.stationname} (${station.city})`;
-              } else if (station.postCode.length > 0) {
+              } else if (station.postCode.toString().length > 0) {
                 stationName = `${station.stationname} (${station.postCode})`;
               } else {
                 stationName = station.stationname;
@@ -1486,7 +1788,10 @@ class Tankerkoenig extends utils.Adapter {
       });
       await this.subscribeStates(`stations.refresh`);
     } catch (e) {
-      this.writeLog(`[ create objects ] Error creating all states: ${e}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} create objects ] Error creating all states: ${e}`,
+        "error"
+      );
     }
   }
   writeLog(logtext, logtype) {
@@ -1502,7 +1807,7 @@ class Tankerkoenig extends utils.Adapter {
       if (logtype === "error")
         this.log.error(logtext);
     } catch (error) {
-      this.log.error(`writeLog error: ${error} , stack: ${error.stack}`);
+      this.log.error(`[ Adapter V:${this.version} writeLog ] error: ${error} , stack: ${error.stack}`);
     }
   }
   async onUnload(callback) {
@@ -1519,7 +1824,126 @@ class Tankerkoenig extends utils.Adapter {
       });
       callback();
     } catch (e) {
+      this.writeLog(`[ Adapter V:${this.version} onUnload ] error: ${e} , stack: ${e.stack}`, "error");
       callback();
+    }
+  }
+  async onMessage(obj) {
+    try {
+      if (typeof obj === "object" && obj.message) {
+        if (obj.command === "detailRequest") {
+          if (typeof obj.message === "string") {
+            const id = obj.message;
+            this.writeLog(
+              `[ Adapter V:${this.version} onMessage ] start detailRequest for ${id}`,
+              "debug"
+            );
+            const result = await this.detailRequest(id);
+            if (!result) {
+              this.writeLog(
+                `[ Adapter V:${this.version} onMessage ] detailRequest for ${id} failed`,
+                "error"
+              );
+              if (obj.callback)
+                this.sendTo(obj.from, obj.command, "error", obj.callback);
+            } else {
+              this.writeLog(
+                `[ Adapter V:${this.version} onMessage ] detailRequest result: ${JSON.stringify(result)}`,
+                "debug"
+              );
+              if (obj.callback)
+                this.sendTo(obj.from, obj.command, result, obj.callback);
+            }
+          }
+        }
+      }
+    } catch (e) {
+      this.writeLog(`Error onMessage: ${e}`, "error");
+    }
+  }
+  async detailRequest(id) {
+    try {
+      let dataJson = void 0;
+      const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${id}&apikey=${this.decrypt(
+        this.config.apikey
+      )}`;
+      const config = {
+        headers: {
+          "User-Agent": `${this.name}/${this.version}`,
+          Accept: "application/json"
+        },
+        timeout: 1e4
+      };
+      const result = await import_axios.default.get(url, config);
+      if (result.status === 200) {
+        this.writeLog(
+          `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] detailRequest result: ${JSON.stringify(result.data)}`,
+          "debug"
+        );
+        if (result.data.ok) {
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] detailRequest for ${id} success`,
+            "debug"
+          );
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] detailRequest for ${id} result: ${JSON.stringify(result.data)}`,
+            "debug"
+          );
+          dataJson = {
+            status: result.data.status,
+            ok: result.data.ok,
+            data: {
+              street: result.data.station.street,
+              city: result.data.station.place,
+              houseNumber: result.data.station.houseNumber,
+              postCode: result.data.station.postCode,
+              latitude: result.data.station.lat,
+              longitude: result.data.station.lng,
+              wholeDay: result.data.station.wholeDay,
+              openingTimes: result.data.station.openingTimes.length > 0 ? result.data.station.openingTimes : "noData",
+              overrides: result.data.station.overrides.length > 0 ? result.data.station.overrides : "noData"
+            }
+          };
+          return dataJson;
+        } else {
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] detailRequest for ${id} failed`,
+            "error"
+          );
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] detailRequest for ${id} result: ${JSON.stringify(result.data)}`,
+            "error"
+          );
+          return result.data;
+        }
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 503) {
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] Code: ${error.response.status} Message: >> ${error.response.statusText} Rate Limit Exceeded << Data: ${JSON.stringify(error.response.data)}`,
+            "error"
+          );
+        } else {
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] error.response: Code: ${error.response.status}  Message: ${error.response.statusText} Data: ${JSON.stringify(error.response.data)} `,
+            "error"
+          );
+        }
+      } else {
+        if (error.code === "ECONNABORTED") {
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] error.code: ${error.code} Message: ${error.message}`,
+            "error"
+          );
+          return error;
+        } else {
+          this.writeLog(
+            `[ Adapter V:${this.version} detailRequest axios:${import_axios.default.VERSION} ] Error: ${error} Error Code ${error.code} Error Message ${error.message} >>> Stack: ${error.stack}`,
+            "error"
+          );
+        }
+      }
     }
   }
   async onStateChange(id, state) {
@@ -1565,7 +1989,10 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
     } catch (e) {
-      this.writeLog(`[onStateChane ${id}] error: ${e} , stack: ${e.stack}`, "error");
+      this.writeLog(
+        `[ Adapter V:${this.version} onStateChange ID: ${id}] error: ${e} , stack: ${e.stack}`,
+        "error"
+      );
     }
   }
 }

@@ -1,10 +1,20 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid } from '@mui/material';
+import {
+	Alert,
+	AlertTitle,
+	Button,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogTitle,
+	Grid,
+} from '@mui/material';
 import { useI18n } from 'iobroker-react/hooks';
 import React, { useState } from 'react';
 import { EditTableDialog } from '../component/EditTableDialog';
 import { StationFinder } from '../component/StationFinder';
 
 export interface EditModalProps {
+	alive: boolean;
 	newRow: (value: ioBroker.Station, index: number | null) => void;
 	oldRow: ioBroker.Station | undefined;
 	index: number | null;
@@ -13,6 +23,7 @@ export interface EditModalProps {
 }
 
 export const EditModal: React.FC<EditModalProps> = ({
+	alive,
 	newRow,
 	index,
 	open,
@@ -62,22 +73,40 @@ export const EditModal: React.FC<EditModalProps> = ({
 				>
 					{_('editStation')}
 				</DialogTitle>
-				<DialogContent
-					sx={{
-						display: 'flex',
-						flexWrap: 'wrap',
-						flexDirection: 'row',
-						justifyContent: 'center',
-					}}
-				>
-					<Grid container spacing={1}>
-						<EditTableDialog editRow={(value) => setRow(value)} oldRow={oldRow} />
-						<StationFinder />
-					</Grid>
-				</DialogContent>
+				{alive ? (
+					<DialogContent
+						sx={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							flexDirection: 'row',
+							justifyContent: 'center',
+						}}
+					>
+						<Grid container spacing={1}>
+							<EditTableDialog editRow={(value) => setRow(value)} oldRow={oldRow} />
+							<StationFinder />
+						</Grid>
+					</DialogContent>
+				) : (
+					<DialogContent
+						sx={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							flexDirection: 'row',
+							justifyContent: 'center',
+						}}
+					>
+						<Alert variant="filled" severity="warning">
+							<AlertTitle>Warning</AlertTitle>
+							{_('adapterOffline')}
+						</Alert>
+					</DialogContent>
+				)}
 
 				<DialogActions>
-					<Button onClick={() => handleClickAdd(row)}>{_('add')}</Button>
+					<Button disabled={!alive} onClick={() => handleClickAdd(row)}>
+						{_('add')}
+					</Button>
 					<Button onClick={handleClose}>{_('cancel')}</Button>
 				</DialogActions>
 			</Dialog>

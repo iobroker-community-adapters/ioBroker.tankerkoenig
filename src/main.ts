@@ -30,7 +30,7 @@ class Tankerkoenig extends utils.Adapter {
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
 		this.on('unload', this.onUnload.bind(this));
-		// this.on('message', this.onMessage.bind(this));
+		this.on('message', this.onMessage.bind(this));
 
 		// -----------------  Timeout variables -----------------
 		this.startRequestTimeout = null;
@@ -48,57 +48,64 @@ class Tankerkoenig extends utils.Adapter {
 	 * @description Is called when databases are connected and adapter received configuration.
 	 */
 	private async onReady(): Promise<void> {
-		// Initialize your adapter here
+		try {
+			// Initialize your adapter here
 
-		// prüfe ob der adapter im daemon mode läuft
-		const adapterObj: ioBroker.Object | null | undefined = await this.getForeignObjectAsync(
-			`system.adapter.${this.namespace}`,
-		);
-
-		if (adapterObj) {
-			if (adapterObj.common.mode !== 'daemon') {
-				adapterObj.common.mode = 'daemon';
-				await this.setForeignObjectAsync(adapterObj._id, adapterObj);
-			} else {
-				this.writeLog('Adapter is already in daemon mode', 'info');
-			}
-		}
-
-		// check if the sync time is a number, if not, the string is parsed to a number
-		this.sync_milliseconds =
-			typeof this.config.synctime === 'number'
-				? this.config.synctime * 1000 * 60
-				: parseInt(this.config.synctime, 10) * 1000 * 60;
-
-		if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 5 * 60 * 1000) {
-			this.sync_milliseconds = 300000; //5 * 60 * 1000 is set as the minimum interval
-			this.writeLog(
-				`Sync time was too short (${this.config.synctime}). New sync time is 5 min`,
-				'warn',
+			// prüfe ob der adapter im daemon mode läuft
+			const adapterObj: ioBroker.Object | null | undefined = await this.getForeignObjectAsync(
+				`system.adapter.${this.namespace}`,
 			);
-		}
-		this.writeLog(
-			`Sync time set to ${this.config.synctime} minutes or ${this.sync_milliseconds} ms`,
-			'info',
-		);
 
-		// add to sync_milliseconds a random number between 0 and 1000 to avoid that all adapters start at the same time
-		this.sync_milliseconds += Math.floor(Math.random() * 100);
-
-		if (this.decrypt(this.config.apikey).length === 36) {
-			if (this.config.station.length > 0) {
-				if (this.startRequestTimeout) clearTimeout(this.startRequestTimeout);
-				await this.createAllStates(this.config.station);
-				// wait 1 second to avoid that the first request is sent before the states are created
-				this.startRequestTimeout = setTimeout(async () => {
-					this.writeLog('Start first request', 'info');
-					await this.requestData();
-				}, 1000);
-			} else {
-				this.writeLog(`No stations defined`, 'error');
+			if (adapterObj) {
+				if (adapterObj.common.mode !== 'daemon') {
+					adapterObj.common.mode = 'daemon';
+					await this.setForeignObjectAsync(adapterObj._id, adapterObj);
+				} else {
+					this.writeLog('Adapter is already in daemon mode', 'info');
+				}
 			}
-		} else {
-			this.writeLog(`No Api Key is specified`, 'error');
+
+			// check if the sync time is a number, if not, the string is parsed to a number
+			this.sync_milliseconds =
+				typeof this.config.synctime === 'number'
+					? this.config.synctime * 1000 * 60
+					: parseInt(this.config.synctime, 10) * 1000 * 60;
+
+			if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 5 * 60 * 1000) {
+				this.sync_milliseconds = 300000; //5 * 60 * 1000 is set as the minimum interval
+				this.writeLog(
+					`Sync time was too short (${this.config.synctime}). New sync time is 5 min`,
+					'warn',
+				);
+			}
+			this.writeLog(
+				`Sync time set to ${this.config.synctime} minutes or ${this.sync_milliseconds} ms`,
+				'info',
+			);
+
+			// add to sync_milliseconds a random number between 0 and 1000 to avoid that all adapters start at the same time
+			this.sync_milliseconds += Math.floor(Math.random() * 100);
+
+			if (this.decrypt(this.config.apikey).length === 36) {
+				if (this.config.station.length > 0) {
+					if (this.startRequestTimeout) clearTimeout(this.startRequestTimeout);
+					await this.createAllStates(this.config.station);
+					// wait 1 second to avoid that the first request is sent before the states are created
+					this.startRequestTimeout = setTimeout(async () => {
+						this.writeLog('Start first request', 'info');
+						await this.requestData();
+					}, 1000);
+				} else {
+					this.writeLog(`No stations defined`, 'error');
+				}
+			} else {
+				this.writeLog(`No Api Key is specified`, 'error');
+			}
+		} catch (error) {
+			this.writeLog(
+				`[ Adapter V:${this.version} onReady ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 		}
 	}
 
@@ -117,16 +124,18 @@ class Tankerkoenig extends utils.Adapter {
 			const config = {
 				headers: {
 					'User-Agent': `${this.name} / ${this.version}`,
-					'Accept-Encoding': 'identity',
 					Accept: 'application/json',
 				},
 			};
 			// request data from tankerkoenig
 			const response = await axios.get(url, config);
-			console.log(`[ requestData axios: ${axios.VERSION} ] response data:`, response);
+			console.log(
+				`[ Adapter V:${this.version} requestData axios: ${axios.VERSION} ] response data:`,
+				response,
+			);
 			if (response.status === 200) {
 				this.writeLog(
-					`[ requestData axios: ${
+					`[ Adapter V:${this.version} requestData axios: ${
 						axios.VERSION
 					} ] type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
 					'debug',
@@ -153,6 +162,17 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 					}, 2_000);
+				} else {
+					this.writeLog(
+						`[ Adapter V:${this.version} requestData  axios: ${axios.VERSION} ] response not ok`,
+						'error',
+					);
+					this.writeLog(
+						`[ Adapter V:${this.version} requestData  axios: ${
+							axios.VERSION
+						} ] response data: ${JSON.stringify(response.data)}`,
+						'error',
+					);
 				}
 			}
 
@@ -181,17 +201,17 @@ class Tankerkoenig extends utils.Adapter {
 					);
 				} else {
 					this.writeLog(
-						`[ requestData axios: ${axios.VERSION} ] error.response: Code: ${
-							error.response.status
-						}  Message: ${error.response.statusText} Data: ${JSON.stringify(
-							error.response.data,
-						)} `,
+						`[ Adapter V:${this.version} requestData axios: ${
+							axios.VERSION
+						} ] error.response: Code: ${error.response.status}  Message: ${
+							error.response.statusText
+						} Data: ${JSON.stringify(error.response.data)} `,
 						'error',
 					);
 				}
 			} else {
 				this.writeLog(
-					`[ requestData axios: ${axios.VERSION} ] Error Code ${error.code} Error: ${error.message} >>> Stack: ${error.stack}`,
+					`[ Adapter V:${this.version} requestData axios: ${axios.VERSION} ] Error: ${error} Error Code ${error.code} Error Message ${error.message} >>> Stack: ${error.stack}`,
 					'error',
 				);
 			}
@@ -238,7 +258,10 @@ class Tankerkoenig extends utils.Adapter {
 			// return the prices with the discount
 			return price;
 		} catch (error) {
-			this.writeLog(`[ setDiscount ] error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} setDiscount ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 			return price;
 		}
 	}
@@ -251,7 +274,10 @@ class Tankerkoenig extends utils.Adapter {
 			const oldState = await this.getStateAsync(id);
 			return oldState ? oldState.val : null;
 		} catch (error) {
-			this.writeLog(`[ oldState ] error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} oldState ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 			return null;
 		}
 	}
@@ -271,7 +297,10 @@ class Tankerkoenig extends utils.Adapter {
 			}
 			return day;
 		} catch (error) {
-			this.writeLog(`[ dayState ] error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} dayState ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 			return null;
 		}
 	}
@@ -550,9 +579,76 @@ class Tankerkoenig extends utils.Adapter {
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e5.postCode`, {
-						val: stationValue.postCode,
+						val: stationValue.postCode.toString(),
 						ack: true,
 					});
+					await this.setStateAsync(`stations.cheapest.e5.houseNumber`, {
+						val: stationValue.houseNumber,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.latitude`, {
+						val: stationValue.latitude,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.longitude`, {
+						val: stationValue.longitude,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e5.wholeDay`, {
+						val: stationValue.wholeDay,
+						ack: true,
+					});
+					if (stationValue.openingTimes) {
+						if (stationValue.openingTimes.length > 0) {
+							if (stationValue.openingTimes !== 'noData') {
+								await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+									val: JSON.stringify(stationValue.openingTimes),
+									ack: true,
+								});
+							} else {
+								await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+								val: 'no Data',
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.e5.openingTimes`, {
+							val: 'no data',
+							ack: true,
+						});
+					}
+
+					if (stationValue.overrides) {
+						if (stationValue.overrides.length > 0) {
+							if (stationValue.overrides !== 'noData') {
+								await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+									val: JSON.stringify(stationValue.overrides),
+									ack: true,
+								});
+							} else {
+								await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+								val: 'no Data',
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.e5.overrides`, {
+							val: 'no data',
+							ack: true,
+						});
+					}
 				}
 
 				if (stationValue.station === newE10[0].station) {
@@ -655,9 +751,76 @@ class Tankerkoenig extends utils.Adapter {
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e10.postCode`, {
-						val: stationValue.postCode,
+						val: stationValue.postCode.toString(),
 						ack: true,
 					});
+					await this.setStateAsync(`stations.cheapest.e10.houseNumber`, {
+						val: stationValue.houseNumber,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.latitude`, {
+						val: stationValue.latitude,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.longitude`, {
+						val: stationValue.longitude,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.e10.wholeDay`, {
+						val: stationValue.wholeDay,
+						ack: true,
+					});
+					if (stationValue.openingTimes) {
+						if (stationValue.openingTimes.length > 0) {
+							if (stationValue.openingTimes !== 'noData') {
+								await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+									val: JSON.stringify(stationValue.openingTimes),
+									ack: true,
+								});
+							} else {
+								await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+								val: 'no Data',
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.e10.openingTimes`, {
+							val: 'no data',
+							ack: true,
+						});
+					}
+
+					if (stationValue.overrides) {
+						if (stationValue.overrides.length > 0) {
+							if (stationValue.overrides !== 'noData') {
+								await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+									val: JSON.stringify(stationValue.overrides),
+									ack: true,
+								});
+							} else {
+								await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+								val: 'no Data',
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.e10.overrides`, {
+							val: 'no data',
+							ack: true,
+						});
+					}
 				}
 
 				if (stationValue.station === newDiesel[0].station) {
@@ -760,9 +923,76 @@ class Tankerkoenig extends utils.Adapter {
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.postCode`, {
-						val: stationValue.postCode,
+						val: stationValue.postCode.toString(),
 						ack: true,
 					});
+					await this.setStateAsync(`stations.cheapest.diesel.houseNumber`, {
+						val: stationValue.houseNumber,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.latitude`, {
+						val: stationValue.latitude,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.longitude`, {
+						val: stationValue.longitude,
+						ack: true,
+					});
+					await this.setStateAsync(`stations.cheapest.diesel.wholeDay`, {
+						val: stationValue.wholeDay,
+						ack: true,
+					});
+					if (stationValue.openingTimes) {
+						if (stationValue.openingTimes.length > 0) {
+							if (stationValue.openingTimes !== 'noData') {
+								await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+									val: JSON.stringify(stationValue.openingTimes),
+									ack: true,
+								});
+							} else {
+								await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+								val: 'no Data',
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.diesel.openingTimes`, {
+							val: 'no data',
+							ack: true,
+						});
+					}
+
+					if (stationValue.overrides) {
+						if (stationValue.overrides.length > 0) {
+							if (stationValue.overrides !== 'noData') {
+								await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+									val: JSON.stringify(stationValue.overrides),
+									ack: true,
+								});
+							} else {
+								await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+								val: 'no Data',
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.diesel.overrides`, {
+							val: 'no data',
+							ack: true,
+						});
+					}
 				}
 
 				// write all available stations to state
@@ -800,9 +1030,76 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.postCode`, {
-							val: stationValue.postCode,
+							val: stationValue.postCode.toString(),
 							ack: true,
 						});
+						await this.setStateAsync(`stations.${key}.houseNumber`, {
+							val: stationValue.houseNumber,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.latitude`, {
+							val: stationValue.latitude,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.longitude`, {
+							val: stationValue.longitude,
+							ack: true,
+						});
+						await this.setStateAsync(`stations.${key}.wholeDay`, {
+							val: stationValue.wholeDay,
+							ack: true,
+						});
+						if (stationValue.openingTimes) {
+							if (stationValue.openingTimes.length > 0) {
+								if (stationValue.openingTimes !== 'noData') {
+									await this.setStateAsync(`stations.${key}.openingTimes`, {
+										val: JSON.stringify(stationValue.openingTimes),
+										ack: true,
+									});
+								} else {
+									await this.setStateAsync(`stations.${key}.openingTimes`, {
+										val: 'no Data',
+										ack: true,
+									});
+								}
+							} else {
+								await this.setStateAsync(`stations.${key}.openingTimes`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.${key}.openingTimes`, {
+								val: 'no data',
+								ack: true,
+							});
+						}
+
+						if (stationValue.overrides) {
+							if (stationValue.overrides.length > 0) {
+								if (stationValue.overrides !== 'noData') {
+									await this.setStateAsync(`stations.${key}.overrides`, {
+										val: JSON.stringify(stationValue.overrides),
+										ack: true,
+									});
+								} else {
+									await this.setStateAsync(`stations.${key}.overrides`, {
+										val: 'no Data',
+										ack: true,
+									});
+								}
+							} else {
+								await this.setStateAsync(`stations.${key}.overrides`, {
+									val: 'no Data',
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.${key}.overrides`, {
+								val: 'no data',
+								ack: true,
+							});
+						}
 
 						// Reset min/max at new day
 						for (const fuelTypesKey in this.fuelTypes) {
@@ -1423,7 +1720,10 @@ class Tankerkoenig extends utils.Adapter {
 				});
 			}
 		} catch (error) {
-			this.writeLog(`[ writeState ] error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} writeState ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 		}
 	}
 
@@ -1500,7 +1800,10 @@ class Tankerkoenig extends utils.Adapter {
 			}
 			return jsonTable;
 		} catch (error) {
-			this.writeLog(`[ createJsonTable ] error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} createJsonTable ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 		}
 	}
 
@@ -1536,7 +1839,10 @@ class Tankerkoenig extends utils.Adapter {
 				price3rd,
 			};
 		} catch (error) {
-			this.writeLog(`[ cutPrice ] error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} cutPrice ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 			return { priceshort: '0', price3rd: 0 };
 		}
 	}
@@ -1590,7 +1896,10 @@ class Tankerkoenig extends utils.Adapter {
 			}
 			return price;
 		} catch (error) {
-			this.writeLog(`[ addDiscount ] error: ${error} stack: ${error.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} addDiscount ] error: ${error} stack: ${error.stack}`,
+				'error',
+			);
 			return parseFloat(<string>price);
 		}
 	}
@@ -1671,31 +1980,33 @@ class Tankerkoenig extends utils.Adapter {
 							station: string;
 							stationname: string;
 							city: string;
-							postCode: string;
+							postCode: number;
 							street: string;
+							houseNumber: string;
 						} = stations[stationKey];
 
 						let stationName = '';
 
 						// check if street, city and zip code are available
-						if (station.street && station.city && station.postCode) {
+						if (station.street && station.houseNumber && station.city && station.postCode) {
 							if (
 								station.street.length > 0 &&
+								station.houseNumber.length > 0 &&
 								station.city.length > 0 &&
-								station.postCode.length > 0
+								station.postCode.toString().length > 0
 							) {
 								stationName = `${station.stationname} (${station.street}, ${station.postCode} ${station.city})`;
 							} else if (station.street.length > 0 && station.city.length > 0) {
 								stationName = `${station.stationname} (${station.street}, ${station.city})`;
-							} else if (station.street.length > 0 && station.postCode.length > 0) {
+							} else if (station.street.length > 0 && station.postCode.toString().length > 0) {
 								stationName = `${station.stationname} (${station.street}, ${station.postCode})`;
-							} else if (station.city.length > 0 && station.postCode.length > 0) {
+							} else if (station.city.length > 0 && station.postCode.toString().length > 0) {
 								stationName = `${station.stationname} (${station.postCode} ${station.city})`;
 							} else if (station.street.length > 0) {
 								stationName = `${station.stationname} (${station.street})`;
 							} else if (station.city.length > 0) {
 								stationName = `${station.stationname} (${station.city})`;
-							} else if (station.postCode.length > 0) {
+							} else if (station.postCode.toString().length > 0) {
 								stationName = `${station.stationname} (${station.postCode})`;
 							} else {
 								stationName = station.stationname;
@@ -1864,7 +2175,10 @@ class Tankerkoenig extends utils.Adapter {
 
 			// end of create objects
 		} catch (e) {
-			this.writeLog(`[ create objects ] Error creating all states: ${e}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} create objects ] Error creating all states: ${e}`,
+				'error',
+			);
 		}
 	}
 
@@ -1879,7 +2193,7 @@ class Tankerkoenig extends utils.Adapter {
 			if (logtype === 'warn') this.log.warn(logtext);
 			if (logtype === 'error') this.log.error(logtext);
 		} catch (error) {
-			this.log.error(`writeLog error: ${error} , stack: ${error.stack}`);
+			this.log.error(`[ Adapter V:${this.version} writeLog ] error: ${error} , stack: ${error.stack}`);
 		}
 	}
 
@@ -1899,6 +2213,7 @@ class Tankerkoenig extends utils.Adapter {
 			});
 			callback();
 		} catch (e) {
+			this.writeLog(`[ Adapter V:${this.version} onUnload ] error: ${e} , stack: ${e.stack}`, 'error');
 			callback();
 		}
 	}
@@ -1908,22 +2223,165 @@ class Tankerkoenig extends utils.Adapter {
 	 * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
 	 * Using this method requires "common.messagebox" property to be set to true in io-package.json
 	 */
-	// private async onMessage(obj: ioBroker.Message): Promise<void> {
-	// 	try {
-	// 		if (typeof obj === 'object' && obj.message) {
-	// 			if (obj.command === 'send') {
-	// 				// e.g. send email or pushover or whatever
-	// 				this.log.info('send command');
-	//
-	//
-	// 				// Send response in callback if required
-	// 				if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-	// 			}
-	// 		}
-	// 	} catch (e) {
-	// 		this.writeLog(`Error onMessage: ${e}`, 'error');
-	// 	}
-	// }
+	private async onMessage(obj: ioBroker.Message): Promise<void> {
+		try {
+			if (typeof obj === 'object' && obj.message) {
+				if (obj.command === 'detailRequest') {
+					if (typeof obj.message === 'string') {
+						const id = obj.message as string;
+
+						this.writeLog(
+							`[ Adapter V:${this.version} onMessage ] start detailRequest for ${id}`,
+							'debug',
+						);
+						const result = await this.detailRequest(id);
+
+						if (!result) {
+							this.writeLog(
+								`[ Adapter V:${this.version} onMessage ] detailRequest for ${id} failed`,
+								'error',
+							);
+							if (obj.callback) this.sendTo(obj.from, obj.command, 'error', obj.callback);
+						} else {
+							this.writeLog(
+								`[ Adapter V:${
+									this.version
+								} onMessage ] detailRequest result: ${JSON.stringify(result)}`,
+								'debug',
+							);
+							if (obj.callback) this.sendTo(obj.from, obj.command, result, obj.callback);
+						}
+					}
+				}
+			}
+		} catch (e) {
+			this.writeLog(`Error onMessage: ${e}`, 'error');
+		}
+	}
+
+	private async detailRequest(id: string): Promise<
+		| {
+				status: string;
+				ok: boolean;
+				data: {
+					street: string;
+					city: string;
+					houseNumber: string;
+					postCode: number;
+					latitude: number;
+					longitude: number;
+					wholeDay: boolean;
+					openingTimes: { [key: string]: string }[] | string;
+					overrides: { [key: string]: string }[] | string;
+				};
+		  }
+		| undefined
+	> {
+		try {
+			let dataJson = undefined;
+			const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${id}&apikey=${this.decrypt(
+				this.config.apikey,
+			)}`;
+			const config = {
+				headers: {
+					'User-Agent': `${this.name}/${this.version}`,
+					Accept: 'application/json',
+				},
+				timeout: 10000,
+			};
+			const result = await axios.get(url, config);
+
+			if (result.status === 200) {
+				this.writeLog(
+					`[ Adapter V:${this.version} detailRequest axios:${
+						axios.VERSION
+					} ] detailRequest result: ${JSON.stringify(result.data)}`,
+					'debug',
+				);
+				if (result.data.ok) {
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${axios.VERSION} ] detailRequest for ${id} success`,
+						'debug',
+					);
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${
+							axios.VERSION
+						} ] detailRequest for ${id} result: ${JSON.stringify(result.data)}`,
+						'debug',
+					);
+					dataJson = {
+						status: result.data.status,
+						ok: result.data.ok,
+						data: {
+							street: result.data.station.street,
+							city: result.data.station.place,
+							houseNumber: result.data.station.houseNumber,
+							postCode: result.data.station.postCode,
+							latitude: result.data.station.lat,
+							longitude: result.data.station.lng,
+							wholeDay: result.data.station.wholeDay,
+							openingTimes:
+								result.data.station.openingTimes.length > 0
+									? result.data.station.openingTimes
+									: 'noData',
+							overrides:
+								result.data.station.overrides.length > 0
+									? result.data.station.overrides
+									: 'noData',
+						},
+					};
+					return dataJson;
+				} else {
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${axios.VERSION} ] detailRequest for ${id} failed`,
+						'error',
+					);
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${
+							axios.VERSION
+						} ] detailRequest for ${id} result: ${JSON.stringify(result.data)}`,
+						'error',
+					);
+					return result.data;
+				}
+			}
+		} catch (error) {
+			if (error.response) {
+				if (error.response.status === 503) {
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${axios.VERSION} ] Code: ${
+							error.response.status
+						} Message: >> ${
+							error.response.statusText
+						} Rate Limit Exceeded << Data: ${JSON.stringify(error.response.data)}`,
+						'error',
+					);
+				} else {
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${
+							axios.VERSION
+						} ] error.response: Code: ${error.response.status}  Message: ${
+							error.response.statusText
+						} Data: ${JSON.stringify(error.response.data)} `,
+						'error',
+					);
+				}
+			} else {
+				if (error.code === 'ECONNABORTED') {
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${axios.VERSION} ] error.code: ${error.code} Message: ${error.message}`,
+						'error',
+					);
+					return error;
+				} else {
+					this.writeLog(
+						`[ Adapter V:${this.version} detailRequest axios:${axios.VERSION} ] Error: ${error} Error Code ${error.code} Error Message ${error.message} >>> Stack: ${error.stack}`,
+						'error',
+					);
+				}
+			}
+		}
+	}
 
 	/**
 	 * @description Is called if a subscribed state changes
@@ -1972,7 +2430,10 @@ class Tankerkoenig extends utils.Adapter {
 				}
 			}
 		} catch (e) {
-			this.writeLog(`[onStateChane ${id}] error: ${e} , stack: ${e.stack}`, 'error');
+			this.writeLog(
+				`[ Adapter V:${this.version} onStateChange ID: ${id}] error: ${e} , stack: ${e.stack}`,
+				'error',
+			);
 		}
 	}
 }

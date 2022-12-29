@@ -125,6 +125,86 @@ const statesObj = {
       write: false
     },
     native: {}
+  },
+  houseNumber: {
+    type: "state",
+    common: {
+      name: "House Number",
+      desc: "House Number of the station",
+      type: "string",
+      role: "value",
+      def: "",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  latitude: {
+    type: "state",
+    common: {
+      name: "Latitude",
+      desc: "Latitude of the station",
+      type: "number",
+      role: "value.gps.latitude",
+      unit: "\xB0",
+      def: 0,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  longitude: {
+    type: "state",
+    common: {
+      name: "Longitude",
+      desc: "Longitude of the station",
+      type: "number",
+      role: "value.gps.longitude",
+      unit: "\xB0",
+      def: 0,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  wholeDay: {
+    type: "state",
+    common: {
+      name: "Whole Day",
+      desc: "Shows whether the station is open 24/7",
+      type: "boolean",
+      role: "indicator",
+      def: false,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  openingTimes: {
+    type: "state",
+    common: {
+      name: "Opening Times",
+      desc: "Opening Times of the station",
+      type: "string",
+      role: "json",
+      def: "no data",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  overrides: {
+    type: "state",
+    common: {
+      name: "Opening Times Overrides",
+      desc: "Opening Times Overrides of the station",
+      type: "string",
+      role: "json",
+      def: "no data",
+      read: true,
+      write: false
+    },
+    native: {}
   }
 };
 const cheapestObj = {

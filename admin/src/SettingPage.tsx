@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Tab, Tabs, Tooltip } from '@mui/material';
-import { useI18n } from 'iobroker-react/hooks';
+import { useAdapter, useI18n } from 'iobroker-react/hooks';
 import React, { useState } from 'react';
 import { AdapterInterval } from './component/AdapterInterval';
 import { AddModal } from './Modal/AddModal';
@@ -50,9 +50,11 @@ let newRow: any = [];
 
 export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, secret }): JSX.Element => {
 	const { translate: _ } = useI18n();
+	const { alive } = useAdapter();
 	const [value, setValue] = React.useState(0);
 	const [open, setOpen] = useState(false);
 	const [alert, setAlert] = React.useState({
+		message: '',
 		active: false,
 		open: false,
 	});
@@ -88,9 +90,8 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 	};
 
 	//add row
-	const handleAdd = (value: ioBroker.Station): void => {
+	const handleAdd = async (value: ioBroker.Station): Promise<void> => {
 		newRow = [...settings.station];
-		value.postCode = value.postCode.toString();
 		newRow.push(value);
 		onChange('station', newRow);
 	};
@@ -100,7 +101,6 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 		if (settings.station.length === 0) {
 			settings.station = [];
 		}
-		value.postCode = value.postCode.toString();
 		const newRows = [...settings.station];
 		if (index !== null) {
 			newRows[index] = value;
@@ -156,20 +156,13 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 				</Box>
 			</Box>
 			<TabPanel value={value} index={0}>
-				<React.StrictMode>
-					<ApiKey
-						secret={secret}
-						settings={settings}
-						onChange={(key, value) => onChange(key, value)}
-					/>
-				</React.StrictMode>
+				<ApiKey secret={secret} settings={settings} onChange={(key, value) => onChange(key, value)} />
 				<Spacer text={'spacerInterval'} />
 				<AdapterInterval onChange={onChange} settings={settings} />
 				<Spacer text={'combined_settings'} />
 				<VisCombinedOptions onChange={onChange} settings={settings} />
 				<Spacer text={'price_settings'} />
 				<PriceSettings onChange={onChange} settings={settings} />
-				{/*</Box>*/}
 			</TabPanel>
 			<TabPanel value={value} index={1}>
 				<Grid
@@ -191,6 +184,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 					}}
 				>
 					<EditModal
+						alive={alive}
 						newRow={(editRows, index) => handleEdit(editRows, index)}
 						oldRow={editModal.oldRow}
 						index={editModal.index}
@@ -229,6 +223,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 						/>
 					) : (
 						<AddModal
+							alive={alive}
 							newRow={(value) => handleAdd(value)}
 							currentRows={settings.station}
 							open={open}

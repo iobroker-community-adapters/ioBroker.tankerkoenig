@@ -112,7 +112,6 @@ export const StationCard: React.FC<StationCardProps> = ({
 				>
 					{item.stationname}
 				</Typography>
-
 				<LocalGasStationTwoTone
 					sx={{
 						fontSize: '40px',
@@ -185,10 +184,16 @@ export const StationCard: React.FC<StationCardProps> = ({
 								variant={'h6'}
 								sx={{
 									fontWeight: 'bold',
-									fontSize: '1.1rem',
+									fontSize: '1rem',
 								}}
 							>
-								{item.street}, {item.postCode} {item.city}
+								{item.street}{' '}
+								{item.houseNumber !== ''
+									? item.houseNumber !== ' '
+										? item.houseNumber
+										: ''
+									: ''}
+								, {item.postCode} {item.city}
 							</Typography>
 						</React.Fragment>
 					) : null}

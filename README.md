@@ -69,6 +69,7 @@ Es gibt 2 Varianten:
 
 ### __WORK IN PROGRESS__
 * (Apollon77) Added Sentry for crash reporting
+* (xXBJXx) Added detailed request when creating stations in the UI
 
 ### 3.2.5 (2022-12-28)
 * (xXBJXx) Problem with entering the postal code in the UI fixed

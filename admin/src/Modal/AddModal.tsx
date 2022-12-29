@@ -14,6 +14,7 @@ import { AddStationDialog } from '../component/AddStationDialog';
 import { StationFinder } from '../component/StationFinder';
 
 export interface AddModalProps {
+	alive: boolean;
 	newRow: (value: ioBroker.Station) => void;
 	currentRows: ioBroker.Station[];
 	open: boolean;
@@ -21,15 +22,22 @@ export interface AddModalProps {
 }
 
 let resetTimeout: NodeJS.Timeout;
-export const AddModal: React.FC<AddModalProps> = ({ newRow, open, onClose, currentRows }): JSX.Element => {
+export const AddModal: React.FC<AddModalProps> = ({
+	alive,
+	newRow,
+	open,
+	onClose,
+	currentRows,
+}): JSX.Element => {
 	const [row, setRow] = useState<ioBroker.Station>({
 		city: '',
 		discountObj: { discount: 0, discountType: '', fuelType: [] },
 		discounted: false,
-		postCode: '',
+		postCode: 0,
 		station: '',
 		stationname: '',
 		street: '',
+		houseNumber: '',
 	});
 	const [validConfig, setValidConfig] = useState<{
 		valid: boolean;
@@ -122,31 +130,46 @@ export const AddModal: React.FC<AddModalProps> = ({ newRow, open, onClose, curre
 				>
 					{_('addNewStation ')}
 				</DialogTitle>
-				<DialogContent
-					sx={{
-						display: 'flex',
-						flexWrap: 'wrap',
-						flexDirection: 'row',
-						justifyContent: 'center',
-						// padding: '0px',
-					}}
-				>
-					{validConfig.alert && !validConfig.valid ? (
-						<Alert severity="warning">
+				{alive ? (
+					<DialogContent
+						sx={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							flexDirection: 'row',
+							justifyContent: 'center',
+						}}
+					>
+						{validConfig.alert && !validConfig.valid ? (
+							<Alert severity="warning">
+								<AlertTitle>Warning</AlertTitle>
+								{validConfig.message}
+							</Alert>
+						) : null}
+						<Grid container spacing={1}>
+							<AddStationDialog
+								addRow={(value) => {
+									setRow(value);
+									checkValidConfig(value);
+								}}
+							/>
+							<StationFinder />
+						</Grid>
+					</DialogContent>
+				) : (
+					<DialogContent
+						sx={{
+							display: 'flex',
+							flexWrap: 'wrap',
+							flexDirection: 'row',
+							justifyContent: 'center',
+						}}
+					>
+						<Alert variant="filled" severity="warning">
 							<AlertTitle>Warning</AlertTitle>
-							{validConfig.message}
+							{_('adapterOffline')}
 						</Alert>
-					) : null}
-					<Grid container spacing={1}>
-						<AddStationDialog
-							addRow={(value) => {
-								setRow(value);
-								checkValidConfig(value);
-							}}
-						/>
-						<StationFinder />
-					</Grid>
-				</DialogContent>
+					</DialogContent>
+				)}
 
 				<DialogActions>
 					<Button disabled={!validConfig.valid} onClick={handleClickAdd}>

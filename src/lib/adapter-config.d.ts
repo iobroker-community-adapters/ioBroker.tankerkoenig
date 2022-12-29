@@ -25,8 +25,14 @@ declare global {
 				discountType: string;
 			};
 			city: string;
-			postCode: string;
+			postCode: number;
 			street: string;
+			latitude?: number;
+			longitude?: number;
+			houseNumber: string;
+			wholeDay?: boolean;
+			openingTimes?: { [key: string]: string }[] | string;
+			overrides?: { [key: string]: string }[] | string;
 		}
 	}
 }
