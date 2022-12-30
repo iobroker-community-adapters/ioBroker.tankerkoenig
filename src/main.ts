@@ -121,9 +121,10 @@ class Tankerkoenig extends utils.Adapter {
 			const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station
 				.map((station) => station.station)
 				.join(',')}&apikey=${this.decrypt(this.config.apikey)}`;
+			this.writeLog(`request url: ${url}`, 'debug');
 			const config = {
 				headers: {
-					'User-Agent': `${this.name} / ${this.version}`,
+					'User-Agent': `${this.name}/${this.version}`,
 					Accept: 'application/json',
 				},
 			};
@@ -2354,11 +2355,8 @@ class Tankerkoenig extends utils.Adapter {
 			if (this.requestTimeout) clearInterval(this.requestTimeout);
 			if (this.refreshTimeout) clearInterval(this.refreshTimeout);
 			if (this.refreshStatusTimeout) clearTimeout(this.refreshStatusTimeout);
+			if (this.startRequestTimeout) clearTimeout(this.startRequestTimeout);
 
-			await this.setStateAsync(`stations.adapterStatus`, {
-				val: 'offline',
-				ack: true,
-			});
 			callback();
 		} catch (e) {
 			this.writeLog(`[ Adapter V:${this.version} onUnload ] error: ${e} , stack: ${e.stack}`, 'error');
