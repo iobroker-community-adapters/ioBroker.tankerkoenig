@@ -66,6 +66,10 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) fixed TypeError: Cannot read properties of undefined [Issue #104](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/104)
+* (xXBJXx) added full street state for each station
+
 ### 3.3.0 (2022-12-29)
 * (Apollon77) Added Sentry for crash reporting
 * (xXBJXx) Added detailed request when creating stations in the UI

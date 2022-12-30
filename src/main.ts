@@ -571,31 +571,69 @@ class Tankerkoenig extends utils.Adapter {
 						});
 					}
 					await this.setStateAsync(`stations.cheapest.e5.street`, {
-						val: stationValue.street,
+						val: stationValue.street
+							? stationValue.street.length > 0
+								? stationValue.street
+								: ''
+							: '',
 						ack: true,
 					});
+					if (stationValue.street && stationValue.houseNumber) {
+						if (stationValue.houseNumber.length > 0) {
+							await this.setStateAsync(`stations.cheapest.e5.fullStreet`, {
+								val: `${stationValue.street} ${stationValue.houseNumber}`,
+								ack: true,
+							});
+						} else {
+							await this.setStateAsync(`stations.cheapest.e5.fullStreet`, {
+								val: stationValue.street,
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.e5.fullStreet`, {
+							val: '',
+							ack: true,
+						});
+					}
 					await this.setStateAsync(`stations.cheapest.e5.city`, {
-						val: stationValue.city,
+						val: stationValue.city ? (stationValue.city.length > 0 ? stationValue.city : '') : '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e5.postCode`, {
-						val: stationValue.postCode.toString(),
+						val: stationValue.postCode
+							? stationValue.postCode > 0
+								? stationValue.postCode
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e5.houseNumber`, {
-						val: stationValue.houseNumber,
+						val: stationValue.houseNumber
+							? stationValue.houseNumber.length > 0
+								? stationValue.houseNumber
+								: ''
+							: '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e5.latitude`, {
-						val: stationValue.latitude,
+						val: stationValue.latitude
+							? stationValue.latitude > 0
+								? stationValue.latitude
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e5.longitude`, {
-						val: stationValue.longitude,
+						val: stationValue.longitude
+							? stationValue.longitude > 0
+								? stationValue.longitude
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e5.wholeDay`, {
-						val: stationValue.wholeDay,
+						val: stationValue.wholeDay ? stationValue.wholeDay : false,
 						ack: true,
 					});
 					if (stationValue.openingTimes) {
@@ -743,27 +781,65 @@ class Tankerkoenig extends utils.Adapter {
 						});
 					}
 					await this.setStateAsync(`stations.cheapest.e10.street`, {
-						val: stationValue.street,
+						val: stationValue.street
+							? stationValue.street.length > 0
+								? stationValue.street
+								: ''
+							: '',
 						ack: true,
 					});
+					if (stationValue.street && stationValue.houseNumber) {
+						if (stationValue.houseNumber.length > 0) {
+							await this.setStateAsync(`stations.cheapest.e10.fullStreet`, {
+								val: `${stationValue.street} ${stationValue.houseNumber}`,
+								ack: true,
+							});
+						} else {
+							await this.setStateAsync(`stations.cheapest.e10.fullStreet`, {
+								val: stationValue.street,
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.e10.fullStreet`, {
+							val: '',
+							ack: true,
+						});
+					}
 					await this.setStateAsync(`stations.cheapest.e10.city`, {
-						val: stationValue.city,
+						val: stationValue.city ? (stationValue.city.length > 0 ? stationValue.city : '') : '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e10.postCode`, {
-						val: stationValue.postCode.toString(),
+						val: stationValue.postCode
+							? stationValue.postCode > 0
+								? stationValue.postCode
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e10.houseNumber`, {
-						val: stationValue.houseNumber,
+						val: stationValue.houseNumber
+							? stationValue.houseNumber.length > 0
+								? stationValue.houseNumber
+								: ''
+							: '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e10.latitude`, {
-						val: stationValue.latitude,
+						val: stationValue.latitude
+							? stationValue.latitude > 0
+								? stationValue.latitude
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e10.longitude`, {
-						val: stationValue.longitude,
+						val: stationValue.longitude
+							? stationValue.longitude > 0
+								? stationValue.longitude
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e10.wholeDay`, {
@@ -915,31 +991,69 @@ class Tankerkoenig extends utils.Adapter {
 						});
 					}
 					await this.setStateAsync(`stations.cheapest.diesel.street`, {
-						val: stationValue.street,
+						val: stationValue.street
+							? stationValue.street.length > 0
+								? stationValue.street
+								: ''
+							: '',
 						ack: true,
 					});
+					if (stationValue.street && stationValue.houseNumber) {
+						if (stationValue.houseNumber.length > 0) {
+							await this.setStateAsync(`stations.cheapest.diesel.fullStreet`, {
+								val: `${stationValue.street} ${stationValue.houseNumber}`,
+								ack: true,
+							});
+						} else {
+							await this.setStateAsync(`stations.cheapest.diesel.fullStreet`, {
+								val: stationValue.street,
+								ack: true,
+							});
+						}
+					} else {
+						await this.setStateAsync(`stations.cheapest.diesel.fullStreet`, {
+							val: '',
+							ack: true,
+						});
+					}
 					await this.setStateAsync(`stations.cheapest.diesel.city`, {
-						val: stationValue.city,
+						val: stationValue.city ? (stationValue.city.length > 0 ? stationValue.city : '') : '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.postCode`, {
-						val: stationValue.postCode.toString(),
+						val: stationValue.postCode
+							? stationValue.postCode > 0
+								? stationValue.postCode
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.houseNumber`, {
-						val: stationValue.houseNumber,
+						val: stationValue.houseNumber
+							? stationValue.houseNumber.length > 0
+								? stationValue.houseNumber
+								: ''
+							: '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.latitude`, {
-						val: stationValue.latitude,
+						val: stationValue.latitude
+							? stationValue.latitude > 0
+								? stationValue.latitude
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.longitude`, {
-						val: stationValue.longitude,
+						val: stationValue.longitude
+							? stationValue.longitude > 0
+								? stationValue.longitude
+								: 0
+							: 0,
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.wholeDay`, {
-						val: stationValue.wholeDay,
+						val: stationValue.wholeDay ? stationValue.wholeDay : false,
 						ack: true,
 					});
 					if (stationValue.openingTimes) {
@@ -1022,31 +1136,65 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.street`, {
-							val: stationValue.street,
+							val: stationValue.street
+								? stationValue.street.length > 0
+									? stationValue.street
+									: ''
+								: '',
 							ack: true,
 						});
+						if (stationValue.street && stationValue.houseNumber) {
+							if (stationValue.houseNumber.length > 0) {
+								await this.setStateAsync(`stations.${key}.fullStreet`, {
+									val: `${stationValue.street} ${stationValue.houseNumber}`,
+									ack: true,
+								});
+							} else {
+								await this.setStateAsync(`stations.${key}.fullStreet`, {
+									val: stationValue.street,
+									ack: true,
+								});
+							}
+						} else {
+							await this.setStateAsync(`stations.${key}.fullStreet`, {
+								val: '',
+								ack: true,
+							});
+						}
 						await this.setStateAsync(`stations.${key}.city`, {
-							val: stationValue.city,
+							val: stationValue.city
+								? stationValue.city.length > 0
+									? stationValue.city
+									: ''
+								: '',
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.postCode`, {
-							val: stationValue.postCode.toString(),
+							val: stationValue.postCode
+								? stationValue.postCode > 0
+									? stationValue.postCode
+									: 0
+								: 0,
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.houseNumber`, {
-							val: stationValue.houseNumber,
+							val: stationValue.houseNumber
+								? stationValue.houseNumber.length > 0
+									? stationValue.houseNumber
+									: ''
+								: '',
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.latitude`, {
-							val: stationValue.latitude,
+							val: stationValue.latitude ? stationValue.latitude : 0,
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.longitude`, {
-							val: stationValue.longitude,
+							val: stationValue.longitude ? stationValue.longitude : 0,
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.wholeDay`, {
-							val: stationValue.wholeDay,
+							val: stationValue.wholeDay ? stationValue.wholeDay : false,
 							ack: true,
 						});
 						if (stationValue.openingTimes) {
@@ -1993,20 +2141,20 @@ class Tankerkoenig extends utils.Adapter {
 								station.street.length > 0 &&
 								station.houseNumber.length > 0 &&
 								station.city.length > 0 &&
-								station.postCode.toString().length > 0
+								station.postCode > 0
 							) {
 								stationName = `${station.stationname} (${station.street}, ${station.postCode} ${station.city})`;
 							} else if (station.street.length > 0 && station.city.length > 0) {
 								stationName = `${station.stationname} (${station.street}, ${station.city})`;
-							} else if (station.street.length > 0 && station.postCode.toString().length > 0) {
+							} else if (station.street.length > 0 && station.postCode > 0) {
 								stationName = `${station.stationname} (${station.street}, ${station.postCode})`;
-							} else if (station.city.length > 0 && station.postCode.toString().length > 0) {
+							} else if (station.city.length > 0 && station.postCode > 0) {
 								stationName = `${station.stationname} (${station.postCode} ${station.city})`;
 							} else if (station.street.length > 0) {
 								stationName = `${station.stationname} (${station.street})`;
 							} else if (station.city.length > 0) {
 								stationName = `${station.stationname} (${station.city})`;
-							} else if (station.postCode.toString().length > 0) {
+							} else if (station.postCode > 0) {
 								stationName = `${station.stationname} (${station.postCode})`;
 							} else {
 								stationName = station.stationname;

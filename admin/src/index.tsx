@@ -54,16 +54,48 @@ const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 	}
 	if (settings.station !== undefined) {
 		settings.station.map((stationValue, index) => {
+			if (stationValue.station === undefined) {
+				settings.station[index].station = '';
+			}
+			if (stationValue.stationname === undefined) {
+				settings.station[index].stationname = '';
+			}
 			if (stationValue.discounted === undefined) {
 				settings.station[index].discounted = false;
 			}
-
 			if (stationValue.discountObj === undefined) {
 				settings.station[index].discountObj = {
 					discount: 0,
 					fuelType: ['e5', 'e10', 'diesel'],
 					discountType: 'absolute',
 				};
+			}
+			if (stationValue.houseNumber === undefined) {
+				settings.station[index].houseNumber = '';
+			}
+			if (stationValue.street === undefined) {
+				settings.station[index].street = '';
+			}
+			if (stationValue.postCode === undefined) {
+				settings.station[index].postCode = 0;
+			}
+			if (stationValue.city === undefined) {
+				settings.station[index].city = '';
+			}
+			if (stationValue.latitude === undefined) {
+				settings.station[index].latitude = 0;
+			}
+			if (stationValue.longitude === undefined) {
+				settings.station[index].longitude = 0;
+			}
+			if (stationValue.wholeDay === undefined) {
+				settings.station[index].wholeDay = false;
+			}
+			if (stationValue.openingTimes === undefined) {
+				settings.station[index].openingTimes = [];
+			}
+			if (stationValue.overrides === undefined) {
+				settings.station[index].overrides = [];
 			}
 		});
 	}
