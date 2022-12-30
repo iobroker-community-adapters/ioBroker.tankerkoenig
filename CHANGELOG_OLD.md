@@ -1,4 +1,9 @@
 # Older changes
+## 3.2.2 (2022-12-26)
+* (xXBJXx) Added encryption of the API key
+* (xXBJXx) added better error messages for the data request
+* (xXBJXx) dependency update
+
 ## 3.2.1 (2022-12-25)
 * (xXBJXx) Added opening Times for the gas stations
 * (xXBJXx) Renaming function extended

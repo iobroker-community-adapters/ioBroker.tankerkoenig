@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.0",
+    "version": "3.3.1",
     "news": {
+      "3.3.1": {
+        "en": "Fixed TypeError: Cannot read properties of undefined Issue #104\nadded complete street datapoint for each station",
+        "de": "TypeError behoben: Cannot read properties of undefined Ausgabe #104\nDatenpunkt für komplette Straße für jede Station hinzugefügt",
+        "ru": "Исправлена ошибка TypeError: Невозможно прочитать свойства неопределенного Выдача #104\nдобавлена точка данных полной улицы для каждой станции",
+        "pt": "TypeError fixo: Não é possível ler as propriedades da edição não definida #104\nadicionado um datapoint completo de rua para cada estação",
+        "nl": "Fixed TypeError: Kan geen eigenschappen lezen van ongedefinieerde Issue #104\ncompleet straat datapunt toegevoegd voor elk station",
+        "fr": "Correction de TypeError : Impossible de lire les propriétés d'undefined Issue #104\najout d'un point de données sur les rues complètes pour chaque station",
+        "it": "TypeError corretto: Impossibile leggere le proprietà di undefined Problema #104\naggiunto il dato della strada completa per ogni stazione",
+        "es": "Corregido TypeError: Cannot read properties of undefined Edición nº 104\nañadido un punto de datos de calle completa para cada estación",
+        "pl": "Naprawiono TypeError: Cannot read properties of undefined Issue #104\ndodano dane dotyczące kompletnych ulic dla każdej stacji",
+        "uk": "Виправлено TypeError: Cannot read properties of undefined Issue #104\nдодано повну вулицю для кожної станції",
+        "zh-cn": "修正了TypeError。无法读取未定义的属性 问题#104\n为每个车站添加完整的街道数据点"
+      },
       "3.3.0": {
         "en": "Added Sentry for crash reporting\nAdded detailed request when creating stations in the UI",
         "de": "Sentry zur Meldung von Abstürzen hinzugefügt\nDetaillierte Anfrage beim Erstellen von Stationen in der UI hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Dodano godziny otwarcia dla stacji benzynowych\nRozszerzona funkcja zmiany nazwy",
         "uk": "Додано графік роботи АЗС\nРозширено функцію перейменування",
         "zh-cn": "增加了加油站的开放时间\n扩展了重命名功能"
-      },
-      "3.2.0": {
-        "en": "Added detailed information for the gas station in the object (street, city, etc.) Issue #98\nAddress information for the gas station in the object Name added (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "de": "Detaillierte Informationen für die Tankstelle im Objekt hinzugefügt (Straße, Ort, etc.) Ausgabe #98\nAdressinformationen für die Tankstelle im Objekt Name hinzugefügt (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "ru": "Добавлена подробная информация для автозаправочной станции в объекте (улица, город и т.д.) Выпуск #98\nДобавлена адресная информация для АЗС в объекте Название (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "pt": "Adicionada informação detalhada para a estação de serviço no objecto (rua, cidade, etc.) Edição #98\nInformações sobre o endereço da estação de serviço no objecto Nome acrescentado (Musterstraße 1, 12345 Musterstadt)",
-        "nl": "Gedetailleerde informatie toegevoegd voor het tankstation in het object (straat, stad, enz.) Issue #98\nAdresinformatie voor het tankstation in het object Naam toegevoegd (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "fr": "Ajout d'informations détaillées pour la station-service dans l'objet (rue, ville, etc.) Issue #98\nAjout d'informations sur l'adresse de la station-service dans l'objet Nom ajouté (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "it": "Aggiunte informazioni dettagliate per la stazione di servizio nell'oggetto (via, città, ecc.) Problema #98\nAggiunte informazioni sull'indirizzo della stazione di servizio nell'oggetto Nome (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "es": "Añadida información detallada de la gasolinera en el objeto (calle, ciudad, etc.) Edición nº 98\nInformación de la dirección de la gasolinera en el objeto Nombre añadido (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "pl": "Dodano szczegółowe informacje dla stacji benzynowej w obiekcie (ulica, miasto, itp.) Issue #98\nDodano informacje adresowe dla stacji benzynowej w obiekcie Nazwa dodana (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "uk": "Додана детальна інформація для АЗС в об'єкті (вулиця, місто і т.д.) Випуск #98\nДодано адресну інформацію для АЗС в об'єкті Назва (Shell (Musterstraße 1, 12345 Musterstadt))",
-        "zh-cn": "添加对象中加油站的详细信息（街道、城市等） 问题#98\n添加了对象中的加油站的地址信息 名称（壳牌（Musterstraße 1, 12345 Musterstadt））。"
       }
     },
     "titleLang": {

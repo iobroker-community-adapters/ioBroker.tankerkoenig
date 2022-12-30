@@ -66,7 +66,7 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.3.1 (2022-12-30)
 * (xXBJXx) fixed TypeError: Cannot read properties of undefined [Issue #104](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/104)
 * (xXBJXx) added full street state for each station
 
@@ -83,11 +83,6 @@ Es gibt 2 Varianten:
 ### 3.2.3 (2022-12-27)
 * (xXBJXx) the detailed request for the station data has been removed, see [issue #99](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/99)
 * (xXBJXx) added new input field for the address of the station in the adapter settings
-
-### 3.2.2 (2022-12-26)
-* (xXBJXx) Added encryption of the API key
-* (xXBJXx) added better error messages for the data request
-* (xXBJXx) dependency update
 
 ## License
 
