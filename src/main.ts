@@ -50,7 +50,6 @@ class Tankerkoenig extends utils.Adapter {
 	private async onReady(): Promise<void> {
 		try {
 			// Initialize your adapter here
-
 			// prüfe ob der adapter im daemon mode läuft
 			const adapterObj: ioBroker.Object | null | undefined = await this.getForeignObjectAsync(
 				`system.adapter.${this.namespace}`,
@@ -2008,19 +2007,37 @@ class Tankerkoenig extends utils.Adapter {
 			// check if price in number format
 			if (price === undefined) {
 				price = 0;
+				this.writeLog(
+					`[ Adapter V:${this.version} addDiscount ] price is undefined Price set to ${price}`,
+					'debug',
+				);
+				console.log('price is undefined');
+				return price;
 			}
 			if (typeof price === 'string') {
+				console.log('price is string');
 				price = parseFloat(price);
+				this.writeLog(
+					`[ Adapter V:${this.version} addDiscount ] price is string Price parse to a number ${price}`,
+					'debug',
+				);
 			}
 			if (typeof price === 'boolean') {
 				price = 0;
+				console.log('price is boolean');
+				this.writeLog(
+					`[ Adapter V:${this.version} addDiscount ] price is boolean price set to ${price}`,
+					'debug',
+				);
+				return price;
 			}
-
 			if (discountType === 'percent') {
-				this.writeLog(`discount in percent: ${discount}`, 'debug');
+				this.writeLog(`[ Adapter V:${this.version} addDiscount ] in percent: ${discount}`, 'debug');
 				const newPrice = (price * discount) / 100;
 				this.writeLog(
-					`return Price with discount ${price - parseFloat(newPrice.toFixed(2))}`,
+					`[ Adapter V:${this.version} addDiscount ] return Price with discount ${
+						price - parseFloat(newPrice.toFixed(2))
+					}`,
 					'debug',
 				);
 
@@ -2030,10 +2047,13 @@ class Tankerkoenig extends utils.Adapter {
 					// if not, round to 3 decimal places
 					discountedPrice = parseFloat(discountedPrice.toFixed(3));
 				}
+				this.writeLog(
+					`[ Adapter V:${this.version} addDiscount ] return Price with discount ${discountedPrice}`,
+					'debug',
+				);
 				return discountedPrice;
 			} else if (discountType === 'absolute') {
-				this.writeLog(`discount in absolute: ${discount}`, 'debug');
-				this.writeLog(`return Price with discount ${price - discount}`, 'debug');
+				this.writeLog(`[ Adapter V:${this.version} addDiscount ] in absolute: ${discount}`, 'debug');
 
 				let discountedPrice = parseFloat(parseFloat(String(price - discount)).toFixed(3));
 				// check if the new discountedPrice has only 3 decimal places
@@ -2041,15 +2061,19 @@ class Tankerkoenig extends utils.Adapter {
 					// if not, round to 3 decimal places
 					discountedPrice = parseFloat(discountedPrice.toFixed(3));
 				}
+				this.writeLog(
+					`[ Adapter V:${this.version} addDiscount ] return Price with discount ${discountedPrice}`,
+					'debug',
+				);
 				return discountedPrice;
 			}
 			return price;
 		} catch (error) {
 			this.writeLog(
-				`[ Adapter V:${this.version} addDiscount ] error: ${error} stack: ${error.stack}`,
+				`[ Adapter V:${this.version} addDiscount ] Error for price ${price} and discount ${discount} and discountType ${discountType} error: ${error} stack: ${error.stack}`,
 				'error',
 			);
-			return parseFloat(<string>price);
+			return parseFloat(price as string);
 		}
 	}
 
@@ -2325,7 +2349,7 @@ class Tankerkoenig extends utils.Adapter {
 			// end of create objects
 		} catch (e) {
 			this.writeLog(
-				`[ Adapter V:${this.version} create objects ] Error creating all states: ${e}`,
+				`[ Adapter V:${this.version} createObjects ] Error creating all states: ${e}`,
 				'error',
 			);
 		}
@@ -2349,8 +2373,12 @@ class Tankerkoenig extends utils.Adapter {
 	/**
 	 * @description Is called when adapter shuts down - callback has to be called under any circumstances!
 	 */
-	private async onUnload(callback: () => void): Promise<void> {
+	private onUnload(callback: () => void): void {
 		try {
+			this.setState(`stations.adapterStatus`, {
+				val: 'offline',
+				ack: true,
+			});
 			// Here you must clear all timeouts or intervals that may still be active
 			if (this.requestTimeout) clearInterval(this.requestTimeout);
 			if (this.refreshTimeout) clearInterval(this.refreshTimeout);
@@ -2374,6 +2402,10 @@ class Tankerkoenig extends utils.Adapter {
 			if (typeof obj === 'object' && obj.message) {
 				if (obj.command === 'detailRequest') {
 					if (typeof obj.message === 'string') {
+						await this.setStateAsync(`stations.adapterStatus`, {
+							val: 'detail request',
+							ack: true,
+						});
 						const id = obj.message as string;
 
 						this.writeLog(
@@ -2387,6 +2419,10 @@ class Tankerkoenig extends utils.Adapter {
 								`[ Adapter V:${this.version} onMessage ] detailRequest for ${id} failed`,
 								'error',
 							);
+							await this.setStateAsync(`stations.adapterStatus`, {
+								val: 'idle',
+								ack: true,
+							});
 							if (obj.callback) this.sendTo(obj.from, obj.command, 'error', obj.callback);
 						} else {
 							this.writeLog(
@@ -2395,6 +2431,10 @@ class Tankerkoenig extends utils.Adapter {
 								} onMessage ] detailRequest result: ${JSON.stringify(result)}`,
 								'debug',
 							);
+							await this.setStateAsync(`stations.adapterStatus`, {
+								val: 'idle',
+								ack: true,
+							});
 							if (obj.callback) this.sendTo(obj.from, obj.command, result, obj.callback);
 						}
 					}
@@ -2428,6 +2468,7 @@ class Tankerkoenig extends utils.Adapter {
 			const url = `https://creativecommons.tankerkoenig.de/json/detail.php?id=${id}&apikey=${this.decrypt(
 				this.config.apikey,
 			)}`;
+			this.writeLog(`[ Adapter V:${this.version} detailRequest ] url: ${url}`, 'debug');
 			const config = {
 				headers: {
 					'User-Agent': `${this.name}/${this.version}`,
@@ -2570,7 +2611,7 @@ class Tankerkoenig extends utils.Adapter {
 									val: 'idle',
 									ack: true,
 								});
-							}, 5000);
+							}, 10000);
 						}
 					}
 				}

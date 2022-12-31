@@ -77,7 +77,8 @@ Zusätzlich werden noch den die günstigsten Tankstellen aus der Liste in die Ka
 * `cheapest.diesel`
 
 Auf der Stations ebenen werden weitere fünf Datenpunkte erstellt:
-* `adapterStatus` (zeigt den status vom adapter an mögliche Werte: `idle / automatic request / manual request / requet timeout 1min / write states / request Error / offline`)
+* `adapterStatus` (zeigt den status vom adapter an mögliche Werte: `idle / automatic request / manual request / detail request / requet timeout 1min / write states / request 
+  Error / offline`)
 * `json` (JSON Daten der Tankstelle)
 * `jsonTable` (json Tabelle für die vis `nur die json Daten kein Widget`)
 

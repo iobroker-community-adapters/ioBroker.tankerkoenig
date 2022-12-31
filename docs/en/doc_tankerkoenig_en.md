@@ -76,7 +76,7 @@ Additionally the cheapest gas stations from the list are determined in the chann
 * `cheapest.diesel`
 
 On the station level five more data points are created:
-* `adapterStatus` (shows the status of the adapter possible values: `idle / automatic request / manual request / requet timeout 1min / write states / request Error / offline`)
+* `adapterStatus` (shows the status of the adapter possible values: `idle / automatic request / manual request / detail request / requet timeout 1min / write states / request Error / offline`)
 * `json` (JSON data of the gas station)
 * `jsonTable` (json table for the vis `only the json data no widget`)
 
