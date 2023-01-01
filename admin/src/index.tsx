@@ -76,6 +76,9 @@ const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 			if (stationValue.street === undefined) {
 				settings.station[index].street = '';
 			}
+			if (typeof stationValue.postCode === 'string') {
+				settings.station[index].postCode = parseInt(stationValue.postCode);
+			}
 			if (stationValue.postCode === undefined) {
 				settings.station[index].postCode = 0;
 			}

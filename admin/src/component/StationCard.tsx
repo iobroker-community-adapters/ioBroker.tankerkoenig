@@ -9,8 +9,14 @@ import React from 'react';
 
 export interface StationCardProps {
 	item: ioBroker.Station;
+	currentRows: ioBroker.Station[];
 	index: number;
-	editModal: (value: { open: boolean; index: number | null; oldRow?: ioBroker.Station }) => void;
+	editModal: (value: {
+		open: boolean;
+		index: number | null;
+		oldRow?: ioBroker.Station;
+		currentRows?: ioBroker.Station[];
+	}) => void;
 	deleteModal: (id: string) => void;
 }
 
@@ -19,6 +25,7 @@ export const StationCard: React.FC<StationCardProps> = ({
 	index,
 	editModal,
 	deleteModal,
+	currentRows,
 }): JSX.Element => {
 	const { translate: _ } = useI18n();
 	const [themeName] = useIoBrokerTheme();
@@ -413,7 +420,7 @@ export const StationCard: React.FC<StationCardProps> = ({
 					<Tooltip title={_('editModal')} arrow enterNextDelay={500} enterDelay={500}>
 						<IconButton
 							onClick={() => {
-								editModal({ open: true, index, oldRow: item });
+								editModal({ open: true, index, oldRow: item, currentRows: currentRows });
 							}}
 							size="small"
 							color="primary"

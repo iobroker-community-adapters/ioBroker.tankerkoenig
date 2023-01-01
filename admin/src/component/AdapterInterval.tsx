@@ -3,7 +3,7 @@
  */
 import { Box, FormControl, Grid, Typography } from '@mui/material';
 import { useI18n } from 'iobroker-react/hooks';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { NumberInput } from './NumberInput';
 import { NumberInput } from 'iobroker-react/components';
 
@@ -14,13 +14,20 @@ export interface AdapterIntervalProps {
 
 export const AdapterInterval: React.FC<AdapterIntervalProps> = ({ settings, onChange }): JSX.Element => {
 	const { translate: _ } = useI18n();
-	const [values, setValues] = React.useState<number>(settings.synctime ?? 5);
+	const [values, setValues] = React.useState<number>(settings.synctime ?? 10);
 	const handeleNumber = (value: React.SetStateAction<number>): void => {
 		if (typeof value === 'number') {
 			setValues(value);
 			onChange('synctime', value);
 		}
 	};
+
+	useEffect(() => {
+		if (values < 10) {
+			console.warn('interval less than 10 minutes');
+			handeleNumber(10);
+		}
+	}, [values]);
 
 	return (
 		<React.Fragment>
@@ -45,9 +52,9 @@ export const AdapterInterval: React.FC<AdapterIntervalProps> = ({ settings, onCh
 							}}
 						>
 							<NumberInput
-								min={5}
+								min={10}
 								max={999}
-								defaultValue={5}
+								defaultValue={10}
 								value={values}
 								label={'Interval'}
 								sx={{
@@ -55,10 +62,6 @@ export const AdapterInterval: React.FC<AdapterIntervalProps> = ({ settings, onCh
 								}}
 								unit={'min'}
 								onChange={handeleNumber}
-								tooltip={{
-									title: _('intervalTooltip'),
-									arrow: true,
-								}}
 							/>
 						</FormControl>
 					</Grid>

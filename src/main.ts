@@ -70,10 +70,11 @@ class Tankerkoenig extends utils.Adapter {
 					? this.config.synctime * 1000 * 60
 					: parseInt(this.config.synctime, 10) * 1000 * 60;
 
-			if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 5 * 60 * 1000) {
-				this.sync_milliseconds = 300000; //5 * 60 * 1000 is set as the minimum interval
+			if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 10 * 60 * 1000) {
+				// if the sync time is less than 10 minutes, the sync time is set to 10 minutes
+				this.sync_milliseconds = 10 * 60 * 1000;
 				this.writeLog(
-					`Sync time was too short (${this.config.synctime}). New sync time is 5 min`,
+					`Sync time was too short (${this.config.synctime}). New sync time is 10 min`,
 					'warn',
 				);
 			}
@@ -82,9 +83,8 @@ class Tankerkoenig extends utils.Adapter {
 				'info',
 			);
 
-			// add to sync_milliseconds a random number between 0 and 1000 to avoid that all adapters start at the same time
-			this.sync_milliseconds += Math.floor(Math.random() * 100);
-
+			// add to sync_milliseconds a random seconds value between 0 and 59
+			this.sync_milliseconds += Math.floor(Math.random() * 60) * 1000;
 			if (this.decrypt(this.config.apikey).length === 36) {
 				if (this.config.station.length > 0) {
 					if (this.startRequestTimeout) clearTimeout(this.startRequestTimeout);
@@ -462,6 +462,29 @@ class Tankerkoenig extends utils.Adapter {
 
 			// write all prices to the states
 			for (const [key, stationValue] of Object.entries(station)) {
+				// check if stationValue.postCode exists and if it is a string // TODO: remove in once all users have the new version
+				if (stationValue.postCode) {
+					if (typeof stationValue.postCode === 'string') {
+						// parse string to int
+						this.writeLog(
+							`postCode for station ${stationValue.station} name ${stationValue.stationname} is a string => parse to int`,
+							'debug',
+						);
+						stationValue.postCode = parseInt(stationValue.postCode, 10);
+					} else {
+						this.writeLog(
+							`postCode for station ${stationValue.station} name ${stationValue.stationname} is a number`,
+							'debug',
+						);
+					}
+				} else {
+					this.writeLog(
+						`postCode for station ${stationValue.station} name ${stationValue.stationname} is not defined`,
+						'debug',
+					);
+					stationValue.postCode = 0;
+				}
+
 				this.writeLog(
 					` cheapest e5: ${newE5[0].e5} at ${newE5[0].station} array: ${JSON.stringify(newE5)}`,
 					'debug',
@@ -2085,7 +2108,7 @@ class Tankerkoenig extends utils.Adapter {
 			this.writeLog('all states are now created', 'debug');
 
 			//  create all channel
-			await this.setObjectNotExistsAsync('stations.cheapest', {
+			await this.extendObjectAsync('stations.cheapest', {
 				type: 'channel',
 				common: {
 					name: 'Cheapest gas stations',
@@ -2096,7 +2119,7 @@ class Tankerkoenig extends utils.Adapter {
 			// create the cheapest folder and states
 			for (const fuelTypesKey in this.fuelTypes) {
 				if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-					await this.setObjectNotExistsAsync(`stations.cheapest.${this.fuelTypes[fuelTypesKey]}`, {
+					await this.extendObjectAsync(`stations.cheapest.${this.fuelTypes[fuelTypesKey]}`, {
 						type: 'channel',
 						common: {
 							name: `cheapest ${this.fuelTypes[fuelTypesKey].toUpperCase()}`,
@@ -2109,7 +2132,7 @@ class Tankerkoenig extends utils.Adapter {
 				if (cheapestObj.hasOwnProperty(cheapestObjKey)) {
 					for (const fuelTypesKey in this.fuelTypes) {
 						if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-							await this.setObjectNotExistsAsync(
+							await this.extendObjectAsync(
 								`stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${cheapestObjKey}`,
 								cheapestObj[cheapestObjKey],
 							);
@@ -2121,14 +2144,14 @@ class Tankerkoenig extends utils.Adapter {
 				if (statesObj.hasOwnProperty(statesObjKey)) {
 					for (const fuelTypesKey in this.fuelTypes) {
 						if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-							await this.setObjectNotExistsAsync(
+							await this.extendObjectAsync(
 								`stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${statesObjKey}`,
 								statesObj[statesObjKey],
 							);
 
 							for (const priceObjKey in priceObj) {
 								if (priceObj.hasOwnProperty(priceObjKey)) {
-									await this.setObjectNotExistsAsync(
+									await this.extendObjectAsync(
 										`stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${priceObjKey}`,
 										{
 											...priceObj[priceObjKey],
@@ -2188,7 +2211,7 @@ class Tankerkoenig extends utils.Adapter {
 							stationName = station.stationname;
 						}
 
-						await this.setObjectNotExistsAsync(`stations.${stationKey}`, {
+						await this.extendObjectAsync(`stations.${stationKey}`, {
 							type: 'channel',
 							common: {
 								name: stationName,
@@ -2197,29 +2220,9 @@ class Tankerkoenig extends utils.Adapter {
 							native: {},
 						});
 
-						let objects = null;
-						objects = await this.getObjectAsync(`stations.${stationKey}`);
-						if (objects !== null && objects !== undefined) {
-							const { common } = objects;
-							if (common.name !== stationName) {
-								this.writeLog(
-									`station name changed from ${common.name} to ${stationName}`,
-									'debug',
-								);
-								await this.extendObjectAsync(`stations.${stationKey}`, {
-									type: 'channel',
-									common: {
-										name: stationName,
-										desc: station.station,
-									},
-									native: {},
-								});
-							}
-						}
-
 						for (const fuelTypesKey in this.fuelTypes) {
 							if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-								await this.setObjectNotExistsAsync(
+								await this.extendObjectAsync(
 									`stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}`,
 									{
 										type: 'channel',
@@ -2234,7 +2237,7 @@ class Tankerkoenig extends utils.Adapter {
 
 						for (const statesObjKey in statesObj) {
 							if (statesObj.hasOwnProperty(statesObjKey)) {
-								await this.setObjectNotExistsAsync(
+								await this.extendObjectAsync(
 									`stations.${stationKey}.${statesObjKey}`,
 									statesObj[statesObjKey],
 								);
@@ -2244,7 +2247,7 @@ class Tankerkoenig extends utils.Adapter {
 						for (const fuelTypesKey in this.fuelTypes) {
 							for (const priceObjKey in priceObj) {
 								if (priceObj.hasOwnProperty(priceObjKey)) {
-									await this.setObjectNotExistsAsync(
+									await this.extendObjectAsync(
 										`stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}.${priceObjKey}`,
 										{
 											...priceObj[priceObjKey],
@@ -2258,7 +2261,7 @@ class Tankerkoenig extends utils.Adapter {
 							}
 
 							// Create min/max channel
-							await this.setObjectNotExistsAsync(
+							await this.extendObjectAsync(
 								`stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}.minmax`,
 								{
 									type: 'channel',
@@ -2272,7 +2275,7 @@ class Tankerkoenig extends utils.Adapter {
 							//Create min/max states
 							for (const priceMinMaxObjKey in priceMinMaxObj) {
 								if (priceMinMaxObj.hasOwnProperty(priceMinMaxObjKey)) {
-									await this.setObjectNotExistsAsync(
+									await this.extendObjectAsync(
 										`stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}.minmax.${priceMinMaxObjKey}`,
 										{
 											...priceMinMaxObj[priceMinMaxObjKey],
@@ -2288,7 +2291,7 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
-			await this.setObjectNotExistsAsync(`stations.json`, {
+			await this.extendObjectAsync(`stations.json`, {
 				type: 'state',
 				common: {
 					name: 'tankerkoenig JSON',
@@ -2302,7 +2305,7 @@ class Tankerkoenig extends utils.Adapter {
 				native: {},
 			});
 
-			await this.setObjectNotExistsAsync(`stations.jsonTable`, {
+			await this.extendObjectAsync(`stations.jsonTable`, {
 				type: 'state',
 				common: {
 					name: 'JSON Table vor Visualization',
@@ -2316,7 +2319,7 @@ class Tankerkoenig extends utils.Adapter {
 				native: {},
 			});
 
-			await this.setObjectNotExistsAsync(`stations.lastUpdate`, {
+			await this.extendObjectAsync(`stations.lastUpdate`, {
 				type: 'state',
 				common: {
 					name: 'tankerkoenig last update',
@@ -2330,7 +2333,7 @@ class Tankerkoenig extends utils.Adapter {
 				native: {},
 			});
 
-			await this.setObjectNotExistsAsync(`stations.refresh`, {
+			await this.extendObjectAsync(`stations.refresh`, {
 				type: 'state',
 				common: {
 					name: 'manuel refresh the data from tankerkoenig.de',

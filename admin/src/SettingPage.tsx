@@ -62,10 +62,12 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 		open: boolean;
 		index: number | null;
 		oldRow?: ioBroker.Station;
+		currentRows?: ioBroker.Station[];
 	}>({
 		open: false,
 		index: null,
 		oldRow: undefined,
+		currentRows: [],
 	});
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -186,6 +188,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 					<EditModal
 						alive={alive}
 						newRow={(editRows, index) => handleEdit(editRows, index)}
+						currentRows={editModal.currentRows}
 						oldRow={editModal.oldRow}
 						index={editModal.index}
 						open={editModal.open}
@@ -242,6 +245,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 								key={`${row.station}${index}`}
 								item={row}
 								index={index}
+								currentRows={settings.station}
 								editModal={(value) => setEditModal(value)}
 								deleteModal={(name) => handleDeleteRow(name)}
 							/>

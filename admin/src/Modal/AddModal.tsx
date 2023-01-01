@@ -48,7 +48,7 @@ export const AddModal: React.FC<AddModalProps> = ({
 		alert: false,
 		message: '',
 	});
-	const { translate: _ } = useI18n();
+	const { translate: t } = useI18n();
 
 	const handleClickAdd = (): void => {
 		if (row) {
@@ -75,19 +75,27 @@ export const AddModal: React.FC<AddModalProps> = ({
 						...validConfig,
 						valid: false,
 						alert: true,
-						message: _('id already in list'),
+						message: t('station_already_in_list'),
 					});
+					console.warn(t('station_already_in_list'));
 				} else {
 					// id is not in the list
 					setValidConfig({ ...validConfig, valid: true, alert: false, message: '' });
 				}
 			} else {
 				// name is not set
-				setValidConfig({ ...validConfig, valid: false, alert: true, message: _('name is empty') });
+				setValidConfig({
+					...validConfig,
+					valid: false,
+					alert: true,
+					message: t('station_name_not_set'),
+				});
+				console.warn(t('station_name_not_set'));
 			}
 		} else {
 			// id is not a valid uuid
-			setValidConfig({ ...validConfig, valid: false, alert: true, message: _('id not valid') });
+			setValidConfig({ ...validConfig, valid: false, alert: true, message: t('station_id_not_valid') });
+			console.warn(t('station_id_not_valid'));
 		}
 	};
 
@@ -128,7 +136,7 @@ export const AddModal: React.FC<AddModalProps> = ({
 						fontSize: '1.4rem',
 					}}
 				>
-					{_('addNewStation ')}
+					{t('addNewStation ')}
 				</DialogTitle>
 				{alive ? (
 					<DialogContent
@@ -166,16 +174,16 @@ export const AddModal: React.FC<AddModalProps> = ({
 					>
 						<Alert variant="filled" severity="warning">
 							<AlertTitle>Warning</AlertTitle>
-							{_('adapterOffline')}
+							{t('adapterOffline')}
 						</Alert>
 					</DialogContent>
 				)}
 
 				<DialogActions>
 					<Button disabled={!validConfig.valid} onClick={handleClickAdd}>
-						{_('add')}
+						{t('add')}
 					</Button>
-					<Button onClick={handleClose}>{_('cancel')}</Button>
+					<Button onClick={handleClose}>{t('cancel')}</Button>
 				</DialogActions>
 			</Dialog>
 		</React.Fragment>

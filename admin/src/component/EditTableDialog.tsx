@@ -31,6 +31,7 @@ import { requestDetail, RequestDetailProps } from '../lib/DetailRequest';
 export interface RowProps {
 	editRow: (value: ioBroker.Station) => void;
 	oldRow: ioBroker.Station | undefined;
+	checkAlert: { open: boolean; message: string };
 }
 
 const ITEM_HEIGHT = 48;
@@ -50,7 +51,7 @@ const fuelTypes = ['e5', 'e10', 'diesel'];
 let timeout: NodeJS.Timeout;
 let loadingTimer: NodeJS.Timeout;
 let alertTimeout: NodeJS.Timeout;
-export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.Element => {
+export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAlert }): JSX.Element => {
 	if (!oldRow) {
 		oldRow = oldRow || {
 			station: '',
@@ -479,6 +480,12 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow }): JSX.El
 						<Alert severity="warning">
 							<AlertTitle>Warning</AlertTitle>
 							{alert.message}
+						</Alert>
+					) : null}
+					{checkAlert.open ? (
+						<Alert severity="warning">
+							<AlertTitle>Warning</AlertTitle>
+							{checkAlert.message}
 						</Alert>
 					) : null}
 					<Typography variant="h6" component="div" textAlign={'center'}>

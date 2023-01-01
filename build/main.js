@@ -52,10 +52,10 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
       this.sync_milliseconds = typeof this.config.synctime === "number" ? this.config.synctime * 1e3 * 60 : parseInt(this.config.synctime, 10) * 1e3 * 60;
-      if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 5 * 60 * 1e3) {
-        this.sync_milliseconds = 3e5;
+      if (isNaN(this.sync_milliseconds) || this.sync_milliseconds < 10 * 60 * 1e3) {
+        this.sync_milliseconds = 10 * 60 * 1e3;
         this.writeLog(
-          `Sync time was too short (${this.config.synctime}). New sync time is 5 min`,
+          `Sync time was too short (${this.config.synctime}). New sync time is 10 min`,
           "warn"
         );
       }
@@ -63,7 +63,7 @@ class Tankerkoenig extends utils.Adapter {
         `Sync time set to ${this.config.synctime} minutes or ${this.sync_milliseconds} ms`,
         "info"
       );
-      this.sync_milliseconds += Math.floor(Math.random() * 100);
+      this.sync_milliseconds += Math.floor(Math.random() * 60) * 1e3;
       if (this.decrypt(this.config.apikey).length === 36) {
         if (this.config.station.length > 0) {
           if (this.startRequestTimeout)
@@ -371,6 +371,26 @@ class Tankerkoenig extends utils.Adapter {
       }
       this.writeLog(`allCheapestDiesel: ${JSON.stringify(allCheapestDiesel)}`, "debug");
       for (const [key, stationValue] of Object.entries(station)) {
+        if (stationValue.postCode) {
+          if (typeof stationValue.postCode === "string") {
+            this.writeLog(
+              `postCode for station ${stationValue.station} name ${stationValue.stationname} is a string => parse to int`,
+              "debug"
+            );
+            stationValue.postCode = parseInt(stationValue.postCode, 10);
+          } else {
+            this.writeLog(
+              `postCode for station ${stationValue.station} name ${stationValue.stationname} is a number`,
+              "debug"
+            );
+          }
+        } else {
+          this.writeLog(
+            `postCode for station ${stationValue.station} name ${stationValue.stationname} is not defined`,
+            "debug"
+          );
+          stationValue.postCode = 0;
+        }
         this.writeLog(
           ` cheapest e5: ${newE5[0].e5} at ${newE5[0].station} array: ${JSON.stringify(newE5)}`,
           "debug"
@@ -1657,7 +1677,7 @@ class Tankerkoenig extends utils.Adapter {
   async createAllStates(stations) {
     try {
       this.writeLog("all states are now created", "debug");
-      await this.setObjectNotExistsAsync("stations.cheapest", {
+      await this.extendObjectAsync("stations.cheapest", {
         type: "channel",
         common: {
           name: "Cheapest gas stations"
@@ -1666,7 +1686,7 @@ class Tankerkoenig extends utils.Adapter {
       });
       for (const fuelTypesKey in this.fuelTypes) {
         if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-          await this.setObjectNotExistsAsync(`stations.cheapest.${this.fuelTypes[fuelTypesKey]}`, {
+          await this.extendObjectAsync(`stations.cheapest.${this.fuelTypes[fuelTypesKey]}`, {
             type: "channel",
             common: {
               name: `cheapest ${this.fuelTypes[fuelTypesKey].toUpperCase()}`
@@ -1679,7 +1699,7 @@ class Tankerkoenig extends utils.Adapter {
         if (import_object_definition.cheapestObj.hasOwnProperty(cheapestObjKey)) {
           for (const fuelTypesKey in this.fuelTypes) {
             if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-              await this.setObjectNotExistsAsync(
+              await this.extendObjectAsync(
                 `stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${cheapestObjKey}`,
                 import_object_definition.cheapestObj[cheapestObjKey]
               );
@@ -1691,13 +1711,13 @@ class Tankerkoenig extends utils.Adapter {
         if (import_object_definition.statesObj.hasOwnProperty(statesObjKey)) {
           for (const fuelTypesKey in this.fuelTypes) {
             if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-              await this.setObjectNotExistsAsync(
+              await this.extendObjectAsync(
                 `stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${statesObjKey}`,
                 import_object_definition.statesObj[statesObjKey]
               );
               for (const priceObjKey in import_object_definition.priceObj) {
                 if (import_object_definition.priceObj.hasOwnProperty(priceObjKey)) {
-                  await this.setObjectNotExistsAsync(
+                  await this.extendObjectAsync(
                     `stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${priceObjKey}`,
                     {
                       ...import_object_definition.priceObj[priceObjKey],
@@ -1739,7 +1759,7 @@ class Tankerkoenig extends utils.Adapter {
             } else {
               stationName = station.stationname;
             }
-            await this.setObjectNotExistsAsync(`stations.${stationKey}`, {
+            await this.extendObjectAsync(`stations.${stationKey}`, {
               type: "channel",
               common: {
                 name: stationName,
@@ -1747,28 +1767,9 @@ class Tankerkoenig extends utils.Adapter {
               },
               native: {}
             });
-            let objects = null;
-            objects = await this.getObjectAsync(`stations.${stationKey}`);
-            if (objects !== null && objects !== void 0) {
-              const { common } = objects;
-              if (common.name !== stationName) {
-                this.writeLog(
-                  `station name changed from ${common.name} to ${stationName}`,
-                  "debug"
-                );
-                await this.extendObjectAsync(`stations.${stationKey}`, {
-                  type: "channel",
-                  common: {
-                    name: stationName,
-                    desc: station.station
-                  },
-                  native: {}
-                });
-              }
-            }
             for (const fuelTypesKey in this.fuelTypes) {
               if (this.fuelTypes.hasOwnProperty(fuelTypesKey)) {
-                await this.setObjectNotExistsAsync(
+                await this.extendObjectAsync(
                   `stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}`,
                   {
                     type: "channel",
@@ -1782,7 +1783,7 @@ class Tankerkoenig extends utils.Adapter {
             }
             for (const statesObjKey in import_object_definition.statesObj) {
               if (import_object_definition.statesObj.hasOwnProperty(statesObjKey)) {
-                await this.setObjectNotExistsAsync(
+                await this.extendObjectAsync(
                   `stations.${stationKey}.${statesObjKey}`,
                   import_object_definition.statesObj[statesObjKey]
                 );
@@ -1791,7 +1792,7 @@ class Tankerkoenig extends utils.Adapter {
             for (const fuelTypesKey in this.fuelTypes) {
               for (const priceObjKey in import_object_definition.priceObj) {
                 if (import_object_definition.priceObj.hasOwnProperty(priceObjKey)) {
-                  await this.setObjectNotExistsAsync(
+                  await this.extendObjectAsync(
                     `stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}.${priceObjKey}`,
                     {
                       ...import_object_definition.priceObj[priceObjKey],
@@ -1803,7 +1804,7 @@ class Tankerkoenig extends utils.Adapter {
                   );
                 }
               }
-              await this.setObjectNotExistsAsync(
+              await this.extendObjectAsync(
                 `stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}.minmax`,
                 {
                   type: "channel",
@@ -1815,7 +1816,7 @@ class Tankerkoenig extends utils.Adapter {
               );
               for (const priceMinMaxObjKey in import_object_definition.priceMinMaxObj) {
                 if (import_object_definition.priceMinMaxObj.hasOwnProperty(priceMinMaxObjKey)) {
-                  await this.setObjectNotExistsAsync(
+                  await this.extendObjectAsync(
                     `stations.${stationKey}.${this.fuelTypes[fuelTypesKey]}.minmax.${priceMinMaxObjKey}`,
                     {
                       ...import_object_definition.priceMinMaxObj[priceMinMaxObjKey],
@@ -1831,7 +1832,7 @@ class Tankerkoenig extends utils.Adapter {
           }
         }
       }
-      await this.setObjectNotExistsAsync(`stations.json`, {
+      await this.extendObjectAsync(`stations.json`, {
         type: "state",
         common: {
           name: "tankerkoenig JSON",
@@ -1844,7 +1845,7 @@ class Tankerkoenig extends utils.Adapter {
         },
         native: {}
       });
-      await this.setObjectNotExistsAsync(`stations.jsonTable`, {
+      await this.extendObjectAsync(`stations.jsonTable`, {
         type: "state",
         common: {
           name: "JSON Table vor Visualization",
@@ -1857,7 +1858,7 @@ class Tankerkoenig extends utils.Adapter {
         },
         native: {}
       });
-      await this.setObjectNotExistsAsync(`stations.lastUpdate`, {
+      await this.extendObjectAsync(`stations.lastUpdate`, {
         type: "state",
         common: {
           name: "tankerkoenig last update",
@@ -1870,7 +1871,7 @@ class Tankerkoenig extends utils.Adapter {
         },
         native: {}
       });
-      await this.setObjectNotExistsAsync(`stations.refresh`, {
+      await this.extendObjectAsync(`stations.refresh`, {
         type: "state",
         common: {
           name: "manuel refresh the data from tankerkoenig.de",
