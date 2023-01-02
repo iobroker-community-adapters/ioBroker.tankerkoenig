@@ -97,7 +97,7 @@ Es gibt 2 Varianten:
 
 The MIT License (MIT)
 
-Copyright (c) 2016-2022 xXBJXx <issi.dev.iobroker@gmail.com> pix
+Copyright (c) 2016-2023 xXBJXx <issi.dev.iobroker@gmail.com> pix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
