@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.1",
+    "version": "3.3.2",
     "news": {
+      "3.3.2": {
+        "en": "Fixed TypeError: Cannot read property 'length' of undefined in addDiscount if value is `boolean / undefined`.\nFixed error: DB closed when adapter is stopped \nObject creation optimized\nchanged query interval default value to 10 minutes and minimum value to 10 minutes\nadded check if station ID is already configured (in edit mode)\nAdded price difference to last price\nadded feature request cheapest station display [Issue #109]",
+        "de": "TypeError behoben: Cannot read property 'length' of undefined in addDiscount if value is `boolean / undefined`.\nFehler behoben: DB closed , wenn Adapter gestoppt wird \nObjekterzeugung optimiert\nAbfrageintervall Standardwert auf 10 Minuten und Mindestwert auf 10 Minuten geändert\nPrüfung hinzugefügt, ob die Stations-ID bereits konfiguriert ist (im Bearbeitungsmodus)\nPreisdifferenz zum letzten Preis hinzugefügt\nFeature-Request für billigste Stationsanzeige hinzugefügt [Issue #109]",
+        "ru": "Исправлена ошибка TypeError: Невозможно прочитать свойство 'length' из undefined в addDiscount, если значение `boolean / undefined`.\nИсправлена ошибка: БД закрывалась при остановке адаптера \nОптимизировано создание объектов\nизменено значение интервала запроса по умолчанию на 10 минут и минимальное значение на 10 минут\nдобавлена проверка, если ID станции уже настроен (в режиме редактирования)\nдобавлена разница цен с последней ценой\nдобавлен запрос на отображение самой дешевой станции [Выпуск #109]",
+        "pt": "TypeError fixo: Não é possível ler a propriedade \"comprimento\" de indefinido no addDiscount se o valor for \"booleano / indefinido\".\nErro corrigido: DB fechado quando o adaptador é parado \nCriação de objectos optimizada\nalterou o valor por defeito do intervalo de consulta para 10 minutos e o valor mínimo para 10 minutos\nadicionado verificar se o ID da estação já está configurado (em modo de edição)\nAcrescentar diferença de preço ao último preço\npedido de recurso adicional exibição da estação mais barata [Edição #109]",
+        "nl": "Fixed TypeError: Kan eigenschap 'lengte' van undefined in addDiscount niet lezen als waarde `boolean / undefined` is.\nVaste fout: DB gesloten wanneer adapter wordt gestopt \nObject creatie geoptimaliseerd\nquery-interval standaardwaarde gewijzigd in 10 minuten en minimumwaarde in 10 minuten\ncontrole toegevoegd of station ID al is geconfigureerd (in bewerkmodus)\nPrijsverschil toegevoegd aan laatste prijs\nfeature request goedkoopste stationweergave toegevoegd [Issue #109]",
+        "fr": "Correction de TypeError : Impossible de lire la propriété 'length' d'undefined dans addDiscount si la valeur est `boolean / undefined`.\nCorrection d'une erreur : DB fermée lorsque l'adaptateur est arrêté \nCréation d'objets optimisée\nLa valeur par défaut de l'intervalle de requête a été modifiée en 10 minutes et la valeur minimale en 10 minutes.\nAjout d'une vérification si l'ID de la station est déjà configuré (en mode édition)\nAjout de la différence de prix au dernier prix\nAjout d'une demande de fonctionnalité pour l'affichage de la station la moins chère [Issue #109].",
+        "it": "Errore di tipo corretto: Impossibile leggere la proprietà 'length' di undefined in addDiscount se il valore è `boolean / undefined`.\nErrore corretto: DB chiuso quando l'adattatore viene fermato \nCreazione di oggetti ottimizzata\nmodificato il valore predefinito dell'intervallo di query a 10 minuti e il valore minimo a 10 minuti\naggiunto controllo se l'ID della stazione è già configurato (in modalità di modifica)\nAggiunta la differenza di prezzo all'ultimo prezzo\naggiunta richiesta di funzionalità per la visualizzazione delle stazioni più economiche [Issue #109].",
+        "es": "Corregido TypeError: No se puede leer la propiedad 'length' de undefined en addDiscount si el valor es `boolean / undefined`.\nCorregido error: BD cerrada cuando se detiene el adaptador \nCreación de objetos optimizada\ncambiado el valor por defecto del intervalo de consulta a 10 minutos y el valor mínimo a 10 minutos\nañadida comprobación si el ID de estación ya está configurado (en modo edición)\nAñadida diferencia de precio al último precio\nAñadida solicitud de función de visualización de estación más barata [incidencia nº 109].",
+        "pl": "Naprawiono TypeError: Cannot read property 'length' of undefined in addDiscount if value is `boolean / undefined`.\nNaprawiony błąd: DB zamknięty, gdy adapter jest zatrzymany \nZoptymalizowano tworzenie obiektów\nZmieniono wartość domyślną interwału zapytania na 10 minut oraz wartość minimalną na 10 minut\ndodano sprawdzanie czy ID stacji jest już skonfigurowane (w trybie edycji)\nDodano różnicę w cenie do ostatniej ceny\ndodano feature request najtańsze wyświetlanie stacji [Issue #109]",
+        "uk": "Виправлено TypeError: Неможливо прочитати властивість 'length' з undefined в addDiscount, якщо значення `boolean / undefined`.\nВиправлена помилка: БД закривалася при зупинці адаптера \nОптимізовано створення об'єктів\nзмінено значення інтервалу запиту за замовчуванням на 10 хвилин та мінімальне значення на 10 хвилин\nдодана перевірка, чи вже налаштований ID станції (в режимі редагування)\nдодана різниця в ціні до останньої ціни\nдодана функція запиту відображення найдешевшої станції [Випуск #109].",
+        "zh-cn": "修正了TypeError。如果值是 \"boolean / undefined\"，不能读取addDiscount中未定义的属性 \"length\"。\n修正了错误。当适配器停止时，数据库被关闭 \n优化了对象创建\n更改了查询间隔的默认值为10分钟，最小值为10分钟\n增加了车站ID是否已经配置的检查（在编辑模式）。\n为最后的价格增加了价格差异\n增加了最便宜的车站显示功能请求 [问题#109] 。"
+      },
       "3.3.1": {
         "en": "Fixed TypeError: Cannot read properties of undefined Issue #104\nadded complete street datapoint for each station",
         "de": "TypeError behoben: Cannot read properties of undefined Ausgabe #104\nDatenpunkt für komplette Straße für jede Station hinzugefügt",
@@ -80,19 +93,6 @@
         "pl": "Dodano szyfrowanie klucza API\ndodano lepsze komunikaty o błędach dla żądania danych\naktualizacja zależności",
         "uk": "Додано шифрування ключа API\nдодані покращені повідомлення про помилки для запиту даних\nоновлення залежностей",
         "zh-cn": "增加了API密钥的加密功能\n为数据请求添加了更好的错误信息\n依赖性更新"
-      },
-      "3.2.1": {
-        "en": "Added opening Times for the gas stations\nRenaming function extended",
-        "de": "Öffnungszeiten für die Tankstellen hinzugefügt\nUmbenennung Funktion erweitert",
-        "ru": "Добавлены часы работы автозаправочных станций\nРасширена функция переименования",
-        "pt": "Adicionado o horário de abertura das estações de serviço\nFunção de renomeação alargada",
-        "nl": "Openingstijden voor de benzinestations toegevoegd\nHernoemingsfunctie uitgebreid",
-        "fr": "Ajout des heures d'ouverture des stations-service\nFonction de renommage étendue",
-        "it": "Aggiunti gli orari di apertura delle stazioni di servizio\nEstensione della funzione di ridenominazione",
-        "es": "Añadido el horario de apertura de las gasolineras\nAmpliada la función de cambio de nombre",
-        "pl": "Dodano godziny otwarcia dla stacji benzynowych\nRozszerzona funkcja zmiany nazwy",
-        "uk": "Додано графік роботи АЗС\nРозширено функцію перейменування",
-        "zh-cn": "增加了加油站的开放时间\n扩展了重命名功能"
       }
     },
     "titleLang": {

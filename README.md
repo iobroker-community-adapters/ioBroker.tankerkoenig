@@ -66,7 +66,7 @@ Es gibt 2 Varianten:
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.3.2 (2023-01-02)
 * (xXBJXx) fixed TypeError: Cannot read property 'length' of undefined in addDiscount when the value is `boolean / undefined`
 * (xXBJXx) fixed Error: DB closed when the adapter is stopped
 * (xXBJXx) object creation optimized
@@ -88,10 +88,6 @@ Es gibt 2 Varianten:
 
 ### 3.2.4 (2022-12-28)
 * (xXBJXx) fixed type "number" but received type "string" [Issue #100](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/100)
-
-### 3.2.3 (2022-12-27)
-* (xXBJXx) the detailed request for the station data has been removed, see [issue #99](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/99)
-* (xXBJXx) added new input field for the address of the station in the adapter settings
 
 ## License
 

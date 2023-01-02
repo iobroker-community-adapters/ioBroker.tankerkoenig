@@ -1,4 +1,8 @@
 # Older changes
+## 3.2.3 (2022-12-27)
+* (xXBJXx) the detailed request for the station data has been removed, see [issue #99](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/99)
+* (xXBJXx) added new input field for the address of the station in the adapter settings
+
 ## 3.2.2 (2022-12-26)
 * (xXBJXx) Added encryption of the API key
 * (xXBJXx) added better error messages for the data request
