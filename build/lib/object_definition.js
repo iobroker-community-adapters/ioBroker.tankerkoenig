@@ -239,6 +239,7 @@ const priceObj = {
   "3rd": {
     type: "state",
     common: {
+      desc: "Price for 3rd party",
       type: "number",
       role: "state",
       def: 0,
@@ -250,6 +251,7 @@ const priceObj = {
   combined: {
     type: "state",
     common: {
+      desc: "Combined Price as html",
       type: "string",
       role: "text",
       def: "",
@@ -261,6 +263,7 @@ const priceObj = {
   feed: {
     type: "state",
     common: {
+      desc: "Price for feed",
       type: "number",
       role: "state",
       def: 0,
@@ -273,10 +276,38 @@ const priceObj = {
   short: {
     type: "state",
     common: {
+      desc: "Short Price of the station",
       type: "string",
       role: "text",
       def: "",
       unit: "\u20AC",
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  difference: {
+    type: "state",
+    common: {
+      desc: "Difference between the last and the current price",
+      type: "number",
+      role: "value",
+      def: 0,
+      unit: "\u20AC",
+      min: -100,
+      max: 100,
+      read: true,
+      write: false
+    },
+    native: {}
+  },
+  cheapest: {
+    type: "state",
+    common: {
+      desc: "Shows whether the station is the cheapest",
+      type: "boolean",
+      role: "indicator",
+      def: false,
       read: true,
       write: false
     },

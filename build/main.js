@@ -35,7 +35,7 @@ class Tankerkoenig extends utils.Adapter {
     this.refreshTimeout = null;
     this.refreshStatusTimeout = null;
     this.fuelTypes = ["e5", "e10", "diesel"];
-    this.sync_milliseconds = 5 * 60 * 1e3;
+    this.sync_milliseconds = 10 * 60 * 1e3;
     this.refreshStatus = false;
   }
   async onReady() {
@@ -60,7 +60,7 @@ class Tankerkoenig extends utils.Adapter {
         );
       }
       this.writeLog(
-        `Sync time set to ${this.config.synctime} minutes or ${this.sync_milliseconds} ms`,
+        `Sync time set to ${this.sync_milliseconds / 1e3 / 60} minutes or ${this.sync_milliseconds} ms`,
         "info"
       );
       this.sync_milliseconds += Math.floor(Math.random() * 60) * 1e3;
@@ -90,7 +90,7 @@ class Tankerkoenig extends utils.Adapter {
     try {
       if (this.requestTimeout)
         clearTimeout(this.requestTimeout);
-      this.writeLog(`request start now`, "debug");
+      this.writeLog(`request start now}`, "debug");
       const url = `https://creativecommons.tankerkoenig.de/json/prices.php?ids=${this.config.station.map((station) => station.station).join(",")}&apikey=${this.decrypt(this.config.apikey)}`;
       this.writeLog(`request url: ${url}`, "debug");
       const config = {
@@ -240,6 +240,46 @@ class Tankerkoenig extends utils.Adapter {
       return null;
     }
   }
+  async calcPriceDiff(id, diffID, newPrice) {
+    try {
+      const oldPrice = await this.oldState(id);
+      if (oldPrice !== null) {
+        const diff = parseFloat(newPrice) - parseFloat(oldPrice);
+        const diffRound = Math.round(diff * 100) / 100;
+        if (diffRound !== 0) {
+          this.writeLog(
+            `[ Adapter V:${this.version} calcPriceDiff ] oldPrice: ${oldPrice} newPrice: ${newPrice} diff: ${diffRound}`,
+            "debug"
+          );
+          return diffRound;
+        } else {
+          const oldDiff = await this.oldState(diffID);
+          if (oldDiff !== null) {
+            this.writeLog(
+              `[ Adapter V:${this.version} calcPriceDiff ] oldPrice: ${oldPrice} newPrice: ${newPrice} oldDiff: ${oldDiff}`,
+              "debug"
+            );
+            return oldDiff;
+          } else {
+            this.writeLog(
+              `[ Adapter V:${this.version} calcPriceDiff ] oldDiff: is null`,
+              "debug"
+            );
+            return 0;
+          }
+        }
+      } else {
+        this.writeLog(`[ Adapter V:${this.version} calcPriceDiff ] oldPrice: is null`, "debug");
+        return 0;
+      }
+    } catch (error) {
+      this.writeLog(
+        `[ Adapter V:${this.version} calcPriceDiff ] error for ID: ${id} error: ${error} stack: ${error.stack}`,
+        "error"
+      );
+      return 0;
+    }
+  }
   async writeState(prices) {
     try {
       const station = this.config.station;
@@ -334,14 +374,40 @@ class Tankerkoenig extends utils.Adapter {
       this.writeLog(` filterE10 ${JSON.stringify(filterE10)}`, "debug");
       const filterDiesel = newDiesel.filter((station2) => station2.diesel === newDiesel[0].diesel);
       this.writeLog(` filterDiesel ${JSON.stringify(filterDiesel)}`, "debug");
+      const cheapestE5State = [];
+      const cheapestE10State = [];
+      const cheapestDieselState = [];
       for (const filterE5Key in filterE5) {
         if (filterE5.hasOwnProperty(filterE5Key)) {
           for (const stationKey in station) {
             if (station.hasOwnProperty(stationKey)) {
               if (filterE5[filterE5Key].station === station[stationKey].station) {
                 allCheapestE5.push({ name: station[stationKey].stationname });
+                cheapestE5State.push({ index: stationKey, id: station[stationKey].station });
               }
             }
+          }
+        }
+      }
+      for (const stationKey in station) {
+        if (station.hasOwnProperty(stationKey)) {
+          let found = false;
+          for (const cheapestE5StateKey in cheapestE5State) {
+            if (cheapestE5State.hasOwnProperty(cheapestE5StateKey)) {
+              if (cheapestE5State[cheapestE5StateKey].index === stationKey) {
+                found = true;
+                await this.setStateAsync(`stations.${stationKey}.e5.cheapest`, {
+                  val: true,
+                  ack: true
+                });
+              }
+            }
+          }
+          if (!found) {
+            await this.setStateAsync(`stations.${stationKey}.e5.cheapest`, {
+              val: false,
+              ack: true
+            });
           }
         }
       }
@@ -352,8 +418,31 @@ class Tankerkoenig extends utils.Adapter {
             if (station.hasOwnProperty(stationKey)) {
               if (filterE10[filterE10Key].station === station[stationKey].station) {
                 allCheapestE10.push({ name: station[stationKey].stationname });
+                cheapestE10State.push({ index: stationKey, id: station[stationKey].station });
               }
             }
+          }
+        }
+      }
+      for (const stationKey in station) {
+        if (station.hasOwnProperty(stationKey)) {
+          let found = false;
+          for (const cheapestE5StateKey in cheapestE5State) {
+            if (cheapestE5State.hasOwnProperty(cheapestE5StateKey)) {
+              if (cheapestE5State[cheapestE5StateKey].index === stationKey) {
+                found = true;
+                await this.setStateAsync(`stations.${stationKey}.e10.cheapest`, {
+                  val: true,
+                  ack: true
+                });
+              }
+            }
+          }
+          if (!found) {
+            await this.setStateAsync(`stations.${stationKey}.e10.cheapest`, {
+              val: false,
+              ack: true
+            });
           }
         }
       }
@@ -364,8 +453,34 @@ class Tankerkoenig extends utils.Adapter {
             if (station.hasOwnProperty(stationKey)) {
               if (filterDiesel[filterDieselKey].station === station[stationKey].station) {
                 allCheapestDiesel.push({ name: station[stationKey].stationname });
+                cheapestDieselState.push({
+                  index: stationKey,
+                  id: station[stationKey].station
+                });
               }
             }
+          }
+        }
+      }
+      for (const stationKey in station) {
+        if (station.hasOwnProperty(stationKey)) {
+          let found = false;
+          for (const cheapestDieselStateKey in cheapestDieselState) {
+            if (cheapestDieselState.hasOwnProperty(cheapestDieselStateKey)) {
+              if (cheapestDieselState[cheapestDieselStateKey].index === stationKey) {
+                found = true;
+                await this.setStateAsync(`stations.${stationKey}.diesel.cheapest`, {
+                  val: true,
+                  ack: true
+                });
+              }
+            }
+          }
+          if (!found) {
+            await this.setStateAsync(`stations.${stationKey}.diesel.cheapest`, {
+              val: false,
+              ack: true
+            });
           }
         }
       }
@@ -435,6 +550,14 @@ class Tankerkoenig extends utils.Adapter {
             const cutPrice = await this.cutPrice(newE5[0].e5);
             await this.setStateAsync(`stations.cheapest.e5.3rd`, {
               val: cutPrice.price3rd,
+              ack: true
+            });
+            await this.setStateAsync(`stations.cheapest.e5.difference`, {
+              val: await this.calcPriceDiff(
+                `stations.cheapest.e5.short`,
+                `stations.cheapest.e5.difference`,
+                cutPrice.priceshort
+              ),
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.e5.short`, {
@@ -604,6 +727,14 @@ class Tankerkoenig extends utils.Adapter {
               val: cutPrice.price3rd,
               ack: true
             });
+            await this.setStateAsync(`stations.cheapest.e10.difference`, {
+              val: await this.calcPriceDiff(
+                `stations.cheapest.e10.short`,
+                `stations.cheapest.e10.difference`,
+                cutPrice.priceshort
+              ),
+              ack: true
+            });
             await this.setStateAsync(`stations.cheapest.e10.short`, {
               val: cutPrice.priceshort,
               ack: true
@@ -769,6 +900,14 @@ class Tankerkoenig extends utils.Adapter {
             const cutPrice = await this.cutPrice(newDiesel[0].diesel);
             await this.setStateAsync(`stations.cheapest.diesel.3rd`, {
               val: cutPrice.price3rd,
+              ack: true
+            });
+            await this.setStateAsync(`stations.cheapest.diesel.difference`, {
+              val: await this.calcPriceDiff(
+                `stations.cheapest.diesel.short`,
+                `stations.cheapest.diesel.difference`,
+                cutPrice.priceshort
+              ),
               ack: true
             });
             await this.setStateAsync(`stations.cheapest.diesel.short`, {
@@ -1128,6 +1267,17 @@ class Tankerkoenig extends utils.Adapter {
                       `stations.${key}.${this.fuelTypes[fuelTypesKey]}.3rd`,
                       {
                         val: pricesObj.price3rd,
+                        ack: true
+                      }
+                    );
+                    await this.setStateAsync(
+                      `stations.${key}.${this.fuelTypes[fuelTypesKey]}.difference`,
+                      {
+                        val: await this.calcPriceDiff(
+                          `stations.${key}.${this.fuelTypes[fuelTypesKey]}.short`,
+                          `stations.${key}.${this.fuelTypes[fuelTypesKey]}.difference`,
+                          pricesObj.priceshort
+                        ),
                         ack: true
                       }
                     );
@@ -1717,16 +1867,18 @@ class Tankerkoenig extends utils.Adapter {
               );
               for (const priceObjKey in import_object_definition.priceObj) {
                 if (import_object_definition.priceObj.hasOwnProperty(priceObjKey)) {
-                  await this.extendObjectAsync(
-                    `stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${priceObjKey}`,
-                    {
-                      ...import_object_definition.priceObj[priceObjKey],
-                      common: {
-                        ...import_object_definition.priceObj[priceObjKey].common,
-                        name: `cheapest ${this.fuelTypes[fuelTypesKey]} ${priceObjKey}`
+                  if (priceObjKey !== "cheapest") {
+                    await this.extendObjectAsync(
+                      `stations.cheapest.${this.fuelTypes[fuelTypesKey]}.${priceObjKey}`,
+                      {
+                        ...import_object_definition.priceObj[priceObjKey],
+                        common: {
+                          ...import_object_definition.priceObj[priceObjKey].common,
+                          name: `cheapest ${this.fuelTypes[fuelTypesKey]} ${priceObjKey}`
+                        }
                       }
-                    }
-                  );
+                    );
+                  }
                 }
               }
             }
@@ -1738,7 +1890,7 @@ class Tankerkoenig extends utils.Adapter {
           if (stations.hasOwnProperty(stationKey)) {
             const station = stations[stationKey];
             let stationName = "";
-            if (station.street && station.houseNumber && station.city && station.postCode) {
+            if (typeof station.street !== void 0 && typeof station.houseNumber !== void 0 && typeof station.city !== void 0 && typeof station.postCode !== void 0) {
               if (station.street.length > 0 && station.houseNumber.length > 0 && station.city.length > 0 && station.postCode > 0) {
                 stationName = `${station.stationname} (${station.street}, ${station.postCode} ${station.city})`;
               } else if (station.street.length > 0 && station.city.length > 0) {
@@ -1763,7 +1915,7 @@ class Tankerkoenig extends utils.Adapter {
               type: "channel",
               common: {
                 name: stationName,
-                desc: station.station
+                desc: `${station.stationname} ID: ${station.station}`
               },
               native: {}
             });

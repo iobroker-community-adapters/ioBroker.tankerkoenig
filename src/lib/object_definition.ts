@@ -215,6 +215,7 @@ export const priceObj: { [key: string]: any } = {
 	'3rd': {
 		type: 'state',
 		common: {
+			desc: 'Price for 3rd party',
 			type: 'number',
 			role: 'state',
 			def: 0,
@@ -226,6 +227,7 @@ export const priceObj: { [key: string]: any } = {
 	combined: {
 		type: 'state',
 		common: {
+			desc: 'Combined Price as html',
 			type: 'string',
 			role: 'text',
 			def: '',
@@ -237,6 +239,7 @@ export const priceObj: { [key: string]: any } = {
 	feed: {
 		type: 'state',
 		common: {
+			desc: 'Price for feed',
 			type: 'number',
 			role: 'state',
 			def: 0,
@@ -249,10 +252,38 @@ export const priceObj: { [key: string]: any } = {
 	short: {
 		type: 'state',
 		common: {
+			desc: 'Short Price of the station',
 			type: 'string',
 			role: 'text',
 			def: '',
 			unit: '€',
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	difference: {
+		type: 'state',
+		common: {
+			desc: 'Difference between the last and the current price',
+			type: 'number',
+			role: 'value',
+			def: 0,
+			unit: '€',
+			min: -100,
+			max: 100,
+			read: true,
+			write: false,
+		},
+		native: {},
+	},
+	cheapest: {
+		type: 'state',
+		common: {
+			desc: 'Shows whether the station is the cheapest',
+			type: 'boolean',
+			role: 'indicator',
+			def: false,
 			read: true,
 			write: false,
 		},
