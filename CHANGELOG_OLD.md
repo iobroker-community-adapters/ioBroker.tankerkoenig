@@ -1,4 +1,7 @@
 # Older changes
+## 3.2.4 (2022-12-28)
+* (xXBJXx) fixed type "number" but received type "string" [Issue #100](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/100)
+
 ## 3.2.3 (2022-12-27)
 * (xXBJXx) the detailed request for the station data has been removed, see [issue #99](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/99)
 * (xXBJXx) added new input field for the address of the station in the adapter settings

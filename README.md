@@ -26,7 +26,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.3.3 (2023-01-02)
 * (xXBJXx) fixed => adapter does not fetch data after a `requestData error` e.g. internet termination.
 * (xXBJXx) add adapter migration Guide from 3.1.x to 3.3.x or 3.2.x to 3.3.x [Migration guide](docs/guide/migration_3.3.x.md)
 * (xXBJXx) fixed Issue [Issue #111](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/111)
@@ -50,9 +50,6 @@ NodeJS v14 or higher is required.
 
 ### 3.2.5 (2022-12-28)
 * (xXBJXx) Problem with entering the postal code in the UI fixed
-
-### 3.2.4 (2022-12-28)
-* (xXBJXx) fixed type "number" but received type "string" [Issue #100](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/100)
 
 ## License
 

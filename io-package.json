@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.2",
+    "version": "3.3.3",
     "news": {
+      "3.3.3": {
+        "en": "fixed => adapter does not fetch data after a `requestData error` e.g. internet crash.\nadded adapter migration guide from 3.1.x to 3.3.x or 3.2.x to 3.3.x\nProblem fixed [Problem #111]",
+        "de": "behoben => Adapter holt keine Daten nach einem `requestData error` z.B. Internet-Absturz.\nAdapter-Migrationsanleitung von 3.1.x nach 3.3.x oder 3.2.x nach 3.3.x hinzugefügt\nProblem behoben [Problem #111]",
+        "ru": "исправлено => адаптер не получает данные после ошибки `requestData`, например, при сбое интернета.\nдобавлено руководство по миграции адаптера с 3.1.x на 3.3.x или с 3.2.x на 3.3.x\nПроблема исправлена [Проблема #111]",
+        "pt": "fixo => adaptador não vai buscar dados após um \"erro de pedido de dados\", por exemplo, uma falha na Internet.\nadicionado guia de migração do adaptador de 3.1.x a 3.3.x ou 3.2.x a 3.3.x\nProblema corrigido [Problema #111]",
+        "nl": "opgelost => adapter haalt geen data op na een `requestData error` bijv. internet crash.\nadaptermigratiegids toegevoegd van 3.1.x naar 3.3.x of 3.2.x naar 3.3.x\nProbleem opgelost [Probleem #111]",
+        "fr": "corrigé => l'adaptateur ne récupère pas les données après une erreur `requestData`, par exemple un crash internet.\nAjout d'un guide de migration de l'adaptateur de 3.1.x à 3.3.x ou de 3.2.x à 3.3.x.\nProblème corrigé [Problème #111]",
+        "it": "corretto => l'adattatore non recupera i dati dopo un `errore di richiesta dati`, ad esempio un crash di Internet.\naggiunta guida alla migrazione dell'adattatore da 3.1.x a 3.3.x o da 3.2.x a 3.3.x\nProblema risolto [Problema #111]",
+        "es": "corregido => el adaptador no recupera los datos después de un error `requestData` p.e. caída de internet.\nañadida guía de migración del adaptador de 3.1.x a 3.3.x o de 3.2.x a 3.3.x\nProblema solucionado [Problema #111]",
+        "pl": "poprawiono => adapter nie pobiera danych po wystąpieniu błędu `requestData` np. po awarii internetu.\ndodano przewodnik migracji adaptera z wersji 3.1.x do 3.3.x lub 3.2.x do 3.3.x\nProblem naprawiony [Problem #111]",
+        "uk": "виправлено => адаптер не отримував дані після помилки `requestData`, наприклад, падіння інтернету.\nдодано керівництво з міграції адаптера з 3.1.x на 3.3.x або 3.2.x на 3.3.x\nВиправлено проблему [Проблема #111]",
+        "zh-cn": "修正 => 适配器在发生 \"requestData错误\"（如互联网崩溃）后无法获取数据。\n增加了从3.1.x到3.3.x或3.2.x到3.3.x的适配器迁移指南。\n问题修复 [问题#111]"
+      },
       "3.3.2": {
         "en": "Fixed TypeError: Cannot read property 'length' of undefined in addDiscount if value is `boolean / undefined`.\nFixed error: DB closed when adapter is stopped \nObject creation optimized\nchanged query interval default value to 10 minutes and minimum value to 10 minutes\nadded check if station ID is already configured (in edit mode)\nAdded price difference to last price\nadded feature request cheapest station display [Issue #109]",
         "de": "TypeError behoben: Cannot read property 'length' of undefined in addDiscount if value is `boolean / undefined`.\nFehler behoben: DB closed , wenn Adapter gestoppt wird \nObjekterzeugung optimiert\nAbfrageintervall Standardwert auf 10 Minuten und Mindestwert auf 10 Minuten geändert\nPrüfung hinzugefügt, ob die Stations-ID bereits konfiguriert ist (im Bearbeitungsmodus)\nPreisdifferenz zum letzten Preis hinzugefügt\nFeature-Request für billigste Stationsanzeige hinzugefügt [Issue #109]",
@@ -80,19 +93,6 @@
         "pl": "usunięto szczegółowe zapytanie o dane stacji, patrz [issue #99]\ndodano nowe pole wprowadzania adresu stacji w ustawieniach adaptera",
         "uk": "прибрано детальний запит даних станції, див. [випуск #99]\nдодано нове поле для введення адреси станції у налаштуваннях адаптера",
         "zh-cn": "删除了对站点数据的详细要求，见[issue #99]。\n在适配器设置中增加了新的站点地址输入字段"
-      },
-      "3.2.2": {
-        "en": "Added encryption of the API key\nadded better error messages for the data request\ndependency update",
-        "de": "Verschlüsselung des API-Schlüssels hinzugefügt\nBessere Fehlermeldungen für die Datenabfrage hinzugefügt\nAktualisierung der Abhängigkeiten",
-        "ru": "Добавлено шифрование ключа API\nдобавлены улучшенные сообщения об ошибках при запросе данных\nобновление зависимостей",
-        "pt": "Acrescentada a encriptação da chave API\nacrescentou melhores mensagens de erro para o pedido de dados\nactualização de dependência",
-        "nl": "encryptie van de API-sleutel toegevoegd\nbetere foutmeldingen toegevoegd voor de gegevensaanvraag\nafhankelijkheid bijgewerkt",
-        "fr": "Ajout du cryptage de la clé API\najout de meilleurs messages d'erreur pour la demande de données\nmise à jour des dépendances",
-        "it": "Aggiunta della crittografia della chiave API\naggiunti migliori messaggi di errore per la richiesta di dati\naggiornamento delle dipendenze",
-        "es": "añadido el cifrado de la clave API\nañadido mejores mensajes de error para la solicitud de datos\nactualización de la dependencia",
-        "pl": "Dodano szyfrowanie klucza API\ndodano lepsze komunikaty o błędach dla żądania danych\naktualizacja zależności",
-        "uk": "Додано шифрування ключа API\nдодані покращені повідомлення про помилки для запиту даних\nоновлення залежностей",
-        "zh-cn": "增加了API密钥的加密功能\n为数据请求添加了更好的错误信息\n依赖性更新"
       }
     },
     "titleLang": {
@@ -233,7 +233,6 @@
           "ok",
           "cancel"
         ]
-
       },
       {
         "condition": {
