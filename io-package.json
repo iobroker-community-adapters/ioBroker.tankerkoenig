@@ -165,7 +165,7 @@
     "messagebox": true,
     "dependencies": [
       {
-        "js-controller": ">=3.0.0"
+        "js-controller": ">=4.0.0"
       }
     ],
     "globalDependencies": [
@@ -180,6 +180,61 @@
     },
     "tier": 3,
     "messages": [
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<3.3.0",
+            "newVersion>=3.3.0"
+          ]
+        },
+        "title": {
+          "en": "Important update message!",
+          "de": "Wichtige Update Nachricht!",
+          "ru": "Важное сообщение об обновлении!",
+          "pt": "Mensagem de atualização importante!",
+          "nl": "Belangrijk update bericht!",
+          "fr": "Message de mise à jour important!",
+          "it": "Messaggio di aggiornamento importante!",
+          "es": "¡Mensaje de actualización importante!",
+          "pl": "Ważna wiadomość o aktualizacji!",
+          "uk": "Важлива повідомлення про оновлення!",
+          "zh-cn": "重要的更新消息！"
+        },
+        "text": {
+          "en": "Please read the migration guide (see link below) before updating the adapter.",
+          "de": "Bitte lesen Sie die Migrationsanleitung (siehe Link unten), bevor Sie den Adapter aktualisieren.",
+          "ru": "Перед обновлением адаптера ознакомьтесь с руководством по миграции (см. ссылку ниже).",
+          "pt": "Por favor leia o guia de migração (ver link abaixo) antes de actualizar o adaptador.",
+          "nl": "Lees de migratiegids (zie onderstaande link) voordat u de adapter bijwerkt.",
+          "fr": "Veuillez lire le guide de migration (voir le lien ci-dessous) avant de mettre à jour l'adaptateur.",
+          "it": "Prima di aggiornare l'adattatore, leggere la guida alla migrazione (vedi link sotto).",
+          "es": "Por favor, lea la guía de migración (ver enlace más abajo) antes de actualizar el adaptador.",
+          "pl": "Przed aktualizacją adaptera należy zapoznać się z przewodnikiem migracji (link poniżej).",
+          "uk": "Будь ласка, ознайомтеся з посібником з міграції (див. посилання нижче) перед оновленням адаптера.",
+          "zh-cn": "在更新适配器之前，请阅读迁移指南（见以下链接）。"
+        },
+        "link": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/blob/master/docs/guide/migration_3.3.x.md",
+        "linkText": {
+          "en": "Migration guide",
+          "de": "Migrationsanleitung",
+          "ru": "Руководство по миграции",
+          "pt": "Guia de migração",
+          "nl": "Migratiegids",
+          "fr": "Guide de migration",
+          "it": "Guida alla migrazione",
+          "es": "Guía de migración",
+          "pl": "Przewodnik migracyjny",
+          "uk": "Посібник з міграції",
+          "zh-cn": "迁移指南"
+        },
+        "level": "warn",
+        "buttons": [
+          "ok",
+          "cancel"
+        ]
+
+      },
       {
         "condition": {
           "operand": "and",
@@ -230,7 +285,7 @@
         },
         "level": "warn",
         "buttons": [
-          "agree",
+          "ok",
           "cancel"
         ]
       }

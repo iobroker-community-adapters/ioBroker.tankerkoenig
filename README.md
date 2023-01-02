@@ -26,7 +26,10 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) fixed => adapter does not fetch data after a `requestData error` e.g. internet termination.
 * (xXBJXx) add adapter migration Guide from 3.1.x to 3.3.x or 3.2.x to 3.3.x [Migration guide](docs/guide/migration_3.3.x.md)
+
 ### 3.3.2 (2023-01-02)
 * (xXBJXx) fixed TypeError: Cannot read property 'length' of undefined in addDiscount when the value is `boolean / undefined`
 * (xXBJXx) fixed Error: DB closed when the adapter is stopped

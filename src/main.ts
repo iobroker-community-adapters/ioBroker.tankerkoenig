@@ -85,6 +85,178 @@ class Tankerkoenig extends utils.Adapter {
 				'info',
 			);
 
+			// check if all address data is available in this.config.stations
+			if (this.config.station) {
+				for (const stations of this.config.station) {
+					// check if city is available in stations
+					if (!stations.city) {
+						// if city is not present, city is set to an empty string
+						this.writeLog(
+							`City is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.city = '';
+					} else {
+						// check the type of city
+						const cityType = typeof stations.city;
+						if (cityType !== 'string') {
+							// if city is not of type string, an warn message is issued and city is converted to an empty string
+							this.writeLog(
+								`City type is ${cityType} in config from station ${stations.stationname} must be have type string. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.city = '';
+						}
+					}
+
+					// check if street is available in stations
+					if (!stations.street) {
+						// if street is not present, street is set to an empty string
+						this.writeLog(
+							`Street is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.street = '';
+					} else {
+						// check the type of street
+						const streetType = typeof stations.street;
+						if (streetType !== 'string') {
+							// if street is not of type string, an warn message is issued and street is converted to an empty string
+							this.writeLog(
+								`Street type is ${streetType} in config from station ${stations.stationname} must be have type string. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.street = '';
+						}
+					}
+					// check if houseNumber is available in stations
+					if (!stations.houseNumber) {
+						// if houseNumber is not present, houseNumber is set to an empty string
+						this.writeLog(
+							`House number is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.houseNumber = ' ';
+					} else {
+						// check the type of houseNumber
+						const houseNumberType = typeof stations.houseNumber;
+						if (houseNumberType !== 'string') {
+							// if houseNumber is not of type string, an warn message is issued and houseNumber is converted to an empty string
+							this.writeLog(
+								`House number type is ${houseNumberType} in config from station ${stations.stationname} must be have type string. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.houseNumber = ' ';
+						}
+					}
+
+					// check if postCode  is available in stations
+					if (!stations.postCode) {
+						// if postCode is not present, postCode is set to 0
+						this.writeLog(
+							`Post code is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.postCode = 0;
+					} else {
+						// check the type of postCode
+						const postCodeType = typeof stations.postCode;
+						if (postCodeType !== 'number') {
+							// if postCode is not of type number, an warn message is issued and postCode is converted to 0
+							this.writeLog(
+								`Post code type is ${postCodeType} in config from station ${stations.stationname} must be have type number. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.postCode = 0;
+						}
+					}
+
+					// check if latitude is available in stations
+					if (!stations.latitude) {
+						// if latitude is not present, latitude is set to 0
+						this.writeLog(
+							`Latitude is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.latitude = 0;
+					} else {
+						// check the type of latitude
+						const latitudeType = typeof stations.latitude;
+						if (latitudeType !== 'number') {
+							// if latitude is not of type number, an warn message is issued and latitude is converted to 0
+							this.writeLog(
+								`Latitude type is ${latitudeType} in config from station ${stations.stationname} must be have type number. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.latitude = 0;
+						}
+					}
+
+					// check if longitude is available in stations
+					if (!stations.longitude) {
+						// if longitude is not present, longitude is set to 0
+						this.writeLog(
+							`Longitude is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.longitude = 0;
+					} else {
+						// check the type of longitude
+						const longitudeType = typeof stations.longitude;
+						if (longitudeType !== 'number') {
+							// if longitude is not of type number, an warn message is issued and longitude is converted to 0
+							this.writeLog(
+								`Longitude type is ${longitudeType} in config from station ${stations.stationname} must be have type number. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.longitude = 0;
+						}
+					}
+
+					// check if openingTimes is available in stations
+					if (!stations.openingTimes) {
+						// if openingTimes is not present, openingTimes is set to an empty string
+						this.writeLog(
+							`Opening times is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.openingTimes = 'no Data';
+					} else {
+						// check the type of openingTimes object or string
+						const openingTimesType = typeof stations.openingTimes;
+						if (openingTimesType !== 'object' && openingTimesType !== 'string') {
+							// if openingTimes is not of type object / string, an warn message is issued and openingTimes is converted to an 'no Data' string
+							this.writeLog(
+								`Opening times type is ${openingTimesType} in config from station ${stations.stationname} must be have type string. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.openingTimes = 'no Data';
+						}
+					}
+
+					// check if overrides is available in stations
+					if (!stations.overrides) {
+						// if overrides is not present, overrides is set to an empty array
+						this.writeLog(
+							`Overrides is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
+							'warn',
+						);
+						stations.overrides = 'no Data';
+					} else {
+						// check the type of overrides object or string
+						const overridesType = typeof stations.overrides;
+						if (overridesType !== 'object' && overridesType !== 'string') {
+							// if overrides is not of type object, an warn message is issued and overrides is converted to an 'no Data' string
+							this.writeLog(
+								`Overrides type is ${overridesType} in config from station ${stations.stationname} must be have type object. Please check your configuration or reconfigure the stations => edit station => save`,
+								'warn',
+							);
+							stations.overrides = 'no Data';
+						}
+					}
+				}
+			}
+
 			// add to sync_milliseconds a random seconds value between 0 and 59
 			this.sync_milliseconds += Math.floor(Math.random() * 60) * 1000;
 			if (this.decrypt(this.config.apikey).length === 36) {
@@ -141,7 +313,7 @@ class Tankerkoenig extends utils.Adapter {
 				this.writeLog(
 					`[ Adapter V:${this.version} requestData axios: ${
 						axios.VERSION
-					} ] type response: ${typeof response.data} >>> ${JSON.stringify(response.data)}`,
+					} ] response data: ${JSON.stringify(response.data)}`,
 					'debug',
 				);
 
@@ -177,6 +349,15 @@ class Tankerkoenig extends utils.Adapter {
 						'error',
 					);
 				}
+			} else {
+				this.writeLog(
+					`[ Adapter V:${this.version} requestData  axios: ${
+						axios.VERSION
+					} ] response status code ${response.status} status text: ${
+						response.statusText
+					} data: ${JSON.stringify(response.data)}`,
+					'error',
+				);
 			}
 
 			await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
@@ -218,10 +399,21 @@ class Tankerkoenig extends utils.Adapter {
 					'error',
 				);
 			}
+			// set the adapter status to error
 			await this.setStateAsync(`stations.adapterStatus`, {
 				val: 'request Error',
 				ack: true,
 			});
+
+			// start the timer for the next request
+			this.requestTimeout = setTimeout(async () => {
+				this.writeLog(`request timeout start new request`, 'debug');
+				await this.setStateAsync(`stations.adapterStatus`, {
+					val: 'automatic request',
+					ack: true,
+				});
+				await this.requestData();
+			}, this.sync_milliseconds);
 		}
 	}
 
@@ -482,6 +674,8 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
+			this.writeLog(`cheapestE5State ${JSON.stringify(cheapestE5State)}`, 'debug');
+			console.log(` cheapestE5State ${JSON.stringify(cheapestE5State)}`);
 
 			// set all other stations to false
 			for (const stationKey in station) {
@@ -521,13 +715,15 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
+			this.writeLog(` cheapestE10State ${JSON.stringify(cheapestE10State)}`, 'debug');
+			console.log(` cheapestE10State ${JSON.stringify(cheapestE10State)}`);
 
 			for (const stationKey in station) {
 				if (station.hasOwnProperty(stationKey)) {
 					let found = false;
-					for (const cheapestE5StateKey in cheapestE5State) {
-						if (cheapestE5State.hasOwnProperty(cheapestE5StateKey)) {
-							if (cheapestE5State[cheapestE5StateKey].index === stationKey) {
+					for (const cheapestE10StateKey in cheapestE10State) {
+						if (cheapestE10State.hasOwnProperty(cheapestE10StateKey)) {
+							if (cheapestE10State[cheapestE10StateKey].index === stationKey) {
 								found = true;
 								await this.setStateAsync(`stations.${stationKey}.e10.cheapest`, {
 									val: true,
@@ -562,6 +758,8 @@ class Tankerkoenig extends utils.Adapter {
 					}
 				}
 			}
+			this.writeLog(` cheapestDieselState ${JSON.stringify(cheapestDieselState)}`, 'debug');
+			console.log(` cheapestDieselState ${JSON.stringify(cheapestDieselState)}`);
 
 			for (const stationKey in station) {
 				if (station.hasOwnProperty(stationKey)) {
@@ -1740,14 +1938,25 @@ class Tankerkoenig extends utils.Adapter {
 										const short = await this.oldState(
 											`stations.${key}.${this.fuelTypes[fuelTypesKey]}.short`,
 										);
-										await this.setStateAsync(
-											`stations.${key}.${this.fuelTypes[fuelTypesKey]}.short`,
-											{
-												val: short.toString(),
-												ack: true,
-												q: 0x40,
-											},
-										);
+										if (short !== undefined || true) {
+											await this.setStateAsync(
+												`stations.${key}.${this.fuelTypes[fuelTypesKey]}.short`,
+												{
+													val: short.toString(),
+													ack: true,
+													q: 0x40,
+												},
+											);
+										} else {
+											await this.setStateAsync(
+												`stations.${key}.${this.fuelTypes[fuelTypesKey]}.short`,
+												{
+													val: '0',
+													ack: true,
+													q: 0x40,
+												},
+											);
+										}
 
 										await this.setStateAsync(
 											`stations.${key}.${this.fuelTypes[fuelTypesKey]}.feed`,
@@ -2351,40 +2560,9 @@ class Tankerkoenig extends utils.Adapter {
 							houseNumber: string;
 						} = stations[stationKey];
 
-						let stationName = '';
-
-						// check if street, city and zip code are available
-						if (
-							typeof station.street !== undefined &&
-							typeof station.houseNumber !== undefined &&
-							typeof station.city !== undefined &&
-							typeof station.postCode !== undefined
-						) {
-							if (
-								station.street.length > 0 &&
-								station.houseNumber.length > 0 &&
-								station.city.length > 0 &&
-								station.postCode > 0
-							) {
-								stationName = `${station.stationname} (${station.street}, ${station.postCode} ${station.city})`;
-							} else if (station.street.length > 0 && station.city.length > 0) {
-								stationName = `${station.stationname} (${station.street}, ${station.city})`;
-							} else if (station.street.length > 0 && station.postCode > 0) {
-								stationName = `${station.stationname} (${station.street}, ${station.postCode})`;
-							} else if (station.city.length > 0 && station.postCode > 0) {
-								stationName = `${station.stationname} (${station.postCode} ${station.city})`;
-							} else if (station.street.length > 0) {
-								stationName = `${station.stationname} (${station.street})`;
-							} else if (station.city.length > 0) {
-								stationName = `${station.stationname} (${station.city})`;
-							} else if (station.postCode > 0) {
-								stationName = `${station.stationname} (${station.postCode})`;
-							} else {
-								stationName = station.stationname;
-							}
-						} else {
-							stationName = station.stationname;
-						}
+						const stationName = `${station.stationname} (${station.street} ${
+							station.houseNumber ?? ''
+						}, ${station.postCode === 0 ? '' : station.postCode} ${station.city})`;
 
 						await this.extendObjectAsync(`stations.${stationKey}`, {
 							type: 'channel',
@@ -2525,9 +2703,9 @@ class Tankerkoenig extends utils.Adapter {
 			await this.subscribeStates(`stations.refresh`);
 
 			// end of create objects
-		} catch (e) {
+		} catch (error) {
 			this.writeLog(
-				`[ Adapter V:${this.version} createObjects ] Error creating all states: ${e}`,
+				`[ Adapter V:${this.version} createObjects ] Error creating all states: ${error} , stack: ${error.stack}`,
 				'error',
 			);
 		}
