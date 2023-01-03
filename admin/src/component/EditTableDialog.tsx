@@ -58,7 +58,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 			stationname: '',
 			street: '',
 			city: '',
-			postCode: 0,
+			postCode: '',
 			houseNumber: '',
 			discounted: false,
 			discountObj: {
@@ -80,7 +80,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 	const [name, setName] = useState<string>(oldRow.stationname);
 	const [street, setStreet] = useState<string>(oldRow.street || '');
 	const [city, setCity] = useState<string>(oldRow.city || '');
-	const [postCode, setPostCode] = useState<number>(oldRow.postCode || 0);
+	const [postCode, setPostCode] = useState<string>(oldRow.postCode || '');
 	const [houseNumber, setHouseNumber] = useState<string>(oldRow.houseNumber || '');
 	const [discountType, setDiscountType] = useState<string>(oldRow.discountObj.discountType);
 	const [discount, setDiscount] = useState<number>(oldRow.discountObj.discount);
@@ -146,9 +146,26 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 				});
 				setCity(result.city);
 				setHouseNumber(result.houseNumber);
-				setPostCode(result.postCode);
+
+				if (result.postCode) {
+					result.postCode = result.postCode.toString();
+					if (result.postCode !== '') {
+						// check if the zip code has 5 digits
+						if (result.postCode.length === 5) {
+							setPostCode(result.postCode);
+						} else {
+							// setze der postleitzahl eine 0 voran
+							setPostCode('0' + result.postCode);
+						}
+					} else {
+						setPostCode('');
+					}
+				} else {
+					setPostCode('');
+				}
 				setStreet(result.street);
 			}
+
 			setValid(false);
 		} else {
 			setValid(true);
@@ -204,11 +221,14 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 	const handleChangePostCode = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
 		const newPostCode: string = event.target.value;
 		if (newPostCode !== '') {
-			setPostCode(parseInt(newPostCode));
-			setEditRow({ ...newEditRow, postCode: parseInt(newPostCode) });
+			// check if the input consists of numbers only
+			if (newPostCode.match(/^[0-9]+$/)) {
+				setPostCode(newPostCode);
+				setEditRow({ ...newEditRow, postCode: newPostCode });
+			}
 		} else {
-			setPostCode(0);
-			setEditRow({ ...newEditRow, postCode: 0 });
+			setPostCode('');
+			setEditRow({ ...newEditRow, postCode: '' });
 		}
 	};
 	const handleChangeHouseNumber = (
@@ -593,7 +613,7 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 									}}
 									placeholder={'10910'}
 									inputProps={{
-										maxLength: 6,
+										maxLength: 5,
 										style: { textAlign: 'center' },
 									}}
 									onChange={(event) => {

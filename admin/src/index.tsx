@@ -52,7 +52,7 @@ const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 	if (settings.station === undefined) {
 		settings.station = [];
 	}
-	if (settings.station !== undefined) {
+	if (settings.station.length !== 0) {
 		settings.station.map((stationValue, index) => {
 			if (stationValue.station === undefined) {
 				settings.station[index].station = '';
@@ -76,11 +76,9 @@ const migrateSettings = (settings: ioBroker.AdapterConfig) => {
 			if (stationValue.street === undefined) {
 				settings.station[index].street = '';
 			}
-			if (typeof stationValue.postCode === 'string') {
-				settings.station[index].postCode = parseInt(stationValue.postCode);
-			}
+
 			if (stationValue.postCode === undefined) {
-				settings.station[index].postCode = 0;
+				settings.station[index].postCode = '';
 			}
 			if (stationValue.city === undefined) {
 				settings.station[index].city = '';

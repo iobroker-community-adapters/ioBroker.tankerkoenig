@@ -71,7 +71,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 		stationname: '',
 		street: '',
 		city: '',
-		postCode: 0,
+		postCode: '',
 		houseNumber: '',
 		discounted: false,
 		discountObj: {
@@ -83,7 +83,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 	const [copyValid, setCopyValid] = useState(false);
 	const [street, setStreet] = useState<string>('');
 	const [city, setCity] = useState<string>('');
-	const [postCode, setPostCode] = useState<number>(0);
+	const [postCode, setPostCode] = useState<string>('');
 	const [houseNumber, setHouseNumber] = useState<string>('');
 
 	useEffect(() => {
@@ -128,7 +128,24 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 				});
 				setCity(result.city);
 				setHouseNumber(result.houseNumber);
-				setPostCode(result.postCode);
+
+				if (result.postCode) {
+					result.postCode = result.postCode.toString();
+					if (result.postCode !== '') {
+						// check if the zip code has 5 digits
+						if (result.postCode.length === 5) {
+							setPostCode(result.postCode);
+						} else {
+							// setze der postleitzahl eine 0 voran
+							setPostCode('0' + result.postCode);
+						}
+					} else {
+						setPostCode('');
+					}
+				} else {
+					setPostCode('');
+				}
+
 				setStreet(result.street);
 			}
 		} else {
@@ -161,11 +178,14 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 	const handleChangePostCode = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
 		const newPostCode: string = event.target.value;
 		if (newPostCode !== '') {
-			setPostCode(parseInt(newPostCode));
-			setNewRow({ ...newRow, postCode: parseInt(newPostCode) });
+			// check if the input consists of numbers only
+			if (newPostCode.match(/^[0-9]+$/)) {
+				setPostCode(newPostCode);
+				setNewRow({ ...newRow, postCode: newPostCode });
+			}
 		} else {
-			setPostCode(0);
-			setNewRow({ ...newRow, postCode: 0 });
+			setPostCode('');
+			setNewRow({ ...newRow, postCode: '' });
 		}
 	};
 
@@ -468,7 +488,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 					>
 						<React.Fragment>
 							<Tooltip
-								title={_('tooltipStationName')}
+								title={_('tooltipStationStreet')}
 								arrow
 								placement={'top'}
 								enterNextDelay={500}
@@ -518,7 +538,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 								/>
 							</Tooltip>
 							<Tooltip
-								title={_('tooltipStationName')}
+								title={_('tooltipStationCity')}
 								arrow
 								placement={'top'}
 								enterNextDelay={500}
@@ -543,7 +563,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 								/>
 							</Tooltip>
 							<Tooltip
-								title={_('tooltipStationName')}
+								title={_('tooltipStationZip')}
 								arrow
 								placement={'top'}
 								enterNextDelay={500}
@@ -552,15 +572,14 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 								<TextField
 									label={_('stationZip')}
 									value={postCode.toString()}
-									type={'number'}
+									type={'text'}
 									margin={'normal'}
 									sx={{
 										width: '15ch',
 									}}
 									placeholder={'10910'}
 									inputProps={{
-										maxLength: 6,
-										min: 0,
+										maxLength: 5,
 										style: { textAlign: 'center' },
 									}}
 									onChange={(event) => {

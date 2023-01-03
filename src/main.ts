@@ -157,17 +157,17 @@ class Tankerkoenig extends utils.Adapter {
 							`Post code is missing in config from station ${stations.stationname}. Please check your configuration or reconfigure the stations => edit station => save`,
 							'warn',
 						);
-						stations.postCode = 0;
+						stations.postCode = ' ';
 					} else {
 						// check the type of postCode
 						const postCodeType = typeof stations.postCode;
-						if (postCodeType !== 'number') {
-							// if postCode is not of type number, an warn message is issued and postCode is converted to 0
+						if (postCodeType !== 'string') {
+							// if postCode is not of type string, an warn message is issued and postCode is converted to string
 							this.writeLog(
-								`Post code type is ${postCodeType} in config from station ${stations.stationname} must be have type number. Please check your configuration or reconfigure the stations => edit station => save`,
+								`Post code type is ${postCodeType} in config from station ${stations.stationname} must be have type string. Please check your configuration or reconfigure the stations => edit station => save`,
 								'warn',
 							);
-							stations.postCode = 0;
+							stations.postCode = stations.postCode.toString();
 						}
 					}
 
@@ -790,16 +790,20 @@ class Tankerkoenig extends utils.Adapter {
 			for (const [key, stationValue] of Object.entries(station)) {
 				// check if stationValue.postCode exists and if it is a string // TODO: remove in once all users have the new version
 				if (stationValue.postCode) {
-					if (typeof stationValue.postCode === 'string') {
+					const postCode = stationValue.postCode as any;
+					if (typeof postCode !== 'string') {
 						// parse string to int
 						this.writeLog(
-							`postCode for station ${stationValue.station} name ${stationValue.stationname} is a string => parse to int`,
+							`postCode for station ${stationValue.station} name ${stationValue.stationname} is a number => set to string`,
 							'debug',
 						);
-						stationValue.postCode = parseInt(stationValue.postCode, 10);
+						console.log(
+							`postCode for station ${stationValue.station} name ${stationValue.stationname} is a number => set to string`,
+						);
+						stationValue.postCode = postCode.toString();
 					} else {
 						this.writeLog(
-							`postCode for station ${stationValue.station} name ${stationValue.stationname} is a number`,
+							`postCode for station ${stationValue.station} name ${stationValue.stationname} is a string`,
 							'debug',
 						);
 					}
@@ -808,7 +812,7 @@ class Tankerkoenig extends utils.Adapter {
 						`postCode for station ${stationValue.station} name ${stationValue.stationname} is not defined`,
 						'debug',
 					);
-					stationValue.postCode = 0;
+					stationValue.postCode = '';
 				}
 
 				this.writeLog(
@@ -960,10 +964,10 @@ class Tankerkoenig extends utils.Adapter {
 					});
 					await this.setStateAsync(`stations.cheapest.e5.postCode`, {
 						val: stationValue.postCode
-							? stationValue.postCode > 0
+							? stationValue.postCode.length > 0
 								? stationValue.postCode
-								: 0
-							: 0,
+								: ''
+							: '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e5.houseNumber`, {
@@ -1045,7 +1049,6 @@ class Tankerkoenig extends utils.Adapter {
 							ack: true,
 						});
 					}
-					// await this.setStateAsync(`stations.cheapest.e5.cheapest`, {
 				}
 
 				if (stationValue.station === newE10[0].station) {
@@ -1180,10 +1183,10 @@ class Tankerkoenig extends utils.Adapter {
 					});
 					await this.setStateAsync(`stations.cheapest.e10.postCode`, {
 						val: stationValue.postCode
-							? stationValue.postCode > 0
+							? stationValue.postCode.length > 0
 								? stationValue.postCode
-								: 0
-							: 0,
+								: ''
+							: '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.e10.houseNumber`, {
@@ -1399,10 +1402,10 @@ class Tankerkoenig extends utils.Adapter {
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.postCode`, {
 						val: stationValue.postCode
-							? stationValue.postCode > 0
+							? stationValue.postCode.length > 0
 								? stationValue.postCode
-								: 0
-							: 0,
+								: ''
+							: '',
 						ack: true,
 					});
 					await this.setStateAsync(`stations.cheapest.diesel.houseNumber`, {
@@ -1548,10 +1551,10 @@ class Tankerkoenig extends utils.Adapter {
 						});
 						await this.setStateAsync(`stations.${key}.postCode`, {
 							val: stationValue.postCode
-								? stationValue.postCode > 0
+								? stationValue.postCode.length > 0
 									? stationValue.postCode
-									: 0
-								: 0,
+									: ''
+								: '',
 							ack: true,
 						});
 						await this.setStateAsync(`stations.${key}.houseNumber`, {
@@ -2555,14 +2558,14 @@ class Tankerkoenig extends utils.Adapter {
 							station: string;
 							stationname: string;
 							city: string;
-							postCode: number;
+							postCode: string;
 							street: string;
 							houseNumber: string;
 						} = stations[stationKey];
 
 						const stationName = `${station.stationname} (${station.street} ${
 							station.houseNumber ?? ''
-						}, ${station.postCode === 0 ? '' : station.postCode} ${station.city})`;
+						}, ${station.postCode === '' ? '' : station.postCode} ${station.city})`;
 
 						await this.extendObjectAsync(`stations.${stationKey}`, {
 							type: 'channel',

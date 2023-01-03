@@ -90,7 +90,6 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 			});
 		}
 	};
-
 	//add row
 	const handleAdd = async (value: ioBroker.Station): Promise<void> => {
 		newRow = [...settings.station];

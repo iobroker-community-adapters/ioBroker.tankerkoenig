@@ -185,7 +185,7 @@
           "operand": "and",
           "rules": [
             "oldVersion<3.3.0",
-            "newVersion>=3.3.0"
+            "newVersion>=3.3.2"
           ]
         },
         "title": {
@@ -297,7 +297,7 @@
     "apikey"
   ],
   "native": {
-    "synctime": 5,
+    "synctime": 10,
     "resetValues": false,
     "apikey": "",
     "station": [],

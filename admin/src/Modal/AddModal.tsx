@@ -33,7 +33,7 @@ export const AddModal: React.FC<AddModalProps> = ({
 		city: '',
 		discountObj: { discount: 0, discountType: '', fuelType: [] },
 		discounted: false,
-		postCode: 0,
+		postCode: '',
 		station: '',
 		stationname: '',
 		street: '',

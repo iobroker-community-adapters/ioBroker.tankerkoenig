@@ -118,9 +118,9 @@ const statesObj = {
     common: {
       name: "Post Code",
       desc: "Post Code of the station",
-      type: "number",
+      type: "string",
       role: "value",
-      def: 0,
+      def: "",
       read: true,
       write: false
     },

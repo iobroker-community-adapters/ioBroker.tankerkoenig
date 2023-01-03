@@ -7,7 +7,7 @@ export interface RequestDetailProps {
 		street: string;
 		city: string;
 		houseNumber: string;
-		postCode: number;
+		postCode: string;
 		latitude: number;
 		longitude: number;
 		wholeDay: boolean;

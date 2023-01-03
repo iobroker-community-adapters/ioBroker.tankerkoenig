@@ -25,7 +25,7 @@ declare global {
 				discountType: string;
 			};
 			city: string;
-			postCode: number;
+			postCode: string;
 			street: string;
 			latitude?: number;
 			longitude?: number;

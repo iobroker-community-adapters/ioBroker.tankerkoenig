@@ -12,7 +12,8 @@
 NodeJS v14 or higher is required.
 
 ## Migration Guides
-[Migration guide to 3.3.x](docs/guide/migration_3.3.x.md)\
+[Migration guide to 3.3.4](docs/guide/migration_3.3.4.md)\
+[Migration guide to 3.3.3](docs/guide/migration_3.3.x.md)\
 [Migration guide to 3.1.x](docs/guide/migration_3.1.x.md)
 
 ## Documentation
@@ -26,6 +27,9 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) Fixed an issue where a postal code starting with 0 was not displayed correctly [Issue #113](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/113)
+
 ### 3.3.3 (2023-01-02)
 * (xXBJXx) fixed => adapter does not fetch data after a `requestData error` e.g. internet termination.
 * (xXBJXx) add adapter migration Guide from 3.1.x to 3.3.x or 3.2.x to 3.3.x [Migration guide](docs/guide/migration_3.3.x.md)
