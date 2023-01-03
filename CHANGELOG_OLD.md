@@ -1,4 +1,7 @@
 # Older changes
+## 3.2.5 (2022-12-28)
+* (xXBJXx) Problem with entering the postal code in the UI fixed
+
 ## 3.2.4 (2022-12-28)
 * (xXBJXx) fixed type "number" but received type "string" [Issue #100](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/100)
 

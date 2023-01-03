@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.3",
+    "version": "3.3.4",
     "news": {
+      "3.3.4": {
+        "en": "Fixed an issue where a zip code starting with 0 was displayed incorrectly [Issue #113].",
+        "de": "Ein Problem wurde behoben, bei dem eine mit 0 beginnende Postleitzahl nicht korrekt angezeigt wurde [Issue #113].",
+        "ru": "Исправлена проблема, при которой почтовый индекс, начинающийся с 0, отображался некорректно [Проблема #113].",
+        "pt": "Corrigido um problema onde um código postal começando com 0 era exibido incorrectamente [Edição #113].",
+        "nl": "Probleem opgelost waarbij een postcode die begint met 0 onjuist werd weergegeven [Issue #113].",
+        "fr": "Correction d'un problème d'affichage incorrect d'un code postal commençant par 0 [Issue #113].",
+        "it": "È stato risolto un problema per cui un codice postale che inizia con 0 veniva visualizzato in modo errato [Problema n. 113].",
+        "es": "Se ha corregido un problema por el que un código postal que empezaba por 0 se mostraba incorrectamente [incidencia nº 113].",
+        "pl": "Naprawiono problem, w którym kod pocztowy zaczynający się od 0 był wyświetlany niepoprawnie [Issue #113].",
+        "uk": "Виправлено помилку, через яку некоректно відображався поштовий індекс, що починається з 0 [Проблема №113].",
+        "zh-cn": "修正了以0开头的邮编显示不正确的问题[问题#113]。"
+      },
       "3.3.3": {
         "en": "fixed => adapter does not fetch data after a `requestData error` e.g. internet crash.\nadded adapter migration guide from 3.1.x to 3.3.x or 3.2.x to 3.3.x\nProblem fixed [Problem #111]",
         "de": "behoben => Adapter holt keine Daten nach einem `requestData error` z.B. Internet-Absturz.\nAdapter-Migrationsanleitung von 3.1.x nach 3.3.x oder 3.2.x nach 3.3.x hinzugefügt\nProblem behoben [Problem #111]",
@@ -80,19 +93,6 @@
         "pl": "Problem z ustawianiem obiektów => typ \"Number\" ustawiony, ale typ \"String\" uzyskany [Problem #100] naprawiony.",
         "uk": "Виправлено проблему із встановленням об'єктів => тип \"Число\" встановлено, але отримано тип \"Рядок\" [Проблема #100].",
         "zh-cn": "设置对象的问题=>设置了 \"Number \"类型，但获得了 \"String \"类型[问题#100]修复。"
-      },
-      "3.2.3": {
-        "en": "the detailed request for the station data has been removed, see [issue #99]\nadded new input field for the address of the station in the adapter settings",
-        "de": "die detaillierte Abfrage der Stationsdaten wurde entfernt, siehe [issue #99]\nneues Eingabefeld für die Adresse der Station in den Adaptereinstellungen hinzugefügt",
-        "ru": "убран подробный запрос данных о станции, см. [выпуск #99].\nдобавлено новое поле для ввода адреса станции в настройках адаптера",
-        "pt": "o pedido pormenorizado dos dados da estação foi retirado, ver [edição nº 99]\nadicionado novo campo de entrada para o endereço da estação nas definições do adaptador",
-        "nl": "het gedetailleerde verzoek om de stationsgegevens is verwijderd, zie [issue #99]\nnieuw invoerveld toegevoegd voor het adres van het station in de adapterinstellingen",
-        "fr": "la demande détaillée des données de la station a été supprimée, voir [issue #99].\nAjout d'un nouveau champ de saisie pour l'adresse de la station dans les paramètres de l'adaptateur.",
-        "it": "la richiesta dettagliata dei dati della stazione è stata rimossa, vedi [issue #99].\naggiunto un nuovo campo di inserimento per l'indirizzo della stazione nelle impostazioni dell'adattatore",
-        "es": "se ha eliminado la solicitud detallada de los datos de la estación, véase [cuestión nº 99]\nse ha añadido un nuevo campo de entrada para la dirección de la estación en los ajustes del adaptador",
-        "pl": "usunięto szczegółowe zapytanie o dane stacji, patrz [issue #99]\ndodano nowe pole wprowadzania adresu stacji w ustawieniach adaptera",
-        "uk": "прибрано детальний запит даних станції, див. [випуск #99]\nдодано нове поле для введення адреси станції у налаштуваннях адаптера",
-        "zh-cn": "删除了对站点数据的详细要求，见[issue #99]。\n在适配器设置中增加了新的站点地址输入字段"
       }
     },
     "titleLang": {

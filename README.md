@@ -27,7 +27,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.3.4 (2023-01-03)
 * (xXBJXx) Fixed an issue where a postal code starting with 0 was not displayed correctly [Issue #113](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/113)
 
 ### 3.3.3 (2023-01-02)
@@ -51,9 +51,6 @@ NodeJS v14 or higher is required.
 ### 3.3.0 (2022-12-29)
 * (Apollon77) Added Sentry for crash reporting
 * (xXBJXx) Added detailed request when creating stations in the UI
-
-### 3.2.5 (2022-12-28)
-* (xXBJXx) Problem with entering the postal code in the UI fixed
 
 ## License
 
