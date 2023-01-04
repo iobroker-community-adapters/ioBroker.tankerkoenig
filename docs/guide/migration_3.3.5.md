@@ -1,6 +1,6 @@
 ## Adapter Migration
 
-## Update von 3.3.3 auf 3.3.4 deutsch :de:
+## Update von 3.3.3 auf 3.3.5 deutsch :de:
 Bei dem Update wurde die Postleitzahl von Nummer auf Text umgestellt.\
 Da in der Adapter config die Postleitzahl als Nummer gespeichert wurde, wird beim Adapter Start eine Warnung angezeigt.\
 ![img_4.png](img_4.png)\
@@ -15,7 +15,7 @@ Vorgehensweise:
 
 Nach dem Speichern startet der Adapter neu und die Warnung sollte nicht mehr angezeigt werden.
 
-## update from 3.3.3 to 3.3.4 english :gb:
+## update from 3.3.3 to 3.3.5 english :gb:
 During the update the postal code was changed from number to text.\
 Because in the adapter config the zip code was saved as number, a warning is displayed at adapter startup.\
 ![img_4.png](img_4.png)\

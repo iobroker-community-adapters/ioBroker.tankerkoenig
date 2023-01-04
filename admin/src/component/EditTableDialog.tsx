@@ -139,11 +139,6 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 		if (id.match(pattern)) {
 			const result = await handleDetailRequest(id, 'detailRequest');
 			if (result) {
-				setEditRow({
-					...newEditRow,
-					station: id,
-					...result,
-				});
 				setCity(result.city);
 				setHouseNumber(result.houseNumber);
 
@@ -155,7 +150,8 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 							setPostCode(result.postCode);
 						} else {
 							// setze der postleitzahl eine 0 voran
-							setPostCode('0' + result.postCode);
+							setPostCode(`0${result.postCode}`);
+							result.postCode = `0${result.postCode}`;
 						}
 					} else {
 						setPostCode('');
@@ -163,6 +159,11 @@ export const EditTableDialog: React.FC<RowProps> = ({ editRow, oldRow, checkAler
 				} else {
 					setPostCode('');
 				}
+				setEditRow({
+					...newEditRow,
+					station: id,
+					...result,
+				});
 				setStreet(result.street);
 			}
 

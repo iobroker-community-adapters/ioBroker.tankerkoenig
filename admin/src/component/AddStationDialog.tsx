@@ -121,14 +121,8 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 			setError(false);
 			const result = await handleDetailRequest(id, 'detailRequest');
 			if (result) {
-				setNewRow({
-					...newRow,
-					station: id,
-					...result,
-				});
 				setCity(result.city);
 				setHouseNumber(result.houseNumber);
-
 				if (result.postCode) {
 					result.postCode = result.postCode.toString();
 					if (result.postCode !== '') {
@@ -136,8 +130,9 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 						if (result.postCode.length === 5) {
 							setPostCode(result.postCode);
 						} else {
-							// setze der postleitzahl eine 0 voran
-							setPostCode('0' + result.postCode);
+							// prefix the zip code with 0 until it has 5 digits
+							setPostCode(`0${result.postCode}`);
+							result.postCode = `0${result.postCode}`;
 						}
 					} else {
 						setPostCode('');
@@ -145,8 +140,12 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 				} else {
 					setPostCode('');
 				}
-
 				setStreet(result.street);
+				setNewRow({
+					...newRow,
+					station: id,
+					...result,
+				});
 			}
 		} else {
 			setError(true);
