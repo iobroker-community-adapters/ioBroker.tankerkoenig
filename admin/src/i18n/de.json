@@ -21,6 +21,7 @@
   "editModal": "Öffnet ein Fenster zum Bearbeiten einer Station.",
   "editStation": "Station bearbeiten",
   "enabledRabat": "Aktiviert Rabatt",
+  "error": "Fehler",
   "euro": "Euro",
   "fuelType": "Kraftstoffart",
   "good": "Akzeptiert",
@@ -61,5 +62,6 @@
   "tooltipStationStreet": "Hier können Sie die Straße eingeben, in der sich die Tankstelle befindet, diese wird dann in die Datenpunkte und Namen eingetragen.",
   "tooltipStationZip": "Hier können Sie die Postleitzahl eingeben, in der sich die Tankstelle befindet, diese wird in die Datenpunkte und Namen eingetragen.",
   "update": "Aktualisieren",
+  "warning": "Warnung",
   "wrong": "Nicht richtig"
 }

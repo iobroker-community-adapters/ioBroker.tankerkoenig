@@ -21,6 +21,7 @@
   "editModal": "Abre uma janela para editar uma estação.",
   "editStation": "editar Estação",
   "enabledRabat": "Activa o desconto",
+  "error": "Erro",
   "euro": "Euro",
   "fuelType": "Tipo de combustível",
   "good": "Aceite",
@@ -61,5 +62,6 @@
   "tooltipStationStreet": "Aqui pode entrar na rua onde se encontra a estação de serviço, isto será introduzido nos pontos de dados e nomes.",
   "tooltipStationZip": "Aqui pode introduzir o código postal onde se encontra a estação de serviço, este será introduzido nos pontos de dados e nomes.",
   "update": "Actualização",
+  "warning": "Advertência",
   "wrong": "Não está certo"
 }

@@ -21,6 +21,7 @@
   "editModal": "Opent een venster om een station te bewerken.",
   "editStation": "bewerking Station",
   "enabledRabat": "Activeert korting",
+  "error": "Fout",
   "euro": "Euro",
   "fuelType": "Type brandstof",
   "good": "Geaccepteerd",
@@ -61,5 +62,6 @@
   "tooltipStationStreet": "Hier kunt u de straat invoeren waar het benzinestation zich bevindt, dit wordt ingevoerd in de gegevenspunten en namen.",
   "tooltipStationZip": "Hier kunt u de postcode invoeren waar het tankstation zich bevindt, deze wordt ingevoerd bij de datapunten en namen.",
   "update": "Update",
+  "warning": "Waarschuwing",
   "wrong": "Niet goed."
 }

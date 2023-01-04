@@ -21,6 +21,7 @@
   "editModal": "Ouvre une fenêtre permettant de modifier une station.",
   "editStation": "station d'édition",
   "enabledRabat": "Active la remise",
+  "error": "Erreur",
   "euro": "Euro",
   "fuelType": "Type de carburant",
   "good": "Accepté",
@@ -61,5 +62,6 @@
   "tooltipStationStreet": "Vous pouvez saisir ici la rue où se trouve la station-service, celle-ci sera saisie dans les points de données et les noms.",
   "tooltipStationZip": "Ici, vous pouvez saisir le code postal où se trouve la station-service, celui-ci sera saisi dans les points de données et les noms.",
   "update": "Mise à jour",
+  "warning": "Avertissement",
   "wrong": "Pas correctement"
 }

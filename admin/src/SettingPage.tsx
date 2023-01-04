@@ -1,16 +1,16 @@
 import { Box, Button, Grid, Tab, Tabs, Tooltip } from '@mui/material';
+import { Logo } from 'iobroker-react';
 import { useAdapter, useI18n } from 'iobroker-react/hooks';
 import React, { useState } from 'react';
 import { AdapterInterval } from './component/AdapterInterval';
-import { AddModal } from './Modal/AddModal';
 import { AlertComponent } from './component/AlertComponent';
 import { ApiKey } from './component/ApiKey';
+import { PriceSettings } from './component/PriceSettings';
 import { Spacer } from './component/Spacer';
 import { StationCard } from './component/StationCard';
-import { EditModal } from './Modal/EditModal';
-import { PriceSettings } from './component/PriceSettings';
-import { Logo } from 'iobroker-react';
 import { VisCombinedOptions } from './component/VisCombinedOptions';
+import { AddModal } from './Modal/AddModal';
+import { EditModal } from './Modal/EditModal';
 
 interface SettingPageProps {
 	secret: string;
@@ -180,8 +180,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 						marginLeft: '-33px',
 						zIndex: 999,
 						height: '60px',
-						width: '100%',
-						paddingRight: '70px',
+						width: 'calc(100% + -70px)',
 					}}
 				>
 					<EditModal
@@ -212,6 +211,23 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 							{_('addStation')}
 						</Button>
 					</Tooltip>
+				</Grid>
+				<Grid
+					container
+					spacing={3}
+					sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'space-around',
+						alignItems: 'center',
+						position: 'fixed',
+						marginTop: '20px',
+						marginLeft: '-33px',
+						zIndex: 999,
+						height: 'auto',
+						width: 'calc(100% + -70px)',
+					}}
+				>
 					{alert.open ? (
 						<AlertComponent
 							collapse={{
@@ -220,7 +236,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 								onClose: () => setAlert({ ...alert, open: false }),
 							}}
 							text={'max10'}
-							alertType={'error'}
+							alertType={'warning'}
 							alertTitle={'warning'}
 						/>
 					) : (
@@ -233,6 +249,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 						/>
 					)}
 				</Grid>
+
 				<Grid
 					container
 					spacing={2}

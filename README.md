@@ -27,6 +27,8 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) fixed position of the warning message in the UI
 ### 3.3.5 (2023-01-04)
 * (xXBJXx) fixed copy/paste bug in the UI
 

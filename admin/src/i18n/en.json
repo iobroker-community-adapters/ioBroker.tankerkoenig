@@ -21,6 +21,7 @@
   "editModal": "Opens a window to Edit a station.",
   "editStation": "edit Station",
   "enabledRabat": "Activates discount",
+  "error": "Error",
   "euro": "Euro",
   "fuelType": "Fuel type",
   "good": "Accepted",
@@ -61,5 +62,6 @@
   "tooltipStationStreet": "Here you can enter the street where the gas station is located, this will be entered in the data points and names.",
   "tooltipStationZip": "Here you can enter the zip code where the gas station is located, this will be entered in the data points and names.",
   "update": "Update",
+  "warning": "Warning",
   "wrong": "Not right"
 }

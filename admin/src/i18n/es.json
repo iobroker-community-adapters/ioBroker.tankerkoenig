@@ -21,6 +21,7 @@
   "editModal": "Abre uma janela para editar uma estação.",
   "editStation": "editar Estación",
   "enabledRabat": "Activa el descuento",
+  "error": "Error",
   "euro": "Euro",
   "fuelType": "Tipo de combustible",
   "good": "Aceptado",
@@ -61,5 +62,6 @@
   "tooltipStationStreet": "Aquí puede introducir la calle donde se encuentra la gasolinera, esto se introducirá en los puntos de datos y nombres.",
   "tooltipStationZip": "Aquí puede introducir el código postal donde se encuentra la gasolinera, esto se introducirá en los puntos de datos y nombres.",
   "update": "Actualiza",
+  "warning": "Advertencia",
   "wrong": "No está bien"
 }

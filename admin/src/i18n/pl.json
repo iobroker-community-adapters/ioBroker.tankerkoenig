@@ -21,6 +21,7 @@
   "editModal": "Otwiera okno edycji stacji.",
   "editStation": "edit Stacja",
   "enabledRabat": "Aktywuje zniżkę",
+  "error": "Błąd",
   "euro": "Euro",
   "fuelType": "Typ paliwa",
   "good": "Zaakceptowano",
@@ -61,5 +62,6 @@
   "tooltipStationStreet": "Tutaj można wpisać ulicę, przy której znajduje się stacja benzynowa, zostanie to wprowadzone do punktów danych i nazw.",
   "tooltipStationZip": "Tutaj możesz wpisać kod pocztowy, w którym znajduje się stacja benzynowa, zostanie on wprowadzony do punktów danych i nazw.",
   "update": "Aktualizacja",
+  "warning": "Ostrzeżenie",
   "wrong": "Niewłaściwe"
 }
