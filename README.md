@@ -27,7 +27,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.3.5 (2023-01-04)
 * (xXBJXx) fixed copy/paste bug in the UI
 
 ### 3.3.4 (2023-01-03)
@@ -50,10 +50,6 @@ NodeJS v14 or higher is required.
 ### 3.3.1 (2022-12-30)
 * (xXBJXx) fixed TypeError: Cannot read properties of undefined [Issue #104](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/104)
 * (xXBJXx) added full street state for each station
-
-### 3.3.0 (2022-12-29)
-* (Apollon77) Added Sentry for crash reporting
-* (xXBJXx) Added detailed request when creating stations in the UI
 
 ## License
 

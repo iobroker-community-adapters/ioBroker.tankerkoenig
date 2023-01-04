@@ -1,4 +1,8 @@
 # Older changes
+## 3.3.0 (2022-12-29)
+* (Apollon77) Added Sentry for crash reporting
+* (xXBJXx) Added detailed request when creating stations in the UI
+
 ## 3.2.5 (2022-12-28)
 * (xXBJXx) Problem with entering the postal code in the UI fixed
 

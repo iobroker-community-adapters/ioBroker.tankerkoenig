@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.4",
+    "version": "3.3.5",
     "news": {
+      "3.3.5": {
+        "en": "fixed copy/paste bug in the UI",
+        "de": "Fehler beim Kopieren/Einfügen in der Benutzeroberfläche behoben",
+        "ru": "исправлена ошибка копирования/вставки в пользовательском интерфейсе",
+        "pt": "corrigido o erro copiar/colar na IU",
+        "nl": "probleem met kopiëren/plakken in de UI opgelost",
+        "fr": "correction d'un bug de copier/coller dans l'interface utilisateur",
+        "it": "corretto il bug del copia/incolla nell'interfaccia utente",
+        "es": "Se ha corregido un error al copiar y pegar en la interfaz de usuario.",
+        "pl": "Se ha corregido un error al copiar y pegar en la interfaz de usuario.",
+        "uk": "виправлено помилку копіювання/вставки в інтерфейсі користувача",
+        "zh-cn": "修复了用户界面中的复制/粘贴错误"
+      },
       "3.3.4": {
         "en": "Fixed an issue where a zip code starting with 0 was displayed incorrectly [Issue #113].",
         "de": "Ein Problem wurde behoben, bei dem eine mit 0 beginnende Postleitzahl nicht korrekt angezeigt wurde [Issue #113].",
@@ -80,19 +93,6 @@
         "pl": "Naprawiono problem z wpisywaniem kodu pocztowego w UI",
         "uk": "Виправлено проблему з введенням поштового індексу в інтерфейсі",
         "zh-cn": "在用户界面中输入邮政编码的问题得到解决"
-      },
-      "3.2.4": {
-        "en": "Problem with setting objects => type \"Number\" set, but type \"String\" obtained [Problem #100] fixed.",
-        "de": "Problem beim Setzen von Objekten => Typ \"Zahl\" gesetzt, aber Typ \"String\" erhalten [Problem #100] behoben.",
-        "ru": "Проблема с установкой объектов => тип \"Число\" установлен, но получен тип \"Строка\" [Проблема #100] исправлена.",
-        "pt": "Problema com a definição de objectos => tipo \"Number\" definido, mas tipo \"String\" obtido [Problema #100] corrigido.",
-        "nl": "Probleem met het instellen van objecten => type \"Getal\" ingesteld, maar type \"String\" verkregen [Probleem #100] opgelost.",
-        "fr": "Problème de paramétrage des objets => type \"Number\" défini, mais type \"String\" obtenu [Problème #100] corrigé.",
-        "it": "Problema di impostazione degli oggetti => tipo \"Numero\" impostato, ma tipo \"Stringa\" ottenuto [Problema #100] risolto.",
-        "es": "Problema con la configuración de objetos => tipo \"Número\" establecido, pero tipo \"Cadena\" obtenido [Problema #100] solucionado.",
-        "pl": "Problem z ustawianiem obiektów => typ \"Number\" ustawiony, ale typ \"String\" uzyskany [Problem #100] naprawiony.",
-        "uk": "Виправлено проблему із встановленням об'єктів => тип \"Число\" встановлено, але отримано тип \"Рядок\" [Проблема #100].",
-        "zh-cn": "设置对象的问题=>设置了 \"Number \"类型，但获得了 \"String \"类型[问题#100]修复。"
       }
     },
     "titleLang": {
