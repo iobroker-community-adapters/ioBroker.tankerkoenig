@@ -7,14 +7,15 @@
 [![Downloads](https://img.shields.io/npm/dm/iobroker.tankerkoenig.svg?logo=npm)](https://www.npmjs.com/package/iobroker.tankerkoenig)
 [![Test and Release](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/actions/workflows/test-and-release.yml)
 
-**This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
+**This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error 
+reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0. 
 
 NodeJS v14 or higher is required.
 
 ## Migration Guides
-[Migration guide to 3.3.5](docs/guide/migration_3.3.5.md)\
-[Migration guide to 3.3.3](docs/guide/migration_3.3.x.md)\
-[Migration guide to 3.1.x](docs/guide/migration_3.1.x.md)
+[Migration guide 3.3.3 to 3.3.5](docs/guide/migration_3.3.5.md)\
+[Migration guide 3.1.x to 3.3.x or 3.2.x to 3.3.x](docs/guide/migration_3.3.x.md)\
+[Migration guide 2.x.x to 3.3.x](docs/guide/migration_2.x.x_to_3.3.x.md)
 
 ## Documentation
 :de: [Dokumentation](/docs/de/doc_tankerkoenig_de.md)
@@ -29,6 +30,8 @@ NodeJS v14 or higher is required.
  -->
 ### __WORK IN PROGRESS__
 * (xXBJXx) fixed position of the warning message in the UI
+* (xXBJXx) updated the documentation and migration guides for stable version 3.3.6
+
 ### 3.3.5 (2023-01-04)
 * (xXBJXx) fixed copy/paste bug in the UI
 
