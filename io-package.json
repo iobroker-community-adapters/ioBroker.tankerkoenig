@@ -184,6 +184,60 @@
         "condition": {
           "operand": "and",
           "rules": [
+            "oldVersion<3.0.0",
+            "newVersion>=3.0.0"
+          ]
+        },
+        "title": {
+          "en": "Important notice!",
+          "de": "Wichtiger Hinweis!",
+          "ru": "Важное замечание!",
+          "pt": "Notícia importante!",
+          "nl": "Belangrijke mededeling!",
+          "fr": "Avis important!",
+          "it": "Avviso IMPORTANTE!",
+          "es": "Noticia importante!",
+          "pl": "Ważna uwaga!",
+          "uk": "Важлива замітка!",
+          "zh-cn": "重要通知!"
+        },
+        "text": {
+          "en": "The adapter has been reprogrammed from scratch, which means the old config is no longer compatible with the new version. The stations must all be created again. Please read the migration guide (see More Info Button) before updating the adapter.",
+          "de": "Der Adapter wurde von Grund auf neu programmiert, d.h. die alte Konfiguration ist nicht mehr mit der neuen Version kompatibel. Die Stationen müssen alle neu erstellt werden. Bitte lesen Sie den Migrationsleitfaden (siehe Schaltfläche Mehr Info), bevor Sie den Adapter aktualisieren.",
+          "ru": "Адаптер был перепрограммирован с нуля, что означает, что старый конфиг больше не совместим с новой версией. Все станции должны быть созданы заново. Пожалуйста, прочитайте руководство по миграции (см. кнопку More Info) перед обновлением адаптера.",
+          "pt": "O adaptador foi reprogramado de raiz, o que significa que a configuração antiga já não é compatível com a nova versão. As estações devem ser todas novamente criadas. Por favor, leia o guia de migração (ver Botão Mais Informações) antes de actualizar o adaptador.",
+          "nl": "De adapter is helemaal opnieuw geprogrammeerd, waardoor de oude configuratie niet meer compatibel is met de nieuwe versie. De stations moeten allemaal opnieuw worden aangemaakt. Lees de migratiegids (zie Meer info knop) alvorens de adapter te updaten.",
+          "fr": "L'adaptateur a été reprogrammé à partir de zéro, ce qui signifie que l'ancienne configuration n'est plus compatible avec la nouvelle version. Les stations doivent toutes être recréées. Veuillez lire le guide de migration (voir bouton Plus d'infos) avant de mettre à jour l'adaptateur.",
+          "it": "L'adattatore è stato riprogrammato da zero, il che significa che la vecchia configurazione non è più compatibile con la nuova versione. Le stazioni devono essere create di nuovo. Prima di aggiornare l'adattatore, leggere la guida alla migrazione (vedere il pulsante Altre informazioni).",
+          "es": "El adaptador ha sido reprogramado desde cero, lo que significa que la antigua configuración ya no es compatible con la nueva versión. Las estaciones deben crearse de nuevo. Por favor, lee la guía de migración (ver Botón Más Información) antes de actualizar el adaptador.",
+          "pl": "Adapter został przeprogramowany od podstaw, co oznacza, że stary config nie jest już kompatybilny z nową wersją. Wszystkie stacje muszą być utworzone ponownie. Przed aktualizacją adaptera należy zapoznać się z przewodnikiem migracji (patrz przycisk More Info).",
+          "uk": "Адаптер було перепрограмовано з нуля, а це означає, що старий конфіг більше не сумісний з новою версією. Всі станції необхідно створити заново. Будь ласка, прочитайте посібник з міграції (див. кнопку Більше інформації) перед оновленням адаптера.",
+          "zh-cn": "适配器已经从头开始重新编程，这意味着旧的配置不再与新版本兼容。所有站台必须重新创建。在更新适配器之前，请阅读迁移指南（见更多信息按钮）。"
+        },
+        "link": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/blob/master/docs/guide/migration_2.x.x_to_3.3.x.md",
+        "linkText": {
+          "en": "Migration guide",
+          "de": "Migrationsanleitung",
+          "ru": "Руководство по миграции",
+          "pt": "Guia de migração",
+          "nl": "Migratiegids",
+          "fr": "Guide de migration",
+          "it": "Guida alla migrazione",
+          "es": "Guía de migración",
+          "pl": "Przewodnik migracyjny",
+          "uk": "Посібник з міграції",
+          "zh-cn": "迁移指南"
+        },
+        "level": "warn",
+        "buttons": [
+          "ok",
+          "cancel"
+        ]
+      },
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
             "oldVersion<3.3.0",
             "newVersion>=3.3.2"
           ]
@@ -227,60 +281,6 @@
           "pl": "Przewodnik migracyjny",
           "uk": "Посібник з міграції",
           "zh-cn": "迁移指南"
-        },
-        "level": "warn",
-        "buttons": [
-          "ok",
-          "cancel"
-        ]
-      },
-      {
-        "condition": {
-          "operand": "and",
-          "rules": [
-            "oldVersion<3.0.0",
-            "newVersion>=3.0.0"
-          ]
-        },
-        "title": {
-          "en": "Important notice!",
-          "de": "Wichtiger Hinweis!",
-          "ru": "Важное замечание!",
-          "pt": "Notícia importante!",
-          "nl": "Belangrijke mededeling!",
-          "fr": "Avis important!",
-          "it": "Avviso IMPORTANTE!",
-          "es": "Noticia importante!",
-          "pl": "Ważna uwaga!",
-          "uk": "Важлива замітка!",
-          "zh-cn": "重要通知!"
-        },
-        "text": {
-          "en": "The adapter has been reprogrammed from scratch, which means the old config is no longer compatible with the new version. The stations must all be created again.",
-          "de": "Der Adapter wurde von Grund auf neu programmiert, was bedeutet, dass die alte Konfiguration nicht mehr mit der neuen Version kompatibel ist. Die Stationen müssen alle neu erstellt werden.",
-          "ru": "Адаптер был перепрограммирован с нуля, а значит, старый конфиг больше не совместим с новой версией. Все станции должны быть созданы заново.",
-          "pt": "O adaptador foi reprogramado do zero, o que significa que a configuração antiga já não é compatível com a nova versão. As estações devem ser todas criadas novamente.",
-          "nl": "De adapter is helemaal opnieuw geprogrammeerd, waardoor de oude config niet meer compatibel is met de nieuwe versie. De stations moeten allemaal opnieuw worden aangemaakt.",
-          "fr": "L'adaptateur a été reprogrammé à partir de zéro, ce qui signifie que l'ancienne configuration n'est plus compatible avec la nouvelle version. Les stations doivent toutes être créées à nouveau.",
-          "it": "L'adattatore è stato riprogrammato da zero, il che significa che la vecchia configurazione non è più compatibile con la nuova versione. Le stazioni devono essere create di nuovo.",
-          "es": "El adaptador ha sido reprogramado desde cero, lo que significa que la antigua configuración ya no es compatible con la nueva versión. Hay que volver a crear todas las estaciones.",
-          "pl": "Adapter został przeprogramowany od nowa, co oznacza, że stara konfiguracja nie jest już kompatybilna z nową wersją. Wszystkie stacje muszą być utworzone od nowa.",
-          "uk": "Адаптер було перепрограмовано з нуля, а це означає, що стара конфігурація більше не сумісна з новою версією. Всі станції повинні бути створені заново.",
-          "zh-cn": "适配器已经从头开始重新编程，这意味着旧的配置不再与新版本兼容。这些站必须全部重新创建。"
-        },
-        "link": "https://forum.iobroker.net/topic/60140/tankerk%C3%B6nig-adapter-komplett-umbau",
-        "linkText": {
-          "en": "please read forum post before update",
-          "de": "Bitte lese den Forenbeitrag vor dem Update",
-          "ru": "пожалуйста, прочитайте сообщение на форуме перед обновлением",
-          "pt": "por favor lê a mensagem do fórum antes de actualizares",
-          "nl": "lees a.u.b. de forumpost vóór de update",
-          "fr": "S'il te plaît, lis le post du forum avant la mise à jour",
-          "it": "Leggi il post del forum prima di aggiornare",
-          "es": "por favor, lee el post del foro antes de actualizar",
-          "pl": "przeczytaj post na forum przed aktualizacją",
-          "uk": "будь ласка, прочитайте повідомлення на форумі перед оновленням",
-          "zh-cn": "更新前请阅读论坛帖子"
         },
         "level": "warn",
         "buttons": [

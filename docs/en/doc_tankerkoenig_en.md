@@ -31,9 +31,9 @@ This window is used to add the new stations, you can read the stadium ID directl
 There are 2 ways to copy the ID into the field:
 - you mark the ID and copy it with Ctrl+C or right click copy and then paste into the field.
 - you can also do it with the button `Copy`, this will copy the whole content, and you can then either paste it directly into the field. 
-  Or you click on the button `Paste` then only the ID will be pasted into the field. 
+  Or you click on the button `Paste` then only the ID will be pasted into the field.
 
-**But for this you have to allow the browser to access the clipboard.**
+**But for this you have to allow the browser to access the clipboard.** (this works only if your admin is running with https and you access the page with https)
 
 ![alt text](../img/tankerkoenigStationFinder_copyId.png "Screenshot Settings")
 Under the discount options you can choose between the discount variants ⇨ Euro / Percent and for which fuel type the discount applies (default are all selected).

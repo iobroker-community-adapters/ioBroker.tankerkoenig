@@ -1,6 +1,6 @@
 ## Adapter Migration
 
-## Update from 2.x.x to 3.1.x English
+## Update from 2.x.x to 3.3.x English
 There are 2 variants:
 1. uninstall adapter completely and reinstall (recommended) Procedure:
 	1. you go to the Adapter UI and save your `API-Key` and if you want the `Stadium ID`.
@@ -23,7 +23,7 @@ There are 2 variants:
 	   the data points that were logged before.
 
 
-## Update von 2.x.x auf 3.1.x Deutsch
+## Update von 2.x.x auf 3.3.x Deutsch
 Es gibt 2 Varianten:
 1. Deinstalliere den Adapter komplett und installiere ihn neu (empfohlen) Vorgehensweise:
 	1. du gehst zur Adapter UI und speicherst deinen `API-Key` und wenn du willst die `Stadium ID`.

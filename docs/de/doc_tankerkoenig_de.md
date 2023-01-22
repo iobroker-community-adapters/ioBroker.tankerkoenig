@@ -32,7 +32,7 @@ Es gibt 2 Möglichkeiten, die ID in das Feld zu kopieren:
 - Du kannst auch auf die Schaltfläche `Copy` klicken, dann wird der gesamte Inhalt kopiert, und du kannst ihn dann entweder direkt in das Feld einfügen. 
   Oder du klickst auf die Schaltfläche `Paste`, dann wird nur die ID in das Feld eingefügt. 
 
-**Dazu muss man aber zulassen, dass der Browser auf die Zwischenablage zugreifen darf.**
+**Dazu muss man aber zulassen, dass der Browser auf die Zwischenablage zugreifen darf.** (dies funktioniert nur, wenn Ihr Admin mit https läuft und Sie die Seite mit https aufrufen)
 
 ![alt text](../img/tankerkoenigStationFinder_copyId.png "Screenshot Settings")
 
