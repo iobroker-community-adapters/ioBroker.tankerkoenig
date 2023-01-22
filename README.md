@@ -28,7 +28,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.3.6 (2023-01-22)
 * (xXBJXx) fixed position of the warning message in the UI
 * (xXBJXx) updated the documentation and migration guides for stable version 3.3.6
 
@@ -51,10 +51,6 @@ NodeJS v14 or higher is required.
 * (xXBJXx) added a check for the Station ID is already configured (in edit mode)
 * (xXBJXx) added price difference to the last price
 * (xXBJXx) added a feature request cheapest station [Issue #109](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/109)
-
-### 3.3.1 (2022-12-30)
-* (xXBJXx) fixed TypeError: Cannot read properties of undefined [Issue #104](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/104)
-* (xXBJXx) added full street state for each station
 
 ## License
 

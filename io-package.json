@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.5",
+    "version": "3.3.6",
     "news": {
+      "3.3.6": {
+        "en": "corrected the position of the warning message in the user interface\nUpdated documentation and migration guide for stable version 3.3.6",
+        "de": "die Position der Warnmeldung in der Benutzeroberfläche korrigiert\nAktualisierte Dokumentation und Migrationsanleitung für die stabile Version 3.3.6",
+        "ru": "исправлено положение предупреждающего сообщения в пользовательском интерфейсе\nОбновлена документация и руководство по миграции для стабильной версии 3.3.6",
+        "pt": "corrigiu a posição da mensagem de aviso na interface do utilizador\nDocumentação actualizada e guia de migração para a versão estável 3.3.6",
+        "nl": "positie van het waarschuwingsbericht in de gebruikersinterface gecorrigeerd\nDocumentatie en migratiegids bijgewerkt voor stabiele versie 3.3.6",
+        "fr": "correction de la position du message d'avertissement dans l'interface utilisateur\nMise à jour de la documentation et du guide de migration pour la version stable 3.3.6",
+        "it": "corretta la posizione del messaggio di avviso nell'interfaccia utente\nAggiornamento della documentazione e della guida alla migrazione per la versione stabile 3.3.6",
+        "es": "corregida la posición del mensaje de advertencia en la interfaz de usuario\nActualizada la documentación y la guía de migración para la versión estable 3.3.6",
+        "pl": "poprawiono położenie komunikatu ostrzegawczego w interfejsie użytkownika\nZaktualizowano dokumentację i przewodnik migracji dla stabilnej wersji 3.3.6",
+        "uk": "виправлено положення попереджувального повідомлення у користувацькому інтерфейсі\nОновлена документація та посібник з міграції для стабільної версії 3.3.6",
+        "zh-cn": "更正了用户界面中警告信息的位置\n更新了稳定版3.3.6的文档和迁移指南"
+      },
       "3.3.5": {
         "en": "fixed copy/paste bug in the UI",
         "de": "Fehler beim Kopieren/Einfügen in der Benutzeroberfläche behoben",
@@ -80,19 +93,6 @@
         "pl": "Dodano Sentry do raportowania o awariach\nDodano szczegółowe zapytanie podczas tworzenia stacji w UI",
         "uk": "Додано Sentry для повідомлення про аварії\nДодано детальний запит при створенні станцій в інтерфейсі користувача",
         "zh-cn": "增加了用于崩溃报告的哨兵\n在用户界面中创建站点时增加了详细请求"
-      },
-      "3.2.5": {
-        "en": "Problem with entering the postal code in the UI fixed",
-        "de": "Problem bei der Eingabe der Postleitzahl in der Benutzeroberfläche behoben",
-        "ru": "Исправлена проблема с вводом почтового индекса в пользовательском интерфейсе",
-        "pt": "Problema com a introdução do código postal na IU corrigido",
-        "nl": "Probleem met het invoeren van de postcode in de UI opgelost",
-        "fr": "Correction du problème de saisie du code postal dans l'interface utilisateur",
-        "it": "Problema con l'inserimento del codice postale nell'interfaccia utente risolto",
-        "es": "Solucionado el problema con la introducción del código postal en la interfaz de usuario",
-        "pl": "Naprawiono problem z wpisywaniem kodu pocztowego w UI",
-        "uk": "Виправлено проблему з введенням поштового індексу в інтерфейсі",
-        "zh-cn": "在用户界面中输入邮政编码的问题得到解决"
       }
     },
     "titleLang": {
