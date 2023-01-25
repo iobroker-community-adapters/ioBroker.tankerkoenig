@@ -45,7 +45,7 @@
   "stationCity": "City",
   "stationClosed": "Gas station closed",
   "stationFinder": "Gas station finder",
-  "stationLocation": "Gas station location information (optionally)",
+  "stationLocation": "Gas station location information",
   "stationNamePlaceholder": "Station name e.g. SHELL",
   "stationStreet": "Gas station street",
   "stationZip": "Postcode",

@@ -45,7 +45,7 @@
   "stationCity": "Місто",
   "stationClosed": "Заправка закрита",
   "stationFinder": "Пошук АЗС",
-  "stationLocation": "Інформація про місцезнаходження АЗС (за бажанням)",
+  "stationLocation": "Інформація про місцезнаходження АЗС ",
   "stationNamePlaceholder": "Назва станції, наприклад, SHELL",
   "stationStreet": "Вулиця Автозаправна",
   "stationZip": "Поштовий індекс",

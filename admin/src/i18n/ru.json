@@ -45,7 +45,7 @@
   "stationCity": "Город",
   "stationClosed": "Заправочная станция закрыта",
   "stationFinder": "Localizador de estações de serviço",
-  "stationLocation": "Информация о местоположении автозаправочной станции (опционально)",
+  "stationLocation": "Информация о местоположении автозаправочной станции",
   "stationNamePlaceholder": "Название станции, например, SHELL",
   "stationStreet": "Улица Бензоколонки",
   "stationZip": "Почтовый индекс",

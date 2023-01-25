@@ -45,7 +45,7 @@
   "stationCity": "Stadt",
   "stationClosed": "Tankstelle geschlossen",
   "stationFinder": "Tankstellenfinder",
-  "stationLocation": "Informationen zum Standort der Tankstelle (optional)",
+  "stationLocation": "Informationen zum Standort der Tankstelle",
   "stationNamePlaceholder": "Stations Name z.B. SHELL",
   "stationStreet": "Tankstelle Straße",
   "stationZip": "Postleitzahl",

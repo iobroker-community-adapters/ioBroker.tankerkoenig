@@ -45,7 +45,7 @@
   "stationCity": "Miasto",
   "stationClosed": "Stacja benzynowa zamknięta",
   "stationFinder": "Wyszukiwarka stacji benzynowych",
-  "stationLocation": "Informacje o lokalizacji stacji benzynowych (opcjonalnie)",
+  "stationLocation": "Informacje o lokalizacji stacji benzynowych",
   "stationNamePlaceholder": "Nazwa stacji, np. SHELL",
   "stationStreet": "Stacja benzynowa ul.",
   "stationZip": "Kod pocztowy",

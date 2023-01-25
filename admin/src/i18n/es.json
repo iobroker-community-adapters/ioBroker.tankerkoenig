@@ -45,7 +45,7 @@
   "stationCity": "Ciudad",
   "stationClosed": "Gasolinera cerrada",
   "stationFinder": "Buscador de gasolineras",
-  "stationLocation": "Información sobre la ubicación de la gasolinera (opcional)",
+  "stationLocation": "Información sobre la ubicación de la gasolinera",
   "stationNamePlaceholder": "Nombre de la estación, por ejemplo, SHELL",
   "stationStreet": "Calle Gasolinera",
   "stationZip": "Código postal",

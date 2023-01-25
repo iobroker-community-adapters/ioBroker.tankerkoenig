@@ -45,7 +45,7 @@
   "stationCity": "Ville",
   "stationClosed": "Station-service fermée",
   "stationFinder": "Recherche de stations-service",
-  "stationLocation": "Informations sur l'emplacement de la station-service (facultatif)",
+  "stationLocation": "Informations sur l'emplacement de la station-service ",
   "stationNamePlaceholder": "Nom de la station, par exemple SHELL",
   "stationStreet": "Rue de la station-service",
   "stationZip": "Code postal",
