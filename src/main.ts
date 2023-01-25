@@ -348,6 +348,12 @@ class Tankerkoenig extends utils.Adapter {
 						} ] response data: ${JSON.stringify(response.data)}`,
 						'error',
 					);
+					if (response.data.message === 'parameter error') {
+						this.writeLog(
+							`[ Adapter V:${this.version} requestData  axios: ${axios.VERSION} ] all parameters that have been sent: ${url}`,
+							'error',
+						);
+					}
 				}
 			} else {
 				this.writeLog(

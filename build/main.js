@@ -265,6 +265,12 @@ class Tankerkoenig extends utils.Adapter {
             `[ Adapter V:${this.version} requestData  axios: ${import_axios.default.VERSION} ] response data: ${JSON.stringify(response.data)}`,
             "error"
           );
+          if (response.data.message === "parameter error") {
+            this.writeLog(
+              `[ Adapter V:${this.version} requestData  axios: ${import_axios.default.VERSION} ] all parameters that have been sent: ${url}`,
+              "error"
+            );
+          }
         }
       } else {
         this.writeLog(
