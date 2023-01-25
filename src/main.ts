@@ -7,10 +7,10 @@
 import * as utils from '@iobroker/adapter-core';
 import axios from 'axios';
 import { CreateJsonTable } from './lib/interface/CreateJsonTable';
+import { Result } from './lib/interface/resultInterface';
 
 // Load your modules here, e.g.:
 import { cheapestObj, priceMinMaxObj, priceObj, statesObj } from './lib/object_definition';
-import { Result } from './lib/interface/resultInterface';
 
 // Global variables here
 
@@ -2333,12 +2333,20 @@ class Tankerkoenig extends utils.Adapter {
 								diesel = parseFloat(pricesValue.diesel.toFixed(3));
 							}
 
+							const differenceE5 = await this.oldState(`stations.${key}.e5.difference`);
+							const differenceE10 = await this.oldState(`stations.${key}.e10.difference`);
+							const differenceDiesel = await this.oldState(`stations.${key}.diesel.difference`);
+
+							// TODO: add Price Difference to the table issue #116
 							jsonTable.push({
 								station: station[key].stationname,
 								status: status,
 								e5: e5 as number,
+								differenceE5: differenceE5,
 								e10: e10 as number,
+								differenceE10: differenceE10,
 								diesel: diesel as number,
+								differenceDiesel: differenceDiesel,
 								discount: station[key].discounted
 									? station[key].discountObj.discountType === 'percent'
 										? `${station[key].discountObj.discount}%`

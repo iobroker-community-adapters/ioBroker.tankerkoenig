@@ -1874,12 +1874,18 @@ class Tankerkoenig extends utils.Adapter {
               if (typeof pricesValue.diesel === "number") {
                 diesel = parseFloat(pricesValue.diesel.toFixed(3));
               }
+              const differenceE5 = await this.oldState(`stations.${key}.e5.difference`);
+              const differenceE10 = await this.oldState(`stations.${key}.e10.difference`);
+              const differenceDiesel = await this.oldState(`stations.${key}.diesel.difference`);
               jsonTable.push({
                 station: station[key].stationname,
                 status,
                 e5,
+                differenceE5,
                 e10,
+                differenceE10,
                 diesel,
+                differenceDiesel,
                 discount: station[key].discounted ? station[key].discountObj.discountType === "percent" ? `${station[key].discountObj.discount}%` : `${station[key].discountObj.discount}\u20AC` : "0"
               });
             }
