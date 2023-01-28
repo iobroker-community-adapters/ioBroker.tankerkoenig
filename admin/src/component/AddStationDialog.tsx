@@ -1,6 +1,8 @@
 /**
  * Created by issi on 31.10.21
  */
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
 import {
 	Alert,
 	AlertTitle,
@@ -21,11 +23,9 @@ import {
 	Tooltip,
 	Typography,
 } from '@mui/material';
+import { NumberInput } from 'iobroker-react/components';
 import { useConnection, useGlobals, useI18n } from 'iobroker-react/hooks';
 import React, { useEffect, useState } from 'react';
-import ContentPasteGoIcon from '@mui/icons-material/ContentPasteGo';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { NumberInput } from 'iobroker-react/components';
 import { requestDetail, RequestDetailProps } from '../lib/DetailRequest';
 
 export interface RowProps {
@@ -417,7 +417,7 @@ export const AddStationDialog: React.FC<RowProps> = ({ addRow }): JSX.Element =>
 							}}
 							placeholder={_('stationNamePlaceholder')}
 							inputProps={{
-								maxLength: 20,
+								maxLength: 34,
 								style: {
 									textAlign: 'center',
 								},

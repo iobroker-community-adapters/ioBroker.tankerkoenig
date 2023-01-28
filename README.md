@@ -28,7 +28,12 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+### __WORK IN PROGRESS__
+* (xXBJXx) added difference to jsonTable [issue #116](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/116)
+* (xXBJXx) added a log message for the error `parameter error`
+* (xXBJXx) set the name length to 34 characters
 * (xXBJXx) Added verification if the api key is encrypted
+
 ### 3.3.6 (2023-01-22)
 * (xXBJXx) fixed position of the warning message in the UI
 * (xXBJXx) updated the documentation and migration guides for stable version 3.3.6

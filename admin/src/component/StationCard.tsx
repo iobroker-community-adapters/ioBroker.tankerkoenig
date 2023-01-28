@@ -102,7 +102,7 @@ export const StationCard: React.FC<StationCardProps> = ({
 					borderRight: '2.5px solid',
 					borderLeft: '2.5px solid',
 					borderColor: '#000000',
-					padding: '5 50 0 50',
+					padding: '5 5 0 5',
 				}}
 			>
 				<LocalGasStationTwoTone
