@@ -13,6 +13,7 @@ import { Result } from './lib/interface/resultInterface';
 import { cheapestObj, priceMinMaxObj, priceObj, statesObj } from './lib/object_definition';
 
 // Global variables here
+const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
 
 class Tankerkoenig extends utils.Adapter {
 	private readonly fuelTypes: string[];
@@ -84,6 +85,21 @@ class Tankerkoenig extends utils.Adapter {
 				} ms`,
 				'info',
 			);
+
+			// TODO: remove once all users are on the new version
+			// check if the api key is encrypted
+			if (this.config.apikey && this.config.apikey.match(pattern)) {
+				// if the api key is not encrypted, it is encrypted
+				this.writeLog('API key is not encrypted. Encrypting API key', 'info');
+				this.config.apikey = this.encrypt(this.config.apikey);
+				// write in the encrypted api key in the config
+				const obj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
+				if (obj) {
+					obj.native.apikey = this.config.apikey;
+					await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, obj);
+					this.writeLog('API key encrypted', 'info');
+				}
+			}
 
 			// check if all address data is available in this.config.stations
 			if (this.config.station) {
@@ -681,7 +697,7 @@ class Tankerkoenig extends utils.Adapter {
 				}
 			}
 			this.writeLog(`cheapestE5State ${JSON.stringify(cheapestE5State)}`, 'debug');
-			console.log(` cheapestE5State ${JSON.stringify(cheapestE5State)}`);
+			// console.log(` cheapestE5State ${JSON.stringify(cheapestE5State)}`);
 
 			// set all other stations to false
 			for (const stationKey in station) {
@@ -722,7 +738,7 @@ class Tankerkoenig extends utils.Adapter {
 				}
 			}
 			this.writeLog(` cheapestE10State ${JSON.stringify(cheapestE10State)}`, 'debug');
-			console.log(` cheapestE10State ${JSON.stringify(cheapestE10State)}`);
+			// console.log(` cheapestE10State ${JSON.stringify(cheapestE10State)}`);
 
 			for (const stationKey in station) {
 				if (station.hasOwnProperty(stationKey)) {
@@ -765,7 +781,7 @@ class Tankerkoenig extends utils.Adapter {
 				}
 			}
 			this.writeLog(` cheapestDieselState ${JSON.stringify(cheapestDieselState)}`, 'debug');
-			console.log(` cheapestDieselState ${JSON.stringify(cheapestDieselState)}`);
+			// console.log(` cheapestDieselState ${JSON.stringify(cheapestDieselState)}`);
 
 			for (const stationKey in station) {
 				if (station.hasOwnProperty(stationKey)) {

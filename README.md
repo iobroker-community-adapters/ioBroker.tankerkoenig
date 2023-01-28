@@ -28,6 +28,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
+* (xXBJXx) Added verification if the api key is encrypted
 ### 3.3.6 (2023-01-22)
 * (xXBJXx) fixed position of the warning message in the UI
 * (xXBJXx) updated the documentation and migration guides for stable version 3.3.6

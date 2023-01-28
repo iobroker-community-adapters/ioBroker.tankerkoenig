@@ -20,6 +20,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_axios = __toESM(require("axios"));
 var import_object_definition = require("./lib/object_definition");
+const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
 class Tankerkoenig extends utils.Adapter {
   constructor(options = {}) {
     super({
@@ -63,6 +64,16 @@ class Tankerkoenig extends utils.Adapter {
         `Sync time set to ${this.sync_milliseconds / 1e3 / 60} minutes or ${this.sync_milliseconds} ms`,
         "info"
       );
+      if (this.config.apikey && this.config.apikey.match(pattern)) {
+        this.writeLog("API key is not encrypted. Encrypting API key", "info");
+        this.config.apikey = this.encrypt(this.config.apikey);
+        const obj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
+        if (obj) {
+          obj.native.apikey = this.config.apikey;
+          await this.setForeignObjectAsync(`system.adapter.${this.namespace}`, obj);
+          this.writeLog("API key encrypted", "info");
+        }
+      }
       if (this.config.station) {
         for (const stations of this.config.station) {
           if (!stations.city) {
@@ -541,7 +552,6 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
       this.writeLog(`cheapestE5State ${JSON.stringify(cheapestE5State)}`, "debug");
-      console.log(` cheapestE5State ${JSON.stringify(cheapestE5State)}`);
       for (const stationKey in station) {
         if (station.hasOwnProperty(stationKey)) {
           let found = false;
@@ -578,7 +588,6 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
       this.writeLog(` cheapestE10State ${JSON.stringify(cheapestE10State)}`, "debug");
-      console.log(` cheapestE10State ${JSON.stringify(cheapestE10State)}`);
       for (const stationKey in station) {
         if (station.hasOwnProperty(stationKey)) {
           let found = false;
@@ -618,7 +627,6 @@ class Tankerkoenig extends utils.Adapter {
         }
       }
       this.writeLog(` cheapestDieselState ${JSON.stringify(cheapestDieselState)}`, "debug");
-      console.log(` cheapestDieselState ${JSON.stringify(cheapestDieselState)}`);
       for (const stationKey in station) {
         if (station.hasOwnProperty(stationKey)) {
           let found = false;
