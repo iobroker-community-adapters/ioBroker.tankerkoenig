@@ -6,11 +6,13 @@
 // you need to create an adapter
 import * as utils from '@iobroker/adapter-core';
 import axios from 'axios';
+import sourceMapSupport from 'source-map-support';
 import { CreateJsonTable } from './lib/interface/CreateJsonTable';
 import { Result } from './lib/interface/resultInterface';
-
 // Load your modules here, e.g.:
 import { cheapestObj, priceMinMaxObj, priceObj, statesObj } from './lib/object_definition';
+
+sourceMapSupport.install();
 
 // Global variables here
 const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;

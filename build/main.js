@@ -19,7 +19,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var utils = __toESM(require("@iobroker/adapter-core"));
 var import_axios = __toESM(require("axios"));
+var import_source_map_support = __toESM(require("source-map-support"));
 var import_object_definition = require("./lib/object_definition");
+import_source_map_support.default.install();
 const pattern = /[0-9|a-z]{8}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{4}\-[0-9|a-z]{12}/g;
 class Tankerkoenig extends utils.Adapter {
   constructor(options = {}) {
