@@ -28,7 +28,7 @@ NodeJS v14 or higher is required.
  Placeholder for the next version (at the beginning of the line):
  ### __WORK IN PROGRESS__ (- falls nicht benötigt löschen sonst klammern entfernen und nach dem - dein text schreiben)
  -->
-### __WORK IN PROGRESS__
+### 3.3.7 (2023-02-06)
 * (xXBJXx) added difference to jsonTable [issue #116](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/116)
 * (xXBJXx) added a log message for the error `parameter error`
 * (xXBJXx) set the name length to 34 characters
@@ -49,15 +49,6 @@ NodeJS v14 or higher is required.
 * (xXBJXx) fixed => adapter does not fetch data after a `requestData error` e.g. internet termination.
 * (xXBJXx) add adapter migration Guide from 3.1.x to 3.3.x or 3.2.x to 3.3.x [Migration guide](docs/guide/migration_3.3.x.md)
 * (xXBJXx) fixed Issue [Issue #111](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/111)
-
-### 3.3.2 (2023-01-02)
-* (xXBJXx) fixed TypeError: Cannot read property 'length' of undefined in addDiscount when the value is `boolean / undefined`
-* (xXBJXx) fixed Error: DB closed when the adapter is stopped
-* (xXBJXx) object creation optimized
-* (xXBJXx) request interval default value changed to 10 minutes and minimum value to 10 minutes
-* (xXBJXx) added a check for the Station ID is already configured (in edit mode)
-* (xXBJXx) added price difference to the last price
-* (xXBJXx) added a feature request cheapest station [Issue #109](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/109)
 
 ## License
 

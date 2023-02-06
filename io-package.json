@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.6",
+    "version": "3.3.7",
     "news": {
+      "3.3.7": {
+        "en": "added difference to jsonTable #116\nadded a log message for the error `parameter error`\nset the name length to 34 characters\nAdded verification if the api key is encrypted\nupdated the Dependencies",
+        "de": "Unterschied zu jsonTable hinzugefügt #116\nLogmeldung für den Fehler \"Parameterfehler\" hinzugefügt\nLänge des Namens auf 34 Zeichen festgelegt\nÜberprüfung hinzugefügt, ob der Api-Schlüssel verschlüsselt ist\ndie Abhängigkeiten aktualisiert",
+        "ru": "добавлено отличие от jsonTable #116\nдобавлено сообщение журнала для ошибки `ошибка параметра`\nустановлена длина имени в 34 символа\nдобавлена проверка, если api ключ зашифрован\nобновлены зависимости",
+        "pt": "diferença adicionada à tabela jsonTable #116\nadicionou uma mensagem de registo para o erro \"erro do parâmetro\".\ndefinir o comprimento do nome para 34 caracteres\nVerificação adicional se a chave api estiver encriptada\nactualizou as Dependências",
+        "nl": "verschil met jsonTable toegevoegd #116\neen logbericht toegevoegd voor de fout `parameter error`.\nnaamlengte ingesteld op 34 tekens\nverificatie toegevoegd als de api-sleutel versleuteld is\nde afhankelijkheden bijgewerkt",
+        "fr": "ajout d'une différence avec jsonTable #116\najout d'un message pour l'erreur `parameter error`.\nla longueur du nom est fixée à 34 caractères\nAjout d'une vérification si la clé api est cryptée\nmise à jour des dépendances",
+        "it": "aggiunta differenza con jsonTable #116\naggiunto un messaggio di log per l'errore `parametro errato`.\nimpostata la lunghezza del nome a 34 caratteri\naggiunta verifica se la chiave api è criptata\naggiornato le dipendenze",
+        "es": "añadido diferencia con jsonTable #116\nañadido un mensaje de registro para el error `parameter error`.\nestablecer la longitud del nombre a 34 caracteres\nAñadida verificación si la clave api está encriptada\nactualizado las Dependencias",
+        "pl": "dodał różnicę do jsonTable #116\ndodał komunikat w logu dla błędu `parameter error`\nustawiono długość nazwy na 34 znaki\nDodano weryfikację, jeśli klucz api jest zaszyfrowany\nzaktualizował Zależności",
+        "uk": "додано різницю до jsonTable #116\nдодано повідомлення в лог для помилки `parameter error\nвстановили довжину імені на 34 символи\nдодано перевірку, чи зашифрований ключ api\nоновили Залежності",
+        "zh-cn": "增加了与jsonTable的区别#116\n为错误 \"参数错误 \"添加了一条日志信息\n设置名称长度为34个字符\n增加了验证api密钥是否加密的功能\n更新了依赖性"
+      },
       "3.3.6": {
         "en": "corrected the position of the warning message in the user interface\nUpdated documentation and migration guide for stable version 3.3.6",
         "de": "die Position der Warnmeldung in der Benutzeroberfläche korrigiert\nAktualisierte Dokumentation und Migrationsanleitung für die stabile Version 3.3.6",
@@ -80,19 +93,6 @@
         "pl": "Naprawiono TypeError: Cannot read properties of undefined Issue #104\ndodano dane dotyczące kompletnych ulic dla każdej stacji",
         "uk": "Виправлено TypeError: Cannot read properties of undefined Issue #104\nдодано повну вулицю для кожної станції",
         "zh-cn": "修正了TypeError。无法读取未定义的属性 问题#104\n为每个车站添加完整的街道数据点"
-      },
-      "3.3.0": {
-        "en": "Added Sentry for crash reporting\nAdded detailed request when creating stations in the UI",
-        "de": "Sentry zur Meldung von Abstürzen hinzugefügt\nDetaillierte Anfrage beim Erstellen von Stationen in der UI hinzugefügt",
-        "ru": "Добавлена функция Sentry для сообщения об авариях\nДобавлен детальный запрос при создании станций в пользовательском интерфейсе",
-        "pt": "Adicionado Sentinela para relatórios de crash\nAdicionado pedido detalhado ao criar estações na UI",
-        "nl": "Sentry voor crashmelding toegevoegd\nGedetailleerd verzoek toegevoegd bij het aanmaken van stations in de UI",
-        "fr": "Ajout de Sentry pour le rapport de crash\nAjout d'une demande détaillée lors de la création de stations dans l'interface utilisateur",
-        "it": "Aggiunta la funzione Sentry per la segnalazione degli incidenti\nAggiunta richiesta dettagliata durante la creazione di stazioni nell'interfaccia utente",
-        "es": "Añadido Sentry para la notificación de fallos\nAñadida solicitud detallada al crear estaciones en la interfaz de usuario",
-        "pl": "Dodano Sentry do raportowania o awariach\nDodano szczegółowe zapytanie podczas tworzenia stacji w UI",
-        "uk": "Додано Sentry для повідомлення про аварії\nДодано детальний запит при створенні станцій в інтерфейсі користувача",
-        "zh-cn": "增加了用于崩溃报告的哨兵\n在用户界面中创建站点时增加了详细请求"
       }
     },
     "titleLang": {

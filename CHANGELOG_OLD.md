@@ -1,4 +1,13 @@
 # Older changes
+## 3.3.2 (2023-01-02)
+* (xXBJXx) fixed TypeError: Cannot read property 'length' of undefined in addDiscount when the value is `boolean / undefined`
+* (xXBJXx) fixed Error: DB closed when the adapter is stopped
+* (xXBJXx) object creation optimized
+* (xXBJXx) request interval default value changed to 10 minutes and minimum value to 10 minutes
+* (xXBJXx) added a check for the Station ID is already configured (in edit mode)
+* (xXBJXx) added price difference to the last price
+* (xXBJXx) added a feature request cheapest station [Issue #109](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/109)
+
 ## 3.3.1 (2022-12-30)
 * (xXBJXx) fixed TypeError: Cannot read properties of undefined [Issue #104](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/104)
 * (xXBJXx) added full street state for each station
