@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Tab, Tabs, Tooltip } from '@mui/material';
-import { Logo } from 'iobroker-react';
+import { SettingsHeader } from 'iobroker-react';
 import { useAdapter, useI18n } from 'iobroker-react/hooks';
 import React, { useState } from 'react';
 import { AdapterInterval } from './component/AdapterInterval';
@@ -153,7 +153,7 @@ export const SettingPage: React.FC<SettingPageProps> = ({ onChange, settings, se
 						bgcolor: 'background.paper',
 					}}
 				>
-					<Logo classes={{ logo: 'logo' }} />
+					<SettingsHeader classes={{ logo: 'logo' }} />
 				</Box>
 			</Box>
 			<TabPanel value={value} index={0}>

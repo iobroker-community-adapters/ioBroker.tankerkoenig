@@ -33,6 +33,7 @@ NodeJS v14 or higher is required.
 * (xXBJXx) added a log message for the error `parameter error`
 * (xXBJXx) set the name length to 34 characters
 * (xXBJXx) Added verification if the api key is encrypted
+* (xXBJXx) updated the Dependencies
 
 ### 3.3.6 (2023-01-22)
 * (xXBJXx) fixed position of the warning message in the UI
