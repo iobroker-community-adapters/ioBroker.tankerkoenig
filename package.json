@@ -44,7 +44,7 @@
     "@iobroker/testing": "^4.1.0",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.7",
-    "@mui/styles": "^5.11.7",
+    "@mui/styles": "^5.11.13",
     "@tsconfig/node16": "^1.0.3",
     "@types/chai": "^4.3.4",
     "@types/chai-as-promised": "^7.1.5",
