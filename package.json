@@ -27,7 +27,7 @@
     "url": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.8",
