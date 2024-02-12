@@ -37,7 +37,7 @@
     "@alcalzone/release-script": "^3.5.9",
     "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
     "@alcalzone/release-script-plugin-license": "^3.5.9",
-    "@alcalzone/release-script-plugin-manual-review": "^3.5.9",
+    "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.10.6",
     "@iobroker/adapter-dev": "^1.2.0",
