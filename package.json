@@ -42,7 +42,7 @@
     "@emotion/styled": "^11.10.6",
     "@iobroker/adapter-dev": "^1.2.0",
     "@iobroker/testing": "^4.1.0",
-    "@mui/icons-material": "^5.11.16",
+    "@mui/icons-material": "^5.15.9",
     "@mui/material": "^5.13.6",
     "@mui/styles": "^5.11.13",
     "@tsconfig/node16": "^1.0.3",
