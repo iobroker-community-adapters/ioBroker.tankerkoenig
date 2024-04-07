@@ -46,7 +46,7 @@
     "@emotion/styled": "^11.11.5",
     "@iobroker/adapter-dev": "^1.2.0",
     "@iobroker/testing": "^4.1.1",
-    "@mui/icons-material": "^5.15.11",
+    "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.13.6",
     "@mui/styles": "^5.15.15",
     "@tsconfig/node16": "^1.0.3",
