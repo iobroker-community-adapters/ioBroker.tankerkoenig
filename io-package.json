@@ -128,6 +128,10 @@
       {
         "name": "xXBJXx",
         "email": "issi.dev.iobroker@gmail.com"
+      },
+      {
+        "name": "mcm1957",
+        "email": "mcm57@gmx.at"
       }
     ],
     "docs": {
@@ -145,7 +149,10 @@
       "Diesel",
       "Benzin"
     ],
-    "license": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "platform": "Javascript/Node.js",
     "main": "build/main.js",
     "icon": "tankerkoenig.png",
@@ -154,6 +161,7 @@
     "readme": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/blob/master/README.md",
     "allowInit": true,
     "loglevel": "info",
+    "tier": 2,
     "mode": "daemon",
     "type": "vehicle",
     "compact": true,
@@ -165,7 +173,7 @@
     "messagebox": true,
     "dependencies": [
       {
-        "js-controller": ">=4.0.0"
+        "js-controller": ">=5.0.0"
       }
     ],
     "globalDependencies": [
@@ -178,7 +186,6 @@
         "dsn": "https://a9e6413d06b64e7e8e8fb892dfd7532e@sentry.iobroker.net/228"
       }
     },
-    "tier": 3,
     "messages": [
       {
         "condition": {

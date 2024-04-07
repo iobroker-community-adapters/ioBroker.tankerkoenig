@@ -7,6 +7,10 @@
     {
       "name": "xXBJXx",
       "email": "issi.dev.iobroker@gmail.com"
+    },
+    {
+      "name": "mcm1957",
+      "email": "mcm57@gmx.at"
     }
   ],
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig",
@@ -27,7 +31,7 @@
     "url": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.8",
