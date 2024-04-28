@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "tankerkoenig",
-    "version": "3.3.7",
+    "version": "3.4.0",
     "news": {
+      "3.4.0": {
+        "en": "Adapter requires node.js 18 and js-controller >= 5 now\nDependencies have been updated",
+        "de": "Adapter benötigt node.js 18 und js-controller >= 5 jetzt\nAbhängigkeiten wurden aktualisiert",
+        "ru": "Адаптер требует node.js 18 и js-controller >= 5 сейчас\nЗависимость обновлена",
+        "pt": "Adapter requer node.js 18 e js-controller >= 5 agora\nAs dependências foram atualizadas",
+        "nl": "Adapter vereist node.js 18 en js-controller Nu 5\nAfhankelijkheden zijn bijgewerkt",
+        "fr": "Adaptateur nécessite node.js 18 et js-controller >= 5 maintenant\nLes dépendances ont été actualisées",
+        "it": "Adattatore richiede node.js 18 e js-controller >= 5 ora\nLe dipendenze sono state aggiornate",
+        "es": "Adaptador requiere node.js 18 y js-controller √= 5 ahora\nSe han actualizado las dependencias",
+        "pl": "Adapter wymaga node.js 18 i sterownika js- > = 5 teraz\nZaktualizowano zależności",
+        "uk": "Адаптер вимагає node.js 18 і js-controller >= 5 тепер\nЗалежність було оновлено",
+        "zh-cn": "适配器需要节点.js 18和js控制器 QQ 现在5号\n依赖关系已更新"
+      },
       "3.3.7": {
         "en": "added difference to jsonTable #116\nadded a log message for the error `parameter error`\nset the name length to 34 characters\nAdded verification if the api key is encrypted\nupdated the Dependencies",
         "de": "Unterschied zu jsonTable hinzugefügt #116\nLogmeldung für den Fehler \"Parameterfehler\" hinzugefügt\nLänge des Namens auf 34 Zeichen festgelegt\nÜberprüfung hinzugefügt, ob der Api-Schlüssel verschlüsselt ist\ndie Abhängigkeiten aktualisiert",
@@ -80,19 +93,6 @@
         "pl": "Naprawiono TypeError: Cannot read property 'length' of undefined in addDiscount if value is `boolean / undefined`.\nNaprawiony błąd: DB zamknięty, gdy adapter jest zatrzymany \nZoptymalizowano tworzenie obiektów\nZmieniono wartość domyślną interwału zapytania na 10 minut oraz wartość minimalną na 10 minut\ndodano sprawdzanie czy ID stacji jest już skonfigurowane (w trybie edycji)\nDodano różnicę w cenie do ostatniej ceny\ndodano feature request najtańsze wyświetlanie stacji [Issue #109]",
         "uk": "Виправлено TypeError: Неможливо прочитати властивість 'length' з undefined в addDiscount, якщо значення `boolean / undefined`.\nВиправлена помилка: БД закривалася при зупинці адаптера \nОптимізовано створення об'єктів\nзмінено значення інтервалу запиту за замовчуванням на 10 хвилин та мінімальне значення на 10 хвилин\nдодана перевірка, чи вже налаштований ID станції (в режимі редагування)\nдодана різниця в ціні до останньої ціни\nдодана функція запиту відображення найдешевшої станції [Випуск #109].",
         "zh-cn": "修正了TypeError。如果值是 \"boolean / undefined\"，不能读取addDiscount中未定义的属性 \"length\"。\n修正了错误。当适配器停止时，数据库被关闭 \n优化了对象创建\n更改了查询间隔的默认值为10分钟，最小值为10分钟\n增加了车站ID是否已经配置的检查（在编辑模式）。\n为最后的价格增加了价格差异\n增加了最便宜的车站显示功能请求 [问题#109] 。"
-      },
-      "3.3.1": {
-        "en": "Fixed TypeError: Cannot read properties of undefined Issue #104\nadded complete street datapoint for each station",
-        "de": "TypeError behoben: Cannot read properties of undefined Ausgabe #104\nDatenpunkt für komplette Straße für jede Station hinzugefügt",
-        "ru": "Исправлена ошибка TypeError: Невозможно прочитать свойства неопределенного Выдача #104\nдобавлена точка данных полной улицы для каждой станции",
-        "pt": "TypeError fixo: Não é possível ler as propriedades da edição não definida #104\nadicionado um datapoint completo de rua para cada estação",
-        "nl": "Fixed TypeError: Kan geen eigenschappen lezen van ongedefinieerde Issue #104\ncompleet straat datapunt toegevoegd voor elk station",
-        "fr": "Correction de TypeError : Impossible de lire les propriétés d'undefined Issue #104\najout d'un point de données sur les rues complètes pour chaque station",
-        "it": "TypeError corretto: Impossibile leggere le proprietà di undefined Problema #104\naggiunto il dato della strada completa per ogni stazione",
-        "es": "Corregido TypeError: Cannot read properties of undefined Edición nº 104\nañadido un punto de datos de calle completa para cada estación",
-        "pl": "Naprawiono TypeError: Cannot read properties of undefined Issue #104\ndodano dane dotyczące kompletnych ulic dla każdej stacji",
-        "uk": "Виправлено TypeError: Cannot read properties of undefined Issue #104\nдодано повну вулицю для кожної станції",
-        "zh-cn": "修正了TypeError。无法读取未定义的属性 问题#104\n为每个车站添加完整的街道数据点"
       }
     },
     "titleLang": {

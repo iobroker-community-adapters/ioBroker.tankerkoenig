@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../src/lib/interface/resultInterface.ts"],
-  "sourcesContent": ["export interface Result {\n\t[key: string]: {\n\t\tstatus: 'open' | 'closed' | 'no prices' | 'no stations' | 'not found';\n\t\te5?: boolean | number;\n\t\te10?: boolean | number;\n\t\tdiesel?: boolean | number;\n\t\t[key: string]: any;\n\t};\n}\n"],
+  "sourcesContent": ["export interface Result {\r\n\t[key: string]: {\r\n\t\tstatus: 'open' | 'closed' | 'no prices' | 'no stations' | 'not found';\r\n\t\te5?: boolean | number;\r\n\t\te10?: boolean | number;\r\n\t\tdiesel?: boolean | number;\r\n\t\t[key: string]: any;\r\n\t};\r\n}\r\n"],
   "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
   "names": []
 }

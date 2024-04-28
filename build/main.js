@@ -14,6 +14,10 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
@@ -41,6 +45,9 @@ class Tankerkoenig extends utils.Adapter {
     this.sync_milliseconds = 10 * 60 * 1e3;
     this.refreshStatus = false;
   }
+  /**
+   * @description Is called when databases are connected and adapter received configuration.
+   */
   async onReady() {
     try {
       const adapterObj = await this.getForeignObjectAsync(
@@ -231,6 +238,9 @@ class Tankerkoenig extends utils.Adapter {
       );
     }
   }
+  /**
+   * @description request data from tankerkoenig
+   */
   async requestData() {
     try {
       if (this.requestTimeout)
@@ -292,7 +302,7 @@ class Tankerkoenig extends utils.Adapter {
         );
       }
       await this.setStateAsync(`stations.lastUpdate`, { val: Date.now(), ack: true });
-      this.writeLog(`last update: ${new Date().toString()}`, "debug");
+      this.writeLog(`last update: ${(/* @__PURE__ */ new Date()).toString()}`, "debug");
       this.requestTimeout = setTimeout(async () => {
         this.writeLog(`request timeout start new request`, "debug");
         await this.setStateAsync(`stations.adapterStatus`, {
@@ -334,6 +344,9 @@ class Tankerkoenig extends utils.Adapter {
       }, this.sync_milliseconds);
     }
   }
+  /**
+   * @description set the discount to the price if it is configured
+   */
   async setDiscount(price) {
     try {
       const station = this.config.station;
@@ -373,6 +386,9 @@ class Tankerkoenig extends utils.Adapter {
       return price;
     }
   }
+  /**
+   * @description request old state
+   */
   async oldState(id) {
     try {
       const oldState = await this.getStateAsync(id);
@@ -385,6 +401,9 @@ class Tankerkoenig extends utils.Adapter {
       return null;
     }
   }
+  /**
+   * @description request day of state
+   */
   async dayState(id) {
     try {
       const dayState = await this.getStateAsync(id);
@@ -404,6 +423,7 @@ class Tankerkoenig extends utils.Adapter {
       return null;
     }
   }
+  // berechne die diverenz zwischen den preisen
   async calcPriceDiff(id, diffID, newPrice) {
     try {
       const oldPrice = await this.oldState(id);
@@ -444,6 +464,9 @@ class Tankerkoenig extends utils.Adapter {
       return 0;
     }
   }
+  /**
+   * @description write the states to the adapter
+   */
   async writeState(prices) {
     try {
       const station = this.config.station;
@@ -1339,7 +1362,7 @@ class Tankerkoenig extends utils.Adapter {
                 const feedMinDay = await this.dayState(
                   `stations.${key}.${this.fuelTypes[fuelTypesKey]}.minmax.feed_min`
                 );
-                const now = new Date();
+                const now = /* @__PURE__ */ new Date();
                 if (now.getDate() !== feedMinDay) {
                   await this.setStateAsync(
                     `stations.${key}.${this.fuelTypes[fuelTypesKey]}.minmax.feed_min`,
@@ -1856,6 +1879,9 @@ class Tankerkoenig extends utils.Adapter {
       );
     }
   }
+  /**
+   * @description create a JsonTable vor visualisation
+   */
   async createJsonTable(price, station) {
     try {
       const jsonTable = [];
@@ -1916,6 +1942,9 @@ class Tankerkoenig extends utils.Adapter {
       );
     }
   }
+  /**
+   * @description This function is used to get the short prices and the 3rd decimal place.
+   */
   async cutPrice(price) {
     try {
       this.writeLog(`cutPrice: ${price} price type ${typeof price}`, "debug");
@@ -1947,6 +1976,9 @@ class Tankerkoenig extends utils.Adapter {
       return { priceshort: "0", price3rd: 0 };
     }
   }
+  /**
+   * @description add Discount to price if discount is active
+   */
   async addDiscount(price, discount, discountType) {
     try {
       if (price === void 0) {
@@ -2012,6 +2044,9 @@ class Tankerkoenig extends utils.Adapter {
       return parseFloat(price);
     }
   }
+  /**
+   * @description Function to create all Folder and states for the stations
+   */
   async createAllStates(stations) {
     var _a;
     try {
@@ -2212,6 +2247,9 @@ class Tankerkoenig extends utils.Adapter {
       );
     }
   }
+  /**
+   * @description a function for log output
+   */
   writeLog(logtext, logtype) {
     try {
       if (logtype === "silly")
@@ -2228,6 +2266,9 @@ class Tankerkoenig extends utils.Adapter {
       this.log.error(`[ Adapter V:${this.version} writeLog ] error: ${error} , stack: ${error.stack}`);
     }
   }
+  /**
+   * @description Is called when adapter shuts down - callback has to be called under any circumstances!
+   */
   onUnload(callback) {
     try {
       this.setState(`stations.adapterStatus`, {
@@ -2248,6 +2289,11 @@ class Tankerkoenig extends utils.Adapter {
       callback();
     }
   }
+  /**
+   * If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
+   * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
+   * Using this method requires "common.messagebox" property to be set to true in io-package.json
+   */
   async onMessage(obj) {
     try {
       if (typeof obj === "object" && obj.message) {
@@ -2379,6 +2425,9 @@ class Tankerkoenig extends utils.Adapter {
       }
     }
   }
+  /**
+   * @description Is called if a subscribed state changes
+   */
   async onStateChange(id, state) {
     try {
       if (state) {
