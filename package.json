@@ -65,7 +65,7 @@
     "chai": "^4.5.0",
     "chai-as-promised": "^7.1.2",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.37.3",
     "iobroker-react": "git+https://git@github.com/xXBJXx/iobroker-react.git#IssiVersion",
