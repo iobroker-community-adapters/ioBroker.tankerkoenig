@@ -17,3 +17,6 @@ coverage
 
 
 .DS_Store
+
+#ignore .commitinfo created by ioBroker release script
+.commitinfo
