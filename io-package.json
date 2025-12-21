@@ -158,7 +158,6 @@
     "enabled": false,
     "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.tankerkoenig/master/admin/tankerkoenig.png",
     "readme": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/blob/master/README.md",
-    "allowInit": true,
     "loglevel": "info",
     "tier": 2,
     "mode": "daemon",
