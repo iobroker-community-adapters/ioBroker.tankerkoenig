@@ -111,14 +111,6 @@
     "translate": "translate-adapter",
     "release": "release-script"
   },
-  "maintainers": [
-    {
-      "name": "pix"
-    },
-    {
-      "name": "xXBJXx"
-    }
-  ],
   "bugs": {
     "url": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues"
   },
