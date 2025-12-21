@@ -10,8 +10,6 @@
 **This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error 
 reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0. 
 
-NodeJS v14 or higher is required.
-
 ## Migration Guides
 [Migration guide 3.3.3 to 3.3.5](docs/guide/migration_3.3.5.md)\
 [Migration guide 3.1.x to 3.3.x or 3.2.x to 3.3.x](docs/guide/migration_3.3.x.md)\
