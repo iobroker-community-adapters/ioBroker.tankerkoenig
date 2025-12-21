@@ -12,7 +12,7 @@ on:
       force_setup:
         description: 'Force setup even if copilot-instructions.md already exists'
         required: false
-        default: 'false'
+        default: false
         type: boolean
 
 jobs:
