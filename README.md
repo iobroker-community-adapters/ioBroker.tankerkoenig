@@ -26,6 +26,9 @@ NodeJS v14 or higher is required.
 <!--
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (@klein0r) Adapter requires node.js 20 and js-controller >= 6 now
+
 ### 3.4.0 (2024-04-28)
 * (mcm1957) Adapter requires node.js 18 and js-controller >= 5 now
 * (mcm1957) Dependencies have been updated
