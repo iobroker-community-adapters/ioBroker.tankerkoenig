@@ -168,7 +168,6 @@
     "dataSource": "poll",
     "stopBeforeUpdate": true,
     "eraseOnUpload": true,
-    "materialize": true,
     "messagebox": true,
     "dependencies": [
       {
