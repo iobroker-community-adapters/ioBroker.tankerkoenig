@@ -122,17 +122,10 @@
       "zh-cn": "Tankerkoenig燃料价格"
     },
     "authors": [
-      {
-        "name": "pix"
-      },
-      {
-        "name": "xXBJXx",
-        "email": "issi.dev.iobroker@gmail.com"
-      },
-      {
-        "name": "mcm1957",
-        "email": "mcm57@gmx.at"
-      }
+      "pix",
+      "xXBJXx <issi.dev.iobroker@gmail.com>",
+      "mcm1957 <mcm57@gmx.at>",
+      "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
     ],
     "docs": {
       "en": "docs/en/doc_tankerkoenig_en.md",
