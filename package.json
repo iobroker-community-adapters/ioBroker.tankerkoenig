@@ -4,14 +4,9 @@
   "description": "Spritpreise von tankerkoenig.de",
   "author": "pix",
   "contributors": [
-    {
-      "name": "xXBJXx",
-      "email": "issi.dev.iobroker@gmail.com"
-    },
-    {
-      "name": "mcm1957",
-      "email": "mcm57@gmx.at"
-    }
+    "xXBJXx <issi.dev.iobroker@gmail.com>",
+    "mcm1957 <mcm57@gmx.at>",
+    "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
   ],
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig",
   "license": "MIT",
