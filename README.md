@@ -52,7 +52,7 @@ reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-s
 
 The MIT License (MIT)
 
-Copyright (c) 2024-2025 iobroker-community-adapters <iobroker-community-adapters@gmx.de>
+Copyright (c) 2024-2026 iobroker-community-adapters <iobroker-community-adapters@gmx.de>
 Copyright (c) 2016-2023 xXBJXx <issi.dev.iobroker@gmail.com> pix
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
