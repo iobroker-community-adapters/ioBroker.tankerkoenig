@@ -25,6 +25,7 @@ reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-s
     ### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
+- (copilot) Adapter requires admin >= 7.7.22 now
 * (@klein0r) Adapter requires node.js 20 and js-controller >= 6 now
 
 ### 3.4.0 (2024-04-28)
