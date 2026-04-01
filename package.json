@@ -56,7 +56,7 @@
     "@types/sinon-chai": "^3.2.12",
     "@types/source-map-support": "^0.5.10",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
-    "@typescript-eslint/parser": "^8.50.0",
+    "@typescript-eslint/parser": "^8.57.2",
     "chai": "^4.5.0",
     "chai-as-promised": "^7.1.2",
     "eslint": "^9.39.2",
