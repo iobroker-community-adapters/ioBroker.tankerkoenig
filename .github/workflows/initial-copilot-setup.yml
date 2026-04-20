@@ -146,7 +146,7 @@ jobs:
           
       - name: Create setup summary issue
         if: steps.setup-check.outputs.should_setup == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const adapterName = '${{ steps.repo-check.outputs.adapter_name }}';

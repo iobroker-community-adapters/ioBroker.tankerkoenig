@@ -93,7 +93,7 @@ jobs:
       - name: Check for existing issues
         id: existing-issues
         if: steps.version-check.outputs.status != 'up_to_date'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const status = '${{ steps.version-check.outputs.status }}';
@@ -139,7 +139,7 @@ jobs:
             
       - name: Create initialization issue
         if: steps.version-check.outputs.status == 'not_initialized' && steps.existing-issues.outputs.has_existing_issue == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const adapterName = '${{ steps.repo-info.outputs.adapter_name }}';
@@ -200,7 +200,7 @@ jobs:
             
       - name: Create update issue
         if: steps.version-check.outputs.status == 'needs_update' && steps.existing-issues.outputs.has_existing_issue == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const adapterName = '${{ steps.repo-info.outputs.adapter_name }}';
@@ -264,7 +264,7 @@ jobs:
             
       - name: Handle version check failure
         if: steps.version-check.outputs.status == 'version_check_failed' && steps.existing-issues.outputs.has_existing_issue == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const currentVersion = '${{ steps.version-check.outputs.current_version }}';
