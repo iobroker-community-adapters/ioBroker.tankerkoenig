@@ -50,6 +50,8 @@ reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-s
 ### 3.3.4 (2023-01-03)
 * (xXBJXx) Fixed an issue where a postal code starting with 0 was not displayed correctly [Issue #113](https://github.com/iobroker-community-adapters/ioBroker.tankerkoenig/issues/113)
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 The MIT License (MIT)
